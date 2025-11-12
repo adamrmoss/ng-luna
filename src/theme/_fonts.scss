@@ -1,0 +1,9 @@
+// Import all IBM Plex font families from npm
+@import '~@ibm/plex/scss/mono';
+@import '~@ibm/plex/scss/sans';
+@import '~@ibm/plex/scss/serif';
+
+// Define static SCSS variables for consistent usage
+$font-mono: 'IBM Plex Mono', monospace;
+$font-sans: 'IBM Plex Sans', sans-serif;
+$font-serif: 'IBM Plex Serif', serif;
