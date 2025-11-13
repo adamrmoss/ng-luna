@@ -1,2 +1,3 @@
 <button class="xp-button" [attr.type]="type" [disabled]="disabled" [attr.name]="name" [attr.value]="value" [attr.autofocus]="autofocus || null" [attr.tabindex]="tabindex" (click)="onClick($event)">
+    <ng-content></ng-content>
 </button>

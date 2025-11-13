@@ -1,6 +1,10 @@
 {
     "name": "ng-luna",
     "version": "0.0.1",
+    "scripts": {
+        "build": "ng-packagr -p ng-package.json",
+        "clean": "rm -rf dist"
+    },
     "peerDependencies": {
         "@angular/common": "19.2.15",
         "@angular/core": "19.2.15"
@@ -10,6 +14,9 @@
         "@ibm/plex": "6.4.1",
         "tslib": "^2.3.0",
         "xp.css": "0.2.6"
+    },
+    "devDependencies": {
+        "ng-packagr": "^19.0.0"
     },
     "sideEffects": false
 }

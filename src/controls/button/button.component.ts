@@ -8,7 +8,8 @@ export type ButtonType = 'button' | 'submit' | 'reset';
     templateUrl: './button.component.html',
     styleUrls: [ './button.component.scss' ]
 })
-export class ButtonComponent {
+export class ButtonComponent
+{
     @Input()
     public type: ButtonType = 'button';
 
