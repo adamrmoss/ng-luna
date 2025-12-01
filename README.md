@@ -91,11 +91,58 @@ ng-luna/
 - **@ibm/plex** (v6.4.1) - IBM Plex font families
 - **@angular/cdk** (v19.2.17) - Angular Component Dev Kit
 
+## Publishing
+
+### Prerequisites
+
+1. Create an npm account at [npmjs.com](https://www.npmjs.com/) if you don't have one
+2. Login to npm from the command line:
+
+```bash
+npm login
+```
+
+### Publishing Steps
+
+1. **Build the library:**
+
+```bash
+npm run build
+```
+
+2. **Test the build (optional but recommended):**
+
+```bash
+cd dist
+npm pack
+```
+
+This creates a `.tgz` file you can inspect or test locally before publishing.
+
+3. **Publish to npm:**
+
+```bash
+npm publish ./dist
+```
+
+### Publishing Updates
+
+When you need to publish a new version:
+
+```bash
+# Update the version number (choose one):
+npm version patch  # 0.0.1 -> 0.0.2 (bug fixes)
+npm version minor  # 0.0.1 -> 0.1.0 (new features)
+npm version major  # 0.0.1 -> 1.0.0 (breaking changes)
+
+# Build and publish
+npm run build
+npm publish ./dist
+```
+
 ## License
 
-[Add your license here]
+MIT License - see [LICENSE](LICENSE) file for details.
 
-## Contributing
-
-[Add contribution guidelines here]
+Copyright (c) 2025 Adam R Moss
 

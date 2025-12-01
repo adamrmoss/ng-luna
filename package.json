@@ -1,6 +1,26 @@
 {
     "name": "ng-luna",
     "version": "0.0.1",
+    "description": "An Angular component library inspired by Windows XP aesthetics, built with XP.css and IBM Plex fonts",
+    "author": {
+        "name": "Adam R Moss",
+        "email": "adamrmoss@gmail.com"
+    },
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/adamrmoss/ng-luna.git"
+    },
+    "homepage": "https://github.com/adamrmoss/ng-luna",
+    "keywords": [
+        "angular",
+        "component-library",
+        "windows-xp",
+        "xp.css",
+        "ui-components",
+        "retro",
+        "nostalgic"
+    ],
     "scripts": {
         "build": "ng-packagr -p ng-package.json",
         "clean": "rm -rf dist"
@@ -12,11 +32,11 @@
     "dependencies": {
         "@angular/cdk": "19.2.17",
         "@ibm/plex": "6.4.1",
-        "tslib": "^2.3.0",
+        "tslib": "2.x.x",
         "xp.css": "0.2.6"
     },
     "devDependencies": {
-        "ng-packagr": "^19.0.0"
+        "ng-packagr": "19.x.x"
     },
     "sideEffects": false
 }
