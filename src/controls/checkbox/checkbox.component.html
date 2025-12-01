@@ -1,0 +1,11 @@
+<input
+    type="checkbox"
+    [id]="name"
+    [name]="name"
+    [value]="value"
+    [checked]="checked"
+    [disabled]="disabled"
+    (change)="onCheckboxChange($event)">
+<label [for]="name">
+    <ng-content></ng-content>{{ label }}
+</label>

@@ -1,0 +1,14 @@
+<div [class.is-vertical]="vertical">
+    <input
+        type="range"
+        [class.has-box-indicator]="boxIndicator"
+        [id]="name"
+        [name]="name"
+        [value]="value"
+        [min]="min"
+        [max]="max"
+        [step]="step"
+        [disabled]="disabled"
+        (input)="onSliderChange($event)"
+        (blur)="onSliderBlur()">
+</div>

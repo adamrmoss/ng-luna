@@ -1,0 +1,44 @@
+@import '../../theme/palette';
+@import '../../theme/fonts';
+@import '../../theme/graphics';
+
+:host
+{
+    display: contents;
+}
+
+select
+{
+    -webkit-font-smoothing: antialiased;
+    height: 23px;
+    font-family: $font-sans;
+    font-size: 11px;
+    padding: 2px 4px;
+    border: 1px solid #7f9db9;
+    background-image: $select-dropdown-svg;
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 15px;
+    padding-right: 20px;
+
+    &:focus
+    {
+        outline: none;
+        box-shadow: inset 2px 2px $white, inset -2px -2px $white;
+    }
+
+    &:hover
+    {
+        background-image: $select-dropdown-hover-svg;
+    }
+
+    &:active
+    {
+        background-image: $select-dropdown-active-svg;
+    }
+}
+
+option
+{
+    -webkit-font-smoothing: antialiased;
+}

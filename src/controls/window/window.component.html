@@ -1,0 +1,29 @@
+<div class="window">
+    <div class="title-bar">
+        <div class="title-bar-text">{{ title }}</div>
+        <div class="title-bar-controls">
+            <button
+                *ngIf="showMinimize"
+                aria-label="Minimize"
+                (click)="onMinimize()"></button>
+            <button
+                *ngIf="showMaximize"
+                [attr.aria-label]="isMaximized ? 'Restore' : 'Maximize'"
+                (click)="onMaximize()"></button>
+            <button
+                *ngIf="showHelp"
+                aria-label="Help"
+                (click)="onHelp()"></button>
+            <button
+                *ngIf="showClose"
+                aria-label="Close"
+                (click)="onClose()"></button>
+        </div>
+    </div>
+    <div class="window-body">
+        <ng-content></ng-content>
+    </div>
+    <div class="status-bar">
+        <ng-content select="[slot='status']"></ng-content>
+    </div>
+</div>

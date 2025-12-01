@@ -1,0 +1,118 @@
+@import '../../theme/palette';
+@import '../../theme/graphics';
+
+:host
+{
+    display: contents;
+}
+
+input[type="range"]
+{
+    &::-webkit-slider-thumb
+    {
+        height: 21px;
+        width: 11px;
+        background: $slider-thumb-svg;
+        transform: translateY(-8px);
+    }
+
+    &::-moz-range-thumb
+    {
+        height: 21px;
+        width: 11px;
+        border: 0;
+        border-radius: 0;
+        background: $slider-thumb-svg;
+        transform: translateY(2px);
+    }
+
+    &::-webkit-slider-runnable-track
+    {
+        width: 100%;
+        height: 2px;
+        box-sizing: border-box;
+        background: $beige-lighter;
+        border-right: 1px solid $cream;
+        border-bottom: 1px solid $cream;
+        border-radius: 2px;
+        box-shadow:
+            1px 0 0 $white,
+            1px 1px 0 $white,
+            0 1px 0 $white,
+            -1px 0 0 $gray-dark,
+            -1px -1px 0 $gray-dark,
+            0 -1px 0 $gray-dark,
+            -1px 1px 0 $white,
+            1px -1px $gray-dark;
+    }
+
+    &::-moz-range-track
+    {
+        width: 100%;
+        height: 2px;
+        box-sizing: border-box;
+        background: $beige-lighter;
+        border-right: 1px solid $cream;
+        border-bottom: 1px solid $cream;
+        border-radius: 2px;
+        box-shadow:
+            1px 0 0 $white,
+            1px 1px 0 $white,
+            0 1px 0 $white,
+            -1px 0 0 $gray-dark,
+            -1px -1px 0 $gray-dark,
+            0 -1px 0 $gray-dark,
+            -1px 1px 0 $white,
+            1px -1px $gray-dark;
+    }
+}
+
+input[type="range"].has-box-indicator
+{
+    &::-webkit-slider-thumb
+    {
+        background: $slider-thumb-svg;
+        transform: translateY(-10px);
+    }
+
+    &::-moz-range-thumb
+    {
+        background: $slider-thumb-svg;
+        transform: translateY(0px);
+    }
+}
+
+.is-vertical > input[type="range"]
+{
+    &::-webkit-slider-runnable-track
+    {
+        border-left: 1px solid $cream;
+        border-right: 0;
+        border-bottom: 1px solid $cream;
+        box-shadow:
+            -1px 0 0 $white,
+            -1px 1px 0 $white,
+            0 1px 0 $white,
+            1px 0 0 $gray-dark,
+            1px -1px 0 $gray-dark,
+            0 -1px 0 $gray-dark,
+            1px 1px 0 $white,
+            -1px -1px $gray-dark;
+    }
+
+    &::-moz-range-track
+    {
+        border-left: 1px solid $cream;
+        border-right: 0;
+        border-bottom: 1px solid $cream;
+        box-shadow:
+            -1px 0 0 $white,
+            -1px 1px 0 $white,
+            0 1px 0 $white,
+            1px 0 0 $gray-dark,
+            1px -1px 0 $gray-dark,
+            0 -1px 0 $gray-dark,
+            1px 1px 0 $white,
+            -1px -1px $gray-dark;
+    }
+}

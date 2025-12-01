@@ -1,4 +1,5 @@
-@import '../../palette';
+@import '../../theme/palette';
+@import '../../theme/fonts';
 
 :host
 {
@@ -7,7 +8,7 @@
 
 button
 {
-    font-family: var(--sans-serif);
+    font-family: $font-sans;
     -webkit-font-smoothing: antialiased;
     font-size: 11px;
     box-sizing: border-box;

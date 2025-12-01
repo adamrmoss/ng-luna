@@ -1,0 +1,172 @@
+@import '../../theme/palette';
+@import '../../theme/fonts';
+@import '../../theme/graphics';
+
+:host
+{
+    display: block;
+}
+
+.window
+{
+    box-shadow:
+        inset -1px -1px $navy-darkest,
+        inset 1px 1px $blue-bright-lighter,
+        inset -2px -2px $navy-dark,
+        inset 2px 2px $blue-sky,
+        inset -3px -3px $blue-bright-darkest,
+        inset 3px 3px $blue-bright-lightest;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding: 0 0 3px 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+.title-bar
+{
+    font-family: $font-sans;
+    background: linear-gradient(
+        180deg,
+        $blue-sky-dark 0%,
+        $blue-bright 8%,
+        $blue-bright-dark 40%,
+        $blue-bright-medium 88%,
+        $blue-bright-medium 93%,
+        $blue-bright-light 95%,
+        $blue-bright-darker 96%,
+        $blue-bright-darker 100%
+    );
+    padding: 3px 5px 3px 3px;
+    border-top: 1px solid $blue-bright-lighter;
+    border-left: 1px solid $blue-bright-lighter;
+    border-right: 1px solid $navy-dark;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 7px;
+    font-size: 13px;
+    text-shadow: 1px 1px $navy-darker;
+    height: 21px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $white;
+}
+
+.title-bar-text
+{
+    padding-left: 3px;
+}
+
+.title-bar-controls
+{
+    display: flex;
+
+    button
+    {
+        min-width: 21px;
+        min-height: 21px;
+        margin-left: 2px;
+        background-repeat: no-repeat;
+        background-position: center;
+        box-shadow: none;
+        background-color: $blue-bright-dark;
+        transition: background 100ms;
+        border: none;
+
+        &:active,
+        &:hover,
+        &:focus
+        {
+            box-shadow: none !important;
+        }
+    }
+
+    button[aria-label="Minimize"]
+    {
+        background-image: $window-minimize-svg;
+
+        &:hover
+        {
+            background-image: $window-minimize-hover-svg;
+        }
+
+        &:not(:disabled):active
+        {
+            background-image: $window-minimize-active-svg;
+        }
+    }
+
+    button[aria-label="Maximize"]
+    {
+        background-image: $window-maximize-svg;
+
+        &:hover
+        {
+            background-image: $window-maximize-hover-svg;
+        }
+
+        &:not(:disabled):active
+        {
+            background-image: $window-maximize-active-svg;
+        }
+    }
+
+    button[aria-label="Restore"]
+    {
+        background-image: $window-restore-svg;
+
+        &:hover
+        {
+            background-image: $window-restore-hover-svg;
+        }
+
+        &:not(:disabled):active
+        {
+            background-image: $window-restore-active-svg;
+        }
+    }
+
+    button[aria-label="Help"]
+    {
+        background-image: $window-help-svg;
+
+        &:hover
+        {
+            background-image: $window-help-hover-svg;
+        }
+
+        &:not(:disabled):active
+        {
+            background-image: $window-help-active-svg;
+        }
+    }
+
+    button[aria-label="Close"]
+    {
+        background-image: $window-close-svg;
+
+        &:hover
+        {
+            background-image: $window-close-hover-svg;
+        }
+
+        &:not(:disabled):active
+        {
+            background-image: $window-close-active-svg;
+        }
+    }
+}
+
+.window-body
+{
+    background: $beige-light;
+    padding: 8px;
+}
+
+.status-bar
+{
+    margin: 0 3px;
+    box-shadow: inset 0px 1px 2px var(--button-shadow);
+    padding: 2px 1px;
+    display: flex;
+    gap: 0px;
+}
