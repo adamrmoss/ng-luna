@@ -16,8 +16,8 @@ npm install ng-luna
 
 This library requires the following peer dependencies:
 
-- `@angular/common`: ^19.2.15
-- `@angular/core`: ^19.2.15
+- `@angular/common`: 19.2.15
+- `@angular/core`: 19.2.15
 
 ## Usage
 
@@ -39,12 +39,22 @@ The `luna-button` component provides a Windows XP-styled button:
 
 #### Inputs
 
-- `type: ButtonType` - Button type: `'button' | 'submit' | 'reset'` (default: `'button'`)
-- `disabled: boolean` - Whether the button is disabled (default: `false`)
-- `name: string` - Name attribute for the button
-- `value: string` - Value attribute for the button
 - `autofocus: boolean` - Whether the button should be autofocused (default: `false`)
-- `tabindex: number` - Tab index for keyboard navigation
+- `command?: string` - Command to invoke when the button is clicked
+- `commandfor?: string` - Element ID that the command is for
+- `disabled: boolean` - Whether the button is disabled (default: `false`)
+- `form?: string` - Form element ID to associate with
+- `formaction?: string` - URL to submit the form to (for submit buttons)
+- `formenctype?: FormEnctype` - Form encoding type: `'application/x-www-form-urlencoded' | 'multipart/form-data' | 'text/plain'`
+- `formmethod?: FormMethod` - HTTP method for form submission: `'get' | 'post'`
+- `formnovalidate: boolean` - Whether to bypass form validation (default: `false`)
+- `formtarget?: FormTarget` - Where to display form response: `'_self' | '_blank' | '_parent' | '_top'`
+- `name?: string` - Name attribute for the button
+- `popovertarget?: string` - ID of popover element to control
+- `popovertargetaction?: PopoverTargetAction` - Popover action: `'show' | 'hide' | 'toggle'`
+- `tabindex?: number` - Tab index for keyboard navigation
+- `type: ButtonType` - Button type: `'button' | 'submit' | 'reset'` (default: `'button'`)
+- `value?: string` - Value attribute for the button
 
 #### Outputs
 
