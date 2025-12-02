@@ -1,4 +1,12 @@
+// Override font-prefix to point to node_modules
+// Path is relative from component SCSS files (e.g., src/controls/*/) to node_modules
+// Components import this file, so paths resolve from component location
+// Set without !default to ensure it overrides IBM Plex's !default values
+$font-prefix: '../../../node_modules/@ibm/plex';
+
 // Import all IBM Plex font families from npm
+// Note: IBM Plex still uses @import internally, so we use @import here
+// This will be resolved when IBM Plex updates to @use
 @import '@ibm/plex/scss/mono';
 @import '@ibm/plex/scss/sans';
 @import '@ibm/plex/scss/serif';

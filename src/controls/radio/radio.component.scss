@@ -1,5 +1,5 @@
-@import '../../theme/palette';
-@import '../../theme/graphics';
+@use '../../theme/palette' as *;
+@use '../../theme/graphics' as *;
 
 :host
 {

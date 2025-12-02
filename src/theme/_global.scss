@@ -1,5 +1,5 @@
-@import 'palette';
-@import 'graphics';
+@use 'palette' as *;
+@use 'graphics' as *;
 
 ::-webkit-scrollbar
 {
