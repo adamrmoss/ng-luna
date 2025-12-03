@@ -1,11 +1,13 @@
 <input
-    type="checkbox"
-    [id]="name"
-    [name]="name"
-    [value]="value"
+    [attr.autofocus]="autofocus || null"
     [checked]="checked"
     [disabled]="disabled"
+    [attr.id]="id || name"
+    [attr.name]="name"
+    [attr.tabindex]="tabindex"
+    type="checkbox"
+    [attr.value]="value"
     (change)="onCheckboxChange($event)">
-<label [for]="name">
+<label [attr.for]="id || name">
     <ng-content></ng-content>{{ label }}
 </label>

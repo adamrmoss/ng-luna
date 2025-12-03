@@ -1,4 +1,9 @@
-<div class="window">
+<div
+    [attr.autofocus]="autofocus || null"
+    class="window"
+    [attr.id]="id"
+    [attr.name]="name"
+    [attr.tabindex]="tabindex">
     <div class="title-bar">
         <div class="title-bar-text">{{ title }}</div>
         <div class="title-bar-controls">

@@ -1,10 +1,12 @@
 <input
-    [type]="type"
-    [id]="name"
-    [name]="name"
-    [value]="value"
-    [placeholder]="placeholder"
+    [attr.autofocus]="autofocus || null"
     [disabled]="disabled"
+    [attr.id]="id || name"
+    [attr.name]="name"
+    [attr.placeholder]="placeholder"
     [readonly]="readonly"
-    (input)="onInputChange($event)"
-    (blur)="onInputBlur($event)">
+    [attr.tabindex]="tabindex"
+    [attr.type]="type"
+    [value]="value"
+    (blur)="onInputBlur($event)"
+    (input)="onInputChange($event)">

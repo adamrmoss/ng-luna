@@ -1,8 +1,10 @@
 <select
-    [id]="name"
-    [name]="name"
-    [value]="value"
+    [attr.autofocus]="autofocus || null"
     [disabled]="disabled"
+    [attr.id]="id || name"
+    [attr.name]="name"
+    [attr.tabindex]="tabindex"
+    [value]="value"
     (change)="onSelectChange($event)">
     <ng-content></ng-content>
 </select>

@@ -1,4 +1,8 @@
-<fieldset>
+<fieldset
+    [attr.autofocus]="autofocus || null"
+    [attr.id]="id"
+    [attr.name]="name"
+    [attr.tabindex]="tabindex">
     <legend *ngIf="legend">{{ legend }}</legend>
     <ng-content></ng-content>
 </fieldset>

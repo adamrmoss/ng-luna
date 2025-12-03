@@ -1,11 +1,13 @@
 <input
-    type="radio"
-    [id]="name"
-    [name]="name"
-    [value]="value"
+    [attr.autofocus]="autofocus || null"
     [checked]="checked"
     [disabled]="disabled"
+    [attr.id]="id || name"
+    [attr.name]="name"
+    [attr.tabindex]="tabindex"
+    type="radio"
+    [attr.value]="value"
     (change)="onRadioChange($event)">
-<label [for]="name">
+<label [attr.for]="id || name">
     <ng-content></ng-content>{{ label }}
 </label>

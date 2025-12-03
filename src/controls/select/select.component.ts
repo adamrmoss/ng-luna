@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { LunaControl } from '../luna-control';
 
 @Component({
     selector: 'luna-select',
@@ -14,13 +15,8 @@ import { CommonModule } from '@angular/common';
         multi: true
     }]
 })
-export class SelectComponent implements ControlValueAccessor
+export class SelectComponent extends LunaControl implements ControlValueAccessor
 {
-    @Input()
-    public disabled = false;
-
-    @Input()
-    public name?: string;
 
     @Output()
     public change = new EventEmitter<string>();

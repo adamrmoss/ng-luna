@@ -1,4 +1,9 @@
-<menu role="tablist">
+<menu
+    [attr.autofocus]="autofocus || null"
+    [attr.id]="id"
+    [attr.name]="name"
+    role="tablist"
+    [attr.tabindex]="tabindex">
     <button
         *ngFor="let tab of tabs"
         [attr.aria-selected]="isActive(tab.id)"

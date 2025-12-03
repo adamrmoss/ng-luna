@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { LunaControl } from '../luna-control';
 
 export type InputType = 'text' | 'password' | 'email';
 
@@ -14,22 +15,16 @@ export type InputType = 'text' | 'password' | 'email';
         multi: true
     }]
 })
-export class InputComponent implements ControlValueAccessor
+export class InputComponent extends LunaControl implements ControlValueAccessor
 {
-    @Input()
-    public disabled = false;
-
-    @Input()
-    public name?: string;
-
     @Input()
     public placeholder?: string;
 
     @Input()
-    public type: InputType = 'text';
+    public readonly = false;
 
     @Input()
-    public readonly = false;
+    public type: InputType = 'text';
 
     @Output()
     public change = new EventEmitter<string>();

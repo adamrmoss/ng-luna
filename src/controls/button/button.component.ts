@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { LunaControl } from '../luna-control';
 
 export type ButtonType = 'button' | 'submit' | 'reset';
 
@@ -16,19 +17,13 @@ export type PopoverTargetAction = 'show' | 'hide' | 'toggle';
     templateUrl: './button.component.html',
     styleUrls: [ './button.component.scss' ]
 })
-export class ButtonComponent
+export class ButtonComponent extends LunaControl
 {
-    @Input()
-    public autofocus = false;
-
     @Input()
     public command?: string;
 
     @Input()
     public commandfor?: string;
-
-    @Input()
-    public disabled = false;
 
     @Input()
     public form?: string;
@@ -49,16 +44,10 @@ export class ButtonComponent
     public formtarget?: FormTarget;
 
     @Input()
-    public name?: string;
-
-    @Input()
     public popovertarget?: string;
 
     @Input()
     public popovertargetaction?: PopoverTargetAction;
-
-    @Input()
-    public tabindex?: number;
 
     @Input()
     public type: ButtonType = 'button';

@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { LunaControl } from '../luna-control';
 
 export interface Tab
 {
@@ -15,13 +16,13 @@ export interface Tab
     templateUrl: './tabs.component.html',
     styleUrls: [ './tabs.component.scss' ]
 })
-export class TabsComponent
+export class TabsComponent extends LunaControl
 {
     @Input()
-    public tabs: Tab[] = [];
+    public activeTabId?: string;
 
     @Input()
-    public activeTabId?: string;
+    public tabs: Tab[] = [];
 
     @Output()
     public tabChange = new EventEmitter<string>();

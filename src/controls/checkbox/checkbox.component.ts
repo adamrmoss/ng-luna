@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { LunaControl } from '../luna-control';
 
 @Component({
     selector: 'luna-checkbox',
@@ -12,16 +13,10 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
         multi: true
     }]
 })
-export class CheckboxComponent implements ControlValueAccessor
+export class CheckboxComponent extends LunaControl implements ControlValueAccessor
 {
     @Input()
-    public disabled = false;
-
-    @Input()
     public label?: string;
-
-    @Input()
-    public name?: string;
 
     @Input()
     public value?: string;

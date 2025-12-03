@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { LunaControl } from '../luna-control';
 
 @Component({
     selector: 'luna-textarea',
@@ -12,25 +13,19 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
         multi: true
     }]
 })
-export class TextareaComponent implements ControlValueAccessor
+export class TextareaComponent extends LunaControl implements ControlValueAccessor
 {
     @Input()
-    public disabled = false;
-
-    @Input()
-    public name?: string;
+    public cols?: number;
 
     @Input()
     public placeholder?: string;
 
     @Input()
-    public rows?: number;
-
-    @Input()
-    public cols?: number;
-
-    @Input()
     public readonly = false;
+
+    @Input()
+    public rows?: number;
 
     @Output()
     public change = new EventEmitter<string>();

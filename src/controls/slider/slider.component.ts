@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { LunaControl } from '../luna-control';
 
 @Component({
     selector: 'luna-slider',
@@ -14,28 +15,22 @@ import { CommonModule } from '@angular/common';
         multi: true
     }]
 })
-export class SliderComponent implements ControlValueAccessor
+export class SliderComponent extends LunaControl implements ControlValueAccessor
 {
     @Input()
-    public disabled = false;
-
-    @Input()
-    public name?: string;
-
-    @Input()
-    public min = 0;
+    public boxIndicator = false;
 
     @Input()
     public max = 100;
+
+    @Input()
+    public min = 0;
 
     @Input()
     public step = 1;
 
     @Input()
     public vertical = false;
-
-    @Input()
-    public boxIndicator = false;
 
     @Output()
     public change = new EventEmitter<number>();

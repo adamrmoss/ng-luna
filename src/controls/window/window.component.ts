@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { LunaControl } from '../luna-control';
 
 @Component({
     selector: 'luna-window',
@@ -8,25 +9,25 @@ import { CommonModule } from '@angular/common';
     templateUrl: './window.component.html',
     styleUrls: [ './window.component.scss' ]
 })
-export class WindowComponent
+export class WindowComponent extends LunaControl
 {
     @Input()
-    public title?: string;
-
-    @Input()
-    public showMinimize = true;
-
-    @Input()
-    public showMaximize = true;
-
-    @Input()
-    public showHelp = false;
+    public isMaximized = false;
 
     @Input()
     public showClose = true;
 
     @Input()
-    public isMaximized = false;
+    public showHelp = false;
+
+    @Input()
+    public showMaximize = true;
+
+    @Input()
+    public showMinimize = true;
+
+    @Input()
+    public title?: string;
 
     @Output()
     public minimize = new EventEmitter<void>();
