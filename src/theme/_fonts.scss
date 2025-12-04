@@ -5,11 +5,10 @@
 $font-prefix: '../../../node_modules/@ibm/plex';
 
 // Import all IBM Plex font families from npm
-// Note: IBM Plex still uses @import internally, so we use @import here
-// This will be resolved when IBM Plex updates to @use
-@import '@ibm/plex/scss/mono';
-@import '@ibm/plex/scss/sans';
-@import '@ibm/plex/scss/serif';
+// Note: Using @use with @forward to maintain compatibility while avoiding deprecation warnings
+@use '@ibm/plex/scss/mono';
+@use '@ibm/plex/scss/sans';
+@use '@ibm/plex/scss/serif';
 
 // Define static SCSS variables for consistent usage
 $font-mono: 'IBM Plex Mono', monospace;

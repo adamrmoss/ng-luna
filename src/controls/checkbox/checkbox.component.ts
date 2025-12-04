@@ -1,5 +1,8 @@
-import { Component, Input, Output, EventEmitter, forwardRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, forwardRef, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FocusMonitor } from '@angular/cdk/a11y';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
+
 import { LunaControl } from '../luna-control';
 
 @Component({
@@ -13,7 +16,8 @@ import { LunaControl } from '../luna-control';
         multi: true
     }]
 })
-export class CheckboxComponent extends LunaControl implements ControlValueAccessor
+export class CheckboxComponent
+    extends LunaControl implements ControlValueAccessor, AfterViewInit, OnDestroy
 {
     @Input()
     public label?: string;
@@ -29,6 +33,24 @@ export class CheckboxComponent extends LunaControl implements ControlValueAccess
     private onChange: (value: boolean) => void = () => {};
     private onTouched: () => void = () => {};
 
+    constructor(
+        private elementRef: ElementRef<HTMLElement>,
+        private focusMonitor: FocusMonitor
+    )
+    {
+        super();
+    }
+
+    public ngAfterViewInit(): void
+    {
+        this.focusMonitor.monitor(this.elementRef);
+    }
+
+    public ngOnDestroy(): void
+    {
+        this.focusMonitor.stopMonitoring(this.elementRef);
+    }
+
     public onCheckboxChange(event: Event): void
     {
         const target = event.target as HTMLInputElement;
@@ -40,7 +62,7 @@ export class CheckboxComponent extends LunaControl implements ControlValueAccess
 
     public writeValue(value: boolean): void
     {
-        this.checked = value;
+        this.checked = coerceBooleanProperty(value);
     }
 
     public registerOnChange(fn: (value: boolean) => void): void

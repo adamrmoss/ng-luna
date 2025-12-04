@@ -1,4 +1,6 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
+import { FocusMonitor } from '@angular/cdk/a11y';
+
 import { LunaControl } from '../luna-control';
 
 export type ButtonType = 'button' | 'submit' | 'reset';
@@ -17,7 +19,8 @@ export type PopoverTargetAction = 'show' | 'hide' | 'toggle';
     templateUrl: './button.component.html',
     styleUrls: [ './button.component.scss' ]
 })
-export class ButtonComponent extends LunaControl
+export class ButtonComponent
+    extends LunaControl implements AfterViewInit, OnDestroy
 {
     @Input()
     public command?: string;
@@ -57,6 +60,24 @@ export class ButtonComponent extends LunaControl
 
     @Output()
     public click = new EventEmitter<MouseEvent>();
+
+    constructor(
+        private elementRef: ElementRef<HTMLElement>,
+        private focusMonitor: FocusMonitor
+    )
+    {
+        super();
+    }
+
+    public ngAfterViewInit(): void
+    {
+        this.focusMonitor.monitor(this.elementRef);
+    }
+
+    public ngOnDestroy(): void
+    {
+        this.focusMonitor.stopMonitoring(this.elementRef);
+    }
 
     public onClick(event: MouseEvent): void
     {

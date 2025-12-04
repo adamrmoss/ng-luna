@@ -1,6 +1,9 @@
-import { Component, Input, Output, EventEmitter, forwardRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, forwardRef, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { FocusMonitor } from '@angular/cdk/a11y';
+import { NumberInput, coerceNumberProperty } from '@angular/cdk/coercion';
+
 import { LunaControl } from '../luna-control';
 
 @Component({
@@ -15,19 +18,44 @@ import { LunaControl } from '../luna-control';
         multi: true
     }]
 })
-export class SliderComponent extends LunaControl implements ControlValueAccessor
+export class SliderComponent
+    extends LunaControl implements ControlValueAccessor, AfterViewInit, OnDestroy
 {
     @Input()
     public boxIndicator = false;
 
     @Input()
-    public max = 100;
+    public set max(value: NumberInput)
+    {
+        this._max = coerceNumberProperty(value, 100);
+    }
+
+    public get max(): number
+    {
+        return this._max;
+    }
 
     @Input()
-    public min = 0;
+    public set min(value: NumberInput)
+    {
+        this._min = coerceNumberProperty(value, 0);
+    }
+
+    public get min(): number
+    {
+        return this._min;
+    }
 
     @Input()
-    public step = 1;
+    public set step(value: NumberInput)
+    {
+        this._step = coerceNumberProperty(value, 1);
+    }
+
+    public get step(): number
+    {
+        return this._step;
+    }
 
     @Input()
     public vertical = false;
@@ -37,8 +65,30 @@ export class SliderComponent extends LunaControl implements ControlValueAccessor
 
     public value = 0;
 
+    private _max = 100;
+    private _min = 0;
+    private _step = 1;
+
     private onChange: (value: number) => void = () => {};
     private onTouched: () => void = () => {};
+
+    constructor(
+        private elementRef: ElementRef<HTMLElement>,
+        private focusMonitor: FocusMonitor
+    )
+    {
+        super();
+    }
+
+    public ngAfterViewInit(): void
+    {
+        this.focusMonitor.monitor(this.elementRef);
+    }
+
+    public ngOnDestroy(): void
+    {
+        this.focusMonitor.stopMonitoring(this.elementRef);
+    }
 
     public onSliderChange(event: Event): void
     {
@@ -55,7 +105,7 @@ export class SliderComponent extends LunaControl implements ControlValueAccessor
 
     public writeValue(value: number): void
     {
-        this.value = value ?? 0;
+        this.value = coerceNumberProperty(value, 0);
     }
 
     public registerOnChange(fn: (value: number) => void): void

@@ -1,5 +1,7 @@
-import { Component, Input, Output, EventEmitter, forwardRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, forwardRef, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FocusMonitor } from '@angular/cdk/a11y';
+
 import { LunaControl } from '../luna-control';
 
 @Component({
@@ -13,7 +15,8 @@ import { LunaControl } from '../luna-control';
         multi: true
     }]
 })
-export class RadioComponent extends LunaControl implements ControlValueAccessor
+export class RadioComponent
+    extends LunaControl implements ControlValueAccessor, AfterViewInit, OnDestroy
 {
     @Input()
     public label?: string;
@@ -28,6 +31,24 @@ export class RadioComponent extends LunaControl implements ControlValueAccessor
 
     private onChange: (value: string | null) => void = () => {};
     private onTouched: () => void = () => {};
+
+    constructor(
+        private elementRef: ElementRef<HTMLElement>,
+        private focusMonitor: FocusMonitor
+    )
+    {
+        super();
+    }
+
+    public ngAfterViewInit(): void
+    {
+        this.focusMonitor.monitor(this.elementRef);
+    }
+
+    public ngOnDestroy(): void
+    {
+        this.focusMonitor.stopMonitoring(this.elementRef);
+    }
 
     public onRadioChange(event: Event): void
     {

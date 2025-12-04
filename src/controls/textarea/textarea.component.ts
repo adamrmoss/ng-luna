@@ -1,5 +1,7 @@
-import { Component, Input, Output, EventEmitter, forwardRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, forwardRef, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FocusMonitor } from '@angular/cdk/a11y';
+
 import { LunaControl } from '../luna-control';
 
 @Component({
@@ -13,7 +15,8 @@ import { LunaControl } from '../luna-control';
         multi: true
     }]
 })
-export class TextareaComponent extends LunaControl implements ControlValueAccessor
+export class TextareaComponent
+    extends LunaControl implements ControlValueAccessor, AfterViewInit, OnDestroy
 {
     @Input()
     public cols?: number;
@@ -37,6 +40,24 @@ export class TextareaComponent extends LunaControl implements ControlValueAccess
 
     private onChange: (value: string) => void = () => {};
     private onTouched: () => void = () => {};
+
+    constructor(
+        private elementRef: ElementRef<HTMLElement>,
+        private focusMonitor: FocusMonitor
+    )
+    {
+        super();
+    }
+
+    public ngAfterViewInit(): void
+    {
+        this.focusMonitor.monitor(this.elementRef);
+    }
+
+    public ngOnDestroy(): void
+    {
+        this.focusMonitor.stopMonitoring(this.elementRef);
+    }
 
     public onTextareaChange(event: Event): void
     {

@@ -1,15 +1,18 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ElementRef, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 import { LunaControl } from '../luna-control';
 
 @Component({
     selector: 'luna-window',
     standalone: true,
-    imports: [ CommonModule ],
+    imports: [ CommonModule, DragDropModule ],
     templateUrl: './window.component.html',
     styleUrls: [ './window.component.scss' ]
 })
-export class WindowComponent extends LunaControl
+export class WindowComponent
+    extends LunaControl implements AfterViewInit, OnChanges
 {
     @Input()
     public isMaximized = false;
@@ -44,6 +47,33 @@ export class WindowComponent extends LunaControl
     @Output()
     public close = new EventEmitter<void>();
 
+    public dragDisabled = false;
+
+    constructor(
+        private elementRef: ElementRef<HTMLElement>
+    )
+    {
+        super();
+    }
+
+    public ngAfterViewInit(): void
+    {
+        this.updateDragState();
+    }
+
+    public ngOnChanges(changes: SimpleChanges): void
+    {
+        if (changes['isMaximized'])
+        {
+            this.updateDragState();
+        }
+    }
+
+    private updateDragState(): void
+    {
+        this.dragDisabled = this.isMaximized;
+    }
+
     public onMinimize(): void
     {
         this.minimize.emit();
@@ -59,6 +89,7 @@ export class WindowComponent extends LunaControl
         {
             this.maximize.emit();
         }
+        this.updateDragState();
     }
 
     public onHelp(): void

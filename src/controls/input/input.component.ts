@@ -1,5 +1,7 @@
-import { Component, Input, Output, EventEmitter, forwardRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, forwardRef, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FocusMonitor } from '@angular/cdk/a11y';
+
 import { LunaControl } from '../luna-control';
 
 export type InputType = 'text' | 'password' | 'email';
@@ -15,7 +17,8 @@ export type InputType = 'text' | 'password' | 'email';
         multi: true
     }]
 })
-export class InputComponent extends LunaControl implements ControlValueAccessor
+export class InputComponent
+    extends LunaControl implements ControlValueAccessor, AfterViewInit, OnDestroy
 {
     @Input()
     public placeholder?: string;
@@ -36,6 +39,24 @@ export class InputComponent extends LunaControl implements ControlValueAccessor
 
     private onChange: (value: string) => void = () => {};
     private onTouched: () => void = () => {};
+
+    constructor(
+        private elementRef: ElementRef<HTMLElement>,
+        private focusMonitor: FocusMonitor
+    )
+    {
+        super();
+    }
+
+    public ngAfterViewInit(): void
+    {
+        this.focusMonitor.monitor(this.elementRef);
+    }
+
+    public ngOnDestroy(): void
+    {
+        this.focusMonitor.stopMonitoring(this.elementRef);
+    }
 
     public onInputChange(event: Event): void
     {

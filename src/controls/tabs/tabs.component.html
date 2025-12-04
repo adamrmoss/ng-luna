@@ -3,10 +3,13 @@
     [attr.id]="id"
     [attr.name]="name"
     role="tablist"
-    [attr.tabindex]="tabindex">
+    [attr.tabindex]="tabindex"
+    (keydown)="onKeyDown($event)">
     <button
+        #tabButton
         *ngFor="let tab of tabs"
         [attr.aria-selected]="isActive(tab.id)"
+        role="tab"
         (click)="selectTab(tab.id)">
         {{ tab.label }}
     </button>
