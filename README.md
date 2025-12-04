@@ -6,7 +6,7 @@ An Angular component library inspired by Windows XP aesthetics, built with IBM P
 
 ng-luna provides a collection of Angular components styled to match the classic Windows XP design language. The library uses custom styling inspired by Windows XP and [IBM Plex](https://www.ibm.com/plex/) fonts for typography.
 
-All components are **standalone** and implement Angular's reactive forms API where applicable, making them compatible with `FormControl`, `FormGroup`, and `ngModel`.
+All components are **standalone** and implement Angular's reactive forms API where applicable, making them compatible with `FormControl`, `FormGroup`, and `ngModel`. Components are built on **Angular CDK** for enhanced accessibility, keyboard navigation, drag-and-drop, and cross-platform support.
 
 ## Installation
 
@@ -72,6 +72,16 @@ Since the fonts are already loaded, you can use them directly in your CSS/SCSS:
 
 ## Components
 
+All components extend the `LunaControl` base class, which provides the following common inputs available on every component:
+
+- `id?: string` - Element ID
+- `name?: string` - Name attribute
+- `disabled: boolean` - Whether the control is disabled (default: `false`)
+- `tabindex?: number` - Tab index for keyboard navigation
+- `autofocus: boolean` - Whether the control should be autofocused (default: `false`)
+
+These inputs are inherited from the base class and available on all components unless otherwise noted in the component-specific documentation below.
+
 ### Button Component
 
 The `luna-button` component provides a Windows XP-styled button.
@@ -80,20 +90,16 @@ The `luna-button` component provides a Windows XP-styled button.
 
 #### Inputs
 
-- `autofocus: boolean` - Whether the button should be autofocused (default: `false`)
 - `command?: string` - Command to invoke when the button is clicked
 - `commandfor?: string` - Element ID that the command is for
-- `disabled: boolean` - Whether the button is disabled (default: `false`)
 - `form?: string` - Form element ID to associate with
 - `formaction?: string` - URL to submit the form to (for submit buttons)
 - `formenctype?: FormEnctype` - Form encoding type: `'application/x-www-form-urlencoded' | 'multipart/form-data' | 'text/plain'`
 - `formmethod?: FormMethod` - HTTP method for form submission: `'get' | 'post'`
 - `formnovalidate: boolean` - Whether to bypass form validation (default: `false`)
 - `formtarget?: FormTarget` - Where to display form response: `'_self' | '_blank' | '_parent' | '_top'`
-- `name?: string` - Name attribute for the button
 - `popovertarget?: string` - ID of popover element to control
 - `popovertargetaction?: PopoverTargetAction` - Popover action: `'show' | 'hide' | 'toggle'`
-- `tabindex?: number` - Tab index for keyboard navigation
 - `type: ButtonType` - Button type: `'button' | 'submit' | 'reset'` (default: `'button'`)
 - `value?: string` - Value attribute for the button
 
@@ -120,9 +126,7 @@ The `luna-checkbox` component provides a Windows XP-styled checkbox that impleme
 
 #### Inputs
 
-- `disabled: boolean` - Whether the checkbox is disabled (default: `false`)
 - `label?: string` - Label text for the checkbox
-- `name?: string` - Name attribute for the checkbox
 - `value?: string` - Value attribute for the checkbox
 
 #### Outputs
@@ -165,8 +169,6 @@ The `luna-input` component provides a Windows XP-styled text input that implemen
 
 #### Inputs
 
-- `disabled: boolean` - Whether the input is disabled (default: `false`)
-- `name?: string` - Name attribute for the input
 - `placeholder?: string` - Placeholder text
 - `type: InputType` - Input type: `'text' | 'password' | 'email'` (default: `'text'`)
 - `readonly: boolean` - Whether the input is readonly (default: `false`)
@@ -215,10 +217,10 @@ The `luna-radio` component provides a Windows XP-styled radio button that implem
 
 #### Inputs
 
-- `disabled: boolean` - Whether the radio button is disabled (default: `false`)
 - `label?: string` - Label text for the radio button
-- `name?: string` - Name attribute for the radio button (required for grouping)
 - `value?: string` - Value attribute for the radio button
+
+**Note:** The `name` attribute is required for grouping radio buttons together.
 
 #### Outputs
 
@@ -249,8 +251,7 @@ The `luna-select` component provides a Windows XP-styled select dropdown that im
 
 #### Inputs
 
-- `disabled: boolean` - Whether the select is disabled (default: `false`)
-- `name?: string` - Name attribute for the select
+No additional inputs beyond the common base inputs.
 
 #### Outputs
 
@@ -275,8 +276,6 @@ The `luna-slider` component provides a Windows XP-styled range slider that imple
 
 #### Inputs
 
-- `disabled: boolean` - Whether the slider is disabled (default: `false`)
-- `name?: string` - Name attribute for the slider
 - `min: number` - Minimum value (default: `0`)
 - `max: number` - Maximum value (default: `100`)
 - `step: number` - Step value (default: `1`)
@@ -301,7 +300,7 @@ The `luna-slider` component provides a Windows XP-styled range slider that imple
 
 ### Tabs Component
 
-The `luna-tabs` component provides a Windows XP-styled tab interface.
+The `luna-tabs` component provides a Windows XP-styled tab interface with keyboard navigation support.
 
 **Selector:** `luna-tabs`
 
@@ -313,6 +312,11 @@ The `luna-tabs` component provides a Windows XP-styled tab interface.
 #### Outputs
 
 - `tabChange: EventEmitter<string>` - Emitted when a tab is selected
+
+#### Keyboard Navigation
+
+- **Arrow Left/Right** - Navigate between tabs
+- **Tab** - Move focus to tab panel content
 
 #### Example
 
@@ -339,8 +343,6 @@ The `luna-textarea` component provides a Windows XP-styled textarea that impleme
 
 #### Inputs
 
-- `disabled: boolean` - Whether the textarea is disabled (default: `false`)
-- `name?: string` - Name attribute for the textarea
 - `placeholder?: string` - Placeholder text
 - `rows?: number` - Number of visible rows
 - `cols?: number` - Number of visible columns
@@ -365,7 +367,7 @@ The `luna-textarea` component provides a Windows XP-styled textarea that impleme
 
 ### Window Component
 
-The `luna-window` component provides a Windows XP-styled window with title bar and controls.
+The `luna-window` component provides a Windows XP-styled draggable window with title bar and controls.
 
 **Selector:** `luna-window`
 
@@ -377,6 +379,8 @@ The `luna-window` component provides a Windows XP-styled window with title bar a
 - `showHelp: boolean` - Whether to show the help button (default: `false`)
 - `showClose: boolean` - Whether to show the close button (default: `true`)
 - `isMaximized: boolean` - Whether the window is currently maximized (default: `false`)
+- `boundaryElement?: string` - CSS selector for element that constrains window dragging
+- `scrollable: boolean` - Whether the window body should be scrollable (default: `false`)
 
 #### Outputs
 
@@ -386,12 +390,18 @@ The `luna-window` component provides a Windows XP-styled window with title bar a
 - `help: EventEmitter<void>` - Emitted when the help button is clicked
 - `close: EventEmitter<void>` - Emitted when the close button is clicked
 
+#### Dragging
+
+The window can be dragged by its title bar. Dragging is automatically disabled when the window is maximized.
+
 #### Example
 
 ```html
 <luna-window 
     title="My Application"
     [showHelp]="true"
+    boundaryElement=".container"
+    [scrollable]="true"
     (minimize)="onMinimize()"
     (maximize)="onMaximize()"
     (close)="onClose()">
@@ -400,6 +410,21 @@ The `luna-window` component provides a Windows XP-styled window with title bar a
     </div>
 </luna-window>
 ```
+
+## Accessibility & CDK Features
+
+All components leverage **Angular CDK** for enhanced functionality:
+
+- **Focus Management** - All form components track focus states for better accessibility
+- **Keyboard Navigation** - Tabs support arrow key navigation with focus management
+- **Screen Reader Support** - Components announce state changes via `LiveAnnouncer`
+- **Drag & Drop** - Window component supports draggable functionality with boundary constraints
+- **Scrolling** - Window body supports scrollable content areas
+- **Platform Detection** - Components adapt behavior based on platform/browser
+- **RTL Support** - Input and button components support right-to-left layouts
+- **Type Coercion** - Number inputs use type-safe coercion utilities
+
+Screen reader announcements are non-intrusive and only audible to assistive technology users.
 
 ## Reactive Forms Support
 

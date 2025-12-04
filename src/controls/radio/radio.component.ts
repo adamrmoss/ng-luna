@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, forwardRef, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { FocusMonitor } from '@angular/cdk/a11y';
+import { FocusMonitor, LiveAnnouncer } from '@angular/cdk/a11y';
+import { Platform } from '@angular/cdk/platform';
 
 import { LunaControl } from '../luna-control';
 
@@ -34,7 +35,9 @@ export class RadioComponent
 
     constructor(
         private elementRef: ElementRef<HTMLElement>,
-        private focusMonitor: FocusMonitor
+        private focusMonitor: FocusMonitor,
+        private liveAnnouncer: LiveAnnouncer,
+        public platform: Platform
     )
     {
         super();
@@ -54,6 +57,11 @@ export class RadioComponent
     {
         const target = event.target as HTMLInputElement;
         this.checked = target.checked;
+        if (this.checked)
+        {
+            const label = this.label || this.value || 'radio option';
+            this.liveAnnouncer.announce(`${label} selected`, 'polite');
+        }
         this.onChange(this.checked ? this.value ?? null : null);
         this.onTouched();
         if (this.value)

@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, QueryList, ViewChildren, ElementRef, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { A11yModule, FocusKeyManager, FocusableOption, FocusOrigin } from '@angular/cdk/a11y';
+import { Platform } from '@angular/cdk/platform';
 
 import { LunaControl } from '../luna-control';
 
@@ -46,6 +47,13 @@ export class TabsComponent
     public tabButtons!: QueryList<ElementRef<HTMLButtonElement>>;
 
     private keyManager?: FocusKeyManager<TabButtonFocusable>;
+
+    constructor(
+        public platform: Platform
+    )
+    {
+        super();
+    }
 
     public ngAfterViewInit(): void
     {

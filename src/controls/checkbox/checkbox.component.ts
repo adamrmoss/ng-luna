@@ -1,7 +1,8 @@
 import { Component, Input, Output, EventEmitter, forwardRef, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { FocusMonitor } from '@angular/cdk/a11y';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
+import { FocusMonitor, LiveAnnouncer } from '@angular/cdk/a11y';
+import { Platform } from '@angular/cdk/platform';
 
 import { LunaControl } from '../luna-control';
 
@@ -35,7 +36,9 @@ export class CheckboxComponent
 
     constructor(
         private elementRef: ElementRef<HTMLElement>,
-        private focusMonitor: FocusMonitor
+        private focusMonitor: FocusMonitor,
+        private liveAnnouncer: LiveAnnouncer,
+        public platform: Platform
     )
     {
         super();
@@ -55,6 +58,9 @@ export class CheckboxComponent
     {
         const target = event.target as HTMLInputElement;
         this.checked = target.checked;
+        const label = this.label || 'checkbox';
+        const state = this.checked ? 'checked' : 'unchecked';
+        this.liveAnnouncer.announce(`${label} ${state}`, 'polite');
         this.onChange(this.checked);
         this.onTouched();
         this.change.emit(this.checked);

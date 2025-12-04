@@ -1,5 +1,7 @@
 import { Component, Input, Output, EventEmitter, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
+import { BidiModule, Dir } from '@angular/cdk/bidi';
 import { FocusMonitor } from '@angular/cdk/a11y';
+import { Platform } from '@angular/cdk/platform';
 
 import { LunaControl } from '../luna-control';
 
@@ -16,6 +18,7 @@ export type PopoverTargetAction = 'show' | 'hide' | 'toggle';
 @Component({
     selector: 'luna-button',
     standalone: true,
+    imports: [ BidiModule ],
     templateUrl: './button.component.html',
     styleUrls: [ './button.component.scss' ]
 })
@@ -63,7 +66,9 @@ export class ButtonComponent
 
     constructor(
         private elementRef: ElementRef<HTMLElement>,
-        private focusMonitor: FocusMonitor
+        private focusMonitor: FocusMonitor,
+        public platform: Platform,
+        public dir: Dir
     )
     {
         super();

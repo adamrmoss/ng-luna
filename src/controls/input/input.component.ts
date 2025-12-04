@@ -1,6 +1,10 @@
-import { Component, Input, Output, EventEmitter, forwardRef, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, forwardRef, ElementRef, OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { FocusMonitor } from '@angular/cdk/a11y';
+import { FocusMonitor, LiveAnnouncer } from '@angular/cdk/a11y';
+import { TextFieldModule } from '@angular/cdk/text-field';
+import { Platform } from '@angular/cdk/platform';
+import { BidiModule, Dir } from '@angular/cdk/bidi';
+import { ClipboardModule, Clipboard } from '@angular/cdk/clipboard';
 
 import { LunaControl } from '../luna-control';
 
@@ -9,6 +13,7 @@ export type InputType = 'text' | 'password' | 'email';
 @Component({
     selector: 'luna-input',
     standalone: true,
+    imports: [ TextFieldModule, BidiModule ],
     templateUrl: './input.component.html',
     styleUrls: [ './input.component.scss' ],
     providers: [{
@@ -40,9 +45,16 @@ export class InputComponent
     private onChange: (value: string) => void = () => {};
     private onTouched: () => void = () => {};
 
+    @ViewChild('inputElement', { static: false })
+    public inputElement?: ElementRef<HTMLInputElement>;
+
     constructor(
         private elementRef: ElementRef<HTMLElement>,
-        private focusMonitor: FocusMonitor
+        private focusMonitor: FocusMonitor,
+        private liveAnnouncer: LiveAnnouncer,
+        public platform: Platform,
+        public dir: Dir,
+        private clipboard: Clipboard
     )
     {
         super();
@@ -69,6 +81,10 @@ export class InputComponent
     public onInputBlur(event: FocusEvent): void
     {
         this.onTouched();
+        if (this.value && this.id)
+        {
+            this.liveAnnouncer.announce(`${this.id} value is ${this.value}`, 'polite');
+        }
         this.blur.emit(event);
     }
 

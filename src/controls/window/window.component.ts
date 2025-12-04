@@ -1,13 +1,15 @@
-import { Component, Input, Output, EventEmitter, ElementRef, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ElementRef, AfterViewInit, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DragDropModule } from '@angular/cdk/drag-drop';
+import { DragDropModule, CdkDrag } from '@angular/cdk/drag-drop';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { Platform } from '@angular/cdk/platform';
 
 import { LunaControl } from '../luna-control';
 
 @Component({
     selector: 'luna-window',
     standalone: true,
-    imports: [ CommonModule, DragDropModule ],
+    imports: [ CommonModule, DragDropModule, ScrollingModule ],
     templateUrl: './window.component.html',
     styleUrls: [ './window.component.scss' ]
 })
@@ -47,10 +49,20 @@ export class WindowComponent
     @Output()
     public close = new EventEmitter<void>();
 
+    @Input()
+    public boundaryElement?: string;
+
+    @Input()
+    public scrollable = false;
+
     public dragDisabled = false;
 
+    @ViewChild(CdkDrag, { static: false })
+    private dragInstance?: CdkDrag;
+
     constructor(
-        private elementRef: ElementRef<HTMLElement>
+        private elementRef: ElementRef<HTMLElement>,
+        public platform: Platform
     )
     {
         super();
@@ -59,6 +71,7 @@ export class WindowComponent
     public ngAfterViewInit(): void
     {
         this.updateDragState();
+        this.updateDragBoundary();
     }
 
     public ngOnChanges(changes: SimpleChanges): void
@@ -67,11 +80,27 @@ export class WindowComponent
         {
             this.updateDragState();
         }
+        if (changes['boundaryElement'])
+        {
+            this.updateDragBoundary();
+        }
     }
 
     private updateDragState(): void
     {
         this.dragDisabled = this.isMaximized;
+    }
+
+    private updateDragBoundary(): void
+    {
+        if (this.dragInstance && this.boundaryElement)
+        {
+            const boundary = document.querySelector(this.boundaryElement);
+            if (boundary)
+            {
+                this.dragInstance.boundaryElement = boundary as HTMLElement;
+            }
+        }
     }
 
     public onMinimize(): void

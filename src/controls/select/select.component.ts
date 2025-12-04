@@ -1,7 +1,8 @@
 import { Component, Input, Output, EventEmitter, forwardRef, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { FocusMonitor } from '@angular/cdk/a11y';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FocusMonitor, LiveAnnouncer } from '@angular/cdk/a11y';
+import { Platform } from '@angular/cdk/platform';
 
 import { LunaControl } from '../luna-control';
 
@@ -31,7 +32,9 @@ export class SelectComponent
 
     constructor(
         private elementRef: ElementRef<HTMLElement>,
-        private focusMonitor: FocusMonitor
+        private focusMonitor: FocusMonitor,
+        private liveAnnouncer: LiveAnnouncer,
+        public platform: Platform
     )
     {
         super();
@@ -51,6 +54,9 @@ export class SelectComponent
     {
         const target = event.target as HTMLSelectElement;
         this.value = target.value;
+        const selectedOption = target.options[target.selectedIndex];
+        const optionText = selectedOption?.textContent || this.value;
+        this.liveAnnouncer.announce(`Selected ${optionText}`, 'polite');
         this.onChange(this.value);
         this.onTouched();
         this.change.emit(this.value);

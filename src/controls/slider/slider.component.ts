@@ -1,9 +1,9 @@
 import { Component, Input, Output, EventEmitter, forwardRef, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { FocusMonitor } from '@angular/cdk/a11y';
+import { FocusMonitor, LiveAnnouncer } from '@angular/cdk/a11y';
 import { NumberInput, coerceNumberProperty } from '@angular/cdk/coercion';
-
+import { Platform } from '@angular/cdk/platform';
 import { LunaControl } from '../luna-control';
 
 @Component({
@@ -74,7 +74,9 @@ export class SliderComponent
 
     constructor(
         private elementRef: ElementRef<HTMLElement>,
-        private focusMonitor: FocusMonitor
+        private focusMonitor: FocusMonitor,
+        private liveAnnouncer: LiveAnnouncer,
+        public platform: Platform
     )
     {
         super();
@@ -96,6 +98,7 @@ export class SliderComponent
         this.value = Number(target.value);
         this.onChange(this.value);
         this.change.emit(this.value);
+        this.liveAnnouncer.announce(`Value changed to ${this.value}`, 'polite');
     }
 
     public onSliderBlur(): void

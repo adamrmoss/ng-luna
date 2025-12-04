@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, forwardRef, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { FocusMonitor } from '@angular/cdk/a11y';
+import { FocusMonitor, LiveAnnouncer } from '@angular/cdk/a11y';
+import { Platform } from '@angular/cdk/platform';
 
 import { LunaControl } from '../luna-control';
 
@@ -43,7 +44,9 @@ export class TextareaComponent
 
     constructor(
         private elementRef: ElementRef<HTMLElement>,
-        private focusMonitor: FocusMonitor
+        private focusMonitor: FocusMonitor,
+        private liveAnnouncer: LiveAnnouncer,
+        public platform: Platform
     )
     {
         super();
@@ -70,6 +73,11 @@ export class TextareaComponent
     public onTextareaBlur(event: FocusEvent): void
     {
         this.onTouched();
+        if (this.value && this.id)
+        {
+            const charCount = this.value.length;
+            this.liveAnnouncer.announce(`${this.id} contains ${charCount} characters`, 'polite');
+        }
         this.blur.emit(event);
     }
 

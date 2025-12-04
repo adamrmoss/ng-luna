@@ -29,8 +29,16 @@
                 (click)="onClose()"></button>
         </div>
     </div>
-    <div class="window-body">
-        <ng-content></ng-content>
+    <div
+        [class.scrollable]="scrollable"
+        class="window-body">
+        <div
+            *ngIf="scrollable"
+            cdkScrollable>
+            <ng-content></ng-content>
+        </div>
+        <ng-content
+            *ngIf="!scrollable"></ng-content>
     </div>
     <div class="status-bar">
         <ng-content select="[slot='status']"></ng-content>
