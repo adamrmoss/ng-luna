@@ -28,7 +28,6 @@
     },
     "allowedNonPeerDependencies": [
         "@angular/cdk",
-        "@ibm/plex",
-        "xp.css"
+        "@ibm/plex"
     ]
 }

@@ -1,10 +1,10 @@
 # ng-luna
 
-An Angular component library inspired by Windows XP aesthetics, built with XP.css and IBM Plex fonts.
+An Angular component library inspired by Windows XP aesthetics, built with IBM Plex fonts.
 
 ## Overview
 
-ng-luna provides a collection of Angular components styled to match the classic Windows XP design language. The library uses [XP.css](https://botoxparty.github.io/XP.css/) for styling and [IBM Plex](https://www.ibm.com/plex/) fonts for typography.
+ng-luna provides a collection of Angular components styled to match the classic Windows XP design language. The library uses custom styling inspired by Windows XP and [IBM Plex](https://www.ibm.com/plex/) fonts for typography.
 
 All components are **standalone** and implement Angular's reactive forms API where applicable, making them compatible with `FormControl`, `FormGroup`, and `ngModel`.
 
@@ -482,7 +482,6 @@ ng-luna/
 
 ## Dependencies
 
-- **XP.css** (v0.2.6) - Windows XP styling framework
 - **@ibm/plex** (v6.4.1) - IBM Plex font families (fonts are bundled with the library)
 - **@angular/cdk** (v19.2.17) - Angular Component Dev Kit
 
