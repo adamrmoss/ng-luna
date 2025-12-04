@@ -18,9 +18,9 @@ npm install ng-luna
 
 This library requires the following peer dependencies:
 
-- `@angular/common`: 19.2.15
-- `@angular/core`: 19.2.15
-- `@angular/forms`: 19.2.15
+- `@angular/common`: 19.x.x
+- `@angular/core`: 19.x.x
+- `@angular/forms`: 19.x.x
 
 ## Usage
 
@@ -508,7 +508,7 @@ ng-luna/
 ## Dependencies
 
 - **@ibm/plex** (v6.4.1) - IBM Plex font families (fonts are bundled with the library)
-- **@angular/cdk** (v19.2.17) - Angular Component Dev Kit
+- **@angular/cdk** (19.x.x) - Angular Component Dev Kit
 
 ## Publishing
 
