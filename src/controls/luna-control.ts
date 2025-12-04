@@ -1,7 +1,7 @@
-import { Input } from '@angular/core';
+import { Directive, Input } from '@angular/core';
 
 // Base class for all Luna components providing common form element attributes
-// Abstract base classes with @Input are valid in Angular - this is intentional
+@Directive()
 export abstract class LunaControl
 {
     @Input()
@@ -19,4 +19,3 @@ export abstract class LunaControl
     @Input()
     public autofocus = false;
 }
-
