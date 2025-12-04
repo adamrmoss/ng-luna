@@ -37,6 +37,39 @@ import { ButtonComponent } from 'ng-luna';
 })
 ```
 
+### Using Bundled Fonts
+
+The IBM Plex fonts are **automatically bundled and loaded** when you use any ng-luna component. No additional setup or configuration is required.
+
+**Fonts are automatically available:**
+- ✅ Font files are bundled with the library
+- ✅ Fonts load automatically when you use any component
+- ✅ No imports or configuration needed
+- ✅ Works out of the box
+
+**Using fonts in your own styles:**
+
+Since the fonts are already loaded, you can use them directly in your CSS/SCSS:
+
+```scss
+.my-custom-class {
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.code-snippet {
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+.heading {
+    font-family: 'IBM Plex Serif', serif;
+}
+```
+
+**Available font families:**
+- `'IBM Plex Sans', sans-serif` - Default sans-serif font used by components
+- `'IBM Plex Mono', monospace` - Monospace font
+- `'IBM Plex Serif', serif` - Serif font
+
 ## Components
 
 ### Button Component
