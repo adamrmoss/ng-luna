@@ -1,0 +1,21 @@
+<button
+    [attr.autofocus]="autofocus || null"
+    [attr.command]="command"
+    [attr.commandfor]="commandfor"
+    [disabled]="disabled"
+    [attr.form]="form"
+    [attr.formaction]="formaction"
+    [attr.formenctype]="formenctype"
+    [attr.formmethod]="formmethod"
+    [attr.formnovalidate]="formnovalidate || null"
+    [attr.formtarget]="formtarget"
+    [attr.id]="id"
+    [attr.name]="name"
+    [attr.popovertarget]="popovertarget"
+    [attr.popovertargetaction]="popovertargetaction"
+    [attr.tabindex]="tabindex"
+    [attr.type]="type"
+    [attr.value]="value"
+    (click)="onClick($event)">
+    <ng-content></ng-content>
+</button>

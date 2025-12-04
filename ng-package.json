@@ -1,0 +1,58 @@
+{
+    "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
+    "dest": "./dist",
+    "assets": [
+        {
+            "input": "./node_modules/@ibm/plex",
+            "glob": "IBM-Plex-Mono/**/*",
+            "output": "/assets/fonts"
+        },
+        {
+            "input": "./node_modules/@ibm/plex",
+            "glob": "IBM-Plex-Sans/**/*",
+            "output": "/assets/fonts"
+        },
+        {
+            "input": "./node_modules/@ibm/plex",
+            "glob": "IBM-Plex-Serif/**/*",
+            "output": "/assets/fonts"
+        },
+        {
+            "input": "./src/theme",
+            "glob": "_breakpoints.scss",
+            "output": "/theme"
+        },
+        {
+            "input": "./src/theme",
+            "glob": "_fonts.scss",
+            "output": "/theme"
+        },
+        {
+            "input": "./src/theme",
+            "glob": "_palette.scss",
+            "output": "/theme"
+        },
+        {
+            "input": "./src/theme",
+            "glob": "_reset.scss",
+            "output": "/theme"
+        },
+        {
+            "input": "./src/theme",
+            "glob": "_z-layers.scss",
+            "output": "/theme"
+        }
+    ],
+    "lib": {
+        "entryFile": "src/public-api.ts",
+        "cssUrl": "none",
+        "styleIncludePaths": [
+            "src/theme",
+            "node_modules"
+        ]
+    },
+    "allowedNonPeerDependencies": [
+        "@angular/cdk",
+        "@ibm/plex"
+    ]
+}

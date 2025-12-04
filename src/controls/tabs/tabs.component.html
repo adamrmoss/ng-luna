@@ -1,0 +1,23 @@
+<menu
+    [attr.autofocus]="autofocus || null"
+    [attr.id]="id"
+    [attr.name]="name"
+    role="tablist"
+    [attr.tabindex]="tabindex"
+    (keydown)="onKeyDown($event)">
+    <button
+        #tabButton
+        *ngFor="let tab of tabs"
+        [attr.aria-selected]="isActive(tab.id)"
+        role="tab"
+        (click)="selectTab(tab.id)">
+        {{ tab.label }}
+    </button>
+</menu>
+<div
+    *ngFor="let tab of tabs"
+    role="tabpanel"
+    [hidden]="!isActive(tab.id)">
+    <ng-content [select]="'[data-tab-id=\'' + tab.id + '\']'"></ng-content>
+    <div *ngIf="tab.content">{{ tab.content }}</div>
+</div>

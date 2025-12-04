@@ -1,0 +1,16 @@
+<div [class.is-vertical]="vertical">
+    <input
+        [attr.autofocus]="autofocus || null"
+        [class.has-box-indicator]="boxIndicator"
+        [disabled]="disabled"
+        [attr.id]="id || name"
+        [attr.max]="max"
+        [attr.min]="min"
+        [attr.name]="name"
+        [attr.step]="step"
+        [attr.tabindex]="tabindex"
+        type="range"
+        [value]="value"
+        (blur)="onSliderBlur()"
+        (input)="onSliderChange($event)">
+</div>

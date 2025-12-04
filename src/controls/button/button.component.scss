@@ -1,0 +1,65 @@
+@use '../../theme/palette' as *;
+@use '../../theme/fonts' as *;
+
+:host
+{
+    display: contents;
+}
+
+button
+{
+    font-family: $font-sans;
+    -webkit-font-smoothing: antialiased;
+    font-size: 11px;
+    box-sizing: border-box;
+    border: 1px solid $navy;
+    background: linear-gradient(
+        180deg,
+        $white 0%,
+        $beige-light 86%,
+        $beige-medium 100%
+    );
+    box-shadow: none;
+    border-radius: 3px;
+
+    &:not(:disabled)
+    {
+        &:active,
+        &.active
+        {
+            box-shadow: none;
+            background: linear-gradient(
+                180deg,
+                $gray-medium 0%,
+                $gray-light 8%,
+                $gray-lighter 94%,
+                $gray-lightest 100%
+            );
+        }
+
+        &:hover
+        {
+            box-shadow:
+                inset -1px 1px $cream-light,
+                inset 1px 2px $yellow-light,
+                inset -2px 2px $yellow-medium,
+                inset 2px -2px $orange;
+        }
+    }
+
+    &:focus,
+    &.focused
+    {
+        box-shadow:
+            inset -1px 1px $blue-lightest,
+            inset 1px 2px $blue-medium,
+            inset -2px 2px $blue-light,
+            inset 1px -1px $blue,
+            inset 2px -2px $blue;
+    }
+
+    &::-moz-focus-inner
+    {
+        border: 0;
+    }
+}

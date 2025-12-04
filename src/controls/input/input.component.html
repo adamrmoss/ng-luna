@@ -1,0 +1,13 @@
+<input
+    #inputElement
+    [attr.autofocus]="autofocus || null"
+    [disabled]="disabled"
+    [attr.id]="id || name"
+    [attr.name]="name"
+    [attr.placeholder]="placeholder"
+    [readonly]="readonly"
+    [attr.tabindex]="tabindex"
+    [attr.type]="type"
+    [value]="value"
+    (blur)="onInputBlur($event)"
+    (input)="onInputChange($event)">

@@ -1,0 +1,71 @@
+@use '../../theme/palette' as *;
+
+:host
+{
+    display: contents;
+}
+
+menu[role="tablist"]
+{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    button
+    {
+        background: linear-gradient(
+            180deg,
+            $white 0%,
+            $off-white-warm 26%,
+            $cream-pale 95%,
+            $beige-light 100%
+        );
+        margin-left: -1px;
+        margin-right: 2px;
+        border-radius: 0;
+        border-color: $blue-steel-light;
+        border-top-right-radius: 3px;
+        border-top-left-radius: 3px;
+        padding: 0 12px 3px;
+
+        &:hover
+        {
+            box-shadow: unset;
+            border-top: 1px solid $orange-dark;
+            box-shadow: inset 0px 2px $yellow-gold;
+        }
+
+        &[aria-selected="true"]
+        {
+            background: $off-white;
+            border-color: $blue-gray;
+            margin-right: -1px;
+            border-bottom: 1px solid transparent;
+            border-top: 1px solid $orange-dark;
+            box-shadow: inset 0px 2px $yellow-gold;
+
+            &:first-of-type::before
+            {
+                content: "";
+                display: block;
+                position: absolute;
+                z-index: -1;
+                top: 100%;
+                left: -1px;
+                height: 2px;
+                width: 0;
+                border-left: 1px solid $blue-gray;
+            }
+        }
+    }
+}
+
+[role="tabpanel"]
+{
+    box-shadow:
+        inset 1px 1px $off-white,
+        inset -1px -1px $off-white,
+        1px 2px 2px 0px rgba(208, 206, 191, 0.75);
+    padding: 12px;
+}

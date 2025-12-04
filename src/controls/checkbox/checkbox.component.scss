@@ -1,0 +1,102 @@
+@use '../../theme/palette' as *;
+@use '../../theme/graphics' as *;
+
+:host
+{
+    display: inline-flex;
+    align-items: center;
+}
+
+label
+{
+    -webkit-font-smoothing: antialiased;
+}
+
+input[type="checkbox"]
+{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    margin: 0;
+    background: 0;
+    position: fixed;
+    opacity: 0;
+    border: none;
+
+    + label
+    {
+        line-height: 16px;
+        position: relative;
+        margin-left: 19px;
+
+        &::before
+        {
+            content: "";
+            display: inline-block;
+            width: 13px;
+            height: 13px;
+            position: absolute;
+            left: -19px;
+            top: 0;
+            box-sizing: border-box;
+            box-shadow: none;
+            border: 1px solid $blue-steel-dark;
+            background: linear-gradient(
+                135deg,
+                $gray-light-warm 0%,
+                $white 100%
+            );
+        }
+
+        &::after
+        {
+            content: "";
+            display: inline-block;
+            width: 11px;
+            height: 11px;
+            position: absolute;
+            left: -17px;
+            top: 2px;
+            background: none;
+        }
+    }
+
+    &:checked + label::after
+    {
+        background: $checkmark-svg no-repeat center;
+        left: -17px;
+    }
+
+    &:not([disabled]):not(:active) + label:hover::before
+    {
+        box-shadow: inset -2px -2px $gold, inset 2px 2px $yellow-cream;
+    }
+
+    &:active + label::before
+    {
+        background: linear-gradient(
+            135deg,
+            $gray-darker 0%,
+            $beige-pale 100%
+        );
+    }
+
+    &:focus + label
+    {
+        outline: 1px dotted $black;
+    }
+}
+
+input[type="checkbox"][disabled]
+{
+    + label::before
+    {
+        background: $white;
+        border: 1px solid $beige-tan;
+    }
+
+    &:checked + label::after
+    {
+        opacity: 0.5;
+    }
+}
