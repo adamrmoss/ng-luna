@@ -19,7 +19,8 @@
         inset 2px 2px $blue-sky,
         inset -3px -3px $blue-bright-darkest,
         inset 3px 3px $blue-bright-lightest;
-    padding: 0 0 3px 0;
+    overflow: hidden;
+    padding: 3px;
 }
 
 .title-bar
@@ -40,16 +41,18 @@
     border-left: 1px solid $blue-bright-lighter;
     border-right: 1px solid $navy-dark;
     border-top: 1px solid $blue-bright-lighter;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 7px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     color: $white;
     display: flex;
     font-family: $font-sans;
     font-size: 13px;
     height: 21px;
     justify-content: space-between;
+    margin: 0;
     padding: 3px 5px 3px 3px;
     text-shadow: 1px 1px $navy-darker;
+    width: 100%;
 }
 
 .title-bar-text
@@ -160,14 +163,21 @@
 .window-body
 {
     background: $beige-light;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    margin: 0;
     padding: 8px;
+    width: 100%;
 }
 
 .status-bar
 {
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
     box-shadow: inset 0px 1px 2px var(--button-shadow);
     display: flex;
     gap: 0px;
-    margin: 0 3px;
+    margin: 0;
     padding: 2px 1px;
+    width: 100%;
 }
