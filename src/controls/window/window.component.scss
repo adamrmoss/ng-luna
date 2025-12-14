@@ -9,6 +9,7 @@
 
 .window
 {
+    background: $beige-light;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     box-shadow:
@@ -35,6 +36,7 @@
         $blue-bright-darker 96%,
         $blue-bright-darker 100%
     );
+    border-bottom: none;
     border-left: 1px solid $blue-bright-lighter;
     border-right: 1px solid $navy-dark;
     border-top: 1px solid $blue-bright-lighter;

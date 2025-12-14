@@ -55,6 +55,7 @@ export class WindowComponent
     @Input()
     public scrollable = false;
 
+    @Input()
     public dragDisabled = false;
 
     @ViewChild(CdkDrag, { static: false })
@@ -70,25 +71,20 @@ export class WindowComponent
 
     public ngAfterViewInit(): void
     {
-        this.updateDragState();
         this.updateDragBoundary();
     }
 
     public ngOnChanges(changes: SimpleChanges): void
     {
-        if (changes['isMaximized'])
-        {
-            this.updateDragState();
-        }
         if (changes['boundaryElement'])
         {
             this.updateDragBoundary();
         }
     }
 
-    private updateDragState(): void
+    public get isDragDisabled(): boolean
     {
-        this.dragDisabled = this.isMaximized;
+        return this.dragDisabled || this.isMaximized;
     }
 
     private updateDragBoundary(): void
@@ -118,7 +114,6 @@ export class WindowComponent
         {
             this.maximize.emit();
         }
-        this.updateDragState();
     }
 
     public onHelp(): void
