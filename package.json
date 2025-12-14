@@ -23,7 +23,9 @@
     "scripts": {
         "build": "ng-packagr -p ng-package.json",
         "clean": "rm -rf dist",
-        "publish": "npm run build && npm publish ./dist"
+        "publish": "npm run build && npm publish ./dist",
+        "dev": "ng serve --project dev",
+        "dev:build": "ng build --project dev"
     },
     "peerDependencies": {
         "@angular/common": "19.x.x",
@@ -32,11 +34,17 @@
     },
     "dependencies": {
         "@angular/cdk": "19.x.x",
-        "@ibm/plex": "6.4.1",
         "tslib": "2.x.x"
     },
     "devDependencies": {
-        "ng-packagr": "19.x.x"
+        "@angular-devkit/build-angular": "19.x.x",
+        "@angular/cli": "19.x.x",
+        "@angular/animations": "19.x.x",
+        "@angular/platform-browser": "19.x.x",
+        "@ibm/plex": "6.4.1",
+        "ng-packagr": "19.x.x",
+        "typescript": "~5.6.0",
+        "zone.js": "~0.15.0"
     },
     "sideEffects": false
 }
