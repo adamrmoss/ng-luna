@@ -11,6 +11,6 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent
 {
-    public title = 'EduBASIC';
+    public title = 'Examle Window';
 }
 

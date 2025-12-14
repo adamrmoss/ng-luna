@@ -24,8 +24,8 @@
         "build": "ng-packagr -p ng-package.json",
         "clean": "rm -rf dist",
         "publish": "npm run build && npm publish ./dist",
-        "dev": "ng serve --project dev",
-        "dev:build": "ng build --project dev"
+        "dev": "cd dev && ng serve",
+        "dev:build": "cd dev && ng build"
     },
     "peerDependencies": {
         "@angular/common": "19.x.x",
@@ -43,8 +43,8 @@
         "@angular/platform-browser": "19.x.x",
         "@ibm/plex": "6.4.1",
         "ng-packagr": "19.x.x",
-        "typescript": "~5.6.0",
-        "zone.js": "~0.15.0"
+        "typescript": "5.x.x",
+        "zone.js": "0.x.x"
     },
     "sideEffects": false
 }

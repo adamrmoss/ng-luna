@@ -21,6 +21,8 @@
         inset 2px 2px $blue-sky,
         inset -3px -3px $blue-bright-darkest,
         inset 3px 3px $blue-bright-lightest;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     padding: 3px;
 }
@@ -45,26 +47,32 @@
     border-top: 1px solid $blue-bright-lighter;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    box-sizing: border-box;
     color: $white;
     display: flex;
+    flex: 0 0 auto;
     font-family: $font-sans;
     font-size: 13px;
     height: 21px;
     justify-content: space-between;
     margin: 0;
+    min-width: 0;
     padding: 3px 5px 3px 3px;
     text-shadow: 1px 1px $navy-darker;
-    width: 100%;
 }
 
 .title-bar-text
 {
+    flex: 1 1 auto;
+    min-width: 0;
     padding-left: 3px;
 }
 
 .title-bar-controls
 {
     display: flex;
+    flex: 0 0 auto;
+    gap: 2px;
 
     button
     {
@@ -73,10 +81,10 @@
         background-repeat: no-repeat;
         border: none;
         box-shadow: none;
-        margin-left: 2px;
-        min-height: 21px;
-        min-width: 21px;
+        flex: 0 0 21px;
+        height: 21px;
         transition: background 100ms;
+        width: 21px;
 
         &:active,
         &:hover,
@@ -167,9 +175,11 @@
     background: $beige-light;
     border-left: 1px solid transparent;
     border-right: 1px solid transparent;
+    box-sizing: border-box;
+    flex: 1 1 auto;
     margin: 0;
+    min-width: 0;
     padding: 8px;
-    width: 100%;
 }
 
 .status-bar
@@ -179,9 +189,11 @@
     border-left: 1px solid transparent;
     border-right: 1px solid transparent;
     box-shadow: inset 0px 1px 2px var(--button-shadow);
+    box-sizing: border-box;
     display: flex;
+    flex: 0 0 auto;
     gap: 0px;
     margin: 0;
+    min-width: 0;
     padding: 2px 1px;
-    width: 100%;
 }
