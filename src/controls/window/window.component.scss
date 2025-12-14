@@ -9,6 +9,8 @@
 
 .window
 {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     box-shadow:
         inset -1px -1px $navy-darkest,
         inset 1px 1px $blue-bright-lighter,
@@ -16,15 +18,12 @@
         inset 2px 2px $blue-sky,
         inset -3px -3px $blue-bright-darkest,
         inset 3px 3px $blue-bright-lightest;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
     padding: 0 0 3px 0;
-    -webkit-font-smoothing: antialiased;
 }
 
 .title-bar
 {
-    font-family: $font-sans;
+    align-items: center;
     background: linear-gradient(
         180deg,
         $blue-sky-dark 0%,
@@ -36,19 +35,19 @@
         $blue-bright-darker 96%,
         $blue-bright-darker 100%
     );
-    padding: 3px 5px 3px 3px;
-    border-top: 1px solid $blue-bright-lighter;
     border-left: 1px solid $blue-bright-lighter;
     border-right: 1px solid $navy-dark;
+    border-top: 1px solid $blue-bright-lighter;
     border-top-left-radius: 8px;
     border-top-right-radius: 7px;
-    font-size: 13px;
-    text-shadow: 1px 1px $navy-darker;
-    height: 21px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     color: $white;
+    display: flex;
+    font-family: $font-sans;
+    font-size: 13px;
+    height: 21px;
+    justify-content: space-between;
+    padding: 3px 5px 3px 3px;
+    text-shadow: 1px 1px $navy-darker;
 }
 
 .title-bar-text
@@ -62,15 +61,15 @@
 
     button
     {
-        min-width: 21px;
-        min-height: 21px;
-        margin-left: 2px;
-        background-repeat: no-repeat;
-        background-position: center;
-        box-shadow: none;
         background-color: $blue-bright-dark;
-        transition: background 100ms;
+        background-position: center;
+        background-repeat: no-repeat;
         border: none;
+        box-shadow: none;
+        margin-left: 2px;
+        min-height: 21px;
+        min-width: 21px;
+        transition: background 100ms;
 
         &:active,
         &:hover,
@@ -164,9 +163,9 @@
 
 .status-bar
 {
-    margin: 0 3px;
     box-shadow: inset 0px 1px 2px var(--button-shadow);
-    padding: 2px 1px;
     display: flex;
     gap: 0px;
+    margin: 0 3px;
+    padding: 2px 1px;
 }

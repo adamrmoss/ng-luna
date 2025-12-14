@@ -8,12 +8,11 @@
 
 textarea
 {
-    -webkit-font-smoothing: antialiased;
+    border: 1px solid $blue-steel;
+    box-sizing: border-box;
     font-family: $font-sans;
     font-size: 11px;
     padding: 3px 4px;
-    border: 1px solid $blue-steel;
-    box-sizing: border-box;
     resize: both;
 
     &::selection

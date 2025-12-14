@@ -26,9 +26,9 @@
 
 ::-webkit-scrollbar-thumb
 {
+    background-color: #c8d6fb;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: #c8d6fb;
     background-size: 7px;
     border: 1px solid $white;
     border-radius: 2px;
@@ -41,8 +41,8 @@
 
     &:horizontal
     {
-        background-size: 8px;
         background-image: $scrollbar-thumb-horizontal-svg;
+        background-size: 8px;
     }
 }
 

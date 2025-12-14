@@ -8,9 +8,9 @@
 menu[role="tablist"]
 {
     display: flex;
+    list-style: none;
     margin: 0;
     padding: 0;
-    list-style: none;
 
     button
     {
@@ -21,17 +21,16 @@ menu[role="tablist"]
             $cream-pale 95%,
             $beige-light 100%
         );
+        border-color: $blue-steel-light;
+        border-radius: 0;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
         margin-left: -1px;
         margin-right: 2px;
-        border-radius: 0;
-        border-color: $blue-steel-light;
-        border-top-right-radius: 3px;
-        border-top-left-radius: 3px;
         padding: 0 12px 3px;
 
         &:hover
         {
-            box-shadow: unset;
             border-top: 1px solid $orange-dark;
             box-shadow: inset 0px 2px $yellow-gold;
         }
@@ -39,23 +38,23 @@ menu[role="tablist"]
         &[aria-selected="true"]
         {
             background: $off-white;
-            border-color: $blue-gray;
-            margin-right: -1px;
             border-bottom: 1px solid transparent;
+            border-color: $blue-gray;
             border-top: 1px solid $orange-dark;
             box-shadow: inset 0px 2px $yellow-gold;
+            margin-right: -1px;
 
             &:first-of-type::before
             {
+                border-left: 1px solid $blue-gray;
                 content: "";
                 display: block;
-                position: absolute;
-                z-index: -1;
-                top: 100%;
-                left: -1px;
                 height: 2px;
+                left: -1px;
+                position: absolute;
+                top: 100%;
                 width: 0;
-                border-left: 1px solid $blue-gray;
+                z-index: -1;
             }
         }
     }

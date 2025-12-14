@@ -10,31 +10,28 @@ input[type="range"]
 {
     &::-webkit-slider-thumb
     {
-        height: 21px;
-        width: 11px;
         background: $slider-thumb-svg;
+        height: 21px;
         transform: translateY(-8px);
+        width: 11px;
     }
 
     &::-moz-range-thumb
     {
-        height: 21px;
-        width: 11px;
+        background: $slider-thumb-svg;
         border: 0;
         border-radius: 0;
-        background: $slider-thumb-svg;
+        height: 21px;
         transform: translateY(2px);
+        width: 11px;
     }
 
     &::-webkit-slider-runnable-track
     {
-        width: 100%;
-        height: 2px;
-        box-sizing: border-box;
         background: $beige-lighter;
-        border-right: 1px solid $cream;
         border-bottom: 1px solid $cream;
         border-radius: 2px;
+        border-right: 1px solid $cream;
         box-shadow:
             1px 0 0 $white,
             1px 1px 0 $white,
@@ -44,17 +41,17 @@ input[type="range"]
             0 -1px 0 $gray-dark,
             -1px 1px 0 $white,
             1px -1px $gray-dark;
+        box-sizing: border-box;
+        height: 2px;
+        width: 100%;
     }
 
     &::-moz-range-track
     {
-        width: 100%;
-        height: 2px;
-        box-sizing: border-box;
         background: $beige-lighter;
-        border-right: 1px solid $cream;
         border-bottom: 1px solid $cream;
         border-radius: 2px;
+        border-right: 1px solid $cream;
         box-shadow:
             1px 0 0 $white,
             1px 1px 0 $white,
@@ -64,6 +61,9 @@ input[type="range"]
             0 -1px 0 $gray-dark,
             -1px 1px 0 $white,
             1px -1px $gray-dark;
+        box-sizing: border-box;
+        height: 2px;
+        width: 100%;
     }
 }
 
@@ -86,9 +86,9 @@ input[type="range"].has-box-indicator
 {
     &::-webkit-slider-runnable-track
     {
+        border-bottom: 1px solid $cream;
         border-left: 1px solid $cream;
         border-right: 0;
-        border-bottom: 1px solid $cream;
         box-shadow:
             -1px 0 0 $white,
             -1px 1px 0 $white,
@@ -102,9 +102,9 @@ input[type="range"].has-box-indicator
 
     &::-moz-range-track
     {
+        border-bottom: 1px solid $cream;
         border-left: 1px solid $cream;
         border-right: 0;
-        border-bottom: 1px solid $cream;
         box-shadow:
             -1px 0 0 $white,
             -1px 1px 0 $white,

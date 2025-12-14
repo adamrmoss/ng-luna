@@ -8,19 +8,18 @@
 
 button
 {
-    font-family: $font-sans;
-    -webkit-font-smoothing: antialiased;
-    font-size: 11px;
-    box-sizing: border-box;
-    border: 1px solid $navy;
     background: linear-gradient(
         180deg,
         $white 0%,
         $beige-light 86%,
         $beige-medium 100%
     );
-    box-shadow: none;
+    border: 1px solid $navy;
     border-radius: 3px;
+    box-shadow: none;
+    box-sizing: border-box;
+    font-family: $font-sans;
+    font-size: 11px;
 
     &:not(:disabled)
     {
