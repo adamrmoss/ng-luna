@@ -10,6 +10,8 @@
 .window
 {
     background: $beige-light;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     box-shadow:
@@ -172,6 +174,8 @@
 
 .status-bar
 {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     border-left: 1px solid transparent;
     border-right: 1px solid transparent;
     box-shadow: inset 0px 1px 2px var(--button-shadow);
