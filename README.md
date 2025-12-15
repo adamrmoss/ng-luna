@@ -39,17 +39,39 @@ import { ButtonComponent } from 'ng-luna';
 
 ### Using Bundled Fonts
 
-The IBM Plex fonts are **automatically bundled and loaded** when you use any ng-luna component. No additional setup or configuration is required.
+The IBM Plex fonts are bundled with ng-luna and need to be copied to your application's assets folder.
 
-**Fonts are automatically available:**
-- ✅ Font files are bundled with the library
-- ✅ Fonts load automatically when you use any component
-- ✅ No imports or configuration needed
-- ✅ Works out of the box
+#### Setup
 
-**Using fonts in your own styles:**
+Add the following to your `angular.json` in the `assets` array of your project's build configuration:
 
-Since the fonts are already loaded, you can use them directly in your CSS/SCSS:
+```json
+{
+  "projects": {
+    "your-app-name": {
+      "architect": {
+        "build": {
+          "options": {
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "node_modules/ng-luna/assets/fonts",
+                "output": "/assets/fonts"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+This copies the font files from the ng-luna package to your application's `/assets/fonts/` directory during build.
+
+#### Using Fonts in Your Styles
+
+Once configured, you can use the fonts directly in your CSS/SCSS:
 
 ```scss
 .my-custom-class {
@@ -69,6 +91,8 @@ Since the fonts are already loaded, you can use them directly in your CSS/SCSS:
 - `'IBM Plex Sans', sans-serif` - Default sans-serif font used by components
 - `'IBM Plex Mono', monospace` - Monospace font
 - `'IBM Plex Serif', serif` - Serif font
+
+**Note:** The ng-luna components will automatically use these fonts once they are available in your assets folder.
 
 ## Components
 
