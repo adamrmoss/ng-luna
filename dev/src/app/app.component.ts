@@ -13,4 +13,3 @@ export class AppComponent
 {
     public title = 'Examle Window';
 }
-

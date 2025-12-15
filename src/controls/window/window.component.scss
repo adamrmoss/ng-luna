@@ -10,10 +10,7 @@
 .window
 {
     background: $beige-light;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    border-radius: 8px;
     box-shadow:
         inset -1px -1px $navy-darkest,
         inset 1px 1px $blue-bright-lighter,
@@ -30,23 +27,7 @@
 .title-bar
 {
     align-items: center;
-    background: linear-gradient(
-        180deg,
-        $blue-sky-dark 0%,
-        $blue-bright 8%,
-        $blue-bright-dark 40%,
-        $blue-bright-medium 88%,
-        $blue-bright-medium 93%,
-        $blue-bright-light 95%,
-        $blue-bright-darker 96%,
-        $blue-bright-darker 100%
-    );
-    border-bottom: none;
-    border-left: 1px solid $blue-bright-lighter;
-    border-right: 1px solid $navy-dark;
-    border-top: 1px solid $blue-bright-lighter;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    background: $blue-bright;
     box-sizing: border-box;
     color: $white;
     display: flex;
@@ -57,7 +38,7 @@
     justify-content: space-between;
     margin: 0;
     min-width: 0;
-    padding: 3px 5px 3px 3px;
+    padding: 3px;
     text-shadow: 1px 1px $navy-darker;
 }
 
@@ -184,8 +165,6 @@
 
 .status-bar
 {
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
     border-left: 1px solid transparent;
     border-right: 1px solid transparent;
     box-shadow: inset 0px 1px 2px var(--button-shadow);

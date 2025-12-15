@@ -29,17 +29,18 @@
                 (click)="onClose()"></button>
         </div>
     </div>
-    <div
-        [class.scrollable]="scrollable"
-        class="window-body">
+    <ng-container *ngIf="scrollable; else notScrollable">
         <div
-            *ngIf="scrollable"
-            cdkScrollable>
+            cdkScrollable
+            class="window-body scrollable">
             <ng-content></ng-content>
         </div>
-        <ng-content
-            *ngIf="!scrollable"></ng-content>
-    </div>
+    </ng-container>
+    <ng-template #notScrollable>
+        <div class="window-body">
+            <ng-content></ng-content>
+        </div>
+    </ng-template>
     <div class="status-bar">
         <ng-content select="[slot='status']"></ng-content>
     </div>
