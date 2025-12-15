@@ -1,0 +1,15 @@
+@use '../../theme/palette' as *;
+
+:host
+{
+    display: contents;
+}
+
+[role="tabpanel"]
+{
+    box-shadow:
+        inset 1px 1px $off-white,
+        inset -1px -1px $off-white,
+        1px 2px 2px 0px rgba(208, 206, 191, 0.75);
+    padding: 12px;
+}

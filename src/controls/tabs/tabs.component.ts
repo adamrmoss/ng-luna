@@ -1,16 +1,10 @@
-import { Component, Input, Output, EventEmitter, QueryList, ViewChildren, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, QueryList, ViewChildren, ContentChildren, ElementRef, AfterViewInit, AfterContentInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { A11yModule, FocusKeyManager, FocusableOption, FocusOrigin } from '@angular/cdk/a11y';
 import { Platform } from '@angular/cdk/platform';
 
 import { LunaControl } from '../luna-control';
-
-export interface Tab
-{
-    id: string;
-    label: string;
-    content?: string;
-}
+import { TabComponent } from './tab.component';
 
 class TabButtonFocusable implements FocusableOption
 {
@@ -32,16 +26,16 @@ class TabButtonFocusable implements FocusableOption
     styleUrls: [ './tabs.component.scss' ]
 })
 export class TabsComponent
-    extends LunaControl implements AfterViewInit
+    extends LunaControl implements AfterViewInit, AfterContentInit
 {
     @Input()
     public activeTabId?: string;
 
-    @Input()
-    public tabs: Tab[] = [];
-
     @Output()
     public tabChange = new EventEmitter<string>();
+
+    @ContentChildren(TabComponent)
+    public tabs!: QueryList<TabComponent>;
 
     @ViewChildren('tabButton')
     public tabButtons!: QueryList<ElementRef<HTMLButtonElement>>;
@@ -55,6 +49,16 @@ export class TabsComponent
         super();
     }
 
+    public ngAfterContentInit(): void
+    {
+        if (!this.activeTabId && this.tabs.length > 0)
+        {
+            this.activeTabId = this.tabs.first.id;
+        }
+
+        this.updateActiveTab();
+    }
+
     public ngAfterViewInit(): void
     {
         const focusableItems = this.tabButtons.map(ref => new TabButtonFocusable(ref));
@@ -64,7 +68,8 @@ export class TabsComponent
 
         if (this.activeTabId)
         {
-            const activeIndex = this.tabs.findIndex(tab => tab.id === this.activeTabId);
+            const tabsArray = this.tabs.toArray();
+            const activeIndex = tabsArray.findIndex(tab => tab.id === this.activeTabId);
             if (activeIndex >= 0)
             {
                 this.keyManager.setActiveItem(activeIndex);
@@ -75,9 +80,11 @@ export class TabsComponent
     public selectTab(tabId: string): void
     {
         this.activeTabId = tabId;
+        this.updateActiveTab();
         this.tabChange.emit(tabId);
 
-        const activeIndex = this.tabs.findIndex(tab => tab.id === tabId);
+        const tabsArray = this.tabs.toArray();
+        const activeIndex = tabsArray.findIndex(tab => tab.id === tabId);
         if (activeIndex >= 0 && this.keyManager)
         {
             this.keyManager.setActiveItem(activeIndex);
@@ -89,6 +96,14 @@ export class TabsComponent
         return this.activeTabId === tabId;
     }
 
+    private updateActiveTab(): void
+    {
+        this.tabs.forEach(tab =>
+        {
+            tab.active = tab.id === this.activeTabId;
+        });
+    }
+
     public onKeyDown(event: KeyboardEvent): void
     {
         if (this.keyManager)
@@ -97,9 +112,10 @@ export class TabsComponent
             {
                 this.keyManager.onKeydown(event);
                 const activeIndex = this.keyManager.activeItemIndex;
-                if (activeIndex !== null && activeIndex >= 0 && activeIndex < this.tabs.length)
+                const tabsArray = this.tabs.toArray();
+                if (activeIndex !== null && activeIndex >= 0 && activeIndex < tabsArray.length)
                 {
-                    this.selectTab(this.tabs[activeIndex].id);
+                    this.selectTab(tabsArray[activeIndex].id);
                 }
             }
         }

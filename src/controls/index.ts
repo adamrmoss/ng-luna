@@ -6,6 +6,7 @@ export * from './progress/progress.component';
 export * from './radio/radio.component';
 export * from './select/select.component';
 export * from './slider/slider.component';
+export * from './tabs/tab.component';
 export * from './tabs/tabs.component';
 export * from './textarea/textarea.component';
 export * from './window/window.component';
