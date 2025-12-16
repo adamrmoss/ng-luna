@@ -18,6 +18,11 @@
             "output": "/assets/fonts"
         },
         {
+            "input": "./node_modules/lucide-static",
+            "glob": "icons/**/*.svg",
+            "output": "/assets/icons"
+        },
+        {
             "input": "./src/theme",
             "glob": "_breakpoints.scss",
             "output": "/theme"
@@ -53,6 +58,7 @@
     },
     "allowedNonPeerDependencies": [
         "@angular/cdk",
-        "@ibm/plex"
+        "@ibm/plex",
+        "lucide-static"
     ]
 }

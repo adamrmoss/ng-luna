@@ -94,6 +94,72 @@ Once configured, you can use the fonts directly in your CSS/SCSS:
 
 **Note:** The ng-luna components will automatically use these fonts once they are available in your assets folder.
 
+### Using Bundled Icons
+
+ng-luna includes [Lucide Icons](https://lucide.dev/), a comprehensive set of clean, consistent SVG icons that complement the Windows XP aesthetic.
+
+#### Setup
+
+Add the following to your `angular.json` in the `assets` array of your project's build configuration:
+
+```json
+{
+  "projects": {
+    "your-app-name": {
+      "architect": {
+        "build": {
+          "options": {
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "node_modules/ng-luna/assets/icons",
+                "output": "/assets/icons"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+This copies all Lucide icon SVGs from ng-luna to your application's `/assets/icons/` directory during build.
+
+#### Using Icons in Your Templates
+
+Once configured, you can reference icons directly in your HTML:
+
+```html
+<!-- Using img tag -->
+<img src="assets/icons/icons/home.svg" alt="Home" width="24" height="24">
+
+<!-- Using CSS background -->
+<div class="icon-container"></div>
+```
+
+```scss
+.icon-container {
+    width: 24px;
+    height: 24px;
+    background-image: url('/assets/icons/icons/home.svg');
+    background-size: contain;
+}
+```
+
+#### Available Icons
+
+Lucide provides over 1,400 icons. Browse all available icons at [lucide.dev/icons](https://lucide.dev/icons).
+
+**Common icons for XP-style interfaces:**
+- `home.svg`, `folder.svg`, `file.svg` - Navigation
+- `settings.svg`, `tool.svg`, `wrench.svg` - Configuration
+- `user.svg`, `users.svg` - User management
+- `save.svg`, `download.svg`, `upload.svg` - File operations
+- `x.svg`, `minimize-2.svg`, `maximize-2.svg` - Window controls
+- `chevron-left.svg`, `chevron-right.svg`, `chevron-down.svg` - Navigation arrows
+- `check.svg`, `x.svg`, `alert-triangle.svg` - Status indicators
+
 ## Components
 
 All components extend the `LunaControl` base class, which provides the following common inputs available on every component:
@@ -532,6 +598,7 @@ ng-luna/
 ## Dependencies
 
 - **@ibm/plex** (v6.4.1) - IBM Plex font families (fonts are bundled with the library)
+- **lucide-static** - Lucide icon set (icons are bundled with the library)
 - **@angular/cdk** (19.x.x) - Angular Component Dev Kit
 
 ## Publishing
