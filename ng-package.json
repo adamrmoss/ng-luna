@@ -3,6 +3,11 @@
     "dest": "./dist",
     "assets": [
         {
+            "input": "./",
+            "glob": "THIRD-PARTY-LICENSES.md",
+            "output": "/"
+        },
+        {
             "input": "./node_modules/@ibm/plex",
             "glob": "IBM-Plex-Mono/**/*",
             "output": "/assets/fonts"
@@ -16,11 +21,6 @@
             "input": "./node_modules/@ibm/plex",
             "glob": "IBM-Plex-Serif/**/*",
             "output": "/assets/fonts"
-        },
-        {
-            "input": "./node_modules/lucide-static",
-            "glob": "icons/**/*.svg",
-            "output": "/assets/icons"
         },
         {
             "input": "./src/theme",
@@ -58,7 +58,6 @@
     },
     "allowedNonPeerDependencies": [
         "@angular/cdk",
-        "@ibm/plex",
-        "lucide-static"
+        "@ibm/plex"
     ]
 }

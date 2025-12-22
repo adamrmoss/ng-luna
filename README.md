@@ -94,57 +94,47 @@ Once configured, you can use the fonts directly in your CSS/SCSS:
 
 **Note:** The ng-luna components will automatically use these fonts once they are available in your assets folder.
 
-### Using Bundled Icons
+### Using Icons
 
-ng-luna includes [Lucide Icons](https://lucide.dev/), a comprehensive set of clean, consistent SVG icons that complement the Windows XP aesthetic.
+ng-luna includes [Lucide Icons](https://lucide.dev/), a comprehensive set of over 1,400 clean, consistent SVG icons that complement the Windows XP aesthetic. Icons are provided as **tree-shakable ES modules** - only the icons you import will be included in your bundle.
 
-#### Setup
+#### Import Icons
 
-Add the following to your `angular.json` in the `assets` array of your project's build configuration:
+```typescript
+import { IconComponent, Home, Save, Folder, Settings } from 'ng-luna';
 
-```json
-{
-  "projects": {
-    "your-app-name": {
-      "architect": {
-        "build": {
-          "options": {
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "node_modules/ng-luna/assets/icons",
-                "output": "/assets/icons"
-              }
-            ]
-          }
-        }
-      }
-    }
-  }
+@Component({
+    imports: [ IconComponent ],
+    template: `
+        <luna-icon [svg]="homeIcon" size="24"></luna-icon>
+        <luna-icon [svg]="saveIcon" size="16"></luna-icon>
+    `
+})
+export class MyComponent {
+    homeIcon = Home;
+    saveIcon = Save;
 }
 ```
 
-This copies all Lucide icon SVGs from ng-luna to your application's `/assets/icons/` directory during build.
+#### Icon Component
 
-#### Using Icons in Your Templates
+**Selector:** `luna-icon`
 
-Once configured, you can reference icons directly in your HTML:
+##### Inputs
+
+- `svg: string` (required) - The SVG string from an imported Lucide icon
+- `size?: IconSize` - Icon size: `'12' | '16' | '20' | '24' | '32' | '48'` (default: `'24'`)
+
+##### Example
 
 ```html
-<!-- Using img tag -->
-<img src="assets/icons/icons/home.svg" alt="Home" width="24" height="24">
+<luna-icon [svg]="homeIcon" size="24"></luna-icon>
+<luna-icon [svg]="saveIcon" size="16"></luna-icon>
 
-<!-- Using CSS background -->
-<div class="icon-container"></div>
-```
-
-```scss
-.icon-container {
-    width: 24px;
-    height: 24px;
-    background-image: url('/assets/icons/icons/home.svg');
-    background-size: contain;
-}
+<luna-button>
+    <luna-icon [svg]="folderIcon" size="16"></luna-icon>
+    Open Folder
+</luna-button>
 ```
 
 #### Available Icons
@@ -152,13 +142,25 @@ Once configured, you can reference icons directly in your HTML:
 Lucide provides over 1,400 icons. Browse all available icons at [lucide.dev/icons](https://lucide.dev/icons).
 
 **Common icons for XP-style interfaces:**
-- `home.svg`, `folder.svg`, `file.svg` - Navigation
-- `settings.svg`, `tool.svg`, `wrench.svg` - Configuration
-- `user.svg`, `users.svg` - User management
-- `save.svg`, `download.svg`, `upload.svg` - File operations
-- `x.svg`, `minimize-2.svg`, `maximize-2.svg` - Window controls
-- `chevron-left.svg`, `chevron-right.svg`, `chevron-down.svg` - Navigation arrows
-- `check.svg`, `x.svg`, `alert-triangle.svg` - Status indicators
+- `Home`, `Folder`, `File` - Navigation
+- `Settings`, `Tool`, `Wrench` - Configuration
+- `User`, `Users` - User management
+- `Save`, `Download`, `Upload` - File operations
+- `X`, `Minimize2`, `Maximize2` - Window controls
+- `ChevronLeft`, `ChevronRight`, `ChevronDown` - Navigation arrows
+- `Check`, `AlertTriangle` - Status indicators
+
+#### Tree-Shaking
+
+Icons use ES modules for automatic tree-shaking. Only imported icons are included in your final bundle:
+
+```typescript
+// ✅ Good: Only Home and Save icons included in bundle
+import { Home, Save } from 'ng-luna';
+
+// ❌ Avoid: Imports entire icon library
+import * as Icons from 'ng-luna';
+```
 
 ## Components
 
@@ -250,6 +252,45 @@ The `luna-fieldset` component provides a Windows XP-styled fieldset for grouping
     <!-- Form controls here -->
 </luna-fieldset>
 ```
+
+### Icon Component
+
+The `luna-icon` component provides a convenient way to render Lucide icons with automatic sanitization and sizing.
+
+**Selector:** `luna-icon`
+
+**Note:** This component does not inherit from `LunaControl` and does not have the common base inputs.
+
+#### Inputs
+
+- `svg: string` (required) - The SVG string from an imported Lucide icon
+- `size?: IconSize` - Icon size: `'12' | '16' | '20' | '24' | '32' | '48'` (default: `'24'`)
+
+#### Example
+
+```html
+<luna-icon [svg]="homeIcon" size="24"></luna-icon>
+
+<luna-button>
+    <luna-icon [svg]="saveIcon" size="16"></luna-icon>
+    Save File
+</luna-button>
+```
+
+```typescript
+import { IconComponent, Home, Save } from 'ng-luna';
+
+@Component({
+    imports: [ IconComponent ],
+    // ...
+})
+export class MyComponent {
+    homeIcon = Home;
+    saveIcon = Save;
+}
+```
+
+For more information on importing and using icons, see the [Using Icons](#using-icons) section above.
 
 ### Input Component
 
@@ -560,11 +601,22 @@ export class MyComponent
 
 ## Development
 
+For a detailed explanation of the library architecture, build process, and how the public API works, see [ARCHITECTURE.md](ARCHITECTURE.md).
+
 ### Building the Library
 
 ```bash
 npm run build
 ```
+
+The build process uses `ng-packagr` to:
+- Compile TypeScript to ESM modules
+- Generate type definitions
+- Bundle everything into `dist/fesm2022/ng-luna.mjs`
+- Copy assets (fonts, SCSS themes)
+- Create a production-ready `package.json`
+
+All exports go through `src/public-api.ts` → `src/controls/index.ts` → individual components.
 
 ### Project Structure
 

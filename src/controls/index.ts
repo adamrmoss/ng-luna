@@ -1,6 +1,7 @@
 export * from './button/button.component';
 export * from './checkbox/checkbox.component';
 export * from './fieldset/fieldset.component';
+export * from './icons';
 export * from './input/input.component';
 export * from './progress/progress.component';
 export * from './radio/radio.component';

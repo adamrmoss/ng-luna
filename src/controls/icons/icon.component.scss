@@ -1,0 +1,74 @@
+:host
+{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    span
+    {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 0;
+    }
+
+    svg
+    {
+        display: block;
+    }
+}
+
+:host([size='12'])
+{
+    svg
+    {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+:host([size='16'])
+{
+    svg
+    {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+:host([size='20'])
+{
+    svg
+    {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+:host([size='24'])
+{
+    svg
+    {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+:host([size='32'])
+{
+    svg
+    {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+:host([size='48'])
+{
+    svg
+    {
+        width: 48px;
+        height: 48px;
+    }
+}
+
