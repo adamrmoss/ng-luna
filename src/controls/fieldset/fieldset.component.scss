@@ -16,8 +16,11 @@ fieldset
 
 legend
 {
-    background: transparent;
-    color: $blue-royal;
+    background: $white;
+    border: 1px solid $beige-khaki;
+    border-radius: 3px;
+    color: $black;
+    padding: 2px 8px;
 }
 
 .field-row
