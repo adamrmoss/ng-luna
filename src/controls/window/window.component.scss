@@ -1,6 +1,7 @@
 @use '../../theme/palette' as *;
 @use '../../theme/fonts' as *;
 @use '../../theme/graphics' as *;
+@use '../../theme/typography' as *;
 
 :host
 {
@@ -10,7 +11,7 @@
 .window
 {
     background: $beige-light;
-    border-radius: 8px;
+    border-radius: $border-radius-lg;
     box-shadow:
         inset -1px -1px $navy-darkest,
         inset 1px 1px $blue-bright-lighter,
@@ -21,7 +22,7 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    padding: 3px;
+    padding: $spacing-xs - 1px;
 }
 
 .title-bar
@@ -33,12 +34,13 @@
     display: flex;
     flex: 0 0 auto;
     font-family: $font-sans;
-    font-size: 13px;
+    font-size: $window-title-font-size;
     height: 21px;
     justify-content: space-between;
+    line-height: $window-title-line-height;
     margin: 0;
     min-width: 0;
-    padding: 3px;
+    padding: $spacing-xs - 1px;
     text-shadow: 1px 1px $navy-darker;
 }
 
@@ -46,14 +48,14 @@
 {
     flex: 1 1 auto;
     min-width: 0;
-    padding-left: 3px;
+    padding-left: $spacing-xs - 1px;
 }
 
 .title-bar-controls
 {
     display: flex;
     flex: 0 0 auto;
-    gap: 2px;
+    gap: $spacing-xxs;
 
     button
     {
@@ -160,7 +162,7 @@
     flex: 1 1 auto;
     margin: 0;
     min-width: 0;
-    padding: 8px;
+    padding: $spacing-sm;
 }
 
 .status-bar
@@ -174,5 +176,5 @@
     gap: 0px;
     margin: 0;
     min-width: 0;
-    padding: 2px 1px;
+    padding: $spacing-xxs 1px;
 }

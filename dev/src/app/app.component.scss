@@ -1,5 +1,6 @@
 @use 'sass:map';
 @use 'ng-luna/theme/_breakpoints.scss' as *;
+@use 'ng-luna/theme/_typography.scss' as *;
 
 #main-window
 {
@@ -8,52 +9,52 @@
 
 .control-group
 {
-    margin-bottom: 32px;
+    margin-bottom: $spacing-base;
 
     h3
     {
-        margin-bottom: 12px;
+        margin-bottom: $spacing-xs;
         margin-top: 0;
     }
 
     p
     {
-        font-size: 12px;
-        margin: 8px 0;
+        font-size: $font-size-xs;
+        margin: $spacing-xs 0;
     }
 
     luna-button
     {
-        display: inline-flex;
         align-items: center;
+        display: inline-flex;
         gap: 6px;
-        margin-right: 8px;
+        margin-right: $spacing-xs;
     }
 
     luna-radio
     {
         display: block;
-        margin-bottom: 8px;
+        margin-bottom: $spacing-xs;
     }
 }
 
 .icon-row
 {
-    display: flex;
-    gap: 24px;
     align-items: flex-end;
+    display: flex;
+    gap: $spacing-md;
 
     .icon-item
     {
+        align-items: center;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: 8px;
+        gap: $spacing-xs;
 
         span
         {
-            font-size: 11px;
             color: #666;
+            font-size: $font-size-xs;
         }
     }
 }
@@ -61,18 +62,18 @@
 .icon-grid
 {
     display: grid;
+    gap: $spacing-sm;
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 16px;
 
     .icon-showcase
     {
+        align-items: center;
+        background: #fff;
+        border: 1px solid #d0d0bf;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: 8px;
-        padding: 12px;
-        border: 1px solid #d0d0bf;
-        background: #fff;
+        gap: $spacing-xs;
+        padding: $spacing-sm;
 
         &:hover
         {
@@ -81,7 +82,7 @@
 
         span
         {
-            font-size: 11px;
+            font-size: $font-size-xs;
             text-align: center;
         }
     }
@@ -90,14 +91,14 @@
 h2
 {
     border-bottom: 1px solid #919b9c;
-    margin-bottom: 16px;
+    margin-bottom: $spacing-sm;
     margin-top: 0;
-    padding-bottom: 8px;
+    padding-bottom: $spacing-xs;
 }
 
 h3
 {
-    font-size: 14px;
+    font-size: $font-size-sm;
 }
 
 ul

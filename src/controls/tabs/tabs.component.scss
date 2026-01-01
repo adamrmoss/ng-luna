@@ -1,4 +1,5 @@
 @use '../../theme/palette' as *;
+@use '../../theme/typography' as *;
 
 :host
 {
@@ -25,14 +26,15 @@ menu[role="tablist"]
         border-radius: 0;
         border-right-color: $gray-dark;
         border-top-color: $white;
-        border-top-left-radius: 2px;
-        border-top-right-radius: 2px;
+        border-top-left-radius: $border-radius-sm;
+        border-top-right-radius: $border-radius-sm;
         color: $black;
         cursor: pointer;
         font-family: 'IBM Plex Sans', sans-serif;
-        font-size: 11px;
+        font-size: $tab-font-size;
+        line-height: $tab-line-height;
         margin-right: 2px;
-        padding: 4px 12px 3px;
+        padding: $tab-padding-y $tab-padding-x 3px;
         position: relative;
 
         &:hover

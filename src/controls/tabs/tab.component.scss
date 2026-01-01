@@ -1,4 +1,5 @@
 @use '../../theme/palette' as *;
+@use '../../theme/typography' as *;
 
 :host
 {
@@ -11,5 +12,5 @@
     border: 1px solid $gray-dark;
     border-left-color: $gray-light;
     border-top-color: $gray-light;
-    padding: 12px;
+    padding: $spacing-sm;
 }

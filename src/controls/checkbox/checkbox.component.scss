@@ -3,8 +3,8 @@
 
 :host
 {
-    display: inline-flex;
     align-items: center;
+    display: inline-flex;
 }
 
 
@@ -22,8 +22,8 @@ input[type="checkbox"]
     + label
     {
         line-height: 16px;
-        position: relative;
         margin-left: 19px;
+        position: relative;
 
         &::before
         {

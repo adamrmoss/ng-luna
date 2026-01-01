@@ -1,5 +1,6 @@
 @use '../../theme/palette' as *;
 @use '../../theme/fonts' as *;
+@use '../../theme/typography' as *;
 
 :host
 {
@@ -15,11 +16,13 @@ button
         $beige-medium 100%
     );
     border: 1px solid $navy;
-    border-radius: 3px;
+    border-radius: $border-radius-base;
     box-shadow: none;
     box-sizing: border-box;
     font-family: $font-sans;
-    font-size: 11px;
+    font-size: $button-font-size;
+    line-height: $button-line-height;
+    padding: $button-padding-y $button-padding-x;
 
     &:not(:disabled)
     {

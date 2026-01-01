@@ -1,6 +1,7 @@
 @use '../../theme/palette' as *;
 @use '../../theme/fonts' as *;
 @use '../../theme/graphics' as *;
+@use '../../theme/typography' as *;
 
 :host
 {
@@ -14,10 +15,11 @@ select
     background-repeat: no-repeat;
     background-size: 15px;
     border: 1px solid #7f9db9;
+    border-radius: $border-radius-sm;
     font-family: $font-sans;
-    font-size: 11px;
-    height: 23px;
-    padding: 2px 4px;
+    font-size: $input-font-size;
+    line-height: $input-line-height;
+    padding: $input-padding-y $input-padding-x;
     padding-right: 20px;
 
     &:focus
