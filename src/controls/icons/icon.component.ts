@@ -1,4 +1,4 @@
-import { Component, Input, SecurityContext } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 export type IconSize = '12' | '16' | '20' | '24' | '32' | '48';
@@ -18,7 +18,7 @@ export class IconComponent
     @Input({ required: true })
     public set svg(value: string)
     {
-        this.sanitizedSvg = this.sanitizer.sanitize(SecurityContext.HTML, value) || '';
+        this.sanitizedSvg = this.sanitizer.bypassSecurityTrustHtml(value);
     }
 
     public sanitizedSvg: SafeHtml = '';

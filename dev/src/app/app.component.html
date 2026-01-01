@@ -1,41 +1,353 @@
-<luna-window id="main-window" [showClose]="false" [showHelp]="false" [showMaximize]="false" [showMinimize]="false" [title]="title">
+<luna-window
+    id="main-window"
+    [showClose]="false"
+    [showHelp]="false"
+    [showMaximize]="false"
+    [showMinimize]="false"
+    [title]="title">
     <luna-tabs>
-        <luna-tab id="console" label="Console">
-            <h3>Console Output</h3>
-            <p>This is the console tab where you can see application logs and debug information.</p>
-            <pre>
-> Application started
-> Loading modules...
-> All modules loaded successfully
-            </pre>
+        <luna-tab
+            id="buttons"
+            label="Buttons">
+            <h2>Button Component</h2>
+            <p>Various button types and states:</p>
+            
+            <div class="control-group">
+                <h3>Standard Buttons</h3>
+                <luna-button>Default Button</luna-button>
+                <luna-button [disabled]="true">Disabled Button</luna-button>
+            </div>
+
+            <div class="control-group">
+                <h3>Button Types</h3>
+                <luna-button type="button">Button</luna-button>
+                <luna-button type="submit">Submit</luna-button>
+                <luna-button type="reset">Reset</luna-button>
+            </div>
+
+            <div class="control-group">
+                <h3>Buttons with Icons</h3>
+                <luna-button>
+                    <luna-icon [svg]="saveIcon" size="16"></luna-icon>
+                    Save
+                </luna-button>
+                <luna-button>
+                    <luna-icon [svg]="folderIcon" size="16"></luna-icon>
+                    Open Folder
+                </luna-button>
+                <luna-button>
+                    <luna-icon [svg]="searchIcon" size="16"></luna-icon>
+                    Search
+                </luna-button>
+            </div>
         </luna-tab>
-        <luna-tab id="code" label="Code">
-            <h3>Code Editor</h3>
-            <p>This tab would contain your code editor interface.</p>
-            <pre>
-function greet(name: string): string {{ '{' }}
-    return `Hello, ${{ '{' }}name{{ '}' }}!`;
-{{ '}' }}
-            </pre>
+
+        <luna-tab
+            id="icons"
+            label="Icons">
+            <h2>Icon Component</h2>
+            <p>Lucide icons in various sizes:</p>
+
+            <div class="control-group">
+                <h3>Icon Sizes</h3>
+                <div class="icon-row">
+                    <div class="icon-item">
+                        <luna-icon [svg]="homeIcon" size="12"></luna-icon>
+                        <span>12px</span>
+                    </div>
+                    <div class="icon-item">
+                        <luna-icon [svg]="homeIcon" size="16"></luna-icon>
+                        <span>16px</span>
+                    </div>
+                    <div class="icon-item">
+                        <luna-icon [svg]="homeIcon" size="20"></luna-icon>
+                        <span>20px</span>
+                    </div>
+                    <div class="icon-item">
+                        <luna-icon [svg]="homeIcon" size="24"></luna-icon>
+                        <span>24px</span>
+                    </div>
+                    <div class="icon-item">
+                        <luna-icon [svg]="homeIcon" size="32"></luna-icon>
+                        <span>32px</span>
+                    </div>
+                    <div class="icon-item">
+                        <luna-icon [svg]="homeIcon" size="48"></luna-icon>
+                        <span>48px</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3>Common Interface Icons</h3>
+                <div class="icon-grid">
+                    <div class="icon-showcase">
+                        <luna-icon [svg]="homeIcon" size="24"></luna-icon>
+                        <span>Home</span>
+                    </div>
+                    <div class="icon-showcase">
+                        <luna-icon [svg]="folderIcon" size="24"></luna-icon>
+                        <span>Folder</span>
+                    </div>
+                    <div class="icon-showcase">
+                        <luna-icon [svg]="fileIcon" size="24"></luna-icon>
+                        <span>File</span>
+                    </div>
+                    <div class="icon-showcase">
+                        <luna-icon [svg]="saveIcon" size="24"></luna-icon>
+                        <span>Save</span>
+                    </div>
+                    <div class="icon-showcase">
+                        <luna-icon [svg]="settingsIcon" size="24"></luna-icon>
+                        <span>Settings</span>
+                    </div>
+                    <div class="icon-showcase">
+                        <luna-icon [svg]="userIcon" size="24"></luna-icon>
+                        <span>User</span>
+                    </div>
+                    <div class="icon-showcase">
+                        <luna-icon [svg]="downloadIcon" size="24"></luna-icon>
+                        <span>Download</span>
+                    </div>
+                    <div class="icon-showcase">
+                        <luna-icon [svg]="uploadIcon" size="24"></luna-icon>
+                        <span>Upload</span>
+                    </div>
+                    <div class="icon-showcase">
+                        <luna-icon [svg]="searchIcon" size="24"></luna-icon>
+                        <span>Search</span>
+                    </div>
+                    <div class="icon-showcase">
+                        <luna-icon [svg]="copyIcon" size="24"></luna-icon>
+                        <span>Copy</span>
+                    </div>
+                    <div class="icon-showcase">
+                        <luna-icon [svg]="editIcon" size="24"></luna-icon>
+                        <span>Edit</span>
+                    </div>
+                    <div class="icon-showcase">
+                        <luna-icon [svg]="trash2Icon" size="24"></luna-icon>
+                        <span>Trash</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3>Window Control Icons</h3>
+                <div class="icon-grid">
+                    <div class="icon-showcase">
+                        <luna-icon [svg]="minimize2Icon" size="24"></luna-icon>
+                        <span>Minimize</span>
+                    </div>
+                    <div class="icon-showcase">
+                        <luna-icon [svg]="maximize2Icon" size="24"></luna-icon>
+                        <span>Maximize</span>
+                    </div>
+                    <div class="icon-showcase">
+                        <luna-icon [svg]="xIcon" size="24"></luna-icon>
+                        <span>Close</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3>Media Control Icons</h3>
+                <div class="icon-grid">
+                    <div class="icon-showcase">
+                        <luna-icon [svg]="playIcon" size="24"></luna-icon>
+                        <span>Play</span>
+                    </div>
+                    <div class="icon-showcase">
+                        <luna-icon [svg]="pauseIcon" size="24"></luna-icon>
+                        <span>Pause</span>
+                    </div>
+                    <div class="icon-showcase">
+                        <luna-icon [svg]="skipForwardIcon" size="24"></luna-icon>
+                        <span>Skip</span>
+                    </div>
+                    <div class="icon-showcase">
+                        <luna-icon [svg]="volume2Icon" size="24"></luna-icon>
+                        <span>Volume</span>
+                    </div>
+                </div>
+            </div>
         </luna-tab>
-        <luna-tab id="files" label="Files">
-            <h3>File Explorer</h3>
-            <p>This tab shows the file structure of your project.</p>
+
+        <luna-tab
+            id="inputs"
+            label="Inputs">
+            <h2>Input Components</h2>
+
+            <div class="control-group">
+                <h3>Text Input</h3>
+                <luna-input
+                    [(ngModel)]="inputValue"
+                    label="Username"
+                    placeholder="Enter your username">
+                </luna-input>
+                <p>Current value: {{ inputValue }}</p>
+            </div>
+
+            <div class="control-group">
+                <h3>Disabled Input</h3>
+                <luna-input
+                    [disabled]="true"
+                    label="Disabled Field"
+                    value="Cannot edit this">
+                </luna-input>
+            </div>
+
+            <div class="control-group">
+                <h3>Textarea</h3>
+                <luna-textarea
+                    [(ngModel)]="textareaValue"
+                    label="Description"
+                    placeholder="Enter a description..."
+                    [rows]="5">
+                </luna-textarea>
+                <p>Character count: {{ textareaValue.length }}</p>
+            </div>
+        </luna-tab>
+
+        <luna-tab
+            id="selections"
+            label="Selections">
+            <h2>Selection Components</h2>
+
+            <div class="control-group">
+                <h3>Checkbox</h3>
+                <luna-checkbox
+                    [(ngModel)]="checkboxValue"
+                    label="Enable notifications">
+                </luna-checkbox>
+                <p>Checked: {{ checkboxValue }}</p>
+            </div>
+
+            <div class="control-group">
+                <h3>Radio Buttons</h3>
+                <luna-fieldset legend="Choose an option">
+                    <luna-radio
+                        [(ngModel)]="radioValue"
+                        label="Option 1"
+                        name="radio-demo"
+                        value="option1">
+                    </luna-radio>
+                    <luna-radio
+                        [(ngModel)]="radioValue"
+                        label="Option 2"
+                        name="radio-demo"
+                        value="option2">
+                    </luna-radio>
+                    <luna-radio
+                        [(ngModel)]="radioValue"
+                        label="Option 3"
+                        name="radio-demo"
+                        value="option3">
+                    </luna-radio>
+                </luna-fieldset>
+                <p>Selected: {{ radioValue }}</p>
+            </div>
+
+            <div class="control-group">
+                <h3>Select Dropdown</h3>
+                <luna-select
+                    [(ngModel)]="selectValue"
+                    label="Choose a color">
+                    <option value="option1">Red</option>
+                    <option value="option2">Green</option>
+                    <option value="option3">Blue</option>
+                    <option value="option4">Yellow</option>
+                </luna-select>
+                <p>Selected: {{ selectValue }}</p>
+            </div>
+        </luna-tab>
+
+        <luna-tab
+            id="progress"
+            label="Progress">
+            <h2>Progress &amp; Slider Components</h2>
+
+            <div class="control-group">
+                <h3>Progress Bar</h3>
+                <luna-progress
+                    [max]="100"
+                    [value]="progressValue">
+                </luna-progress>
+                <p>Progress: {{ progressValue }}%</p>
+            </div>
+
+            <div class="control-group">
+                <h3>Slider</h3>
+                <luna-slider
+                    [(ngModel)]="sliderValue"
+                    label="Volume"
+                    [max]="100"
+                    [min]="0">
+                </luna-slider>
+                <p>Value: {{ sliderValue }}</p>
+            </div>
+        </luna-tab>
+
+        <luna-tab
+            id="layout"
+            label="Layout">
+            <h2>Layout Components</h2>
+
+            <div class="control-group">
+                <h3>Fieldset</h3>
+                <luna-fieldset legend="User Information">
+                    <luna-input
+                        label="First Name"
+                        placeholder="John">
+                    </luna-input>
+                    <luna-input
+                        label="Last Name"
+                        placeholder="Doe">
+                    </luna-input>
+                    <luna-input
+                        label="Email"
+                        placeholder="john.doe@example.com"
+                        type="email">
+                    </luna-input>
+                </luna-fieldset>
+            </div>
+
+            <div class="control-group">
+                <h3>Window</h3>
+                <p>This entire demo is contained within a luna-window component.</p>
+                <p>Windows support title bars with minimize, maximize, close, and help buttons.</p>
+            </div>
+        </luna-tab>
+
+        <luna-tab
+            id="about"
+            label="About">
+            <h2>About ng-luna</h2>
+            <p>ng-luna is an Angular component library that provides retro Windows-styled UI components.</p>
+            
+            <h3>Features</h3>
             <ul>
-                <li>src/</li>
-                <li>├── app/</li>
-                <li>├── components/</li>
-                <li>└── styles/</li>
+                <li>Standalone Angular components</li>
+                <li>Retro Windows aesthetic</li>
+                <li>Accessible with ARIA support</li>
+                <li>Keyboard navigation</li>
+                <li>IBM Plex font family</li>
             </ul>
-        </luna-tab>
-        <luna-tab id="output" label="Output">
-            <h3>Build Output</h3>
-            <p>This tab displays build and compilation output.</p>
-            <pre>
-Building application...
-✓ Compiled successfully
-✓ Build completed in 2.5s
-            </pre>
+
+            <h3>Available Components</h3>
+            <ul>
+                <li>Button</li>
+                <li>Checkbox</li>
+                <li>Fieldset</li>
+                <li>Input</li>
+                <li>Progress</li>
+                <li>Radio</li>
+                <li>Select</li>
+                <li>Slider</li>
+                <li>Tabs</li>
+                <li>Textarea</li>
+                <li>Window</li>
+            </ul>
         </luna-tab>
     </luna-tabs>
 </luna-window>

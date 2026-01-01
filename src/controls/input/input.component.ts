@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, forwardRef, ElementRef, OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, Input, Output, EventEmitter, forwardRef, ElementRef, OnDestroy, AfterViewInit, ViewChild, Optional } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FocusMonitor, LiveAnnouncer } from '@angular/cdk/a11y';
 import { TextFieldModule } from '@angular/cdk/text-field';
@@ -53,7 +53,7 @@ export class InputComponent
         private focusMonitor: FocusMonitor,
         private liveAnnouncer: LiveAnnouncer,
         public platform: Platform,
-        public dir: Dir,
+        @Optional() public dir: Dir,
         private clipboard: Clipboard
     )
     {

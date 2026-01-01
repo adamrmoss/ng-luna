@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ElementRef, OnDestroy, AfterViewInit, Optional } from '@angular/core';
 import { BidiModule, Dir } from '@angular/cdk/bidi';
 import { FocusMonitor } from '@angular/cdk/a11y';
 import { Platform } from '@angular/cdk/platform';
@@ -68,7 +68,7 @@ export class ButtonComponent
         private elementRef: ElementRef<HTMLElement>,
         private focusMonitor: FocusMonitor,
         public platform: Platform,
-        public dir: Dir
+        @Optional() public dir: Dir
     )
     {
         super();

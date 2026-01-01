@@ -3,4 +3,104 @@
 
 #main-window
 {
+    max-width: 900px;
+}
+
+.control-group
+{
+    margin-bottom: 32px;
+
+    h3
+    {
+        margin-bottom: 12px;
+        margin-top: 0;
+    }
+
+    p
+    {
+        font-size: 12px;
+        margin: 8px 0;
+    }
+
+    luna-button
+    {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-right: 8px;
+    }
+
+    luna-radio
+    {
+        display: block;
+        margin-bottom: 8px;
+    }
+}
+
+.icon-row
+{
+    display: flex;
+    gap: 24px;
+    align-items: flex-end;
+
+    .icon-item
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+
+        span
+        {
+            font-size: 11px;
+            color: #666;
+        }
+    }
+}
+
+.icon-grid
+{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 16px;
+
+    .icon-showcase
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 12px;
+        border: 1px solid #d0d0bf;
+        background: #fff;
+
+        &:hover
+        {
+            background: #f0f0ea;
+        }
+
+        span
+        {
+            font-size: 11px;
+            text-align: center;
+        }
+    }
+}
+
+h2
+{
+    border-bottom: 1px solid #919b9c;
+    margin-bottom: 16px;
+    margin-top: 0;
+    padding-bottom: 8px;
+}
+
+h3
+{
+    font-size: 14px;
+}
+
+ul
+{
+    line-height: 1.6;
 }

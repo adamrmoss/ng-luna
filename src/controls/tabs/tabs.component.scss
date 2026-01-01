@@ -17,45 +17,44 @@ menu[role="tablist"]
         background: linear-gradient(
             180deg,
             $white 0%,
-            $off-white-warm 26%,
-            $cream-pale 95%,
-            $beige-light 100%
+            $gray-lightest 100%
         );
-        border-color: $blue-steel-light;
+        border: 1px solid $white;
+        border-bottom-color: $gray-dark;
+        border-left-color: $white;
         border-radius: 0;
-        border-top-left-radius: 3px;
-        border-top-right-radius: 3px;
-        margin-left: -1px;
+        border-right-color: $gray-dark;
+        border-top-color: $white;
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+        color: $black;
+        cursor: pointer;
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-size: 11px;
         margin-right: 2px;
-        padding: 0 12px 3px;
+        padding: 4px 12px 3px;
+        position: relative;
 
         &:hover
         {
-            border-top: 1px solid $orange-dark;
-            box-shadow: inset 0px 2px $yellow-gold;
+            background: linear-gradient(
+                180deg,
+                $white 0%,
+                $cream-pale 100%
+            );
         }
 
         &[aria-selected="true"]
         {
-            background: $off-white;
-            border-bottom: 1px solid transparent;
-            border-color: $blue-gray;
-            border-top: 1px solid $orange-dark;
-            box-shadow: inset 0px 2px $yellow-gold;
-            margin-right: -1px;
-
-            &:first-of-type::before
-            {
-                border-left: 1px solid $blue-gray;
-                content: "";
-                display: block;
-                height: 2px;
-                left: -1px;
-                position: absolute;
-                top: 100%;
-                width: 0;
-                z-index: -1;
-            }
+            background: $beige-lighter;
+            border-bottom-color: $beige-lighter;
+            border-left-color: $gray-light;
+            border-right-color: $gray-dark;
+            border-top-color: $gray-light;
+            font-weight: 600;
+            margin-bottom: -1px;
+            padding-bottom: 4px;
+            z-index: 1;
         }
     }
 }

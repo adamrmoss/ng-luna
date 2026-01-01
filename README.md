@@ -649,9 +649,9 @@ ng-luna/
 
 ## Dependencies
 
+- **@angular/cdk** (19.x.x) - Angular Component Dev Kit
 - **@ibm/plex** (v6.4.1) - IBM Plex font families (fonts are bundled with the library)
 - **lucide-static** - Lucide icon set (icons are bundled with the library)
-- **@angular/cdk** (19.x.x) - Angular Component Dev Kit
 
 ## Publishing
 

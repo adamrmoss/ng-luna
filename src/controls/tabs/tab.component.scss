@@ -7,9 +7,9 @@
 
 [role="tabpanel"]
 {
-    box-shadow:
-        inset 1px 1px $off-white,
-        inset -1px -1px $off-white,
-        1px 2px 2px 0px rgba(208, 206, 191, 0.75);
+    background: $beige-lighter;
+    border: 1px solid $gray-dark;
+    border-left-color: $gray-light;
+    border-top-color: $gray-light;
     padding: 12px;
 }

@@ -354,19 +354,19 @@ $font-assets-path: '/assets/fonts' !default;
 
 ng-luna is MIT licensed and bundles the following open-source software:
 
-| Software | License | Usage |
-|----------|---------|-------|
-| IBM Plex | SIL OFL 1.1 | Bundled fonts |
-| Lucide Icons | ISC | Bundled icon strings |
-| Angular CDK | MIT | Peer dependency |
+| Software     | License     | Usage                |
+|--------------|-------------|----------------------|
+| IBM Plex     | SIL OFL 1.1 | Bundled fonts        |
+| Lucide Icons | ISC         | Bundled icon strings |
+| Angular CDK  | MIT         | Peer dependency      |
 
 All licenses permit bundling and redistribution. Full license texts are in `THIRD-PARTY-LICENSES.md`.
 
 ### License Requirements Met
 
+✅ **Angular CDK (MIT)**: Peer dependency, not redistributed  
 ✅ **IBM Plex (SIL OFL)**: License file included in font assets  
 ✅ **Lucide (ISC)**: Copyright notice in THIRD-PARTY-LICENSES.md  
-✅ **Angular CDK (MIT)**: Peer dependency, not redistributed  
 
 ## Development
 
