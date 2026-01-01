@@ -58,6 +58,7 @@
     },
     "allowedNonPeerDependencies": [
         "@angular/cdk",
-        "@ibm/plex"
+        "@ibm/plex",
+        "lucide-static"
     ]
 }
