@@ -2,38 +2,23 @@
 @use 'ng-luna/theme/_breakpoints.scss' as *;
 @use 'ng-luna/theme/_typography.scss' as *;
 
-#main-window
+#main-window ::ng-deep .window
 {
-    max-width: 900px;
+    max-width: 600px;
 }
 
 .control-group
 {
     margin-bottom: $spacing-base;
 
-    h3
-    {
-        margin-bottom: $spacing-xs;
-        margin-top: 0;
-    }
-
-    p
-    {
-        font-size: $font-size-xs;
-        margin: $spacing-xs 0;
-    }
-
     luna-button
     {
-        align-items: center;
-        display: inline-flex;
-        gap: 6px;
         margin-right: $spacing-xs;
     }
 
     luna-radio
     {
-        display: block;
+        display: flex;
         margin-bottom: $spacing-xs;
     }
 }
@@ -50,12 +35,6 @@
         display: flex;
         flex-direction: column;
         gap: $spacing-xs;
-
-        span
-        {
-            color: #666;
-            font-size: $font-size-xs;
-        }
     }
 }
 
@@ -79,29 +58,5 @@
         {
             background: #f0f0ea;
         }
-
-        span
-        {
-            font-size: $font-size-xs;
-            text-align: center;
-        }
     }
-}
-
-h2
-{
-    border-bottom: 1px solid #919b9c;
-    margin-bottom: $spacing-sm;
-    margin-top: 0;
-    padding-bottom: $spacing-xs;
-}
-
-h3
-{
-    font-size: $font-size-sm;
-}
-
-ul
-{
-    line-height: 1.6;
 }
