@@ -1,4 +1,5 @@
 @use '../../theme/palette' as *;
+@use '../../theme/typography' as *;
 
 :host
 {
@@ -7,24 +8,28 @@
 
 fieldset
 {
-    border: none;
-    box-shadow: none;
     background: $white;
     border: 1px solid $beige-khaki;
-    border-radius: 4px;
-    padding-top: 10px;
+    border-radius: $border-radius-md;
+    box-shadow: none;
+    padding: $spacing-sm;
 }
 
 legend
 {
-    background: transparent;
-    color: $blue-royal;
+    background: $white;
+    border: 1px solid $beige-khaki;
+    border-radius: $border-radius-base;
+    color: $black;
+    font-size: $legend-font-size;
+    line-height: $legend-line-height;
+    padding: $legend-padding-y $legend-padding-x;
 }
 
 .field-row
 {
-    display: flex;
     align-items: center;
+    display: flex;
 
     > * + *
     {

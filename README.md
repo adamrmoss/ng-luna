@@ -39,17 +39,39 @@ import { ButtonComponent } from 'ng-luna';
 
 ### Using Bundled Fonts
 
-The IBM Plex fonts are **automatically bundled and loaded** when you use any ng-luna component. No additional setup or configuration is required.
+The IBM Plex fonts are bundled with ng-luna and need to be copied to your application's assets folder.
 
-**Fonts are automatically available:**
-- ✅ Font files are bundled with the library
-- ✅ Fonts load automatically when you use any component
-- ✅ No imports or configuration needed
-- ✅ Works out of the box
+#### Setup
 
-**Using fonts in your own styles:**
+Add the following to your `angular.json` in the `assets` array of your project's build configuration:
 
-Since the fonts are already loaded, you can use them directly in your CSS/SCSS:
+```json
+{
+  "projects": {
+    "your-app-name": {
+      "architect": {
+        "build": {
+          "options": {
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "node_modules/ng-luna/assets/fonts",
+                "output": "/assets/fonts"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+This copies the font files from the ng-luna package to your application's `/assets/fonts/` directory during build.
+
+#### Using Fonts in Your Styles
+
+Once configured, you can use the fonts directly in your CSS/SCSS:
 
 ```scss
 .my-custom-class {
@@ -69,6 +91,76 @@ Since the fonts are already loaded, you can use them directly in your CSS/SCSS:
 - `'IBM Plex Sans', sans-serif` - Default sans-serif font used by components
 - `'IBM Plex Mono', monospace` - Monospace font
 - `'IBM Plex Serif', serif` - Serif font
+
+**Note:** The ng-luna components will automatically use these fonts once they are available in your assets folder.
+
+### Using Icons
+
+ng-luna includes [Lucide Icons](https://lucide.dev/), a comprehensive set of over 1,400 clean, consistent SVG icons that complement the Windows XP aesthetic. Icons are provided as **tree-shakable ES modules** - only the icons you import will be included in your bundle.
+
+#### Import Icons
+
+```typescript
+import { IconComponent, Home, Save, Folder, Settings } from 'ng-luna';
+
+@Component({
+    imports: [ IconComponent ],
+    template: `
+        <luna-icon [svg]="homeIcon" size="24"></luna-icon>
+        <luna-icon [svg]="saveIcon" size="16"></luna-icon>
+    `
+})
+export class MyComponent {
+    homeIcon = Home;
+    saveIcon = Save;
+}
+```
+
+#### Icon Component
+
+**Selector:** `luna-icon`
+
+##### Inputs
+
+- `svg: string` (required) - The SVG string from an imported Lucide icon
+- `size?: IconSize` - Icon size: `'12' | '16' | '20' | '24' | '32' | '48'` (default: `'24'`)
+
+##### Example
+
+```html
+<luna-icon [svg]="homeIcon" size="24"></luna-icon>
+<luna-icon [svg]="saveIcon" size="16"></luna-icon>
+
+<luna-button>
+    <luna-icon [svg]="folderIcon" size="16"></luna-icon>
+    Open Folder
+</luna-button>
+```
+
+#### Available Icons
+
+Lucide provides over 1,400 icons. Browse all available icons at [lucide.dev/icons](https://lucide.dev/icons).
+
+**Common icons for XP-style interfaces:**
+- `Home`, `Folder`, `File` - Navigation
+- `Settings`, `Tool`, `Wrench` - Configuration
+- `User`, `Users` - User management
+- `Save`, `Download`, `Upload` - File operations
+- `X`, `Minimize2`, `Maximize2` - Window controls
+- `ChevronLeft`, `ChevronRight`, `ChevronDown` - Navigation arrows
+- `Check`, `AlertTriangle` - Status indicators
+
+#### Tree-Shaking
+
+Icons use ES modules for automatic tree-shaking. Only imported icons are included in your final bundle:
+
+```typescript
+// ✅ Good: Only Home and Save icons included in bundle
+import { Home, Save } from 'ng-luna';
+
+// ❌ Avoid: Imports entire icon library
+import * as Icons from 'ng-luna';
+```
 
 ## Components
 
@@ -160,6 +252,45 @@ The `luna-fieldset` component provides a Windows XP-styled fieldset for grouping
     <!-- Form controls here -->
 </luna-fieldset>
 ```
+
+### Icon Component
+
+The `luna-icon` component provides a convenient way to render Lucide icons with automatic sanitization and sizing.
+
+**Selector:** `luna-icon`
+
+**Note:** This component does not inherit from `LunaControl` and does not have the common base inputs.
+
+#### Inputs
+
+- `svg: string` (required) - The SVG string from an imported Lucide icon
+- `size?: IconSize` - Icon size: `'12' | '16' | '20' | '24' | '32' | '48'` (default: `'24'`)
+
+#### Example
+
+```html
+<luna-icon [svg]="homeIcon" size="24"></luna-icon>
+
+<luna-button>
+    <luna-icon [svg]="saveIcon" size="16"></luna-icon>
+    Save File
+</luna-button>
+```
+
+```typescript
+import { IconComponent, Home, Save } from 'ng-luna';
+
+@Component({
+    imports: [ IconComponent ],
+    // ...
+})
+export class MyComponent {
+    homeIcon = Home;
+    saveIcon = Save;
+}
+```
+
+For more information on importing and using icons, see the [Using Icons](#using-icons) section above.
 
 ### Input Component
 
@@ -470,11 +601,22 @@ export class MyComponent
 
 ## Development
 
+For a detailed explanation of the library architecture, build process, and how the public API works, see [ARCHITECTURE.md](ARCHITECTURE.md).
+
 ### Building the Library
 
 ```bash
 npm run build
 ```
+
+The build process uses `ng-packagr` to:
+- Compile TypeScript to ESM modules
+- Generate type definitions
+- Bundle everything into `dist/fesm2022/ng-luna.mjs`
+- Copy assets (fonts, SCSS themes)
+- Create a production-ready `package.json`
+
+All exports go through `src/public-api.ts` → `src/controls/index.ts` → individual components.
 
 ### Project Structure
 
@@ -507,8 +649,9 @@ ng-luna/
 
 ## Dependencies
 
-- **@ibm/plex** (v6.4.1) - IBM Plex font families (fonts are bundled with the library)
 - **@angular/cdk** (19.x.x) - Angular Component Dev Kit
+- **@ibm/plex** (v6.4.1) - IBM Plex font families (fonts are bundled with the library)
+- **lucide-static** - Lucide icon set (icons are bundled with the library)
 
 ## Publishing
 

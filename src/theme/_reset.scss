@@ -1,3 +1,6 @@
+@use 'fonts' as *;
+@use 'typography' as *;
+
 *
 {
     box-sizing: border-box;
@@ -32,12 +35,79 @@ footer, header, hgroup, menu, nav, section
 
 body
 {
-    line-height: 1;
+    font-family: $font-serif;
+    font-size: $font-size-base;
+    line-height: $line-height-base;
 }
 
-ol, ul
+h1, h2, h3, h4, h5, h6,
+legend, label
+{
+    font-family: $font-sans;
+}
+
+h1
+{
+    font-size: $font-size-xl;
+    line-height: $line-height-tight;
+    margin-bottom: $spacing-base;
+    margin-top: $spacing-lg;
+
+    &:first-child
+    {
+        margin-top: 0;
+    }
+}
+
+h2
+{
+    font-size: $font-size-lg;
+    line-height: $line-height-tight;
+    margin-bottom: $spacing-sm;
+    margin-top: $spacing-lg;
+
+    &:first-child
+    {
+        margin-top: 0;
+    }
+}
+
+h3
+{
+    font-size: $font-size-md;
+    line-height: $line-height-tight;
+    margin-bottom: $spacing-xs;
+    margin-top: $spacing-base;
+
+    &:first-child
+    {
+        margin-top: 0;
+    }
+}
+
+h4, h5, h6
+{
+    font-size: $font-size-base;
+    line-height: $line-height-tight;
+    margin-bottom: $spacing-xs;
+    margin-top: $spacing-sm;
+
+    &:first-child
+    {
+        margin-top: 0;
+    }
+}
+
+p
+{
+    margin-bottom: $spacing-sm;
+}
+
+ul, ol
 {
     list-style: none;
+    margin-bottom: $spacing-sm;
+    padding-left: $spacing-sm;
 }
 
 blockquote, q

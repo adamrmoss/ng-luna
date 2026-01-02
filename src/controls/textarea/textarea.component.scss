@@ -1,5 +1,6 @@
 @use '../../theme/palette' as *;
 @use '../../theme/fonts' as *;
+@use '../../theme/typography' as *;
 
 :host
 {
@@ -8,12 +9,13 @@
 
 textarea
 {
-    -webkit-font-smoothing: antialiased;
-    font-family: $font-sans;
-    font-size: 11px;
-    padding: 3px 4px;
     border: 1px solid $blue-steel;
+    border-radius: $border-radius-sm;
     box-sizing: border-box;
+    font-family: $font-sans;
+    font-size: $input-font-size;
+    line-height: $input-line-height;
+    padding: $input-padding-y $input-padding-x;
     resize: both;
 
     &::selection

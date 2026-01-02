@@ -1,78 +1,64 @@
 @use '../../theme/palette' as *;
 @use '../../theme/graphics' as *;
+@use '../../theme/typography' as *;
 
 :host
 {
-    display: inline-flex;
     align-items: center;
+    display: flex;
+    gap: $spacing-sm;
+    padding: $spacing-xxs 0;
 }
 
-label
-{
-    -webkit-font-smoothing: antialiased;
-}
 
 input[type="checkbox"]
 {
-    appearance: none;
-    -webkit-appearance: none;
     -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: linear-gradient(
+        135deg,
+        $gray-light-warm 0%,
+        $white 100%
+    );
+    border: 1px solid $blue-steel-dark;
+    box-shadow: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    flex-shrink: 0;
+    height: 13px;
     margin: 0;
-    background: 0;
-    position: fixed;
-    opacity: 0;
-    border: none;
+    position: relative;
+    width: 13px;
 
-    + label
+    &::after
     {
-        line-height: 16px;
-        position: relative;
-        margin-left: 19px;
-
-        &::before
-        {
-            content: "";
-            display: inline-block;
-            width: 13px;
-            height: 13px;
-            position: absolute;
-            left: -19px;
-            top: 0;
-            box-sizing: border-box;
-            box-shadow: none;
-            border: 1px solid $blue-steel-dark;
-            background: linear-gradient(
-                135deg,
-                $gray-light-warm 0%,
-                $white 100%
-            );
-        }
-
-        &::after
-        {
-            content: "";
-            display: inline-block;
-            width: 11px;
-            height: 11px;
-            position: absolute;
-            left: -17px;
-            top: 2px;
-            background: none;
-        }
+        background: none;
+        content: "";
+        height: 11px;
+        left: 1px;
+        position: absolute;
+        top: 1px;
+        width: 11px;
     }
 
-    &:checked + label::after
+    &:checked::after
     {
         background: $checkmark-svg no-repeat center;
-        left: -17px;
     }
 
-    &:not([disabled]):not(:active) + label:hover::before
+    &:focus
+    {
+        outline: 1px dotted $black;
+        outline-offset: 1px;
+    }
+
+    &:not([disabled]):not(:active):hover
     {
         box-shadow: inset -2px -2px $gold, inset 2px 2px $yellow-cream;
     }
 
-    &:active + label::before
+    &:active
     {
         background: linear-gradient(
             135deg,
@@ -81,22 +67,22 @@ input[type="checkbox"]
         );
     }
 
-    &:focus + label
-    {
-        outline: 1px dotted $black;
-    }
-}
-
-input[type="checkbox"][disabled]
-{
-    + label::before
+    &[disabled]
     {
         background: $white;
         border: 1px solid $beige-tan;
+        cursor: default;
+
+        &:checked::after
+        {
+            opacity: 0.5;
+        }
     }
 
-    &:checked + label::after
-    {
-        opacity: 0.5;
-    }
+}
+
+label
+{
+    cursor: pointer;
+    line-height: $line-height-tight;
 }

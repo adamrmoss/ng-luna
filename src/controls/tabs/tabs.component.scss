@@ -1,4 +1,5 @@
 @use '../../theme/palette' as *;
+@use '../../theme/typography' as *;
 
 :host
 {
@@ -8,64 +9,54 @@
 menu[role="tablist"]
 {
     display: flex;
+    list-style: none;
     margin: 0;
     padding: 0;
-    list-style: none;
 
     button
     {
         background: linear-gradient(
             180deg,
             $white 0%,
-            $off-white-warm 26%,
-            $cream-pale 95%,
-            $beige-light 100%
+            $gray-lightest 100%
         );
-        margin-left: -1px;
-        margin-right: 2px;
+        border: 1px solid $white;
+        border-bottom-color: $gray-dark;
+        border-left-color: $white;
         border-radius: 0;
-        border-color: $blue-steel-light;
-        border-top-right-radius: 3px;
-        border-top-left-radius: 3px;
-        padding: 0 12px 3px;
+        border-right-color: $gray-dark;
+        border-top-color: $white;
+        border-top-left-radius: $border-radius-sm;
+        border-top-right-radius: $border-radius-sm;
+        color: $black;
+        cursor: pointer;
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-size: $tab-font-size;
+        line-height: $tab-line-height;
+        margin-right: 2px;
+        padding: $tab-padding-y $tab-padding-x 3px;
+        position: relative;
 
         &:hover
         {
-            box-shadow: unset;
-            border-top: 1px solid $orange-dark;
-            box-shadow: inset 0px 2px $yellow-gold;
+            background: linear-gradient(
+                180deg,
+                $white 0%,
+                $cream-pale 100%
+            );
         }
 
         &[aria-selected="true"]
         {
-            background: $off-white;
-            border-color: $blue-gray;
-            margin-right: -1px;
-            border-bottom: 1px solid transparent;
-            border-top: 1px solid $orange-dark;
-            box-shadow: inset 0px 2px $yellow-gold;
-
-            &:first-of-type::before
-            {
-                content: "";
-                display: block;
-                position: absolute;
-                z-index: -1;
-                top: 100%;
-                left: -1px;
-                height: 2px;
-                width: 0;
-                border-left: 1px solid $blue-gray;
-            }
+            background: $beige-lighter;
+            border-bottom-color: $beige-lighter;
+            border-left-color: $gray-light;
+            border-right-color: $gray-dark;
+            border-top-color: $gray-light;
+            font-weight: 600;
+            margin-bottom: -1px;
+            padding-bottom: 4px;
+            z-index: 1;
         }
     }
-}
-
-[role="tabpanel"]
-{
-    box-shadow:
-        inset 1px 1px $off-white,
-        inset -1px -1px $off-white,
-        1px 2px 2px 0px rgba(208, 206, 191, 0.75);
-    padding: 12px;
 }

@@ -1,6 +1,6 @@
 {
     "name": "ng-luna",
-    "version": "0.2.1",
+    "version": "0.4.2",
     "description": "An Angular component library inspired by Windows XP aesthetics, built with IBM Plex fonts",
     "author": {
         "name": "Adam R Moss",
@@ -23,7 +23,9 @@
     "scripts": {
         "build": "ng-packagr -p ng-package.json",
         "clean": "rm -rf dist",
-        "publish": "npm run build && npm publish ./dist"
+        "publish": "npm run build && npm publish ./dist",
+        "dev": "cd dev && ng serve",
+        "dev:build": "cd dev && ng build"
     },
     "peerDependencies": {
         "@angular/common": "19.x.x",
@@ -32,11 +34,18 @@
     },
     "dependencies": {
         "@angular/cdk": "19.x.x",
-        "@ibm/plex": "6.4.1",
+        "lucide-static": "^0.468.0",
         "tslib": "2.x.x"
     },
     "devDependencies": {
-        "ng-packagr": "19.x.x"
+        "@angular-devkit/build-angular": "19.x.x",
+        "@angular/cli": "19.x.x",
+        "@angular/animations": "19.x.x",
+        "@angular/platform-browser": "19.x.x",
+        "@ibm/plex": "6.4.1",
+        "ng-packagr": "19.x.x",
+        "typescript": "5.x.x",
+        "zone.js": "0.x.x"
     },
     "sideEffects": false
 }

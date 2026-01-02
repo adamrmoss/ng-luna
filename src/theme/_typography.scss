@@ -1,0 +1,61 @@
+// Typography system with vertical rhythm
+// Based on 16px base size with 1.5 line height
+
+// Base values
+$base-font-size: 16px;
+$base-line-height: 1.5;
+$base-spacing-unit: $base-font-size * $base-line-height; // 24px
+
+// Font sizes (maintaining rhythm)
+$font-size-xs: 11px;      // Small UI text (buttons, tabs, labels)
+$font-size-sm: 13px;      // Secondary text
+$font-size-base: 16px;    // Body text
+$font-size-md: 18px;      // Subheadings
+$font-size-lg: 20px;      // Headings
+$font-size-xl: 24px;      // Large headings
+
+// Line heights (maintaining rhythm)
+$line-height-tight: 1.2;
+$line-height-base: 1.5;
+$line-height-relaxed: 1.75;
+
+// Spacing scale (based on 8px grid)
+$spacing-xxs: 2px;
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-base: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-xxl: 48px;
+
+// Border radii (consistent across components)
+$border-radius-none: 0;
+$border-radius-sm: 2px;    // Subtle rounding (buttons, inputs)
+$border-radius-base: 3px;  // Standard rounding (most components)
+$border-radius-md: 4px;    // Medium rounding (fieldsets, windows)
+$border-radius-lg: 6px;    // Large rounding (modals, large cards)
+
+// Component-specific typography
+$button-font-size: $font-size-xs;
+$button-line-height: $line-height-tight;
+$button-padding-y: 4px;
+$button-padding-x: 12px;
+
+$input-font-size: $font-size-xs;
+$input-line-height: $line-height-tight;
+$input-padding-y: 3px;
+$input-padding-x: 4px;
+
+$tab-font-size: $font-size-xs;
+$tab-line-height: $line-height-tight;
+$tab-padding-y: 4px;
+$tab-padding-x: 12px;
+
+$window-title-font-size: $font-size-xs;
+$window-title-line-height: $line-height-tight;
+
+$legend-font-size: $font-size-xs;
+$legend-line-height: $line-height-tight;
+$legend-padding-y: 2px;
+$legend-padding-x: 8px;

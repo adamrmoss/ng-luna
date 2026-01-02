@@ -1,6 +1,7 @@
 @use '../../theme/palette' as *;
 @use '../../theme/fonts' as *;
 @use '../../theme/graphics' as *;
+@use '../../theme/typography' as *;
 
 :host
 {
@@ -9,6 +10,8 @@
 
 .window
 {
+    background: $beige-light;
+    border-radius: $border-radius-lg;
     box-shadow:
         inset -1px -1px $navy-darkest,
         inset 1px 1px $blue-bright-lighter,
@@ -16,61 +19,55 @@
         inset 2px 2px $blue-sky,
         inset -3px -3px $blue-bright-darkest,
         inset 3px 3px $blue-bright-lightest;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    padding: 0 0 3px 0;
-    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: $spacing-xs - 1px;
 }
 
 .title-bar
 {
-    font-family: $font-sans;
-    background: linear-gradient(
-        180deg,
-        $blue-sky-dark 0%,
-        $blue-bright 8%,
-        $blue-bright-dark 40%,
-        $blue-bright-medium 88%,
-        $blue-bright-medium 93%,
-        $blue-bright-light 95%,
-        $blue-bright-darker 96%,
-        $blue-bright-darker 100%
-    );
-    padding: 3px 5px 3px 3px;
-    border-top: 1px solid $blue-bright-lighter;
-    border-left: 1px solid $blue-bright-lighter;
-    border-right: 1px solid $navy-dark;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 7px;
-    font-size: 13px;
-    text-shadow: 1px 1px $navy-darker;
-    height: 21px;
-    display: flex;
-    justify-content: space-between;
     align-items: center;
+    background: $blue-bright;
+    box-sizing: border-box;
     color: $white;
+    display: flex;
+    flex: 0 0 auto;
+    font-family: $font-sans;
+    font-size: $window-title-font-size;
+    height: 21px;
+    justify-content: space-between;
+    line-height: $window-title-line-height;
+    margin: 0;
+    min-width: 0;
+    padding: $spacing-xs - 1px;
+    text-shadow: 1px 1px $navy-darker;
 }
 
 .title-bar-text
 {
-    padding-left: 3px;
+    flex: 1 1 auto;
+    min-width: 0;
+    padding-left: $spacing-xs - 1px;
 }
 
 .title-bar-controls
 {
     display: flex;
+    flex: 0 0 auto;
+    gap: $spacing-xxs;
 
     button
     {
-        min-width: 21px;
-        min-height: 21px;
-        margin-left: 2px;
-        background-repeat: no-repeat;
-        background-position: center;
-        box-shadow: none;
         background-color: $blue-bright-dark;
-        transition: background 100ms;
+        background-position: center;
+        background-repeat: no-repeat;
         border: none;
+        box-shadow: none;
+        flex: 0 0 21px;
+        height: 21px;
+        transition: background 100ms;
+        width: 21px;
 
         &:active,
         &:hover,
@@ -159,14 +156,25 @@
 .window-body
 {
     background: $beige-light;
-    padding: 8px;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    box-sizing: border-box;
+    flex: 1 1 auto;
+    margin: 0;
+    min-width: 0;
+    padding: $spacing-sm;
 }
 
 .status-bar
 {
-    margin: 0 3px;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
     box-shadow: inset 0px 1px 2px var(--button-shadow);
-    padding: 2px 1px;
+    box-sizing: border-box;
     display: flex;
+    flex: 0 0 auto;
     gap: 0px;
+    margin: 0;
+    min-width: 0;
+    padding: $spacing-xxs 1px;
 }

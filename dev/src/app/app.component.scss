@@ -1,0 +1,63 @@
+@use 'sass:map';
+@use 'ng-luna/theme/_breakpoints.scss' as *;
+@use 'ng-luna/theme/_palette.scss' as *;
+@use 'ng-luna/theme/_typography.scss' as *;
+
+#main-window ::ng-deep .window
+{
+    max-width: 600px;
+}
+
+.control-group
+{
+    margin-bottom: $spacing-base;
+
+    luna-button
+    {
+        margin-right: $spacing-xs;
+    }
+
+    luna-radio
+    {
+        display: flex;
+        margin-bottom: $spacing-xs;
+    }
+}
+
+.icon-row
+{
+    align-items: flex-end;
+    display: flex;
+    gap: $spacing-md;
+
+    .icon-item
+    {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-xs;
+    }
+}
+
+.icon-grid
+{
+    display: grid;
+    gap: $spacing-sm;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+
+    .icon-showcase
+    {
+        align-items: center;
+        background: $white;
+        border: 1px solid $beige-khaki;
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-xs;
+        padding: $spacing-sm;
+
+        &:hover
+        {
+            background: $cream-pale;
+        }
+    }
+}

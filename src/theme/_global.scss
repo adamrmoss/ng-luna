@@ -1,5 +1,23 @@
 @use 'palette' as *;
 @use 'graphics' as *;
+@use 'reset';
+
+.cdk-visually-hidden
+{
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    left: 0;
+    margin: -1px;
+    outline: 0;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
 
 ::-webkit-scrollbar
 {
@@ -26,9 +44,9 @@
 
 ::-webkit-scrollbar-thumb
 {
+    background-color: #c8d6fb;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: #c8d6fb;
     background-size: 7px;
     border: 1px solid $white;
     border-radius: 2px;
@@ -41,8 +59,8 @@
 
     &:horizontal
     {
-        background-size: 8px;
         background-image: $scrollbar-thumb-horizontal-svg;
+        background-size: 8px;
     }
 }
 
@@ -52,14 +70,14 @@
     {
         &:start
         {
-            height: 17px;
             background-image: $scrollbar-arrow-up-svg;
+            height: 17px;
         }
 
         &:end
         {
-            height: 17px;
             background-image: $scrollbar-arrow-down-svg;
+            height: 17px;
         }
     }
 
@@ -67,14 +85,14 @@
     {
         &:start
         {
-            width: 17px;
             background-image: $scrollbar-arrow-left-svg;
+            width: 17px;
         }
 
         &:end
         {
-            width: 17px;
             background-image: $scrollbar-arrow-right-svg;
+            width: 17px;
         }
     }
 }

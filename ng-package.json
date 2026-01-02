@@ -3,6 +3,11 @@
     "dest": "./dist",
     "assets": [
         {
+            "input": "./",
+            "glob": "THIRD-PARTY-LICENSES.md",
+            "output": "/"
+        },
+        {
             "input": "./node_modules/@ibm/plex",
             "glob": "IBM-Plex-Mono/**/*",
             "output": "/assets/fonts"
@@ -53,6 +58,7 @@
     },
     "allowedNonPeerDependencies": [
         "@angular/cdk",
-        "@ibm/plex"
+        "@ibm/plex",
+        "lucide-static"
     ]
 }

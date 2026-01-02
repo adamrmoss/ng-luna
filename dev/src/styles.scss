@@ -1,0 +1,9 @@
+@use '../../src/theme/global' as *;
+@use '../../src/theme/palette' as *;
+
+body
+{
+    background: $silver;
+    margin: 0;
+    padding: 20px;
+}
