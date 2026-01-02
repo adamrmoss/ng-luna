@@ -1,5 +1,6 @@
 @use 'sass:map';
 @use 'ng-luna/theme/_breakpoints.scss' as *;
+@use 'ng-luna/theme/_palette.scss' as *;
 @use 'ng-luna/theme/_typography.scss' as *;
 
 #main-window ::ng-deep .window
@@ -47,8 +48,8 @@
     .icon-showcase
     {
         align-items: center;
-        background: #fff;
-        border: 1px solid #d0d0bf;
+        background: $white;
+        border: 1px solid $beige-khaki;
         display: flex;
         flex-direction: column;
         gap: $spacing-xs;
@@ -56,7 +57,7 @@
 
         &:hover
         {
-            background: #f0f0ea;
+            background: $cream-pale;
         }
     }
 }
