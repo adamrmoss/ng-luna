@@ -3,9 +3,16 @@
 .luna-modal-backdrop
 {
     background: rgba(0, 0, 0, 0.5);
+    cursor: default;
+    z-index: 0;
+
+    &:focus
+    {
+        outline: none;
+    }
 }
 
 .luna-modal-pane
 {
-    z-index: $modal;
+    z-index: 1;
 }

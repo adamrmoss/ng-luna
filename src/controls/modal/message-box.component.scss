@@ -36,7 +36,6 @@
 
 .message-box-content
 {
-    margin-bottom: $spacing-base;
     padding: $spacing-md;
     padding-top: $spacing-sm;
 }
@@ -54,4 +53,5 @@
     display: flex;
     gap: $spacing-sm;
     justify-content: flex-end;
+    padding: 0 $spacing-md $spacing-md;
 }

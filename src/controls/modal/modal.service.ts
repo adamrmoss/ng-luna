@@ -1,7 +1,7 @@
 import { Injectable, Injector, inject, Type, Provider } from '@angular/core';
 import { Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { Observable } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
 
 import { LunaModalRef } from './modal-ref';
 import { MODAL_DATA } from './modal-data';
@@ -22,6 +22,7 @@ export class LunaModalService
 {
     private readonly overlay = inject(Overlay);
     private readonly injector = inject(Injector);
+    private isMessageBoxOpen = false;
 
     public alert(message: string, titleOrOptions?: string | MessageBoxOptions<void>): Observable<void | undefined>
     {
@@ -70,6 +71,12 @@ export class LunaModalService
 
     private openMessageBox<T>(data: MessageBoxData<T>): Observable<T | undefined>
     {
+        if (this.isMessageBoxOpen)
+        {
+            return EMPTY;
+        }
+        this.isMessageBoxOpen = true;
+
         const cancelValue = data.type === 'confirm'
             ? (data.options?.cancelValue ?? (false as T))
             : undefined;
@@ -87,11 +94,10 @@ export class LunaModalService
 
         const ref = new LunaModalRef<T | undefined>(() =>
         {
+            this.isMessageBoxOpen = false;
             overlayRef.detach();
             overlayRef.dispose();
         });
-
-        overlayRef.backdropClick().subscribe(() => ref.close(cancelValue));
 
         const injector = Injector.create({
             parent: this.injector,
@@ -126,8 +132,6 @@ export class LunaModalService
             overlayRef.detach();
             overlayRef.dispose();
         });
-
-        overlayRef.backdropClick().subscribe(() => ref.close(undefined));
 
         const providers: Provider[] = [{ provide: LunaModalRef, useValue: ref }];
         if (config?.data !== undefined)

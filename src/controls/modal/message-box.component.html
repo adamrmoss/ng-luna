@@ -1,11 +1,21 @@
-<div class="message-box">
+<div
+    class="message-box"
+    cdkTrapFocus
+    [cdkTrapFocusAutoCapture]="true"
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-labelledby]="messageBoxTitle ? 'message-box-title' : null"
+    [attr.aria-describedby]="'message-box-text'">
     <div
         *ngIf="messageBoxTitle"
-        class="message-box-title">
+        class="message-box-title"
+        id="message-box-title">
         {{ messageBoxTitle }}
     </div>
     <div class="message-box-content">
-        <p class="message-box-text">{{ data.message }}</p>
+        <p
+            class="message-box-text"
+            id="message-box-text">{{ data.message }}</p>
     </div>
     <div class="message-box-buttons">
         <luna-button

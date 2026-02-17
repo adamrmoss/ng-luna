@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { A11yModule } from '@angular/cdk/a11y';
 
 import { ButtonComponent } from '../button/button.component';
 import { LunaModalRef } from './modal-ref';
@@ -8,7 +9,7 @@ import { MESSAGE_BOX_DATA, MessageBoxData } from './message-box-data';
 @Component({
     selector: 'luna-message-box',
     standalone: true,
-    imports: [ CommonModule, ButtonComponent ],
+    imports: [ A11yModule, ButtonComponent, CommonModule ],
     templateUrl: './message-box.component.html',
     styleUrls: [ './message-box.component.scss' ]
 })
