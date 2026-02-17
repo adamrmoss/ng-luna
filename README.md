@@ -609,6 +609,14 @@ For a detailed explanation of the library architecture, build process, and how t
 npm run build
 ```
 
+**Clean build** (use when the build fails, e.g. "Cannot find module 'rxjs'"):
+
+1. **Clean** – Remove `node_modules`, `dist`, and `.angular` if present. Optionally remove `package-lock.json` for a full dependency refresh.
+2. **Install** – `npm install`
+3. **Build** – `npm run build`
+
+The library uses `import { Observable } from 'rxjs'` like other Angular libraries. `rxjs` is in **peerDependencies** (for apps that use the library) and in **devDependencies** (for this repo's build). If the build still cannot find `rxjs`, confirm that `node_modules/rxjs` exists after `npm install`; if not, run `npm install rxjs --save-dev` and try again.
+
 The build process uses `ng-packagr` to:
 - Compile TypeScript to ESM modules
 - Generate type definitions

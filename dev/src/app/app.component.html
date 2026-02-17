@@ -320,6 +320,35 @@
         </luna-tab>
 
         <luna-tab
+            id="modal"
+            label="Modal">
+            <h2>Modal Service</h2>
+            <p>LunaModalService shows dialogs with a dimmed backdrop. No template markup required; use from code.</p>
+
+            <div class="control-group">
+                <h3>Alert (OK only)</h3>
+                <luna-button (click)="onAlert()">Show Alert</luna-button>
+            </div>
+
+            <div class="control-group">
+                <h3>Confirm (OK and Cancel)</h3>
+                <luna-button (click)="onConfirm()">Show Confirm</luna-button>
+            </div>
+
+            <div class="control-group">
+                <h3>Confirm with custom labels and return values</h3>
+                <luna-button (click)="onConfirmWith()">Show Yes/No dialog</luna-button>
+            </div>
+
+            <div
+                *ngIf="modalResult"
+                class="control-group modal-result">
+                <h3>Last result</h3>
+                <p>{{ modalResult }}</p>
+            </div>
+        </luna-tab>
+
+        <luna-tab
             id="about"
             label="About">
             <h2>About ng-luna</h2>
@@ -340,6 +369,7 @@
                 <li>Checkbox</li>
                 <li>Fieldset</li>
                 <li>Input</li>
+                <li>Modal (LunaModalService)</li>
                 <li>Progress</li>
                 <li>Radio</li>
                 <li>Select</li>

@@ -1,0 +1,57 @@
+@use '../../theme/palette' as *;
+@use '../../theme/fonts' as *;
+@use '../../theme/typography' as *;
+
+:host
+{
+    display: block;
+}
+
+.message-box
+{
+    background: $beige-light;
+    border: 1px solid $navy;
+    border-radius: $border-radius-base;
+    box-shadow:
+        inset -1px -1px $navy-darkest,
+        inset 1px 1px $blue-bright-lighter,
+        inset -2px -2px $navy-dark,
+        inset 2px 2px $blue-sky;
+    box-sizing: border-box;
+    min-width: 200px;
+    padding: 0;
+}
+
+.message-box-title
+{
+    background: $blue-bright;
+    border-radius: $border-radius-base $border-radius-base 0 0;
+    color: $white;
+    font-family: $font-sans;
+    font-size: $font-size-xs;
+    font-weight: 600;
+    padding: $spacing-xs $spacing-md;
+    text-shadow: 1px 1px $navy-darker;
+}
+
+.message-box-content
+{
+    margin-bottom: $spacing-base;
+    padding: $spacing-md;
+    padding-top: $spacing-sm;
+}
+
+.message-box-text
+{
+    font-family: $font-sans;
+    font-size: $font-size-sm;
+    line-height: $line-height-base;
+    margin: 0;
+}
+
+.message-box-buttons
+{
+    display: flex;
+    gap: $spacing-sm;
+    justify-content: flex-end;
+}

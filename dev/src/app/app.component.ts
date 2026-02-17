@@ -2,12 +2,14 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BidiModule } from '@angular/cdk/bidi';
+import { OverlayModule } from '@angular/cdk/overlay';
 import {
     ButtonComponent,
     CheckboxComponent,
     FieldsetComponent,
     IconComponent,
     InputComponent,
+    LunaModalService,
     ProgressComponent,
     RadioComponent,
     SelectComponent,
@@ -49,6 +51,7 @@ import {
         FieldsetComponent,
         IconComponent,
         InputComponent,
+        OverlayModule,
         ProgressComponent,
         RadioComponent,
         SelectComponent,
@@ -65,12 +68,48 @@ export class AppComponent
 {
     public checkboxValue: boolean = false;
     public inputValue: string = '';
+    public modalResult: string = '';
     public progressValue: number = 50;
     public radioValue: string = 'option1';
     public selectValue: string = 'option2';
     public sliderValue: number = 50;
     public textareaValue: string = '';
     public title: string = 'ng-luna Component Gallery';
+
+    constructor(private readonly modal: LunaModalService) {}
+
+    public onAlert(): void
+    {
+        this.modalResult = '';
+        this.modal.alert('Settings saved successfully.', 'Information').subscribe(() =>
+        {
+            this.modalResult = 'Alert closed (OK).';
+        });
+    }
+
+    public onConfirm(): void
+    {
+        this.modalResult = '';
+        this.modal.confirm('Are you sure you want to discard your changes?', 'Confirm').subscribe((ok) =>
+        {
+            this.modalResult = ok ? 'Result: Yes (OK)' : 'Result: No (Cancel or backdrop)';
+        });
+    }
+
+    public onConfirmWith(): void
+    {
+        this.modalResult = '';
+        this.modal.confirmWith('Overwrite the existing file?', {
+            cancelLabel: 'No',
+            cancelValue: 'no',
+            okLabel: 'Yes',
+            okValue: 'yes',
+            title: 'Confirm Save'
+        }).subscribe((result) =>
+        {
+            this.modalResult = result !== undefined ? `Result: ${result}` : 'Result: (dismissed)';
+        });
+    }
 
     public readonly homeIcon = Home;
     public readonly saveIcon = Save;

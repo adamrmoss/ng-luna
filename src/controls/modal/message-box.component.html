@@ -1,0 +1,21 @@
+<div class="message-box">
+    <div
+        *ngIf="messageBoxTitle"
+        class="message-box-title">
+        {{ messageBoxTitle }}
+    </div>
+    <div class="message-box-content">
+        <p class="message-box-text">{{ data.message }}</p>
+    </div>
+    <div class="message-box-buttons">
+        <luna-button
+            *ngIf="data.type === 'confirm'"
+            (click)="onCancel()">
+            {{ cancelLabel }}
+        </luna-button>
+        <luna-button
+            (click)="onOk()">
+            {{ okLabel }}
+        </luna-button>
+    </div>
+</div>

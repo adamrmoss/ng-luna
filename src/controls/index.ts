@@ -11,3 +11,4 @@ export * from './tabs/tab.component';
 export * from './tabs/tabs.component';
 export * from './textarea/textarea.component';
 export * from './window/window.component';
+export * from './modal';
