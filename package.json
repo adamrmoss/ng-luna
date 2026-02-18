@@ -1,6 +1,6 @@
 {
     "name": "ng-luna",
-    "version": "0.4.3",
+    "version": "0.5.2",
     "description": "An Angular component library inspired by Windows XP aesthetics, built with IBM Plex fonts",
     "author": {
         "name": "Adam R Moss",
