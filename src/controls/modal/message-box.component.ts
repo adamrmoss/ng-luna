@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { A11yModule } from '@angular/cdk/a11y';
@@ -40,6 +40,29 @@ export class MessageBoxComponent
     public get promptPlaceholder(): string
     {
         return this.data.options?.promptPlaceholder ?? '';
+    }
+
+    @HostListener('document:keydown', [ '$event' ])
+    public onKeydown(event: KeyboardEvent): void
+    {
+        switch (event.key)
+        {
+            case 'Enter':
+                event.preventDefault();
+                this.onOk();
+                break;
+            case 'Escape':
+                event.preventDefault();
+                if (this.data.type === 'alert')
+                {
+                    this.onOk();
+                }
+                else
+                {
+                    this.onCancel();
+                }
+                break;
+        }
     }
 
     public ngOnInit(): void
