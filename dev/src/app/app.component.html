@@ -5,6 +5,13 @@
     [showMaximize]="false"
     [showMinimize]="false"
     [title]="title">
+    <nav class="menu-bar">
+        <luna-menu
+            [items]="optionsMenuItems"
+            (itemSelect)="onOptionsMenuSelect($event)">
+            <button lunaMenuTrigger>Options</button>
+        </luna-menu>
+    </nav>
     <luna-tabs>
         <luna-tab
             id="buttons"

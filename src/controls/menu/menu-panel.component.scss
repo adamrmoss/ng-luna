@@ -1,0 +1,82 @@
+@use '../../theme/fonts' as *;
+@use '../../theme/graphics' as *;
+@use '../../theme/palette' as *;
+@use '../../theme/typography' as *;
+
+.luna-menu-panel
+{
+    background: $gray-light-warm;
+    border: 1px solid $blue-steel-dark;
+    box-shadow: 1px 1px 0 $white;
+    font-family: $font-sans;
+    font-size: $font-size-xs;
+    line-height: $line-height-tight;
+    list-style: none;
+    margin: 0;
+    min-width: 10rem;
+    outline: none;
+    padding: 2px 0;
+}
+
+.luna-menu-item-checkbox
+{
+    align-items: center;
+    display: inline-flex;
+    height: 1em;
+    justify-content: center;
+    margin-right: $spacing-sm;
+    width: 1em;
+}
+
+.luna-menu-item-checkmark
+{
+    background: $checkmark-svg no-repeat center;
+    background-size: 0.7em;
+    height: 0.7em;
+    width: 0.7em;
+}
+
+.luna-menu-item-disabled
+{
+    color: $gray-dark;
+    cursor: default;
+}
+
+.luna-menu-item-highlighted:not(.luna-menu-item-disabled)
+{
+    background: $navy;
+    color: $white;
+    cursor: default;
+
+    .luna-menu-item-checkmark
+    {
+        filter: invert(1);
+    }
+}
+
+.luna-menu-separator
+{
+    background: $blue-steel-dark;
+    height: 1px;
+    margin: $spacing-xs 0;
+    overflow: hidden;
+    padding: 0;
+}
+
+li[role="menuitem"]
+{
+    cursor: pointer;
+    padding: $spacing-xs $spacing-md $spacing-xs $spacing-sm;
+    white-space: nowrap;
+
+    &:not(.luna-menu-item-disabled):hover
+    {
+        background: $navy;
+        color: $white;
+
+        .luna-menu-item-checkmark
+        {
+            filter: invert(1);
+        }
+    }
+}

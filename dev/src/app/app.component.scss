@@ -8,6 +8,40 @@
     max-width: 600px;
 }
 
+.menu-bar
+{
+    align-items: center;
+    background: $gray-light-warm;
+    border-bottom: 1px solid $blue-steel-dark;
+    display: flex;
+    flex-shrink: 0;
+    gap: 0;
+    margin-bottom: $spacing-sm;
+    padding: 2px $spacing-xs;
+
+    luna-menu
+    {
+        display: inline-block;
+    }
+
+    button[lunaMenuTrigger]
+    {
+        background: $beige-pale;
+        border: none;
+        border-radius: $border-radius-sm;
+        font-family: inherit;
+        font-size: $font-size-xs;
+        line-height: $line-height-tight;
+        padding: $spacing-xs $spacing-md;
+
+        &:hover
+        {
+            background: $navy;
+            color: $white;
+        }
+    }
+}
+
 .control-group
 {
     margin-bottom: $spacing-base;

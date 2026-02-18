@@ -1,0 +1,12 @@
+@use 'z-layers' as *;
+
+.luna-menu-backdrop
+{
+    background: transparent;
+    z-index: 0;
+}
+
+.luna-menu-overlay-panel
+{
+    z-index: $popup;
+}

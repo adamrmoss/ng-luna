@@ -3,13 +3,16 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BidiModule } from '@angular/cdk/bidi';
 import { OverlayModule } from '@angular/cdk/overlay';
+import type { LunaMenuEntry, LunaMenuItem } from 'ng-luna';
 import {
     ButtonComponent,
     CheckboxComponent,
     FieldsetComponent,
     IconComponent,
     InputComponent,
+    LunaMenuComponent,
     LunaModalService,
+    LunaMenuTriggerDirective,
     ProgressComponent,
     RadioComponent,
     SelectComponent,
@@ -45,23 +48,25 @@ import {
     standalone: true,
     imports: [
         BidiModule,
-        CommonModule,
-        FormsModule,
         ButtonComponent,
         CheckboxComponent,
+        CommonModule,
         FieldsetComponent,
+        FormsModule,
         IconComponent,
         InputComponent,
+        LunaMenuComponent,
+        LunaMenuTriggerDirective,
         OverlayModule,
         ProgressComponent,
         RadioComponent,
         SelectComponent,
         SliderComponent,
-    TabComponent,
-    TabsComponent,
-    TextareaComponent,
-    TooltipDirective,
-    WindowComponent
+        TabComponent,
+        TabsComponent,
+        TextareaComponent,
+        TooltipDirective,
+        WindowComponent
     ],
     templateUrl: './app.component.html',
     styleUrls: [ './app.component.scss' ]
@@ -74,11 +79,46 @@ export class AppComponent
     public progressValue: number = 50;
     public radioValue: string = 'option1';
     public selectValue: string = 'option2';
+    public showStatusBar = true;
+    public showToolbar = true;
     public sliderValue: number = 50;
     public textareaValue: string = '';
     public title: string = 'ng-luna Component Gallery';
 
     constructor(private readonly modal: LunaModalService) {}
+
+    public get optionsMenuItems(): LunaMenuEntry[]
+    {
+        return [
+            { label: 'Show Toolbar', checked: this.showToolbar },
+            { label: 'Show Status Bar', checked: this.showStatusBar },
+            { separator: true },
+            { label: 'About...' }
+        ];
+    }
+
+    public onOptionsMenuSelect(item: LunaMenuItem | null): void
+    {
+        if (item === null)
+        {
+            return;
+        }
+        switch (item.label)
+        {
+            case 'Show Toolbar':
+                this.showToolbar = !this.showToolbar;
+                break;
+            case 'Show Status Bar':
+                this.showStatusBar = !this.showStatusBar;
+                break;
+            case 'About...':
+                this.modal.alert(
+                    'ng-luna Component Gallery\n\nA Windows-inspired Angular component library.',
+                    'About'
+                ).subscribe();
+                break;
+        }
+    }
 
     public onAlert(): void
     {

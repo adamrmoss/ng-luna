@@ -1,0 +1,35 @@
+<ul
+    #panel
+    class="luna-menu-panel"
+    role="menu"
+    tabindex="-1">
+    @for (entry of entries; track $index)
+    {
+        @if (isItem(entry))
+        {
+            <li
+                [attr.data-menu-index]="$index"
+                [class.luna-menu-item-checked]="entry.checked"
+                [class.luna-menu-item-disabled]="entry.disabled"
+                [class.luna-menu-item-highlighted]="isHighlighted($index)"
+                role="menuitem"
+                (click)="onItemClick(entry, $event)"
+                (mouseenter)="onItemMouseenter($index)"
+                (mousemove)="onItemMousemove($event)">
+                <span class="luna-menu-item-checkbox" aria-hidden="true">
+                    @if (entry.checked)
+                    {
+                        <span class="luna-menu-item-checkmark"></span>
+                    }
+                </span>
+                <span class="luna-menu-item-label">{{ entry.label }}</span>
+            </li>
+        }
+        @else
+        {
+            <li
+                class="luna-menu-separator"
+                role="separator"></li>
+        }
+    }
+</ul>

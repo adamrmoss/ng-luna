@@ -292,6 +292,63 @@ export class MyComponent {
 
 For more information on importing and using icons, see the [Using Icons](#using-icons) section above.
 
+### Menu Component
+
+The `luna-menu` component provides a classic dropdown menu (DOS/Windows 9x style) with a trigger and a list of items. It supports checked items, hover highlighting, arrow-key navigation with cursor highlighting, closing with Escape, and selecting the highlighted option with Enter.
+
+**Selector:** `luna-menu`
+
+**Trigger directive:** `lunaMenuTrigger` – attach to the element that opens the menu (e.g. a button).
+
+Include the menu theme in your global styles so the overlay and backdrop render correctly:
+
+```scss
+@use 'ng-luna/theme/menu' as *;
+```
+
+#### Inputs
+
+- `items: LunaMenuEntry[]` – Menu entries. Each item: `{ label: string, checked?: boolean, disabled?: boolean }`. Use `{ separator: true }` for a divider line.
+
+#### Outputs
+
+- `itemSelect: EventEmitter<LunaMenuItem | null>` – Emitted when an item is chosen (or `null` when the menu is closed without selection, e.g. via Escape or backdrop click).
+
+#### Example
+
+```html
+<luna-menu [items]="menuItems" (itemSelect)="onMenuSelect($event)">
+    <button lunaMenuTrigger>File</button>
+</luna-menu>
+```
+
+```typescript
+import { LunaMenuComponent, LunaMenuTriggerDirective } from 'ng-luna';
+import type { LunaMenuEntry, LunaMenuItem } from 'ng-luna';
+
+@Component({
+    imports: [ LunaMenuComponent, LunaMenuTriggerDirective ],
+    // ...
+})
+export class MyComponent {
+    menuItems: LunaMenuEntry[] = [
+        { label: 'New' },
+        { label: 'Open...' },
+        { separator: true },
+        { label: 'Save' },
+        { label: 'Save As...', checked: true },
+        { separator: true },
+        { label: 'Exit', disabled: true }
+    ];
+
+    onMenuSelect(item: LunaMenuItem | null): void {
+        if (item) {
+            console.log('Selected', item.label);
+        }
+    }
+}
+```
+
 ### Input Component
 
 The `luna-input` component provides a Windows XP-styled text input that implements `ControlValueAccessor` for reactive forms support.
