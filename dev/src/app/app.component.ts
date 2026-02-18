@@ -17,6 +17,7 @@ import {
     TabComponent,
     TabsComponent,
     TextareaComponent,
+    TooltipDirective,
     WindowComponent,
     Home,
     Save,
@@ -56,10 +57,11 @@ import {
         RadioComponent,
         SelectComponent,
         SliderComponent,
-        TabComponent,
-        TabsComponent,
-        TextareaComponent,
-        WindowComponent
+    TabComponent,
+    TabsComponent,
+    TextareaComponent,
+    TooltipDirective,
+    WindowComponent
     ],
     templateUrl: './app.component.html',
     styleUrls: [ './app.component.scss' ]

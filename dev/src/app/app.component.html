@@ -359,6 +359,36 @@
         </luna-tab>
 
         <luna-tab
+            id="tooltip"
+            label="Tooltip">
+            <h2>Tooltip</h2>
+            <p>Use the <code>lunaTooltip</code> directive on any element.</p>
+
+            <section class="control-group">
+                <h3>On buttons</h3>
+                <luna-button [lunaTooltip]="'Save the document'">Save</luna-button>
+                <luna-button [lunaTooltip]="'Open a folder'">
+                    <luna-icon [svg]="folderIcon" size="16"></luna-icon>
+                    Open
+                </luna-button>
+                <luna-button [lunaTooltip]="'Search files'">
+                    <luna-icon [svg]="searchIcon" size="16"></luna-icon>
+                    Search
+                </luna-button>
+            </section>
+
+            <section class="control-group">
+                <h3>On text and icons</h3>
+                <p>
+                    <span [lunaTooltip]="'Tooltip on a span'">Hover this text</span>
+                    and
+                    <span [lunaTooltip]="'Home icon'"><luna-icon [svg]="homeIcon" size="16"></luna-icon></span>
+                    to see tooltips.
+                </p>
+            </section>
+        </luna-tab>
+
+        <luna-tab
             id="about"
             label="About">
             <h2>About ng-luna</h2>
@@ -381,6 +411,7 @@
                 <li>Input</li>
                 <li>Modal (LunaModalService)</li>
                 <li>Progress</li>
+                <li>Tooltip</li>
                 <li>Radio</li>
                 <li>Select</li>
                 <li>Slider</li>

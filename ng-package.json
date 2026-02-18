@@ -51,6 +51,11 @@
             "input": "./src/theme",
             "glob": "_modal.scss",
             "output": "/theme"
+        },
+        {
+            "input": "./src/theme",
+            "glob": "_tooltip.scss",
+            "output": "/theme"
         }
     ],
     "lib": {
