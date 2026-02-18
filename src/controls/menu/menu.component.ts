@@ -21,7 +21,6 @@ import { LunaMenuTriggerDirective } from './menu-trigger.directive';
 @Component({
     selector: 'luna-menu',
     standalone: true,
-    imports: [ LunaMenuTriggerDirective ],
     templateUrl: './menu.component.html',
     styleUrls: [ './menu.component.scss' ]
 })

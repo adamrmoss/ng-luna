@@ -1,4 +1,23 @@
+@use 'palette' as *;
+@use 'typography' as *;
 @use 'z-layers' as *;
+
+button[lunaMenuTrigger]
+{
+    background: $beige-pale;
+    border: none;
+    border-radius: $border-radius-sm;
+    font-family: inherit;
+    font-size: $font-size-xs;
+    line-height: $line-height-tight;
+    padding: $spacing-xs $spacing-md;
+
+    &:hover
+    {
+        background: $navy;
+        color: $white;
+    }
+}
 
 .luna-menu-backdrop
 {
