@@ -111,6 +111,44 @@ export class AppComponent
         });
     }
 
+    public onPrompt(): void
+    {
+        this.modalResult = '';
+        this.modal.prompt('Enter your name:', 'Name').subscribe((result) =>
+        {
+            if (result.button === 'ok' && result.promptValue !== undefined)
+            {
+                this.modalResult = `Result: ${result.button}, promptValue: "${result.promptValue}"`;
+            }
+            else
+            {
+                this.modalResult = `Result: ${result.button}`;
+            }
+        });
+    }
+
+    public onPromptWith(): void
+    {
+        this.modalResult = '';
+        this.modal.promptWith('Save as filename:', {
+            cancelLabel: 'Cancel',
+            okLabel: 'Save',
+            promptDefaultValue: 'document.txt',
+            promptPlaceholder: 'Enter filename',
+            title: 'Save As'
+        }).subscribe((result) =>
+        {
+            if (result.button === 'ok' && result.promptValue !== undefined)
+            {
+                this.modalResult = `Result: ${result.button}, promptValue: "${result.promptValue}"`;
+            }
+            else
+            {
+                this.modalResult = `Result: ${result.button}`;
+            }
+        });
+    }
+
     public readonly homeIcon = Home;
     public readonly saveIcon = Save;
     public readonly folderIcon = Folder;

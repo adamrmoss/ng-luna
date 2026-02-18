@@ -9,7 +9,8 @@ import { MessageBoxComponent } from './message-box.component';
 import {
     MESSAGE_BOX_DATA,
     MessageBoxData,
-    MessageBoxOptions
+    MessageBoxOptions,
+    MessageBoxReturnData
 } from './message-box-data';
 
 /**
@@ -52,9 +53,25 @@ export class LunaModalService
         return this.openMessageBox(data);
     }
 
+    public prompt(message: string, titleOrOptions?: string | MessageBoxOptions<MessageBoxReturnData>): Observable<MessageBoxReturnData>
+    {
+        const data = this.normalizeMessageBoxData(message, 'prompt', titleOrOptions);
+        return this.openMessageBox(data) as Observable<MessageBoxReturnData>;
+    }
+
+    public promptWith(message: string, options?: MessageBoxOptions<MessageBoxReturnData>): Observable<MessageBoxReturnData>
+    {
+        const data: MessageBoxData<MessageBoxReturnData> = {
+            message,
+            options,
+            type: 'prompt'
+        };
+        return this.openMessageBox(data) as Observable<MessageBoxReturnData>;
+    }
+
     private normalizeMessageBoxData<T>(
         message: string,
-        type: 'alert' | 'confirm',
+        type: 'alert' | 'confirm' | 'prompt',
         titleOrOptions?: string | MessageBoxOptions<T>
     ): MessageBoxData<T>
     {
@@ -79,7 +96,9 @@ export class LunaModalService
 
         const cancelValue = data.type === 'confirm'
             ? (data.options?.cancelValue ?? (false as T))
-            : undefined;
+            : data.type === 'prompt'
+                ? ({ button: 'cancel' } as T)
+                : undefined;
         const overlayRef = this.overlay.create({
             backdropClass: 'luna-modal-backdrop',
             hasBackdrop: true,

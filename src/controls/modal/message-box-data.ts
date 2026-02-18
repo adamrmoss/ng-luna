@@ -1,6 +1,12 @@
 import { InjectionToken } from '@angular/core';
 
-export type MessageBoxType = 'alert' | 'confirm';
+export type MessageBoxType = 'alert' | 'confirm' | 'prompt';
+
+export interface MessageBoxReturnData
+{
+    button: 'cancel' | 'ok';
+    promptValue?: string;
+}
 
 export interface MessageBoxOptions<T = boolean>
 {
@@ -8,6 +14,8 @@ export interface MessageBoxOptions<T = boolean>
     cancelValue?: T;
     okLabel?: string;
     okValue?: T;
+    promptDefaultValue?: string;
+    promptPlaceholder?: string;
     title?: string;
 }
 

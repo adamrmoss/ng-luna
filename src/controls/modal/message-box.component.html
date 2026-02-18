@@ -5,7 +5,7 @@
     role="dialog"
     aria-modal="true"
     [attr.aria-labelledby]="messageBoxTitle ? 'message-box-title' : null"
-    [attr.aria-describedby]="'message-box-text'">
+    aria-describedby="message-box-text">
     <div
         *ngIf="messageBoxTitle"
         class="message-box-title"
@@ -16,10 +16,19 @@
         <p
             class="message-box-text"
             id="message-box-text">{{ data.message }}</p>
+        <div
+            *ngIf="data.type === 'prompt'"
+            class="message-box-prompt">
+            <luna-input
+                [(ngModel)]="promptValue"
+                [placeholder]="promptPlaceholder"
+                type="text">
+            </luna-input>
+        </div>
     </div>
     <div class="message-box-buttons">
         <luna-button
-            *ngIf="data.type === 'confirm'"
+            *ngIf="data.type === 'confirm' || data.type === 'prompt'"
             (click)="onCancel()">
             {{ cancelLabel }}
         </luna-button>

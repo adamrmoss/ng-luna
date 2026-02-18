@@ -340,6 +340,16 @@
                 <luna-button (click)="onConfirmWith()">Show Yes/No dialog</luna-button>
             </div>
 
+            <div class="control-group">
+                <h3>Prompt (OK and Cancel, returns string)</h3>
+                <luna-button (click)="onPrompt()">Show Prompt</luna-button>
+            </div>
+
+            <div class="control-group">
+                <h3>Prompt with options (default value, placeholder, labels)</h3>
+                <luna-button (click)="onPromptWith()">Show Save As prompt</luna-button>
+            </div>
+
             <div
                 *ngIf="modalResult"
                 class="control-group modal-result">
