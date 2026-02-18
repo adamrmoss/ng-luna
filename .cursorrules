@@ -48,7 +48,11 @@
 - Format templates with one attribute per line for readability
 - Keep `class` attribute first and event handlers (like `(click)`) last when sorting
 
+## HTML Semantics and Layout
+
+- Use semantic elements wherever they apply: `<header>`, `<footer>`, `<main>`, `<nav>`, `<section>`, `<article>`, `<aside>`, `<figure>`, `<figcaption>`, form elements (`<button>`, `<input>`, `<label>`, `<fieldset>`, `<legend>`, `<select>`, `<textarea>`, `<progress>`), and list structure (`<ul>`, `<ol>`, `<li>`) instead of generic `<div>`/`<span>` when the meaning fits
+- Prefer Flexbox or CSS Grid for layout; avoid layout patterns that rely on floats or table display when flex/grid are appropriate
+
 ## Comments
 
 - Use JSDoc comments for public APIs when documentation is needed
-

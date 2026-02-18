@@ -4,15 +4,16 @@
     [cdkTrapFocusAutoCapture]="true"
     role="dialog"
     aria-modal="true"
-    [attr.aria-labelledby]="messageBoxTitle ? 'message-box-title' : null"
+    [attr.aria-labelledby]="messageBoxTitle ? 'message-box-title-heading' : null"
     aria-describedby="message-box-text">
-    <div
+    <header
         *ngIf="messageBoxTitle"
-        class="message-box-title"
-        id="message-box-title">
-        {{ messageBoxTitle }}
-    </div>
-    <div class="message-box-content">
+        class="message-box-title">
+        <h2
+            class="message-box-title-heading"
+            id="message-box-title-heading">{{ messageBoxTitle }}</h2>
+    </header>
+    <section class="message-box-content">
         <p
             class="message-box-text"
             id="message-box-text">{{ data.message }}</p>
@@ -25,8 +26,8 @@
                 type="text">
             </luna-input>
         </div>
-    </div>
-    <div class="message-box-buttons">
+    </section>
+    <footer class="message-box-buttons">
         <luna-button
             *ngIf="data.type === 'confirm' || data.type === 'prompt'"
             (click)="onCancel()">
@@ -36,5 +37,5 @@
             (click)="onOk()">
             {{ okLabel }}
         </luna-button>
-    </div>
+    </footer>
 </div>

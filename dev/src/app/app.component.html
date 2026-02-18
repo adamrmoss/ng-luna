@@ -12,20 +12,20 @@
             <h2>Button Component</h2>
             <p>Various button types and states:</p>
             
-            <div class="control-group">
+            <section class="control-group">
                 <h3>Standard Buttons</h3>
                 <luna-button>Default Button</luna-button>
                 <luna-button [disabled]="true">Disabled Button</luna-button>
-            </div>
+            </section>
 
-            <div class="control-group">
+            <section class="control-group">
                 <h3>Button Types</h3>
                 <luna-button type="button">Button</luna-button>
                 <luna-button type="submit">Submit</luna-button>
                 <luna-button type="reset">Reset</luna-button>
-            </div>
+            </section>
 
-            <div class="control-group">
+            <section class="control-group">
                 <h3>Buttons with Icons</h3>
                 <luna-button>
                     <luna-icon [svg]="saveIcon" size="16"></luna-icon>
@@ -39,7 +39,7 @@
                     <luna-icon [svg]="searchIcon" size="16"></luna-icon>
                     Search
                 </luna-button>
-            </div>
+            </section>
         </luna-tab>
 
         <luna-tab
@@ -48,129 +48,129 @@
             <h2>Icon Component</h2>
             <p>Lucide icons in various sizes:</p>
 
-            <div class="control-group">
+            <section class="control-group">
                 <h3>Icon Sizes</h3>
-                <div class="icon-row">
-                    <div class="icon-item">
+                <ul class="icon-row">
+                    <li class="icon-item">
                         <luna-icon [svg]="homeIcon" size="12"></luna-icon>
                         <span>12px</span>
-                    </div>
-                    <div class="icon-item">
+                    </li>
+                    <li class="icon-item">
                         <luna-icon [svg]="homeIcon" size="16"></luna-icon>
                         <span>16px</span>
-                    </div>
-                    <div class="icon-item">
+                    </li>
+                    <li class="icon-item">
                         <luna-icon [svg]="homeIcon" size="20"></luna-icon>
                         <span>20px</span>
-                    </div>
-                    <div class="icon-item">
+                    </li>
+                    <li class="icon-item">
                         <luna-icon [svg]="homeIcon" size="24"></luna-icon>
                         <span>24px</span>
-                    </div>
-                    <div class="icon-item">
+                    </li>
+                    <li class="icon-item">
                         <luna-icon [svg]="homeIcon" size="32"></luna-icon>
                         <span>32px</span>
-                    </div>
-                    <div class="icon-item">
+                    </li>
+                    <li class="icon-item">
                         <luna-icon [svg]="homeIcon" size="48"></luna-icon>
                         <span>48px</span>
-                    </div>
-                </div>
-            </div>
+                    </li>
+                </ul>
+            </section>
 
-            <div class="control-group">
+            <section class="control-group">
                 <h3>Common Interface Icons</h3>
-                <div class="icon-grid">
-                    <div class="icon-showcase">
+                <ul class="icon-grid">
+                    <li class="icon-showcase">
                         <luna-icon [svg]="homeIcon" size="24"></luna-icon>
                         <span>Home</span>
-                    </div>
-                    <div class="icon-showcase">
+                    </li>
+                    <li class="icon-showcase">
                         <luna-icon [svg]="folderIcon" size="24"></luna-icon>
                         <span>Folder</span>
-                    </div>
-                    <div class="icon-showcase">
+                    </li>
+                    <li class="icon-showcase">
                         <luna-icon [svg]="fileIcon" size="24"></luna-icon>
                         <span>File</span>
-                    </div>
-                    <div class="icon-showcase">
+                    </li>
+                    <li class="icon-showcase">
                         <luna-icon [svg]="saveIcon" size="24"></luna-icon>
                         <span>Save</span>
-                    </div>
-                    <div class="icon-showcase">
+                    </li>
+                    <li class="icon-showcase">
                         <luna-icon [svg]="settingsIcon" size="24"></luna-icon>
                         <span>Settings</span>
-                    </div>
-                    <div class="icon-showcase">
+                    </li>
+                    <li class="icon-showcase">
                         <luna-icon [svg]="userIcon" size="24"></luna-icon>
                         <span>User</span>
-                    </div>
-                    <div class="icon-showcase">
+                    </li>
+                    <li class="icon-showcase">
                         <luna-icon [svg]="downloadIcon" size="24"></luna-icon>
                         <span>Download</span>
-                    </div>
-                    <div class="icon-showcase">
+                    </li>
+                    <li class="icon-showcase">
                         <luna-icon [svg]="uploadIcon" size="24"></luna-icon>
                         <span>Upload</span>
-                    </div>
-                    <div class="icon-showcase">
+                    </li>
+                    <li class="icon-showcase">
                         <luna-icon [svg]="searchIcon" size="24"></luna-icon>
                         <span>Search</span>
-                    </div>
-                    <div class="icon-showcase">
+                    </li>
+                    <li class="icon-showcase">
                         <luna-icon [svg]="copyIcon" size="24"></luna-icon>
                         <span>Copy</span>
-                    </div>
-                    <div class="icon-showcase">
+                    </li>
+                    <li class="icon-showcase">
                         <luna-icon [svg]="editIcon" size="24"></luna-icon>
                         <span>Edit</span>
-                    </div>
-                    <div class="icon-showcase">
+                    </li>
+                    <li class="icon-showcase">
                         <luna-icon [svg]="trash2Icon" size="24"></luna-icon>
                         <span>Trash</span>
-                    </div>
-                </div>
-            </div>
+                    </li>
+                </ul>
+            </section>
 
-            <div class="control-group">
+            <section class="control-group">
                 <h3>Window Control Icons</h3>
-                <div class="icon-grid">
-                    <div class="icon-showcase">
+                <ul class="icon-grid">
+                    <li class="icon-showcase">
                         <luna-icon [svg]="minimize2Icon" size="24"></luna-icon>
                         <span>Minimize</span>
-                    </div>
-                    <div class="icon-showcase">
+                    </li>
+                    <li class="icon-showcase">
                         <luna-icon [svg]="maximize2Icon" size="24"></luna-icon>
                         <span>Maximize</span>
-                    </div>
-                    <div class="icon-showcase">
+                    </li>
+                    <li class="icon-showcase">
                         <luna-icon [svg]="xIcon" size="24"></luna-icon>
                         <span>Close</span>
-                    </div>
-                </div>
-            </div>
+                    </li>
+                </ul>
+            </section>
 
-            <div class="control-group">
+            <section class="control-group">
                 <h3>Media Control Icons</h3>
-                <div class="icon-grid">
-                    <div class="icon-showcase">
+                <ul class="icon-grid">
+                    <li class="icon-showcase">
                         <luna-icon [svg]="playIcon" size="24"></luna-icon>
                         <span>Play</span>
-                    </div>
-                    <div class="icon-showcase">
+                    </li>
+                    <li class="icon-showcase">
                         <luna-icon [svg]="pauseIcon" size="24"></luna-icon>
                         <span>Pause</span>
-                    </div>
-                    <div class="icon-showcase">
+                    </li>
+                    <li class="icon-showcase">
                         <luna-icon [svg]="skipForwardIcon" size="24"></luna-icon>
                         <span>Skip</span>
-                    </div>
-                    <div class="icon-showcase">
+                    </li>
+                    <li class="icon-showcase">
                         <luna-icon [svg]="volume2Icon" size="24"></luna-icon>
                         <span>Volume</span>
-                    </div>
-                </div>
-            </div>
+                    </li>
+                </ul>
+            </section>
         </luna-tab>
 
         <luna-tab
@@ -178,7 +178,7 @@
             label="Inputs">
             <h2>Input Components</h2>
 
-            <div class="control-group">
+            <section class="control-group">
                 <h3>Text Input</h3>
                 <luna-input
                     [(ngModel)]="inputValue"
@@ -186,18 +186,18 @@
                     placeholder="Enter your username">
                 </luna-input>
                 <p>Current value: {{ inputValue }}</p>
-            </div>
+            </section>
 
-            <div class="control-group">
+            <section class="control-group">
                 <h3>Disabled Input</h3>
                 <luna-input
                     [disabled]="true"
                     label="Disabled Field"
                     value="Cannot edit this">
                 </luna-input>
-            </div>
+            </section>
 
-            <div class="control-group">
+            <section class="control-group">
                 <h3>Textarea</h3>
                 <luna-textarea
                     [(ngModel)]="textareaValue"
@@ -206,7 +206,7 @@
                     [rows]="5">
                 </luna-textarea>
                 <p>Character count: {{ textareaValue.length }}</p>
-            </div>
+            </section>
         </luna-tab>
 
         <luna-tab
@@ -214,16 +214,16 @@
             label="Selections">
             <h2>Selection Components</h2>
 
-            <div class="control-group">
+            <section class="control-group">
                 <h3>Checkbox</h3>
                 <luna-checkbox
                     [(ngModel)]="checkboxValue"
                     label="Enable notifications">
                 </luna-checkbox>
                 <p>Checked: {{ checkboxValue }}</p>
-            </div>
+            </section>
 
-            <div class="control-group">
+            <section class="control-group">
                 <h3>Radio Buttons</h3>
                 <luna-fieldset legend="Choose an option">
                     <luna-radio
@@ -246,9 +246,9 @@
                     </luna-radio>
                 </luna-fieldset>
                 <p>Selected: {{ radioValue }}</p>
-            </div>
+            </section>
 
-            <div class="control-group">
+            <section class="control-group">
                 <h3>Select Dropdown</h3>
                 <luna-select
                     [(ngModel)]="selectValue"
@@ -259,7 +259,7 @@
                     <option value="option4">Yellow</option>
                 </luna-select>
                 <p>Selected: {{ selectValue }}</p>
-            </div>
+            </section>
         </luna-tab>
 
         <luna-tab
@@ -267,16 +267,16 @@
             label="Progress">
             <h2>Progress &amp; Slider Components</h2>
 
-            <div class="control-group">
+            <section class="control-group">
                 <h3>Progress Bar</h3>
                 <luna-progress
                     [max]="100"
                     [value]="progressValue">
                 </luna-progress>
                 <p>Progress: {{ progressValue }}%</p>
-            </div>
+            </section>
 
-            <div class="control-group">
+            <section class="control-group">
                 <h3>Slider</h3>
                 <luna-slider
                     [(ngModel)]="sliderValue"
@@ -285,7 +285,7 @@
                     [min]="0">
                 </luna-slider>
                 <p>Value: {{ sliderValue }}</p>
-            </div>
+            </section>
         </luna-tab>
 
         <luna-tab
@@ -293,7 +293,7 @@
             label="Layout">
             <h2>Layout Components</h2>
 
-            <div class="control-group">
+            <section class="control-group">
                 <h3>Fieldset</h3>
                 <luna-fieldset legend="User Information">
                     <luna-input
@@ -310,13 +310,13 @@
                         type="email">
                     </luna-input>
                 </luna-fieldset>
-            </div>
+            </section>
 
-            <div class="control-group">
+            <section class="control-group">
                 <h3>Window</h3>
                 <p>This entire demo is contained within a luna-window component.</p>
                 <p>Windows support title bars with minimize, maximize, close, and help buttons.</p>
-            </div>
+            </section>
         </luna-tab>
 
         <luna-tab
@@ -325,37 +325,37 @@
             <h2>Modal Service</h2>
             <p>LunaModalService shows dialogs with a dimmed backdrop. No template markup required; use from code.</p>
 
-            <div class="control-group">
+            <section class="control-group">
                 <h3>Alert (OK only)</h3>
                 <luna-button (click)="onAlert()">Show Alert</luna-button>
-            </div>
+            </section>
 
-            <div class="control-group">
+            <section class="control-group">
                 <h3>Confirm (OK and Cancel)</h3>
                 <luna-button (click)="onConfirm()">Show Confirm</luna-button>
-            </div>
+            </section>
 
-            <div class="control-group">
+            <section class="control-group">
                 <h3>Confirm with custom labels and return values</h3>
                 <luna-button (click)="onConfirmWith()">Show Yes/No dialog</luna-button>
-            </div>
+            </section>
 
-            <div class="control-group">
+            <section class="control-group">
                 <h3>Prompt (OK and Cancel, returns string)</h3>
                 <luna-button (click)="onPrompt()">Show Prompt</luna-button>
-            </div>
+            </section>
 
-            <div class="control-group">
+            <section class="control-group">
                 <h3>Prompt with options (default value, placeholder, labels)</h3>
                 <luna-button (click)="onPromptWith()">Show Save As prompt</luna-button>
-            </div>
+            </section>
 
-            <div
+            <section
                 *ngIf="modalResult"
                 class="control-group modal-result">
                 <h3>Last result</h3>
                 <p>{{ modalResult }}</p>
-            </div>
+            </section>
         </luna-tab>
 
         <luna-tab
