@@ -15,8 +15,8 @@ import {
 
 /**
  * Service for showing modal dialogs with a dimmed backdrop. No template markup required.
- * Requires OverlayModule to be imported in the application (e.g. in app config or root component).
- * For the dimmed backdrop style, include the theme: @use 'ng-luna/theme/modal'; in global styles.
+ * Requires OverlayModule to be imported and LunaOverlayComponent to be placed in the app (e.g. in
+ * the root template). Provide LunaOverlayContainer so overlays render inside the component.
  */
 @Injectable({ providedIn: 'root' })
 export class LunaModalService

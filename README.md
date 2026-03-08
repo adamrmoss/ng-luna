@@ -37,6 +37,35 @@ import { ButtonComponent } from 'ng-luna';
 })
 ```
 
+### Overlay (menu, modal, tooltip)
+
+Menu, modal, and tooltip use Angular CDK Overlay. To have their overlays render inside your app (with correct styling), add `LunaOverlayComponent` to your root template and provide `LunaOverlayContainer`:
+
+**1. Root template** (e.g. `app.component.html`):
+
+```html
+<luna-overlay></luna-overlay>
+<!-- rest of your app -->
+```
+
+**2. Root providers** (e.g. `main.ts`):
+
+```typescript
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { LunaOverlayContainer } from 'ng-luna';
+
+bootstrapApplication(AppComponent, {
+    providers: [
+        // ... other providers
+        { provide: OverlayContainer, useClass: LunaOverlayContainer }
+    ]
+});
+```
+
+**3. Import** `OverlayModule` from `@angular/cdk/overlay` and `OverlayComponent` from `ng-luna` where your root component is declared.
+
+Overlay styles (menu trigger, backdrop, modal pane, tooltip panel) are encapsulated in `LunaOverlayComponent`; you do not need to include any overlay theme files in global styles.
+
 ### Using Bundled Fonts
 
 The IBM Plex fonts are bundled with ng-luna and need to be copied to your application's assets folder.
@@ -300,11 +329,7 @@ The `luna-menu` component provides a classic dropdown menu (DOS/Windows 9x style
 
 **Trigger directive:** `lunaMenuTrigger` – attach to the element that opens the menu (e.g. a button).
 
-Include the menu theme in your global styles so the overlay and backdrop render correctly:
-
-```scss
-@use 'ng-luna/theme/menu' as *;
-```
+Use `LunaOverlayComponent` and `LunaOverlayContainer` as described in **Overlay (menu, modal, tooltip)** above so the menu overlay and trigger are styled.
 
 #### Inputs
 

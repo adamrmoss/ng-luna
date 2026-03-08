@@ -1,10 +1,13 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { AppComponent } from './app/app.component';
+import { OverlayContainer } from '@angular/cdk/overlay';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { AppComponent } from './app/app.component';
+import { LunaOverlayContainer } from 'ng-luna';
 
 bootstrapApplication(AppComponent, {
     providers: [
-        provideAnimations()
+        provideAnimations(),
+        { provide: OverlayContainer, useClass: LunaOverlayContainer }
     ]
 }).catch(err => console.error(err));
 

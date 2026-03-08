@@ -1,0 +1,74 @@
+@use '../../theme/palette' as *;
+@use '../../theme/typography' as *;
+@use '../../theme/z-layers' as *;
+
+.luna-overlay-host
+{
+    inset: 0;
+    pointer-events: none;
+    position: fixed;
+    z-index: $overlay;
+
+    *
+    {
+        pointer-events: auto;
+    }
+}
+
+button[lunaMenuTrigger]
+{
+    background: $gray-light-warm;
+    border: none;
+    border-radius: 0;
+    font-family: inherit;
+    font-size: $font-size-xs;
+    line-height: $line-height-tight;
+    padding: $spacing-xs $spacing-md;
+    text-decoration: underline;
+
+    &:hover
+    {
+        background: $navy;
+        color: $white;
+    }
+}
+
+.luna-menu-backdrop
+{
+    background: transparent;
+    z-index: 0;
+}
+
+.luna-menu-overlay-panel
+{
+    z-index: $popup;
+}
+
+.luna-modal-backdrop
+{
+    background: rgba(0, 0, 0, 0.5);
+    cursor: default;
+    z-index: 0;
+
+    &:focus
+    {
+        outline: none;
+    }
+}
+
+.luna-modal-pane
+{
+    z-index: 1;
+}
+
+.luna-tooltip-panel
+{
+    opacity: 0;
+    transition: opacity 60ms ease-out;
+    z-index: $popup;
+
+    &.luna-tooltip-visible
+    {
+        opacity: 1;
+    }
+}
