@@ -321,6 +321,25 @@ export class MyComponent {
 
 For more information on importing and using icons, see the [Using Icons](#using-icons) section above.
 
+### Menu Bar Component
+
+The `luna-menu-bar` component is a container that renders a horizontal menu bar (e.g. under a window title bar). It is a flex container; place one or more `luna-menu` components inside it. It extends `LunaControl` (optional `id`, `name`, `tabindex`, `autofocus`).
+
+**Selector:** `luna-menu-bar`
+
+#### Example
+
+```html
+<luna-menu-bar>
+    <luna-menu [items]="fileMenuItems" (itemSelect)="onFileMenuSelect($event)">
+        <button lunaMenuTrigger>File</button>
+    </luna-menu>
+    <luna-menu [items]="optionsMenuItems" (itemSelect)="onOptionsMenuSelect($event)">
+        <button lunaMenuTrigger>Options</button>
+    </luna-menu>
+</luna-menu-bar>
+```
+
 ### Menu Component
 
 The `luna-menu` component provides a classic dropdown menu (DOS/Windows 9x style) with a trigger and a list of items. It supports checked items, hover highlighting, arrow-key navigation with cursor highlighting, closing with Escape, and selecting the highlighted option with Enter.
@@ -329,7 +348,7 @@ The `luna-menu` component provides a classic dropdown menu (DOS/Windows 9x style
 
 **Trigger directive:** `lunaMenuTrigger` – attach to the element that opens the menu (e.g. a button).
 
-Use `LunaOverlayComponent` and `LunaOverlayContainer` as described in **Overlay (menu, modal, tooltip)** above so the menu overlay and trigger are styled.
+Use `LunaOverlayComponent` and `LunaOverlayContainer` as described in **Overlay (menu, modal, tooltip)** above so the menu overlay and trigger are styled. For a top-level menu bar, use the **Menu Bar Component** and place one or more `luna-menu` inside it.
 
 #### Inputs
 
@@ -513,18 +532,26 @@ The `luna-slider` component provides a Windows XP-styled range slider that imple
 
 ### Tabs Component
 
-The `luna-tabs` component provides a Windows XP-styled tab interface with keyboard navigation support.
+The `luna-tabs` component provides a Windows XP-styled tab interface with keyboard navigation support. Use `luna-tab` children to define each tab and its content.
 
 **Selector:** `luna-tabs`
 
 #### Inputs
 
-- `tabs: Tab[]` - Array of tab objects with `id`, `label`, and optional `content`
-- `activeTabId?: string` - ID of the currently active tab
+- `activeTabId?: string` - ID of the currently active tab (defaults to the first tab when unset)
 
 #### Outputs
 
 - `tabChange: EventEmitter<string>` - Emitted when a tab is selected
+
+#### Child: luna-tab
+
+Each tab is a `luna-tab` with:
+
+- `id: string` - Unique tab ID
+- `label: string` - Tab button label
+
+Tab content is projected inside the `luna-tab` element.
 
 #### Keyboard Navigation
 
@@ -534,18 +561,24 @@ The `luna-tabs` component provides a Windows XP-styled tab interface with keyboa
 #### Example
 
 ```html
-<luna-tabs 
-    [tabs]="tabs"
+<luna-tabs
     [activeTabId]="activeTabId"
     (tabChange)="onTabChange($event)">
+    <luna-tab id="tab1" label="Tab 1">
+        Content for tab 1
+    </luna-tab>
+    <luna-tab id="tab2" label="Tab 2">
+        Content for tab 2
+    </luna-tab>
 </luna-tabs>
 ```
 
 ```typescript
-tabs: Tab[] = [
-    { id: 'tab1', label: 'Tab 1', content: 'Content 1' },
-    { id: 'tab2', label: 'Tab 2', content: 'Content 2' }
-];
+import { TabComponent, TabsComponent } from 'ng-luna';
+
+// In your component:
+activeTabId = 'tab1';
+onTabChange(tabId: string) { this.activeTabId = tabId; }
 ```
 
 ### Textarea Component
@@ -577,6 +610,14 @@ The `luna-textarea` component provides a Windows XP-styled textarea that impleme
     (change)="onTextareaChange($event)">
 </luna-textarea>
 ```
+
+### Overlay Component
+
+The `luna-overlay` component is **infrastructure** for menu, modal, and tooltip overlays. Add it once to your root template (e.g. as a sibling to your main content) and provide `LunaOverlayContainer` so that overlay content is attached inside your app and styled correctly. See **Overlay (menu, modal, tooltip)** in the [Usage](#usage) section for setup. This component has no inputs or outputs.
+
+**Selector:** `luna-overlay`
+
+**Related:** `LunaOverlayContainer` – provide it in your root providers so CDK Overlay uses the overlay host element from `LunaOverlayComponent`.
 
 ### Window Component
 
@@ -717,20 +758,31 @@ ng-luna/
 │   │   ├── button/        # Button component
 │   │   ├── checkbox/      # Checkbox component
 │   │   ├── fieldset/      # Fieldset component
+│   │   ├── icons/         # Icon component + Lucide icons
 │   │   ├── input/         # Input component
+│   │   ├── menu/          # Menu component + trigger, panel
+│   │   ├── menu-bar/      # Menu bar container
+│   │   ├── modal/         # Modal service + message box
+│   │   ├── overlay/       # Overlay component + container (menu/modal/tooltip host)
 │   │   ├── progress/      # Progress component
 │   │   ├── radio/         # Radio component
 │   │   ├── select/        # Select component
 │   │   ├── slider/        # Slider component
-│   │   ├── tabs/          # Tabs component
+│   │   ├── tabs/          # Tabs + tab components
 │   │   ├── textarea/      # Textarea component
+│   │   ├── tooltip/       # Tooltip directive + component
 │   │   ├── window/        # Window component
 │   │   └── index.ts       # Controls barrel export
-│   ├── theme/             # Theme files (fonts, styles)
+│   ├── theme/             # Theme (palette, typography, fonts, etc.)
+│   │   ├── _breakpoints.scss
 │   │   ├── _fonts.scss    # IBM Plex font imports
+│   │   ├── _global.scss
+│   │   ├── _graphics.scss
 │   │   ├── _palette.scss  # Color palette
-│   │   ├── _graphics.scss # SVG graphics
-│   │   └── _global.scss   # Global styles
+│   │   ├── _reset.scss
+│   │   ├── _typography.scss
+│   │   ├── _z-layers.scss
+│   │   └── ...
 │   └── public-api.ts      # Public API surface
 ├── ng-package.json        # ng-packagr configuration
 ├── package.json           # Package dependencies

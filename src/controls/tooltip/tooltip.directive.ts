@@ -13,6 +13,16 @@ import { Injector } from '@angular/core';
 import { TooltipComponent } from './tooltip.component';
 import { LUNA_TOOLTIP_DATA } from './tooltip-data';
 
+function getPositionOrigin(element: HTMLElement): ElementRef<HTMLElement>
+{
+    const rect = element.getBoundingClientRect();
+    if (rect.width === 0 && rect.height === 0 && element.firstElementChild instanceof HTMLElement)
+    {
+        return new ElementRef(element.firstElementChild);
+    }
+    return new ElementRef(element);
+}
+
 const FADE_OUT_MS = 120;
 const HIDE_DELAY_MS = 250;
 const SHOW_DELAY_MS = 60;
@@ -150,9 +160,10 @@ export class TooltipDirective implements OnDestroy
         {
             return;
         }
+        const origin = getPositionOrigin(this.elementRef.nativeElement);
         const positionStrategy = this.overlay
             .position()
-            .flexibleConnectedTo(this.elementRef)
+            .flexibleConnectedTo(origin)
             .withPositions([
                 { overlayX: 'center', overlayY: 'top', originX: 'center', originY: 'bottom' },
                 { overlayX: 'center', overlayY: 'bottom', originX: 'center', originY: 'top' },
