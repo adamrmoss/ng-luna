@@ -1,0 +1,24 @@
+@use '../../theme/palette' as *;
+@use '../../theme/typography' as *;
+
+:host
+{
+    display: block;
+}
+
+nav[role="menubar"]
+{
+    align-items: center;
+    background: $gray-light-warm;
+    border-bottom: 1px solid $blue-steel-dark;
+    display: flex;
+    flex-shrink: 0;
+    gap: 0;
+    margin-bottom: $spacing-sm;
+    padding: 2px $spacing-xs;
+
+    ::ng-deep luna-menu
+    {
+        display: inline-block;
+    }
+}
