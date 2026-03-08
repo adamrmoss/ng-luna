@@ -8,17 +8,17 @@
 
 nav[role="menubar"]
 {
-    align-items: center;
+    align-items: stretch;
     background: $gray-light-warm;
-    border-bottom: 1px solid $blue-steel-dark;
     display: flex;
     flex-shrink: 0;
     gap: 0;
+    justify-content: flex-start;
     margin-bottom: $spacing-sm;
-    padding: 2px $spacing-xs;
+    padding: 0;
 
     ::ng-deep luna-menu
     {
-        display: inline-block;
+        display: flex;
     }
 }

@@ -4,13 +4,14 @@
 
 button[lunaMenuTrigger]
 {
-    background: $beige-pale;
+    background: $gray-light-warm;
     border: none;
-    border-radius: $border-radius-sm;
+    border-radius: 0;
     font-family: inherit;
     font-size: $font-size-xs;
     line-height: $line-height-tight;
     padding: $spacing-xs $spacing-md;
+    text-decoration: underline;
 
     &:hover
     {
