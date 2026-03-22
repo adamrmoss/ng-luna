@@ -15,7 +15,7 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { fromEvent, Subscription } from 'rxjs';
 
 import { MenuPanelComponent } from './menu-panel.component';
-import { LUNA_MENU_DATA, LunaMenuEntry, LunaMenuItem } from './menu-data';
+import { LUNA_MENU_DATA, LunaMenuEntry, LunaMenuItem, LunaMenuPanelData } from './menu-data';
 import { LunaMenuCoordinatorService } from './menu-coordinator.service';
 import { LunaMenuTriggerDirective } from './menu-trigger.directive';
 
@@ -71,6 +71,7 @@ export class LunaMenuComponent implements AfterContentInit, OnDestroy
         // Ensure no stale overlay or document listeners survive the host.
         this.destroyOverlay();
         this.coordinator.notifyClosed(this);
+        this.trigger?.setMenuOpenHighlight(false);
 
         if (this.trigger != null)
         {
@@ -134,16 +135,25 @@ export class LunaMenuComponent implements AfterContentInit, OnDestroy
         // Close when the user clicks elsewhere (except inside the panel or on any menu trigger).
         this.attachOutsideClickListener();
 
+        // Offer left/right menubar navigation only when the trigger sits under a menubar landmark.
+        const menubarNav = origin.nativeElement.closest('nav[role="menubar"]');
+        const panelData: LunaMenuPanelData = {
+            close: (selectedItem: LunaMenuItem | null) => this.close(selectedItem),
+            items: this.items
+        };
+
+        if (menubarNav != null)
+        {
+            panelData.navigateMenubarAdjacent = (direction: -1 | 1) => this.navigateAdjacentInMenubar(origin, direction);
+        }
+
         // Provide panel data and a close callback bound to this host.
         const childInjector = Injector.create({
             parent: this.injector,
             providers: [
                 {
                     provide: LUNA_MENU_DATA,
-                    useValue: {
-                        close: (selectedItem: LunaMenuItem | null) => this.close(selectedItem),
-                        items: this.items
-                    }
+                    useValue: panelData
                 }
             ]
         });
@@ -151,6 +161,9 @@ export class LunaMenuComponent implements AfterContentInit, OnDestroy
         const portal = new ComponentPortal(MenuPanelComponent, null, childInjector);
         this.overlayRef.attach(portal);
         this.coordinator.notifyOpened(this);
+
+        // Keep the menubar trigger styled like hover while this dropdown is open.
+        this.trigger?.setMenuOpenHighlight(true);
     }
 
     /**
@@ -195,6 +208,55 @@ export class LunaMenuComponent implements AfterContentInit, OnDestroy
     }
 
     /**
+     * Closes this menu and opens the previous or next `luna-menu` in the same menubar (wraps).
+     *
+     * @param origin - Trigger element ref passed to `open`.
+     * @param direction - `-1` for left / previous, `1` for right / next.
+     */
+    private navigateAdjacentInMenubar(origin: ElementRef<HTMLElement>, direction: -1 | 1): void
+    {
+        const triggerEl = origin.nativeElement;
+
+        // Resolve the menubar landmark and the host custom element for this dropdown.
+        const menubar = triggerEl.closest('nav[role="menubar"]');
+        const menuHost = triggerEl.closest('luna-menu');
+
+        if (menubar == null || menuHost == null)
+        {
+            return;
+        }
+
+        // Order matches visual layout for direct children; `querySelectorAll` keeps document order.
+        const menus = Array.from(menubar.querySelectorAll('luna-menu'));
+        const index = menus.indexOf(menuHost as HTMLElement);
+
+        if (index < 0)
+        {
+            return;
+        }
+
+        // Single-menu bars have nowhere to go; skip to avoid close/reopen flicker.
+        const nextIndex = (index + direction + menus.length) % menus.length;
+
+        if (nextIndex === index)
+        {
+            return;
+        }
+
+        const nextMenu = menus[nextIndex];
+        const nextTrigger = nextMenu.querySelector<HTMLElement>('[lunaMenuTrigger]');
+
+        if (nextTrigger == null)
+        {
+            return;
+        }
+
+        // Close without a selection, then open the sibling the same way a user click would.
+        this.close(null);
+        nextTrigger.click();
+    }
+
+    /**
      * Destroys the overlay, updates coordinator state, and emits the selection outcome.
      *
      * @param selectedItem - Chosen row, or null when dismissed without a choice.
@@ -202,6 +264,7 @@ export class LunaMenuComponent implements AfterContentInit, OnDestroy
     private close(selectedItem: LunaMenuItem | null): void
     {
         this.destroyOverlay();
+        this.trigger?.setMenuOpenHighlight(false);
         this.coordinator.notifyClosed(this);
         this.itemSelect.emit(selectedItem);
     }

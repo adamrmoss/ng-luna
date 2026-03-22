@@ -55,6 +55,23 @@ export class MenuPanelComponent implements OnInit
                 event.preventDefault();
                 this.moveHighlight(-1);
                 break;
+            case 'ArrowLeft':
+                // Delegate to menubar wiring when this panel is a top-level bar menu.
+                if (this.data.navigateMenubarAdjacent != null)
+                {
+                    event.preventDefault();
+                    this.data.navigateMenubarAdjacent(-1);
+                }
+
+                break;
+            case 'ArrowRight':
+                if (this.data.navigateMenubarAdjacent != null)
+                {
+                    event.preventDefault();
+                    this.data.navigateMenubarAdjacent(1);
+                }
+
+                break;
             case 'Enter':
                 event.preventDefault();
                 this.activateHighlighted();

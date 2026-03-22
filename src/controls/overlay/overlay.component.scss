@@ -27,7 +27,8 @@ button[lunaMenuTrigger]
     padding: $spacing-xs $spacing-md;
     text-decoration: underline;
 
-    &:hover
+    &:hover,
+    &.luna-menu-trigger-active
     {
         background: $navy;
         color: $white;

@@ -52,6 +52,12 @@ export interface LunaMenuPanelData
 
     /** Rows rendered inside the panel. */
     items: LunaMenuEntry[];
+
+    /**
+     * When the menu lives in a menubar, moves keyboard focus to the previous or next top-level
+     * menu (wraps); omitted for standalone dropdowns.
+     */
+    navigateMenubarAdjacent?: (direction: -1 | 1) => void;
 }
 
 /**

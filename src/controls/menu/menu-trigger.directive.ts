@@ -1,6 +1,8 @@
 import {
+    ChangeDetectorRef,
     Directive,
     ElementRef,
+    HostBinding,
     HostListener,
     inject,
     Input
@@ -17,6 +19,8 @@ import { LunaMenuComponent } from './menu.component';
 })
 export class LunaMenuTriggerDirective
 {
+    private readonly cdr = inject(ChangeDetectorRef);
+
     private readonly elementRef = inject(ElementRef<HTMLElement>);
 
     /**
@@ -26,9 +30,26 @@ export class LunaMenuTriggerDirective
     public lunaMenuTrigger: unknown = '';
 
     /**
+     * Mirrors menu-open state on the host for menubar-style highlighting.
+     */
+    @HostBinding('class.luna-menu-trigger-active')
+    protected menuOpenHighlight = false;
+
+    /**
      * Set by `LunaMenuComponent` after content init; null when detached.
      */
     public menu: LunaMenuComponent | null = null;
+
+    /**
+     * Turns the open/active highlight on or off on the host element.
+     *
+     * @param active - True while this menu’s overlay is open.
+     */
+    public setMenuOpenHighlight(active: boolean): void
+    {
+        this.menuOpenHighlight = active;
+        this.cdr.markForCheck();
+    }
 
     /**
      * Toggles the menu or dismisses it when already open.

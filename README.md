@@ -342,7 +342,7 @@ The `luna-menu-bar` component is a container that renders a horizontal menu bar 
 
 ### Menu Component
 
-The `luna-menu` component provides a classic dropdown menu (DOS/Windows 9x style) with a trigger and a list of items. It supports checked items, hover highlighting, arrow-key navigation with cursor highlighting, closing with Escape, and selecting the highlighted option with Enter.
+The `luna-menu` component provides a classic dropdown menu (DOS/Windows 9x style) with a trigger and a list of items. It supports checked items, hover highlighting, Up/Down to move the highlight within the list, closing with Escape, and Enter to activate the highlighted row. When the menu sits inside a **Menu Bar Component**, Left/Right move to the previous or next top-level menu in the bar (with wraparound).
 
 **Selector:** `luna-menu`
 
