@@ -1,0 +1,43 @@
+---
+description: Project documentation — docs folder, READMEs, and markdown guides (not in-source comments)
+alwaysApply: true
+---
+
+# Project documentation
+
+This rule covers **markdown and other authored documentation files** that live beside or under `docs/`. It does **not** cover comments or TSDoc inside `.ts` / `.tsx` — those are defined in **`comments.mdc`** (“Comments and source docblocks”).
+
+## Terminology
+
+| Term | Meaning | Rule |
+|------|---------|------|
+| **Project documentation** | READMEs, `docs/*.md`, guides | This file (`documentation.mdc`) |
+| **In-source documentation** | `//` comments, `/** */` docblocks, TSDoc on APIs | `comments.mdc` |
+
+
+## Markdown documentation throughout the repository
+
+**Repository entrypoint** — [`README.md`](README.md) at the repo root is the main guide for installing, using, and extending **ng-luna** (components, overlays, styling, public API). The **`dev/`** app exists only to develop and showcase the library; consumer-facing documentation is the root README and published package docs, not a full “application” story inside `dev/`.
+
+**Co-located READMEs** — If you add deeper docs later (e.g. under `src/controls/…` or a `docs/` folder), prefer a `README.md` beside the code it describes. This project currently relies on the root README for most contributor and consumer information.
+
+**When adding or changing behavior** — Update the root **`README.md`** when the change would confuse readers if the docs stayed stale (new components, breaking API or overlay usage, etc.). Do not create new markdown files unless the user asks or the change clearly needs a separate doc home.
+
+## Documentation usage
+
+**Before making changes or answering questions:**
+
+1. Read or skim the root **`README.md`** when the work touches public API, demos, or library behavior
+2. If a `docs/` folder or co-located `README.md` files exist in the area you are editing, read those next
+
+**When working in a directory:**
+
+- Prefer an existing README in that directory over guessing structure
+- Use the README to understand how controls, theme tokens, and the optional **`dev/`** demo relate
+
+**Good documentation for this library covers:**
+
+- Purpose of components and how they compose (menus, overlays, forms, etc.)
+- Inputs, outputs, and standalone `imports` patterns
+- Styling and theme conventions where non-obvious
+- Examples that match real usage (including overlay setup if relevant)

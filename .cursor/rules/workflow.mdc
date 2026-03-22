@@ -1,0 +1,22 @@
+---
+description: Problem-solving workflow and communication conventions
+alwaysApply: true
+---
+
+# Problem-solving strategy
+
+Primary code lives in **`src/`** (the library); **`dev/`** is for local verification. When solving problems, follow this workflow:
+
+1. **Plan first**: Understand the problem, read examples (library and `dev/` if relevant), identify patterns
+2. **Test manually**: Apply a **small, focused edit** to one file or symbol first to validate the approach
+3. **Apply systematically**: Find other call sites or copies with search, then fix iteratively with the same pattern
+4. **Only script when necessary**: Prefer direct edits; use scripts only when repetition is impractical
+5. **Verify work**: Read the actual file output to confirm changes
+6. **Never be overconfident**: Do not claim completion without verification
+
+Avoid bulk automation as a first step when a targeted change would prove the approach.
+
+# Communication and workflow
+
+- When the user says they already fixed something, acknowledge it and move on (do not offer to fix it again)
+- Save all standalone executable code (SQL scripts, etc.) to files instead of only displaying in chat

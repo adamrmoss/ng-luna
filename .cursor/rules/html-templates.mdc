@@ -1,0 +1,15 @@
+---
+description: Semantic HTML, layout, and template attribute formatting
+globs: "**/*.html"
+alwaysApply: false
+---
+
+# HTML semantics and layout
+
+- Use semantic elements where they apply: `<header>`, `<footer>`, `<main>`, `<nav>`, `<section>`, `<article>`, `<aside>`, `<figure>`, `<figcaption>`, form elements (`<button>`, `<input>`, `<label>`, `<fieldset>`, `<legend>`, `<select>`, `<textarea>`, `<progress>`), and list structure (`<ul>`, `<ol>`, `<li>`) instead of generic `<div>`/`<span>` when the meaning fits
+- Prefer Flexbox or CSS Grid for layout; avoid layout patterns that rely on floats or table display when flex/grid are appropriate
+
+# Template formatting
+
+- Put **`class` first**, then list other attributes in **alphabetical order**, with **event bindings** (e.g. `(click)`) **last**
+- Prefer **one attribute per line** for readability

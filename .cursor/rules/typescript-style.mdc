@@ -1,0 +1,85 @@
+---
+description: TypeScript/JavaScript style, accessors, error handling, file endings
+globs: "**/*.{ts,tsx}"
+alwaysApply: false
+---
+
+# TypeScript and JavaScript code style
+
+In-source comments and TSDoc: see **`comments.mdc`**. READMEs and `docs/`: see **`documentation.mdc`**.
+
+- **Imports first** — all import statements at the top of the file, before any other code (exports, types, classes, etc.), unless there is a special reason (e.g. dynamic import, circular dependency workaround)
+- **Prefer traditional object-oriented structures** — use classes with explicit access modifiers (`public`, `private`, `protected`) rather than object literals or functional patterns for namespaced logic. Prefer `class X { public static method() { } }` over `const X = { method() { } }`. No implied access levels
+- Prefer `switch` statements over `else-if` chains when checking the same variable
+- Use braces `{ }` for all control structures, even single-line blocks
+- **Decorators** — all decorators on their own line (never on the same line as the property or method they decorate)
+- **Explicit access** — all class properties and methods must have explicit access modifiers (`public`, `private`, or `protected`)
+
+## Braces, indentation, and spacing
+
+- **Indentation** — 4 spaces; never tabs
+- **Opening braces** — put `{` on a **new line** after the closing `)` of control conditions and after class, method, and constructor names (including `else`, `catch`, and `finally` bodies)
+- **Vertical spacing** — blank line between the import block and the rest of the file; blank line between top-level type/interface/type-alias groups and following classes or values; blank lines between logical groups inside class bodies
+
+## Angular component class layout (`@Component` and related classes)
+
+- Group members logically (for example: `@Input()` together, then `@Output()`, then other fields, then methods)
+- **Within each group**, sort by member name **alphabetically**
+- Optional properties use `?:`
+
+## Types (signatures and enums)
+
+- Always provide **explicit** type annotations on method and function **parameters** and **return types**
+- Use **type aliases** for commonly repeated shapes
+- Prefer explicit types over `any`
+- For finite string sets (enum-like values), use **string literal unions** instead of plain `string` (e.g. `export type ButtonType = 'button' | 'submit' | 'reset'`)
+
+## Type safety and assertions
+
+- Prefer the type checker over escape hatches; do not use `as any` to silence errors.
+- When a cast is unavoidable, use a **named** target: discriminated unions, types defined in this package, `satisfies`, `Extract<…>`, or `value as unknown as SpecificType` — never `as any`.
+- In tests, apply the same standard: narrowing, `Partial<T>` with `as unknown as T`, or small test-only interfaces instead of `any`.
+
+## Property syntax (accessors)
+
+- Prefer TypeScript `get` / `set` accessors over method names like `getFoo()` / `setFoo()` when the member behaves like a property (simple read or single-value write of object state)
+- **Call sites** use normal property syntax: `obj.muted = true` and `if (obj.audio)` instead of `obj.setMuted(true)` and `obj.getAudio()`
+- **Angular templates** bind to getters like any property: `[value]="code"`, `{{ hexContent }}` — no `getCode()`-style calls for accessors
+- **Pairing** — place getter and setter back-to-back when both exist: `public get foo(): T` then `public set foo(v: T)`
+- **Backing fields** — if a private field would share the same name as the public accessor (e.g. `muted` / `get muted()`), rename the stored field (e.g. `_muted`, `_canvasContext`) so the accessor name is not shadowed
+- **Keep ordinary methods** when the name starts with `get`/`set` but the member is not a simple property: multiple parameters (`getItemAt(index)`), multi-argument setters (`setViewport(row, col)`), non-trivial subroutines, imperative actions, destructive reads, or module-level `export function get…` helpers
+- Async accessors are not available; keep async operations as methods
+
+## File endings
+
+- Files must end with exactly one newline character after the last content line
+- The last line of content should be followed by a single newline, then EOF
+- Do not include two blank lines at the end of files
+
+## Error handling
+
+- Prefer returning `null` (or a result type) over throwing or logging for **recoverable or expected** failures
+- Routines that can fail in normal use (parsing, validation, lookups) should expose failure without exceptions when callers can branch (e.g. return `T | null` or a small result object)
+- Use null returns (or silent no-op) for failure states that callers can handle gracefully
+- Never use exceptions or `console.error`/`console.warn` for expected failure cases (e.g. missing API in tests, invalid input)
+- Passing tests must not produce stack traces, `console.error`, or `console.warn` output
+- **try/catch only for exceptional behaviour** — use try/catch for truly unexpected errors. For expected conditions, check and return or set state; do not throw or log as if it were exceptional
+
+## Module organization and barrel files
+
+- **Always use barrel files (`index.ts`)** for directories with multiple exports
+- **Barrel files must be created for:**
+  - Any directory containing 3+ related TypeScript files that export classes/types/interfaces
+  - Subdirectories that group related functionality (e.g. `controls/menu/` with several menu-related files)
+  - Parent folders that aggregate subfolders with public exports (e.g. `controls/index.ts`)
+- **Barrel file structure:**
+  - Use `export * from './filename'` for each file in the directory
+  - Do not export non-public utilities or internal helpers from barrel files
+  - Main barrel files should re-export from subdirectory barrels when appropriate
+- **Import rules:**
+  - **Always import from barrel files** (e.g. `from '../menu'`) instead of deep-importing files when that folder’s `index.ts` is the public surface
+  - Use barrel files to simplify imports and reduce path length
+  - Group related imports from the same barrel on a single line when appropriate
+- **Examples:**
+  - Correct: import from a folder’s `index.ts` when that barrel exists (e.g. `import { MenuComponent } from '../menu'` if `menu/index.ts` re-exports it)
+  - Incorrect: bypass an existing barrel to deep-import `./menu/menu.component` when `../menu` is the public surface

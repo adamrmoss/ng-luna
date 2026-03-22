@@ -1,0 +1,19 @@
+---
+description: Angular component library + dev demo — standalone components, templates, icons, README
+globs: "**/src/**/*.ts"
+alwaysApply: false
+---
+
+# Angular (ng-luna library + dev demo)
+
+This repo is a **publishable component library**: implementation and public surface live under repository **`src/`** (e.g. `src/controls/`, theme). The **`dev/`** folder is a **small Angular dev application** used to build, serve, and manually test the library — including its **`AppComponent`** and any demo-only pieces. Treat **`dev/`** as a playground, not a second full product.
+
+The rules below apply to **library** TypeScript under repo `src/` and to **demo app** TypeScript under `dev/src/`.
+
+- **Standalone components** — every `@Component` must include `standalone: true`
+- Use separate files for templates (`.html`) and stylesheets (`.scss`); do not embed HTML or SCSS in the TypeScript file (`templateUrl` / `styleUrl` or equivalent)
+- Prefer TypeScript over JavaScript and SCSS over CSS
+- **Icons** — use this repo’s icon control (`IconComponent`, `<luna-icon>`) and existing symbols in **library** code; in **`dev/`**, prefer the same so the demo matches consumer usage. Do not add ad hoc SVG icon markup or a parallel icon system
+  - For drag images or other DOM work, reuse or clone real `luna-icon` DOM as needed; do not hand-build lookalikes
+- **Component API and usage** — for menus, buttons, overlays, window, tabs, forms, and related patterns, treat the repository root **`README.md`** as the source of truth for selectors, inputs/outputs, and examples
+  - `node_modules/ng-luna/README.md` is for **consumers** of the published package; inside this workspace, use the project **`README.md`**
