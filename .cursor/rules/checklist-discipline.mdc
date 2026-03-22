@@ -1,0 +1,47 @@
+---
+description: Checklist-driven tasks — authoritative list, one-item loop, recovery when rows were missed
+alwaysApply: true
+---
+
+# Checklist discipline
+
+Use this whenever the user (or the repo) gives a **checklist** for a multi-step task (for example `STYLE_AUDIT_CHECKLIST.md`, `*CHECKLIST*.md`, or a numbered list in an issue).
+
+## Authority
+
+- The **checklist file is the source of truth** for what is complete. Chat history, memory, or assumptions about earlier edits do **not** override unchecked rows.
+- If a row is still `[ ]`, treat that work as **not done** until you have re-read the target file, confirmed it meets the task bar, and set the row to `[x]`.
+
+## Correct work loop (one item at a time)
+
+For each row, in **strict checklist order**:
+
+1. **Read** the file named on that row.
+2. **Audit / fix** it to the agreed standard (do not skip re-reading because you “already did” it elsewhere in chat).
+3. **Save** the file if you changed anything (or leave it unchanged if it already satisfies the bar).
+4. **Update that single row** from `[ ]` to `[x]` in the checklist **before** moving to the next row.
+
+Do **not**:
+
+- Batch many files and then update many checkboxes in one lump without doing the loop per row.
+- “Optimize” by skipping checklist updates until the end of a large edit set.
+- Rebuild, reorder, or replace the checklist file unless the user explicitly asks you to.
+
+Advancing to the **next** unchecked row only after the current row is `[x]` keeps progress honest and matches how humans use checklists.
+
+## When the user says you missed checklist items
+
+Treat this as a **recovery**, not an argument about memory:
+
+1. Open the checklist and find the **first `[ ]` row in document order** (or the specific path(s) the user named—still process them in **checklist order** if multiple).
+2. For each such row: run the **full loop** above (read → audit/fix → check off **that** row).
+3. Continue down the list until there are no remaining `[ ]` rows in scope, or the user narrows scope.
+4. Do **not** add new rows, merge files into the list, or change ordering to “fix” the mistake unless the user asks.
+
+Prior edits may exist on disk; if the row is unchecked, **you redo the audit for that file and mark it done** when finished. That reconciles repo state with the checklist without debating what happened in earlier turns.
+
+## Anti-shortcuts
+
+- Do not infer completion from “we fixed this earlier” without a matching `[x]` on that row.
+- Do not skip updating the checklist to save time or tokens; that produces false progress and wastes the user’s time.
+- Do not claim the overall task is finished until the checklist shows all relevant rows checked (or the user has redefined scope).

@@ -45,6 +45,9 @@ import {
     Volume2
 } from 'ng-luna';
 
+/**
+ * Root demo application: component gallery, sample menus, and modal experiments.
+ */
 @Component({
     selector: 'app-root',
     standalone: true,
@@ -89,7 +92,12 @@ export class AppComponent
     public textareaValue: string = '';
     public title: string = 'ng-luna Component Gallery';
 
-    constructor(private readonly modal: LunaModalService) {}
+    /**
+     * @param modal - Library modal service used for demo alerts and prompts.
+     */
+    public constructor(private readonly modal: LunaModalService)
+    {
+    }
 
     public get editMenuItems(): LunaMenuEntry[]
     {
@@ -143,6 +151,7 @@ export class AppComponent
 
     public onEditMenuSelect(item: LunaMenuItem | null): void
     {
+        // Map Edit menu labels to placeholder modal copy for the gallery.
         if (item === null)
         {
             return;
@@ -163,6 +172,7 @@ export class AppComponent
 
     public onFileMenuSelect(item: LunaMenuItem | null): void
     {
+        // Stub file operations with alerts so the menu stays interactive in the demo.
         if (item === null)
         {
             return;
@@ -195,6 +205,7 @@ export class AppComponent
 
     public onOptionsMenuSelect(item: LunaMenuItem | null): void
     {
+        // Options menu entries surface static copy only; no real settings persistence.
         if (item === null)
         {
             return;
@@ -215,6 +226,7 @@ export class AppComponent
 
     public onViewMenuSelect(item: LunaMenuItem | null): void
     {
+        // Toggle booleans for toolbar/status visibility; other rows open informational modals.
         if (item === null)
         {
             return;
@@ -238,6 +250,7 @@ export class AppComponent
 
     public onAlert(): void
     {
+        // Reset the status line, then show the simplest alert variant.
         this.modalResult = '';
         this.modal.alert('Settings saved successfully.', 'Information').subscribe(() =>
         {
@@ -247,6 +260,7 @@ export class AppComponent
 
     public onConfirm(): void
     {
+        // Reset the readout, then show a boolean confirm and record the branch taken.
         this.modalResult = '';
         this.modal.confirm('Are you sure you want to discard your changes?', 'Confirm').subscribe((ok) =>
         {
@@ -256,6 +270,7 @@ export class AppComponent
 
     public onConfirmWith(): void
     {
+        // Demonstrate custom OK/cancel labels and string return values.
         this.modalResult = '';
         this.modal.confirmWith('Overwrite the existing file?', {
             cancelLabel: 'No',
@@ -271,6 +286,7 @@ export class AppComponent
 
     public onPrompt(): void
     {
+        // Classic prompt with title string overload; format the structured result for the readout.
         this.modalResult = '';
         this.modal.prompt('Enter your name:', 'Name').subscribe((result) =>
         {
@@ -287,6 +303,7 @@ export class AppComponent
 
     public onPromptWith(): void
     {
+        // Prompt with placeholder and default value to exercise `MessageBoxOptions`.
         this.modalResult = '';
         this.modal.promptWith('Save as filename:', {
             cancelLabel: 'Cancel',

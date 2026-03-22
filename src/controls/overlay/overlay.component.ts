@@ -10,6 +10,9 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 
 import { LunaOverlayContainer } from './overlay-container';
 
+/**
+ * Renders a DOM host and, when paired with `LunaOverlayContainer`, receives CDK overlays.
+ */
 @Component({
     selector: 'luna-overlay',
     standalone: true,
@@ -24,8 +27,12 @@ export class OverlayComponent implements AfterViewInit
 
     private readonly overlayContainer = inject(OverlayContainer);
 
+    /**
+     * Registers the projected host element on the Luna overlay container when types match.
+     */
     public ngAfterViewInit(): void
     {
+        // Only custom Luna container instances accept redirection; ignore the default CDK token.
         if (this.overlayContainer instanceof LunaOverlayContainer)
         {
             this.overlayContainer.setContainerElement(this.hostRef.nativeElement);

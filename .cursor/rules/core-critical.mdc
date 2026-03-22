@@ -16,6 +16,7 @@ alwaysApply: true
 
 ## Required actions
 
+- For checklist-backed multi-step work, follow **`checklist-discipline.mdc`**: one row at a time (read → fix → `[x]` before the next row); if the user says checklist items were missed, recover from the first `[ ]` in order without rebuilding the list
 - Always answer questions directly before taking action
 - Always verify changes by reading the actual file output
 - Always use standalone Angular components with separate template/stylesheet files
