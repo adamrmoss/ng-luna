@@ -8,9 +8,32 @@
     [title]="title">
     <luna-menu-bar>
         <luna-menu
+            [items]="fileMenuItems"
+            (itemSelect)="onFileMenuSelect($event)">
+            <button lunaMenuTrigger type="button">
+                File
+            </button>
+        </luna-menu>
+        <luna-menu
+            [items]="editMenuItems"
+            (itemSelect)="onEditMenuSelect($event)">
+            <button lunaMenuTrigger type="button">
+                Edit
+            </button>
+        </luna-menu>
+        <luna-menu
+            [items]="viewMenuItems"
+            (itemSelect)="onViewMenuSelect($event)">
+            <button lunaMenuTrigger type="button">
+                View
+            </button>
+        </luna-menu>
+        <luna-menu
             [items]="optionsMenuItems"
             (itemSelect)="onOptionsMenuSelect($event)">
-            <button lunaMenuTrigger>Options</button>
+            <button lunaMenuTrigger type="button">
+                Options
+            </button>
         </luna-menu>
     </luna-menu-bar>
     <luna-tabs>

@@ -91,14 +91,106 @@ export class AppComponent
 
     constructor(private readonly modal: LunaModalService) {}
 
+    public get editMenuItems(): LunaMenuEntry[]
+    {
+        return [
+            { disabled: true, label: 'Undo' },
+            { disabled: true, label: 'Redo' },
+            { separator: true },
+            { disabled: true, label: 'Cut' },
+            { disabled: true, label: 'Copy' },
+            { label: 'Paste' },
+            { separator: true },
+            { label: 'Find...' },
+            { label: 'Replace...' }
+        ];
+    }
+
+    public get fileMenuItems(): LunaMenuEntry[]
+    {
+        return [
+            { label: 'New' },
+            { label: 'Open...' },
+            { label: 'Save' },
+            { label: 'Save As...' },
+            { separator: true },
+            { label: 'Page Setup...' },
+            { label: 'Print...' },
+            { separator: true },
+            { label: 'Exit' }
+        ];
+    }
+
     public get optionsMenuItems(): LunaMenuEntry[]
+    {
+        return [
+            { label: 'Preferences...' },
+            { separator: true },
+            { label: 'About...' }
+        ];
+    }
+
+    public get viewMenuItems(): LunaMenuEntry[]
     {
         return [
             { label: 'Show Toolbar', checked: this.showToolbar },
             { label: 'Show Status Bar', checked: this.showStatusBar },
             { separator: true },
-            { label: 'About...' }
+            { label: 'Refresh' },
+            { label: 'Full Screen' }
         ];
+    }
+
+    public onEditMenuSelect(item: LunaMenuItem | null): void
+    {
+        if (item === null)
+        {
+            return;
+        }
+        switch (item.label)
+        {
+            case 'Find...':
+                this.modal.alert('Find is not implemented in this demo.', 'Find').subscribe();
+                break;
+            case 'Paste':
+                this.modal.alert('Clipboard is empty (demo).', 'Paste').subscribe();
+                break;
+            case 'Replace...':
+                this.modal.alert('Replace is not implemented in this demo.', 'Replace').subscribe();
+                break;
+        }
+    }
+
+    public onFileMenuSelect(item: LunaMenuItem | null): void
+    {
+        if (item === null)
+        {
+            return;
+        }
+        switch (item.label)
+        {
+            case 'Exit':
+                this.modal.alert('This is a demo shell; nothing exits.', 'Exit').subscribe();
+                break;
+            case 'New':
+                this.modal.alert('Created a new untitled document (demo).', 'New').subscribe();
+                break;
+            case 'Open...':
+                this.modal.alert('Open dialog would appear here (demo).', 'Open').subscribe();
+                break;
+            case 'Page Setup...':
+                this.modal.alert('Page setup is not implemented in this demo.', 'Page Setup').subscribe();
+                break;
+            case 'Print...':
+                this.modal.alert('Print preview is not implemented in this demo.', 'Print').subscribe();
+                break;
+            case 'Save':
+                this.modal.alert('Document saved (demo).', 'Save').subscribe();
+                break;
+            case 'Save As...':
+                this.modal.alert('Save As dialog would appear here (demo).', 'Save As').subscribe();
+                break;
+        }
     }
 
     public onOptionsMenuSelect(item: LunaMenuItem | null): void
@@ -109,17 +201,37 @@ export class AppComponent
         }
         switch (item.label)
         {
-            case 'Show Toolbar':
-                this.showToolbar = !this.showToolbar;
-                break;
-            case 'Show Status Bar':
-                this.showStatusBar = !this.showStatusBar;
-                break;
             case 'About...':
                 this.modal.alert(
                     'ng-luna Component Gallery\n\nA Windows-inspired Angular component library.',
                     'About'
                 ).subscribe();
+                break;
+            case 'Preferences...':
+                this.modal.alert('Preferences are not implemented in this demo.', 'Preferences').subscribe();
+                break;
+        }
+    }
+
+    public onViewMenuSelect(item: LunaMenuItem | null): void
+    {
+        if (item === null)
+        {
+            return;
+        }
+        switch (item.label)
+        {
+            case 'Full Screen':
+                this.modal.alert('Full screen is not implemented in this demo.', 'View').subscribe();
+                break;
+            case 'Refresh':
+                this.modal.alert('View refreshed (demo).', 'View').subscribe();
+                break;
+            case 'Show Toolbar':
+                this.showToolbar = !this.showToolbar;
+                break;
+            case 'Show Status Bar':
+                this.showStatusBar = !this.showStatusBar;
                 break;
         }
     }

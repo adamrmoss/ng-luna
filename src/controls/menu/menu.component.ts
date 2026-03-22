@@ -12,10 +12,12 @@ import {
 import { Injector } from '@angular/core';
 import { Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
+import { fromEvent, Subscription } from 'rxjs';
 
 import { MenuPanelComponent } from './menu-panel.component';
 import { LunaMenuEntry, LunaMenuItem } from './menu-data';
 import { LUNA_MENU_DATA } from './menu-data';
+import { LunaMenuCoordinatorService } from './menu-coordinator.service';
 import { LunaMenuTriggerDirective } from './menu-trigger.directive';
 
 @Component({
@@ -35,9 +37,11 @@ export class LunaMenuComponent implements AfterContentInit, OnDestroy
     @Output()
     public itemSelect = new EventEmitter<LunaMenuItem | null>();
 
+    private readonly coordinator = inject(LunaMenuCoordinatorService);
     private readonly injector = inject(Injector);
     private readonly overlay = inject(Overlay);
 
+    private outsideClickSubscription: Subscription | null = null;
     private overlayRef: ReturnType<Overlay['create']> | null = null;
 
     public ngAfterContentInit(): void
@@ -51,10 +55,22 @@ export class LunaMenuComponent implements AfterContentInit, OnDestroy
     public ngOnDestroy(): void
     {
         this.destroyOverlay();
+        this.coordinator.notifyClosed(this);
+
         if (this.trigger != null)
         {
             this.trigger.menu = null;
         }
+    }
+
+    public dismiss(): void
+    {
+        this.close(null);
+    }
+
+    public isOpen(): boolean
+    {
+        return this.overlayRef !== null;
     }
 
     public open(origin: ElementRef<HTMLElement>): void
@@ -63,6 +79,8 @@ export class LunaMenuComponent implements AfterContentInit, OnDestroy
         {
             return;
         }
+
+        this.coordinator.notifyOpening(this);
         this.destroyOverlay();
 
         const positionStrategy = this.overlay
@@ -78,14 +96,13 @@ export class LunaMenuComponent implements AfterContentInit, OnDestroy
             .withPush(false);
 
         this.overlayRef = this.overlay.create({
-            backdropClass: 'luna-menu-backdrop',
-            hasBackdrop: true,
+            hasBackdrop: false,
             panelClass: [ 'luna-menu-overlay-panel' ],
             positionStrategy,
             scrollStrategy: this.overlay.scrollStrategies.close()
         });
 
-        this.overlayRef.backdropClick().subscribe(() => this.close(null));
+        this.attachOutsideClickListener();
 
         const childInjector = Injector.create({
             parent: this.injector,
@@ -102,16 +119,51 @@ export class LunaMenuComponent implements AfterContentInit, OnDestroy
 
         const portal = new ComponentPortal(MenuPanelComponent, null, childInjector);
         this.overlayRef.attach(portal);
+        this.coordinator.notifyOpened(this);
+    }
+
+    private attachOutsideClickListener(): void
+    {
+        const ref = this.overlayRef;
+        if (ref === null)
+        {
+            return;
+        }
+
+        this.outsideClickSubscription = fromEvent<MouseEvent>(document, 'click', { capture: true }).subscribe(
+            (event: MouseEvent) =>
+            {
+                const target = event.target;
+                if (target === null || !(target instanceof Node))
+                {
+                    return;
+                }
+                if (ref.overlayElement.contains(target))
+                {
+                    return;
+                }
+                const element = target instanceof Element ? target : target.parentElement;
+                if (element?.closest('[lunaMenuTrigger]') != null)
+                {
+                    return;
+                }
+                this.close(null);
+            }
+        );
     }
 
     private close(selectedItem: LunaMenuItem | null): void
     {
         this.destroyOverlay();
+        this.coordinator.notifyClosed(this);
         this.itemSelect.emit(selectedItem);
     }
 
     private destroyOverlay(): void
     {
+        this.outsideClickSubscription?.unsubscribe();
+        this.outsideClickSubscription = null;
+
         if (this.overlayRef === null)
         {
             return;

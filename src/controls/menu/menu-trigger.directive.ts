@@ -26,6 +26,13 @@ export class LunaMenuTriggerDirective
     {
         event.preventDefault();
         event.stopPropagation();
+
+        if (this.menu?.isOpen() === true)
+        {
+            this.menu.dismiss();
+            return;
+        }
+
         this.menu?.open(this.elementRef);
     }
 }
