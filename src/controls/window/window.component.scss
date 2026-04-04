@@ -1,4 +1,5 @@
 // Window chrome: title bar, controls, body, status bar, and CDK drag handle.
+@use '../../theme/layout' as *;
 @use '../../theme/palette' as *;
 @use '../../theme/fonts' as *;
 @use '../../theme/graphics' as *;
@@ -178,4 +179,15 @@
     margin: 0;
     min-width: 0;
     padding: $spacing-xxs 1px;
+}
+
+:host(.luna-maximized)
+{
+    @include fill-parent;
+    display: block;
+}
+
+:host(.luna-maximized) .window
+{
+    @include fill-parent;
 }

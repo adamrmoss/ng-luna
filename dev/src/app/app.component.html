@@ -2,11 +2,13 @@
 <luna-overlay></luna-overlay>
 <luna-window
     id="main-window"
+    [isMaximized]="isWindowMaximized"
     [showClose]="false"
     [showHelp]="false"
-    [showMaximize]="false"
     [showMinimize]="false"
-    [title]="title">
+    [title]="title"
+    (maximize)="onMaximize()"
+    (restore)="onRestore()">
     <luna-menu-bar>
         <luna-menu
             [items]="fileMenuItems"
@@ -37,7 +39,7 @@
             </button>
         </luna-menu>
     </luna-menu-bar>
-    <luna-tabs>
+    <luna-tabs [isMaximized]="isWindowMaximized">
         <luna-tab
             id="buttons"
             label="Buttons">

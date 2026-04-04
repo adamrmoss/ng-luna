@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { LunaControl } from '../luna-control';
+
 /**
  * Declarative tab pane registered by `luna-tabs` via content projection.
  */
@@ -12,10 +14,11 @@ import { CommonModule } from '@angular/common';
     styleUrls: [ './tab.component.scss' ]
 })
 export class TabComponent
+    extends LunaControl
 {
     /** Stable id matched by `TabsComponent.activeTabId` and selection APIs. */
     @Input()
-    public id!: string;
+    public override id = '';
 
     /** Short label shown on the corresponding tab button. */
     @Input()

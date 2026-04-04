@@ -1,0 +1,11 @@
+// Shared layout utilities for Luna controls.
+
+/// Sizes an element to fill its containing block on both axes.
+@mixin fill-parent
+{
+    box-sizing: border-box;
+    height: 100%;
+    min-height: 0;
+    min-width: 0;
+    width: 100%;
+}

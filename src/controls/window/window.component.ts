@@ -27,10 +27,6 @@ export class WindowComponent
     @Input()
     public dragDisabled = false;
 
-    /** When true, the template shows a maximized layout and disables drag. */
-    @Input()
-    public isMaximized = false;
-
     /** Enables CDK scrolling on the window body region. */
     @Input()
     public scrollable = false;
@@ -109,6 +105,12 @@ export class WindowComponent
         if (changes['boundaryElement'])
         {
             this.updateDragBoundary();
+        }
+
+        // Clear the drag transform so the window fills from origin when maximized.
+        if (changes['isMaximized']?.currentValue === true && this.dragInstance)
+        {
+            this.dragInstance.reset();
         }
     }
 

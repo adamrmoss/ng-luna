@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, QueryList, ViewChildren, ContentChildren, ElementRef, AfterViewInit, AfterContentInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, QueryList, ViewChildren, ContentChildren, ElementRef, AfterViewInit, AfterContentInit, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { A11yModule, FocusKeyManager, FocusableOption, FocusOrigin } from '@angular/cdk/a11y';
 import { Platform } from '@angular/cdk/platform';
@@ -37,7 +37,7 @@ class TabButtonFocusable implements FocusableOption
     styleUrls: [ './tabs.component.scss' ]
 })
 export class TabsComponent
-    extends LunaControl implements AfterViewInit, AfterContentInit
+    extends LunaControl implements AfterViewInit, AfterContentInit, OnChanges
 {
     /** Id of the tab panel currently shown; defaults to the first tab when unset. */
     @Input()
@@ -89,8 +89,23 @@ export class TabsComponent
             this.activeTabId = this.tabs.first.id;
         }
 
-        // Align each tab's `active` flag with the current model.
+        // Align each tab's `active` flag and maximize state with the current model.
         this.updateActiveTab();
+        this.syncMaximized();
+    }
+
+    /**
+     * Propagates `isMaximized` to child tabs when the input changes.
+     *
+     * @param changes - Angular change record for bound inputs.
+     */
+    public ngOnChanges(changes: SimpleChanges): void
+    {
+        // Push the new maximized state down to each tab panel.
+        if (changes['isMaximized'])
+        {
+            this.syncMaximized();
+        }
     }
 
     /**
@@ -173,5 +188,13 @@ export class TabsComponent
         {
             tab.active = tab.id === this.activeTabId;
         });
+    }
+
+    /**
+     * Pushes `isMaximized` to every child tab so their panels can respond via CSS.
+     */
+    private syncMaximized(): void
+    {
+        this.tabs.forEach(tab => tab.isMaximized = this.isMaximized);
     }
 }

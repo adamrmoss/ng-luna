@@ -1,10 +1,16 @@
 // Fieldset border, legend, and disabled treatment.
+@use '../../theme/layout' as *;
 @use '../../theme/palette' as *;
 @use '../../theme/typography' as *;
 
 :host
 {
     display: contents;
+}
+
+:host(.luna-maximized) fieldset
+{
+    @include fill-parent;
 }
 
 fieldset

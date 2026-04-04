@@ -4,7 +4,7 @@
 @use 'ng-luna/theme/_palette.scss' as *;
 @use 'ng-luna/theme/_typography.scss' as *;
 
-#main-window ::ng-deep .window
+#main-window:not(.luna-maximized) ::ng-deep .window
 {
     max-width: 600px;
 }

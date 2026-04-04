@@ -82,6 +82,7 @@ export class AppComponent
 {
     public checkboxValue: boolean = false;
     public inputValue: string = '';
+    public isWindowMaximized = false;
     public modalResult: string = '';
     public progressValue: number = 50;
     public radioValue: string = 'option1';
@@ -246,6 +247,18 @@ export class AppComponent
                 this.showStatusBar = !this.showStatusBar;
                 break;
         }
+    }
+
+    /** Enters maximized state when the title bar maximize button is clicked. */
+    public onMaximize(): void
+    {
+        this.isWindowMaximized = true;
+    }
+
+    /** Restores windowed state when the title bar restore button is clicked. */
+    public onRestore(): void
+    {
+        this.isWindowMaximized = false;
     }
 
     public onAlert(): void
