@@ -202,3 +202,11 @@
 {
     @include fill-parent;
 }
+
+:host(.luna-maximized) .window-body
+{
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+}
