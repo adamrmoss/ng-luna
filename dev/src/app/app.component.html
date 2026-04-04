@@ -3,10 +3,11 @@
 <luna-window
     id="main-window"
     [isMaximized]="isWindowMaximized"
-    [showClose]="false"
+    [showClose]="true"
     [showHelp]="false"
     [showMinimize]="false"
     [title]="title"
+    (close)="onClose()"
     (maximize)="onMaximize()"
     (restore)="onRestore()">
     <luna-menu-bar>

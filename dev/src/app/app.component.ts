@@ -249,6 +249,12 @@ export class AppComponent
         }
     }
 
+    /** Navigates to the Wikipedia portal when the window close button is clicked. */
+    public onClose(): void
+    {
+        window.location.href = 'https://www.wikipedia.org';
+    }
+
     /** Enters maximized state when the title bar maximize button is clicked. */
     public onMaximize(): void
     {

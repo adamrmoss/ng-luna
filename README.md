@@ -198,6 +198,7 @@ All components extend the `LunaControl` base class, which provides the following
 - `id?: string` - Element ID
 - `name?: string` - Name attribute
 - `disabled: boolean` - Whether the control is disabled (default: `false`)
+- `isMaximized: boolean` - Expands the control to fill its containing block (default: `false`); adds the `luna-maximized` CSS class to the host element
 - `tabindex?: number` - Tab index for keyboard navigation
 - `autofocus: boolean` - Whether the control should be autofocused (default: `false`)
 
@@ -553,6 +554,8 @@ Each tab is a `luna-tab` with:
 
 Tab content is projected inside the `luna-tab` element.
 
+When `isMaximized` is set on `luna-tabs`, it is automatically propagated to every child `luna-tab` so their panels expand to fill available space.
+
 #### Keyboard Navigation
 
 - **Arrow Left/Right** - Navigate between tabs
@@ -629,12 +632,14 @@ The `luna-window` component provides a Windows XP-styled draggable window with t
 
 - `title?: string` - Window title text
 - `showMinimize: boolean` - Whether to show the minimize button (default: `true`)
-- `showMaximize: boolean` - Whether to show the maximize button (default: `true`)
+- `showMaximize: boolean` - Whether to show the maximize/restore button (default: `true`)
 - `showHelp: boolean` - Whether to show the help button (default: `false`)
 - `showClose: boolean` - Whether to show the close button (default: `true`)
-- `isMaximized: boolean` - Whether the window is currently maximized (default: `false`)
+- `dragDisabled: boolean` - Disables dragging independently of maximize state (default: `false`)
 - `boundaryElement?: string` - CSS selector for element that constrains window dragging
 - `scrollable: boolean` - Whether the window body should be scrollable (default: `false`)
+
+`isMaximized` is inherited from `LunaControl` (see common inputs above). When true, the window fills its containing block.
 
 #### Outputs
 
@@ -644,9 +649,11 @@ The `luna-window` component provides a Windows XP-styled draggable window with t
 - `help: EventEmitter<void>` - Emitted when the help button is clicked
 - `close: EventEmitter<void>` - Emitted when the close button is clicked
 
-#### Dragging
+#### Dragging and maximizing
 
-The window can be dragged by its title bar. Dragging is automatically disabled when the window is maximized.
+The window can be dragged by its title bar. Double-clicking the title bar toggles maximize/restore when `showMaximize` is `true`.
+
+When `isMaximized` is `true`, dragging is disabled and the window fills its containing block (the element that sizes the `luna-window` host). To fill the full viewport, ensure the host's ancestors have `height: 100%` down to `html`. Drag position is reset when maximizing so the window is flush with its container.
 
 #### Example
 
@@ -778,11 +785,11 @@ ng-luna/
 │   │   ├── _fonts.scss    # IBM Plex font imports
 │   │   ├── _global.scss
 │   │   ├── _graphics.scss
+│   │   ├── _layout.scss   # Layout mixins (fill-parent)
 │   │   ├── _palette.scss  # Color palette
 │   │   ├── _reset.scss
 │   │   ├── _typography.scss
-│   │   ├── _z-layers.scss
-│   │   └── ...
+│   │   └── _z-layers.scss
 │   └── public-api.ts      # Public API surface
 ├── ng-package.json        # ng-packagr configuration
 ├── package.json           # Package dependencies

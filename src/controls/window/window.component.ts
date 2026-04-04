@@ -147,6 +147,18 @@ export class WindowComponent
     }
 
     /**
+     * Maximizes or restores the window on title-bar double-click when permitted.
+     */
+    public onTitleBarDblClick(): void
+    {
+        // Only toggle when the maximize control is available to the user.
+        if (this.showMaximize)
+        {
+            this.onMaximize();
+        }
+    }
+
+    /**
      * Forwards help intent to the parent shell.
      */
     public onHelp(): void

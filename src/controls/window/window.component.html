@@ -9,7 +9,9 @@
     [attr.tabindex]="tabindex">
     <header
         cdkDragHandle
-        class="title-bar">
+        class="title-bar"
+        [class.is-draggable]="!isDragDisabled"
+        (dblclick)="onTitleBarDblClick()">
         <div class="title-bar-text">{{ title }}</div>
         <div class="title-bar-controls">
             <button

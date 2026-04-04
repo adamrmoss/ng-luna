@@ -195,6 +195,12 @@ export class TabsComponent
      */
     private syncMaximized(): void
     {
+        // tabs is undefined before ngAfterContentInit; skip the sync until it is ready.
+        if (!this.tabs)
+        {
+            return;
+        }
+
         this.tabs.forEach(tab => tab.isMaximized = this.isMaximized);
     }
 }
