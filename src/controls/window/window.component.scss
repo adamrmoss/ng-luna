@@ -1,3 +1,5 @@
+// Window chrome: title bar, controls, body, status bar, and CDK drag handle.
+@use '../../theme/layout' as *;
 @use '../../theme/palette' as *;
 @use '../../theme/fonts' as *;
 @use '../../theme/graphics' as *;
@@ -23,6 +25,16 @@
     flex-direction: column;
     overflow: hidden;
     padding: $spacing-xs - 1px;
+}
+
+.title-bar.is-draggable
+{
+    cursor: grab;
+}
+
+.window.cdk-drag-dragging .title-bar
+{
+    cursor: grabbing;
 }
 
 .title-bar
@@ -64,6 +76,7 @@
         background-repeat: no-repeat;
         border: none;
         box-shadow: none;
+        cursor: pointer;
         flex: 0 0 21px;
         height: 21px;
         transition: background 100ms;
@@ -177,4 +190,23 @@
     margin: 0;
     min-width: 0;
     padding: $spacing-xxs 1px;
+}
+
+:host(.luna-maximized)
+{
+    @include fill-parent;
+    display: block;
+}
+
+:host(.luna-maximized) .window
+{
+    @include fill-parent;
+}
+
+:host(.luna-maximized) .window-body
+{
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
 }

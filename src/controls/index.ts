@@ -1,3 +1,7 @@
+/**
+ * Barrel re-export for all public Luna control modules.
+ */
+
 export * from './button/button.component';
 export * from './checkbox/checkbox.component';
 export * from './fieldset/fieldset.component';
@@ -10,4 +14,9 @@ export * from './slider/slider.component';
 export * from './tabs/tab.component';
 export * from './tabs/tabs.component';
 export * from './textarea/textarea.component';
+export * from './tooltip';
 export * from './window/window.component';
+export * from './menu';
+export * from './menu-bar/menu-bar.component';
+export * from './modal';
+export * from './overlay';

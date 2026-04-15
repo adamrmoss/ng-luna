@@ -1,9 +1,22 @@
+// Dev app entry: pull Luna global theme and set page background for the gallery.
 @use '../../src/theme/global' as *;
 @use '../../src/theme/palette' as *;
+
+html,
+body
+{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 
 body
 {
     background: $silver;
-    margin: 0;
-    padding: 20px;
+}
+
+app-root
+{
+    display: block;
+    height: 100%;
 }

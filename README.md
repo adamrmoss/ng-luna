@@ -37,6 +37,35 @@ import { ButtonComponent } from 'ng-luna';
 })
 ```
 
+### Overlay (menu, modal, tooltip)
+
+Menu, modal, and tooltip use Angular CDK Overlay. To have their overlays render inside your app (with correct styling), add `LunaOverlayComponent` to your root template and provide `LunaOverlayContainer`:
+
+**1. Root template** (e.g. `app.component.html`):
+
+```html
+<luna-overlay></luna-overlay>
+<!-- rest of your app -->
+```
+
+**2. Root providers** (e.g. `main.ts`):
+
+```typescript
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { LunaOverlayContainer } from 'ng-luna';
+
+bootstrapApplication(AppComponent, {
+    providers: [
+        // ... other providers
+        { provide: OverlayContainer, useClass: LunaOverlayContainer }
+    ]
+});
+```
+
+**3. Import** `OverlayModule` from `@angular/cdk/overlay` and `OverlayComponent` from `ng-luna` where your root component is declared.
+
+Overlay styles (menu trigger, backdrop, modal pane, tooltip panel) are encapsulated in `LunaOverlayComponent`; you do not need to include any overlay theme files in global styles.
+
 ### Using Bundled Fonts
 
 The IBM Plex fonts are bundled with ng-luna and need to be copied to your application's assets folder.
@@ -169,6 +198,7 @@ All components extend the `LunaControl` base class, which provides the following
 - `id?: string` - Element ID
 - `name?: string` - Name attribute
 - `disabled: boolean` - Whether the control is disabled (default: `false`)
+- `isMaximized: boolean` - Expands the control to fill its containing block (default: `false`); adds the `luna-maximized` CSS class to the host element
 - `tabindex?: number` - Tab index for keyboard navigation
 - `autofocus: boolean` - Whether the control should be autofocused (default: `false`)
 
@@ -291,6 +321,78 @@ export class MyComponent {
 ```
 
 For more information on importing and using icons, see the [Using Icons](#using-icons) section above.
+
+### Menu Bar Component
+
+The `luna-menu-bar` component is a container that renders a horizontal menu bar (e.g. under a window title bar). It is a flex container; place one or more `luna-menu` components inside it. It extends `LunaControl` (optional `id`, `name`, `tabindex`, `autofocus`).
+
+**Selector:** `luna-menu-bar`
+
+#### Example
+
+```html
+<luna-menu-bar>
+    <luna-menu [items]="fileMenuItems" (itemSelect)="onFileMenuSelect($event)">
+        <button lunaMenuTrigger>File</button>
+    </luna-menu>
+    <luna-menu [items]="optionsMenuItems" (itemSelect)="onOptionsMenuSelect($event)">
+        <button lunaMenuTrigger>Options</button>
+    </luna-menu>
+</luna-menu-bar>
+```
+
+### Menu Component
+
+The `luna-menu` component provides a classic dropdown menu (DOS/Windows 9x style) with a trigger and a list of items. It supports checked items, hover highlighting, Up/Down to move the highlight within the list, closing with Escape, and Enter to activate the highlighted row. When the menu sits inside a **Menu Bar Component**, Left/Right move to the previous or next top-level menu in the bar (with wraparound).
+
+**Selector:** `luna-menu`
+
+**Trigger directive:** `lunaMenuTrigger` – attach to the element that opens the menu (e.g. a button).
+
+Use `LunaOverlayComponent` and `LunaOverlayContainer` as described in **Overlay (menu, modal, tooltip)** above so the menu overlay and trigger are styled. For a top-level menu bar, use the **Menu Bar Component** and place one or more `luna-menu` inside it.
+
+#### Inputs
+
+- `items: LunaMenuEntry[]` – Menu entries. Each item: `{ label: string, checked?: boolean, disabled?: boolean }`. Use `{ separator: true }` for a divider line.
+
+#### Outputs
+
+- `itemSelect: EventEmitter<LunaMenuItem | null>` – Emitted when an item is chosen (or `null` when the menu is closed without selection, e.g. via Escape or backdrop click).
+
+#### Example
+
+```html
+<luna-menu [items]="menuItems" (itemSelect)="onMenuSelect($event)">
+    <button lunaMenuTrigger>File</button>
+</luna-menu>
+```
+
+```typescript
+import { LunaMenuComponent, LunaMenuTriggerDirective } from 'ng-luna';
+import type { LunaMenuEntry, LunaMenuItem } from 'ng-luna';
+
+@Component({
+    imports: [ LunaMenuComponent, LunaMenuTriggerDirective ],
+    // ...
+})
+export class MyComponent {
+    menuItems: LunaMenuEntry[] = [
+        { label: 'New' },
+        { label: 'Open...' },
+        { separator: true },
+        { label: 'Save' },
+        { label: 'Save As...', checked: true },
+        { separator: true },
+        { label: 'Exit', disabled: true }
+    ];
+
+    onMenuSelect(item: LunaMenuItem | null): void {
+        if (item) {
+            console.log('Selected', item.label);
+        }
+    }
+}
+```
 
 ### Input Component
 
@@ -431,18 +533,28 @@ The `luna-slider` component provides a Windows XP-styled range slider that imple
 
 ### Tabs Component
 
-The `luna-tabs` component provides a Windows XP-styled tab interface with keyboard navigation support.
+The `luna-tabs` component provides a Windows XP-styled tab interface with keyboard navigation support. Use `luna-tab` children to define each tab and its content.
 
 **Selector:** `luna-tabs`
 
 #### Inputs
 
-- `tabs: Tab[]` - Array of tab objects with `id`, `label`, and optional `content`
-- `activeTabId?: string` - ID of the currently active tab
+- `activeTabId?: string` - ID of the currently active tab (defaults to the first tab when unset)
 
 #### Outputs
 
 - `tabChange: EventEmitter<string>` - Emitted when a tab is selected
+
+#### Child: luna-tab
+
+Each tab is a `luna-tab` with:
+
+- `id: string` - Unique tab ID
+- `label: string` - Tab button label
+
+Tab content is projected inside the `luna-tab` element.
+
+When `isMaximized` is set on `luna-tabs`, it is automatically propagated to every child `luna-tab` so their panels expand to fill available space.
 
 #### Keyboard Navigation
 
@@ -452,18 +564,24 @@ The `luna-tabs` component provides a Windows XP-styled tab interface with keyboa
 #### Example
 
 ```html
-<luna-tabs 
-    [tabs]="tabs"
+<luna-tabs
     [activeTabId]="activeTabId"
     (tabChange)="onTabChange($event)">
+    <luna-tab id="tab1" label="Tab 1">
+        Content for tab 1
+    </luna-tab>
+    <luna-tab id="tab2" label="Tab 2">
+        Content for tab 2
+    </luna-tab>
 </luna-tabs>
 ```
 
 ```typescript
-tabs: Tab[] = [
-    { id: 'tab1', label: 'Tab 1', content: 'Content 1' },
-    { id: 'tab2', label: 'Tab 2', content: 'Content 2' }
-];
+import { TabComponent, TabsComponent } from 'ng-luna';
+
+// In your component:
+activeTabId = 'tab1';
+onTabChange(tabId: string) { this.activeTabId = tabId; }
 ```
 
 ### Textarea Component
@@ -496,6 +614,14 @@ The `luna-textarea` component provides a Windows XP-styled textarea that impleme
 </luna-textarea>
 ```
 
+### Overlay Component
+
+The `luna-overlay` component is **infrastructure** for menu, modal, and tooltip overlays. Add it once to your root template (e.g. as a sibling to your main content) and provide `LunaOverlayContainer` so that overlay content is attached inside your app and styled correctly. See **Overlay (menu, modal, tooltip)** in the [Usage](#usage) section for setup. This component has no inputs or outputs.
+
+**Selector:** `luna-overlay`
+
+**Related:** `LunaOverlayContainer` – provide it in your root providers so CDK Overlay uses the overlay host element from `LunaOverlayComponent`.
+
 ### Window Component
 
 The `luna-window` component provides a Windows XP-styled draggable window with title bar and controls.
@@ -506,12 +632,14 @@ The `luna-window` component provides a Windows XP-styled draggable window with t
 
 - `title?: string` - Window title text
 - `showMinimize: boolean` - Whether to show the minimize button (default: `true`)
-- `showMaximize: boolean` - Whether to show the maximize button (default: `true`)
+- `showMaximize: boolean` - Whether to show the maximize/restore button (default: `true`)
 - `showHelp: boolean` - Whether to show the help button (default: `false`)
 - `showClose: boolean` - Whether to show the close button (default: `true`)
-- `isMaximized: boolean` - Whether the window is currently maximized (default: `false`)
+- `dragDisabled: boolean` - Disables dragging independently of maximize state (default: `false`)
 - `boundaryElement?: string` - CSS selector for element that constrains window dragging
 - `scrollable: boolean` - Whether the window body should be scrollable (default: `false`)
+
+`isMaximized` is inherited from `LunaControl` (see common inputs above). When true, the window fills its containing block.
 
 #### Outputs
 
@@ -521,9 +649,11 @@ The `luna-window` component provides a Windows XP-styled draggable window with t
 - `help: EventEmitter<void>` - Emitted when the help button is clicked
 - `close: EventEmitter<void>` - Emitted when the close button is clicked
 
-#### Dragging
+#### Dragging and maximizing
 
-The window can be dragged by its title bar. Dragging is automatically disabled when the window is maximized.
+The window can be dragged by its title bar. Double-clicking the title bar toggles maximize/restore when `showMaximize` is `true`.
+
+When `isMaximized` is `true`, dragging is disabled and the window fills its containing block (the element that sizes the `luna-window` host). To fill the full viewport, ensure the host's ancestors have `height: 100%` down to `html`. Drag position is reset when maximizing so the window is flush with its container.
 
 #### Example
 
@@ -609,6 +739,14 @@ For a detailed explanation of the library architecture, build process, and how t
 npm run build
 ```
 
+**Clean build** (use when the build fails, e.g. "Cannot find module 'rxjs'"):
+
+1. **Clean** – Remove `node_modules`, `dist`, and `.angular` if present. Optionally remove `package-lock.json` for a full dependency refresh.
+2. **Install** – `npm install`
+3. **Build** – `npm run build`
+
+The library uses `import { Observable } from 'rxjs'` like other Angular libraries. `rxjs` is in **peerDependencies** (for apps that use the library) and in **devDependencies** (for this repo's build). If the build still cannot find `rxjs`, confirm that `node_modules/rxjs` exists after `npm install`; if not, run `npm install rxjs --save-dev` and try again.
+
 The build process uses `ng-packagr` to:
 - Compile TypeScript to ESM modules
 - Generate type definitions
@@ -627,20 +765,31 @@ ng-luna/
 │   │   ├── button/        # Button component
 │   │   ├── checkbox/      # Checkbox component
 │   │   ├── fieldset/      # Fieldset component
+│   │   ├── icons/         # Icon component + Lucide icons
 │   │   ├── input/         # Input component
+│   │   ├── menu/          # Menu component + trigger, panel
+│   │   ├── menu-bar/      # Menu bar container
+│   │   ├── modal/         # Modal service + message box
+│   │   ├── overlay/       # Overlay component + container (menu/modal/tooltip host)
 │   │   ├── progress/      # Progress component
 │   │   ├── radio/         # Radio component
 │   │   ├── select/        # Select component
 │   │   ├── slider/        # Slider component
-│   │   ├── tabs/          # Tabs component
+│   │   ├── tabs/          # Tabs + tab components
 │   │   ├── textarea/      # Textarea component
+│   │   ├── tooltip/       # Tooltip directive + component
 │   │   ├── window/        # Window component
 │   │   └── index.ts       # Controls barrel export
-│   ├── theme/             # Theme files (fonts, styles)
+│   ├── theme/             # Theme (palette, typography, fonts, etc.)
+│   │   ├── _breakpoints.scss
 │   │   ├── _fonts.scss    # IBM Plex font imports
+│   │   ├── _global.scss
+│   │   ├── _graphics.scss
+│   │   ├── _layout.scss   # Layout mixins (fill-parent)
 │   │   ├── _palette.scss  # Color palette
-│   │   ├── _graphics.scss # SVG graphics
-│   │   └── _global.scss   # Global styles
+│   │   ├── _reset.scss
+│   │   ├── _typography.scss
+│   │   └── _z-layers.scss
 │   └── public-api.ts      # Public API surface
 ├── ng-package.json        # ng-packagr configuration
 ├── package.json           # Package dependencies

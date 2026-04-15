@@ -1,0 +1,7 @@
+// Centers the projected menu trigger within the optional bar layout.
+:host
+{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}

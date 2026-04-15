@@ -1,0 +1,42 @@
+<!-- Focus-trapped dialog shell: title, message, optional prompt field, footer actions. -->
+<div
+    class="message-box"
+    cdkTrapFocus
+    [cdkTrapFocusAutoCapture]="true"
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-labelledby]="messageBoxTitle ? 'message-box-title-heading' : null"
+    aria-describedby="message-box-text">
+    <header
+        *ngIf="messageBoxTitle"
+        class="message-box-title">
+        <h2
+            class="message-box-title-heading"
+            id="message-box-title-heading">{{ messageBoxTitle }}</h2>
+    </header>
+    <section class="message-box-content">
+        <p
+            class="message-box-text"
+            id="message-box-text">{{ data.message }}</p>
+        <div
+            *ngIf="data.type === 'prompt'"
+            class="message-box-prompt">
+            <luna-input
+                [(ngModel)]="promptValue"
+                [placeholder]="promptPlaceholder"
+                type="text">
+            </luna-input>
+        </div>
+    </section>
+    <footer class="message-box-buttons">
+        <luna-button
+            *ngIf="data.type === 'confirm' || data.type === 'prompt'"
+            (click)="onCancel()">
+            {{ cancelLabel }}
+        </luna-button>
+        <luna-button
+            (click)="onOk()">
+            {{ okLabel }}
+        </luna-button>
+    </footer>
+</div>

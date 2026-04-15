@@ -1,3 +1,4 @@
+<!-- Draggable window frame: title bar controls, scrollable or static body, status slot. -->
 <div
     [attr.autofocus]="autofocus || null"
     [cdkDragDisabled]="isDragDisabled"
@@ -6,9 +7,11 @@
     [attr.id]="id"
     [attr.name]="name"
     [attr.tabindex]="tabindex">
-    <div
+    <header
         cdkDragHandle
-        class="title-bar">
+        class="title-bar"
+        [class.is-draggable]="!isDragDisabled"
+        (dblclick)="onTitleBarDblClick()">
         <div class="title-bar-text">{{ title }}</div>
         <div class="title-bar-controls">
             <button
@@ -28,20 +31,20 @@
                 aria-label="Close"
                 (click)="onClose()"></button>
         </div>
-    </div>
+    </header>
     <ng-container *ngIf="scrollable; else notScrollable">
-        <div
+        <main
             cdkScrollable
             class="window-body scrollable">
             <ng-content></ng-content>
-        </div>
+        </main>
     </ng-container>
     <ng-template #notScrollable>
-        <div class="window-body">
+        <main class="window-body">
             <ng-content></ng-content>
-        </div>
+        </main>
     </ng-template>
-    <div class="status-bar">
+    <footer class="status-bar">
         <ng-content select="[slot='status']"></ng-content>
-    </div>
+    </footer>
 </div>

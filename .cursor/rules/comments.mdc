@@ -1,0 +1,63 @@
+---
+description: In-source comments and TSDoc (not READMEs or docs folder markdown)
+alwaysApply: true
+---
+
+# Comments and source docblocks
+
+This rule covers **comments and `/** */` API docblocks inside source files** only. For **`README.md` files**, the **`docs/`** folder, and other **project markdown guides**, use the **Project documentation** rule (`documentation.mdc`).
+
+Comments exist to explain the **code** for future readers of that source. They should be concise, action-oriented, and **on their own line** (never inline).
+
+**Concise by default** — summaries should be short (often one sentence). Do not pad with repetition or obvious restatements of the identifier name. Put non-essential detail in `@remarks` or in brief `//` section headers next to the logic, not in a long summary paragraph.
+
+**Concise does not mean fewer docblocks** — shortening wording must not remove required TSDoc. Every public/exported element still gets its own `/** … */` block; tighten the text inside it, do not delete the block to “clean up” verbosity.
+
+## General principles
+
+- Comments document the codebase, not the developer (use chat for that)
+- **Never** use comments to convey information to developers during implementation (e.g. “TODO for reviewer”, “changed because…” belongs in chat or issue tracker)
+- Comments always go on their own line, never inline
+- **Method bodies (`//`)** — See [TypeScript: method and function bodies](#method-and-function-bodies) below; that section is **required reading** for TS/TSX. Do not treat TSDoc on the signature as a substitute for body comments when the implementation has multiple steps, branches, or non-obvious ordering.
+- **TSDoc summaries** (file, class, method, function) should be **action-oriented**, starting with verbs (e.g. “Loads…”, “Returns…”, “Subscribes…”)
+
+## When to comment
+
+- **File / module level**: top-of-file or module-level doc explaining purpose and how the unit is used
+- **Classes**: doc describing responsibility and notable patterns
+- **Public APIs** (exported types, public class members, public functions): full docblocks as below — **required for every such element**, not only types and classes
+- **Complex algorithms or non-obvious logic**: enough for a maintainer to follow without re-deriving intent
+
+## TypeScript and TSX (`*.ts`, `*.tsx`)
+
+Use **[TSDoc](https://tsdoc.org/)** (Microsoft’s convention; extends JSDoc; used by VS Code, API Extractor, TypeDoc).
+
+### Method and function bodies
+
+Applies to **all** methods and functions (including `private` members and spec helpers), not only exported APIs.
+
+- **TSDoc** documents the *contract* (what callers may rely on). **Own-line `//` comments** document the *procedure* (how the body achieves it).
+- Before **each logical block**—guards and early returns, setup, main computation, I/O, each meaningful branch, loops, and cleanup—add a **brief `//` section header** (short phrase, not a paragraph) so readers can scan the control flow.
+- **Every distinct logical operation** (validation, computation, I/O, branching) that is not a single trivial line **must** be preceded by such a comment or header.
+- For **non-trivial or multi-step algorithms** (state updates, menus, parsing, geometry, Rx pipelines, async sequencing), add **step-level `//` notes** where needed so a maintainer can follow **why** steps occur in that order without re-deriving the algorithm from names alone.
+- Stay concise: one line per block or step is usually enough. Do not move procedural explanation into TSDoc summaries just to avoid body comments.
+
+### TSDoc (signatures and public API)
+
+- Use `/** ... */` (block with two asterisks) for every **exported** type, interface, type alias, class, enum, enum member, and **every `public` method, property, getter, setter, and constructor** on classes. Public-facing surface must not rely on a class-level doc alone.
+- The text before the first block tag is the **summary**; keep it **brief** and action-oriented
+- Use `@param paramName - description` for each parameter
+- Use `@returns description` for return values (omit for `void`)
+- Optional: `@remarks` for longer documentation; `@example` for usage examples
+
+Private members: document when behavior is non-obvious; otherwise minimal or no docblock is acceptable.
+
+## HTML and SCSS
+
+- Prefer documenting structure or non-obvious layout choices with short comments on their own line
+- Do not use comments as a substitute for clear markup or class names
+
+## Relationship to other rules
+
+- **Project documentation** (READMEs, `docs/*.md`, guides): `documentation.mdc`
+- Executable snippets (SQL, scripts) belong in files, not only in chat: workflow and core rules

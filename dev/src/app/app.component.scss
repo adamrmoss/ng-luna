@@ -1,9 +1,10 @@
+// Gallery-only layout: window width, responsive control groups, and deep demo hooks.
 @use 'sass:map';
 @use 'ng-luna/theme/_breakpoints.scss' as *;
 @use 'ng-luna/theme/_palette.scss' as *;
 @use 'ng-luna/theme/_typography.scss' as *;
 
-#main-window ::ng-deep .window
+#main-window:not(.luna-maximized) ::ng-deep .window
 {
     max-width: 600px;
 }
@@ -16,12 +17,6 @@
     {
         margin-right: $spacing-xs;
     }
-
-    luna-radio
-    {
-        display: flex;
-        margin-bottom: $spacing-xs;
-    }
 }
 
 .icon-row
@@ -29,6 +24,9 @@
     align-items: flex-end;
     display: flex;
     gap: $spacing-md;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 
     .icon-item
     {
@@ -44,6 +42,9 @@
     display: grid;
     gap: $spacing-sm;
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    list-style: none;
+    margin: 0;
+    padding: 0;
 
     .icon-showcase
     {

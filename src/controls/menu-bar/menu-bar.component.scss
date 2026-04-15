@@ -1,0 +1,25 @@
+// Menubar row alignment and trigger spacing.
+@use '../../theme/palette' as *;
+@use '../../theme/typography' as *;
+
+:host
+{
+    display: block;
+}
+
+nav[role="menubar"]
+{
+    align-items: stretch;
+    background: $gray-light-warm;
+    display: flex;
+    flex-shrink: 0;
+    gap: 0;
+    justify-content: flex-start;
+    margin-bottom: $spacing-sm;
+    padding: 0;
+
+    ::ng-deep luna-menu
+    {
+        display: flex;
+    }
+}

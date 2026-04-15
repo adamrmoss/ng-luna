@@ -5,6 +5,9 @@ import { Platform } from '@angular/cdk/platform';
 
 import { LunaControl } from '../luna-control';
 
+/**
+ * Multi-line text control with `ControlValueAccessor`, focus monitoring, and optional a11y blur announcements.
+ */
 @Component({
     selector: 'luna-textarea',
     standalone: true,
@@ -19,30 +22,44 @@ import { LunaControl } from '../luna-control';
 export class TextareaComponent
     extends LunaControl implements ControlValueAccessor, AfterViewInit, OnDestroy
 {
+    /** Sets the host `cols` attribute when bound. */
     @Input()
     public cols?: number;
 
+    /** Sets the host `placeholder` attribute when bound. */
     @Input()
     public placeholder?: string;
 
+    /** Sets the host `readonly` property when true. */
     @Input()
     public readonly = false;
 
+    /** Sets the host `rows` attribute when bound. */
     @Input()
     public rows?: number;
 
-    @Output()
-    public change = new EventEmitter<string>();
-
+    /** Emits when the field loses focus. */
     @Output()
     public blur = new EventEmitter<FocusEvent>();
 
+    /** Emits on each `input` event with the current string value. */
+    @Output()
+    public change = new EventEmitter<string>();
+
+    /** Current value mirrored from the native textarea and the form model. */
     public value = '';
 
     private onChange: (value: string) => void = () => {};
+
     private onTouched: () => void = () => {};
 
-    constructor(
+    /**
+     * @param elementRef - Host wrapper used for focus monitoring.
+     * @param focusMonitor - CDK focus monitor for keyboard focus visuals.
+     * @param liveAnnouncer - Announces character count on blur when `id` is set.
+     * @param platform - CDK platform detection for optional behavior.
+     */
+    public constructor(
         private elementRef: ElementRef<HTMLElement>,
         private focusMonitor: FocusMonitor,
         private liveAnnouncer: LiveAnnouncer,
@@ -52,52 +69,100 @@ export class TextareaComponent
         super();
     }
 
+    /**
+     * Starts monitoring the host for focus state.
+     */
     public ngAfterViewInit(): void
     {
+        // Register the host so a11y focus classes stay in sync with keyboard use.
         this.focusMonitor.monitor(this.elementRef);
     }
 
+    /**
+     * Stops focus monitoring when the view is destroyed.
+     */
     public ngOnDestroy(): void
     {
+        // Tear down CDK monitoring tied to this host element.
         this.focusMonitor.stopMonitoring(this.elementRef);
     }
 
+    /**
+     * Pushes the native value into the form API and the `change` output.
+     *
+     * @param event - Native `input` event from the host.
+     */
     public onTextareaChange(event: Event): void
     {
+        // Treat the event target as the source of truth for the string model.
         const target = event.target as HTMLTextAreaElement;
         this.value = target.value;
+
+        // Keep Angular forms and template subscribers aligned with edits.
         this.onChange(this.value);
         this.change.emit(this.value);
     }
 
+    /**
+     * Marks the control touched, optionally announces length, and emits `blur`.
+     *
+     * @param event - Native `blur` event from the host.
+     */
     public onTextareaBlur(event: FocusEvent): void
     {
+        // Satisfy the CVA touch contract for touched/dirty state.
         this.onTouched();
+
+        // Offer a polite summary when both an id and content exist.
         if (this.value && this.id)
         {
             const charCount = this.value.length;
             this.liveAnnouncer.announce(`${this.id} contains ${charCount} characters`, 'polite');
         }
+
+        // Allow parents to run validation or save-on-blur flows.
         this.blur.emit(event);
     }
 
+    /**
+     * Writes the bound form value into the view model.
+     *
+     * @param value - Incoming string from the form control.
+     */
     public writeValue(value: string): void
     {
+        // Normalize nullish writes so the template always sees a string.
         this.value = value ?? '';
     }
 
+    /**
+     * Registers the callback Angular forms invoke when the model changes.
+     *
+     * @param fn - Handler supplied by the forms API.
+     */
     public registerOnChange(fn: (value: string) => void): void
     {
         this.onChange = fn;
     }
 
+    /**
+     * Registers the callback Angular forms invoke on blur/touch.
+     *
+     * @param fn - Handler supplied by the forms API.
+     */
     public registerOnTouched(fn: () => void): void
     {
         this.onTouched = fn;
     }
 
+    /**
+     * Applies disabled state from the form control to the component input.
+     *
+     * @param isDisabled - Whether the control should be disabled.
+     */
     public setDisabledState(isDisabled: boolean): void
     {
+        // Keep `LunaControl.disabled` in sync with the CVA contract.
         this.disabled = isDisabled;
     }
 }

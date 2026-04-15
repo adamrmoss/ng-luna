@@ -1,3 +1,5 @@
+// Multiline field sizing and borders consistent with `luna-input`.
+@use '../../theme/layout' as *;
 @use '../../theme/palette' as *;
 @use '../../theme/fonts' as *;
 @use '../../theme/typography' as *;
@@ -5,6 +7,11 @@
 :host
 {
     display: contents;
+}
+
+:host(.luna-maximized) textarea
+{
+    @include fill-parent;
 }
 
 textarea

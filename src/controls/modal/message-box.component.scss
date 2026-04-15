@@ -1,0 +1,92 @@
+// Message box dialog frame, title, body, prompt field, and footer buttons.
+@use '../../theme/palette' as *;
+@use '../../theme/fonts' as *;
+@use '../../theme/typography' as *;
+
+:host
+{
+    display: block;
+}
+
+.message-box
+{
+    background: $beige-light;
+    border: 1px solid $navy;
+    border-radius: $border-radius-base;
+    box-shadow:
+        inset -1px -1px $navy-darkest,
+        inset 1px 1px $blue-bright-lighter,
+        inset -2px -2px $navy-dark,
+        inset 2px 2px $blue-sky;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    padding: 0;
+}
+
+.message-box-title
+{
+    background: $blue-bright;
+    border-radius: $border-radius-base $border-radius-base 0 0;
+    color: $white;
+    font-family: $font-sans;
+    font-size: $font-size-xs;
+    font-weight: 600;
+    padding: $spacing-xs $spacing-md;
+    text-shadow: 1px 1px $navy-darker;
+
+    .message-box-title-heading
+    {
+        font-size: inherit;
+        font-weight: inherit;
+        margin: 0;
+    }
+}
+
+.message-box-content
+{
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-width: 0;
+    padding: $spacing-md;
+    padding-top: $spacing-sm;
+}
+
+.message-box-text
+{
+    font-family: $font-sans;
+    font-size: $font-size-sm;
+    line-height: $line-height-base;
+    margin: 0;
+}
+
+.message-box-prompt
+{
+    display: flex;
+    flex: 1 1 auto;
+    margin-top: $spacing-sm;
+    min-width: 0;
+
+    ::ng-deep input
+    {
+        box-sizing: border-box;
+        flex: 1 1 auto;
+        min-width: 0;
+        width: 100%;
+    }
+}
+
+.message-box-buttons
+{
+    display: flex;
+    gap: $spacing-md;
+    justify-content: flex-end;
+    padding: 0 $spacing-md $spacing-md;
+
+    &.message-box-buttons--space-between
+    {
+        justify-content: space-between;
+    }
+}

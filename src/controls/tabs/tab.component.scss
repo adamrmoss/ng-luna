@@ -1,3 +1,5 @@
+// Tab panel host: hides inactive panels while preserving layout hooks.
+@use '../../theme/layout' as *;
 @use '../../theme/palette' as *;
 @use '../../theme/typography' as *;
 
@@ -13,4 +15,20 @@
     border-left-color: $gray-light;
     border-top-color: $gray-light;
     padding: $spacing-sm;
+}
+
+:host(.luna-maximized) [role="tabpanel"]:not([hidden])
+{
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+}
+
+:host(.luna-maximized) [role="tabpanel"]:not([hidden]) > *
+{
+    flex: 1 1 auto;
+    min-height: 0;
+    min-width: 0;
 }

@@ -1,0 +1,17 @@
+---
+description: SCSS structure and alphabetical property order within blocks
+globs: "**/*.scss"
+alwaysApply: false
+---
+
+# SCSS formatting
+
+- Put the opening **`{`** on a **new line** after the selector (same brace style as TypeScript class bodies in this project)
+
+# SCSS property ordering
+
+- **All CSS/SCSS properties must be alphabetized** within each selector block
+- Sort by property name (e.g., `align-items`, `background-color`, `border`, `color`, `display`, `font-size`)
+- Applies to all selector blocks, including nested selectors, pseudo-classes (`:hover`, `:active`, etc.), and pseudo-elements (`::placeholder`, etc.)
+- Example: `{ align-items: center; background-color: $navy; display: flex; }` correct
+- Example: `{ display: flex; align-items: center; background-color: $navy; }` incorrect

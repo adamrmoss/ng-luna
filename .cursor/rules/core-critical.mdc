@@ -1,0 +1,24 @@
+---
+description: Critical forbidden and required actions for every response
+alwaysApply: true
+---
+
+# Critical rules — verify before every response
+
+## Forbidden actions
+
+- Never run shell commands or terminal commands (user has sole discretion)
+- Never make code changes without explicit user request
+- Never assume work is complete without verification
+- Never create generic folders like `controllers/`, `views/`, `services/`
+- Follow **`comments.mdc`** for in-source comments and TSDoc; **`documentation.mdc`** for READMEs and `docs/`
+- Never include HTML/SCSS directly in TypeScript components (use separate files)
+
+## Required actions
+
+- For checklist-backed multi-step work, follow **`checklist-discipline.mdc`**: one row at a time (read → fix → `[x]` before the next row); if the user says checklist items were missed, recover from the first `[ ]` in order without rebuilding the list
+- Always answer questions directly before taking action
+- Always verify changes by reading the actual file output
+- Always use standalone Angular components with separate template/stylesheet files
+- Always use explicit `this.` where applicable for instance members
+- Always use braces `{ }` for all control structures, even single-line blocks

@@ -1,6 +1,6 @@
 {
     "name": "ng-luna",
-    "version": "0.4.2",
+    "version": "0.7.3",
     "description": "An Angular component library inspired by Windows XP aesthetics, built with IBM Plex fonts",
     "author": {
         "name": "Adam R Moss",
@@ -9,7 +9,7 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/adamrmoss/ng-luna.git"
+        "url": "git+https://github.com/adamrmoss/ng-luna.git"
     },
     "homepage": "https://github.com/adamrmoss/ng-luna",
     "keywords": [
@@ -30,7 +30,8 @@
     "peerDependencies": {
         "@angular/common": "19.x.x",
         "@angular/core": "19.x.x",
-        "@angular/forms": "19.x.x"
+        "@angular/forms": "19.x.x",
+        "rxjs": "7.x.x"
     },
     "dependencies": {
         "@angular/cdk": "19.x.x",
@@ -39,6 +40,7 @@
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "19.x.x",
+        "rxjs": "7.x.x",
         "@angular/cli": "19.x.x",
         "@angular/animations": "19.x.x",
         "@angular/platform-browser": "19.x.x",

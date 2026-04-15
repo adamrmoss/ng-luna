@@ -9,42 +9,17 @@
         },
         {
             "input": "./node_modules/@ibm/plex",
-            "glob": "IBM-Plex-Mono/**/*",
+            "glob": "IBM-Plex-*/fonts/complete/woff2/**/*",
             "output": "/assets/fonts"
         },
         {
             "input": "./node_modules/@ibm/plex",
-            "glob": "IBM-Plex-Sans/**/*",
-            "output": "/assets/fonts"
-        },
-        {
-            "input": "./node_modules/@ibm/plex",
-            "glob": "IBM-Plex-Serif/**/*",
+            "glob": "IBM-Plex-*/fonts/complete/woff/**/*",
             "output": "/assets/fonts"
         },
         {
             "input": "./src/theme",
-            "glob": "_breakpoints.scss",
-            "output": "/theme"
-        },
-        {
-            "input": "./src/theme",
-            "glob": "_fonts.scss",
-            "output": "/theme"
-        },
-        {
-            "input": "./src/theme",
-            "glob": "_palette.scss",
-            "output": "/theme"
-        },
-        {
-            "input": "./src/theme",
-            "glob": "_reset.scss",
-            "output": "/theme"
-        },
-        {
-            "input": "./src/theme",
-            "glob": "_z-layers.scss",
+            "glob": "_*.scss",
             "output": "/theme"
         }
     ],

@@ -1,0 +1,24 @@
+// Tooltip panel text and fade class used by the directive timing.
+@use '../../theme/palette' as *;
+@use '../../theme/fonts' as *;
+@use '../../theme/typography' as *;
+
+:host
+{
+    background: $cream;
+    border: 1px solid $gray-dark;
+    border-radius: $border-radius-sm;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+    display: block;
+}
+
+.luna-tooltip-text
+{
+    display: block;
+    font-family: $font-sans;
+    font-size: $font-size-xs;
+    line-height: $line-height-tight;
+    padding: $spacing-xs $spacing-sm;
+    white-space: nowrap;
+}

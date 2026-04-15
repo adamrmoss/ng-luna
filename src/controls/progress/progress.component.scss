@@ -1,3 +1,5 @@
+// Native progress bar skinned to Luna bevel and fill colors.
+@use '../../theme/layout' as *;
 @use '../../theme/palette' as *;
 
 :host
@@ -16,6 +18,11 @@
     {
         transform: translateX(100%);
     }
+}
+
+:host(.luna-maximized) progress
+{
+    @include fill-parent;
 }
 
 progress
