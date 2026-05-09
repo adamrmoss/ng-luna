@@ -16,7 +16,7 @@
     margin: 0;
     min-width: 10rem;
     outline: none;
-    padding: 2px 0;
+    padding: 0;
 }
 
 .luna-menu-item-checkbox
@@ -59,7 +59,6 @@
 {
     background: $blue-steel-dark;
     height: 1px;
-    margin: $spacing-xs 0;
     overflow: hidden;
     padding: 0;
 }
