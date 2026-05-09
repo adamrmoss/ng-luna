@@ -1,29 +1,33 @@
-// Luna palette: navy/blue family, neutrals, and semantic accents for controls.
+// Black
 $black: #000000;
+
+// Navy
 $navy-darkest: #00138c;
 $navy-darker: #0f1089;
 $navy-dark: #001ea0;
 $navy: #003c74;
+
+// Chrome blues (title bar, highlights)
 $blue-royal: #0046d5;
 $blue-bright-darkest: #003bda;
-$blue-bright-darker: #003dd7;
 $blue-bright-dark: #0050ee;
 $blue-bright: #0053ee;
-$blue-bright-medium: #0066ff;
-$blue-bright-light: #005bff;
 $blue-bright-lighter: #0831d9;
 $blue-bright-lightest: #0855dd;
-$blue-sky-dark: #0997ff;
 $blue-sky: #166aee;
+
+// Steel blues (borders, form chrome)
 $blue-steel-dark: #1d5281;
 $blue-steel: #7f9db9;
 $blue-steel-light: #91a7b4;
+
+// Pastel blues (fills, pressed states)
 $blue: #89ade4;
 $blue-medium: #98b8ea;
 $blue-light: #bcd4f6;
 $blue-lightest: #cee7ff;
-$blue-gray: #919b9c;
 
+// Green (progress, success tone)
 $green-darkest: #155d16;
 $green-dark: #2b882c;
 $green: #4cda50;
@@ -32,7 +36,7 @@ $green-lighter: #7be47d;
 $green-lightest: #8fe791;
 $green-mint: #acedad;
 
-$orange-dark: #e68b2c;
+// Warm gold and yellow
 $orange: #e5a01a;
 $gold: #f8b636;
 $yellow-gold: #ffc73c;
@@ -41,23 +45,32 @@ $yellow-light: #fdd889;
 $yellow-cream: #fedf9c;
 $cream-light: #fff0cf;
 
+// Earth brown
+$earth-brown: #502a20;
+
+// Red (accent, danger tone)
+$red: #c42d32;
+
+// Gray (cool neutrals)
 $gray-darkest: #686868;
 $gray-dark: #9d9c99;
 $gray-darker: #b0b0a7;
 $silver: #c0c0c0;
 $gray-medium: #cdcac3;
+$gray-light-warm: #dcdcd7;
+$gray-light: #e3e3db;
+$gray-lighter: #e5e5de;
+$gray-lightest: #f2f2f1;
+
+// Beige and cream (warm neutrals)
 $beige-tan: #cac8bb;
 $beige-khaki: #d0d0bf;
 $beige-medium: #d8d0c4;
-$gray-light-warm: #dcdcd7;
 $beige-pale: #e3e1d2;
-$gray-light: #e3e3db;
-$gray-lighter: #e5e5de;
 $beige-lighter: #ecebe4;
 $beige-light: #ecebe5;
 $cream-pale: #f0f0ea;
-$gray-lightest: #f2f2f1;
 $cream: #f3f2ea;
-$off-white-warm: #fafaf9;
-$off-white: #fcfcfe;
+
+// White
 $white: #ffffff;
