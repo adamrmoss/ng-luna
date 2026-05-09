@@ -1,4 +1,4 @@
-<!-- Draggable window frame: title bar controls, scrollable or static body, status slot. -->
+<!-- Draggable window frame: title bar controls and scrollable or static body. -->
 <div
     [attr.autofocus]="autofocus || null"
     [cdkDragDisabled]="isDragDisabled"
@@ -7,44 +7,43 @@
     [attr.id]="id"
     [attr.name]="name"
     [attr.tabindex]="tabindex">
-    <header
-        cdkDragHandle
-        class="title-bar"
-        [class.is-draggable]="!isDragDisabled"
-        (dblclick)="onTitleBarDblClick()">
-        <div class="title-bar-text">{{ title }}</div>
-        <div class="title-bar-controls">
-            <button
-                *ngIf="showMinimize"
-                aria-label="Minimize"
-                (click)="onMinimize()"></button>
-            <button
-                *ngIf="showMaximize"
-                [attr.aria-label]="isMaximized ? 'Restore' : 'Maximize'"
-                (click)="onMaximize()"></button>
-            <button
-                *ngIf="showHelp"
-                aria-label="Help"
-                (click)="onHelp()"></button>
-            <button
-                *ngIf="showClose"
-                aria-label="Close"
-                (click)="onClose()"></button>
-        </div>
-    </header>
-    <ng-container *ngIf="scrollable; else notScrollable">
-        <main
-            cdkScrollable
-            class="window-body scrollable">
-            <ng-content></ng-content>
-        </main>
-    </ng-container>
-    <ng-template #notScrollable>
-        <main class="window-body">
-            <ng-content></ng-content>
-        </main>
-    </ng-template>
-    <footer class="status-bar">
-        <ng-content select="[slot='status']"></ng-content>
-    </footer>
+    <div class="window-inner">
+        <header
+            cdkDragHandle
+            class="title-bar"
+            [class.is-draggable]="!isDragDisabled"
+            (dblclick)="onTitleBarDblClick()">
+            <div class="title-bar-text">{{ title }}</div>
+            <div class="title-bar-controls">
+                <button
+                    *ngIf="showMinimize"
+                    aria-label="Minimize"
+                    (click)="onMinimize()"></button>
+                <button
+                    *ngIf="showMaximize"
+                    [attr.aria-label]="isMaximized ? 'Restore' : 'Maximize'"
+                    (click)="onMaximize()"></button>
+                <button
+                    *ngIf="showHelp"
+                    aria-label="Help"
+                    (click)="onHelp()"></button>
+                <button
+                    *ngIf="showClose"
+                    aria-label="Close"
+                    (click)="onClose()"></button>
+            </div>
+        </header>
+        <ng-container *ngIf="scrollable; else notScrollable">
+            <main
+                cdkScrollable
+                class="window-body scrollable">
+                <ng-content></ng-content>
+            </main>
+        </ng-container>
+        <ng-template #notScrollable>
+            <main class="window-body">
+                <ng-content></ng-content>
+            </main>
+        </ng-template>
+    </div>
 </div>

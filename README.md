@@ -666,9 +666,7 @@ When `isMaximized` is `true`, dragging is disabled and the window fills its cont
     (minimize)="onMinimize()"
     (maximize)="onMaximize()"
     (close)="onClose()">
-    <div class="window-body">
-        Window content goes here
-    </div>
+    <p>Window content goes here</p>
 </luna-window>
 ```
 
