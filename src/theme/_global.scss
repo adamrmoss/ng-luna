@@ -45,13 +45,14 @@
 
 ::-webkit-scrollbar-thumb
 {
-    background-color: #c8d6fb;
+    background-color: $blue-light;
     background-position: center;
     background-repeat: no-repeat;
     background-size: 7px;
     border: 1px solid $white;
     border-radius: 2px;
-    box-shadow: inset -3px 0 #bad1fc, inset 1px 1px #b7caf5;
+    box-shadow: inset -3px 0 $blue-lightest,
+                inset 1px 1px $blue-medium;
 
     &:vertical
     {
