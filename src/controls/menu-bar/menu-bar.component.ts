@@ -9,7 +9,7 @@ import { LunaControl } from '../luna-control';
     selector: 'luna-menu-bar',
     standalone: true,
     templateUrl: './menu-bar.component.html',
-    styleUrls: [ './menu-bar.component.scss' ]
+    styleUrls: [ './menu-bar.component.scss' ],
 })
 export class MenuBarComponent extends LunaControl
 {

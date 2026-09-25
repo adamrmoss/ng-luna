@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+
 import type { LunaMenuComponent } from './menu.component';
 
 /**
  * Ensures at most one `LunaMenuComponent` overlay stays open at a time.
  */
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class LunaMenuCoordinatorService
 {

@@ -1,8 +1,8 @@
+import { FocusMonitor, LiveAnnouncer } from '@angular/cdk/a11y';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { Platform } from '@angular/cdk/platform';
 import { Component, Input, Output, EventEmitter, forwardRef, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { FocusMonitor, LiveAnnouncer } from '@angular/cdk/a11y';
-import { Platform } from '@angular/cdk/platform';
 
 import { LunaControl } from '../luna-control';
 
@@ -17,8 +17,8 @@ import { LunaControl } from '../luna-control';
     providers: [{
         provide: NG_VALUE_ACCESSOR,
         useExisting: forwardRef(() => CheckboxComponent),
-        multi: true
-    }]
+        multi: true,
+    }],
 })
 export class CheckboxComponent
     extends LunaControl implements ControlValueAccessor, AfterViewInit, OnDestroy

@@ -18,7 +18,8 @@ This rule covers **markdown and other authored documentation files** that live b
 
 - **Em dashes (—)**: use sparingly. When you do use one, put **spaces on both sides**: ` word — word `.
 - **Prefer** a **colon**, **comma**, **semicolon**, or **ellipsis** (…) when one of those carries the pause or break clearly.
-- **En dashes (–)** are for **ranges and spans** only (versions 19–21, items 1–8). Do not substitute an em dash for a range en dash.
+- **En dashes (–)** mark **ranges and spans** (versions 19–21, items 1–8). They are also fine in **semi-tabular lines**: a label, a space, `–`, a space, then a short description. That includes definition-style rows, API field lines, and numbered step labels.
+- An em dash is not a substitute for a range en dash or for that semi-tabular separator.
 
 Applies to READMEs and `docs/`. In-source comments follow `comments.mdc`.
 

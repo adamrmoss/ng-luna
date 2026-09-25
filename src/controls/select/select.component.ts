@@ -1,8 +1,8 @@
-import { Component, Output, EventEmitter, forwardRef, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FocusMonitor, LiveAnnouncer } from '@angular/cdk/a11y';
 import { Platform } from '@angular/cdk/platform';
+import { CommonModule } from '@angular/common';
+import { Component, Output, EventEmitter, forwardRef, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { LunaControl } from '../luna-control';
 
@@ -18,8 +18,8 @@ import { LunaControl } from '../luna-control';
     providers: [{
         provide: NG_VALUE_ACCESSOR,
         useExisting: forwardRef(() => SelectComponent),
-        multi: true
-    }]
+        multi: true,
+    }],
 })
 export class SelectComponent
     extends LunaControl implements ControlValueAccessor, AfterViewInit, OnDestroy

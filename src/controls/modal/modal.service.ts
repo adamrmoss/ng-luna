@@ -1,17 +1,17 @@
-import { Injectable, Injector, inject, Type, Provider } from '@angular/core';
 import { Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
+import { Injectable, Injector, inject, Type, Provider } from '@angular/core';
 import { EMPTY, Observable } from 'rxjs';
 
-import { LunaModalRef } from './modal-ref';
-import { MODAL_DATA } from './modal-data';
-import { MessageBoxComponent } from './message-box.component';
 import {
     MESSAGE_BOX_DATA,
     MessageBoxData,
     MessageBoxOptions,
-    MessageBoxReturnData
+    MessageBoxReturnData,
 } from './message-box-data';
+import { MessageBoxComponent } from './message-box.component';
+import { MODAL_DATA } from './modal-data';
+import { LunaModalRef } from './modal-ref';
 
 /**
  * Root service that opens Luna modal overlays and typed message box helpers.
@@ -83,7 +83,7 @@ export class LunaModalService
         const data: MessageBoxData<T> = {
             message,
             options,
-            type: 'confirm'
+            type: 'confirm',
         };
 
         return this.openMessageBox(data);
@@ -115,7 +115,7 @@ export class LunaModalService
         const data: MessageBoxData<MessageBoxReturnData> = {
             message,
             options,
-            type: 'prompt'
+            type: 'prompt',
         };
 
         return this.openMessageBox(data) as Observable<MessageBoxReturnData>;
@@ -140,7 +140,7 @@ export class LunaModalService
                 .global()
                 .centerHorizontally()
                 .centerVertically(),
-            scrollStrategy: this.overlay.scrollStrategies.block()
+            scrollStrategy: this.overlay.scrollStrategies.block(),
         });
 
         // Tie overlay disposal to `close` so callers always get a single `afterClosed` emission.
@@ -160,7 +160,7 @@ export class LunaModalService
 
         const injector = Injector.create({
             parent: this.injector,
-            providers
+            providers,
         });
 
         const portal = new ComponentPortal(component as Type<object>, null, injector);
@@ -227,7 +227,7 @@ export class LunaModalService
                 .global()
                 .centerHorizontally()
                 .centerVertically(),
-            scrollStrategy: this.overlay.scrollStrategies.block()
+            scrollStrategy: this.overlay.scrollStrategies.block(),
         });
 
         const ref = new LunaModalRef<T | undefined>(() =>
@@ -241,8 +241,8 @@ export class LunaModalService
             parent: this.injector,
             providers: [
                 { provide: MESSAGE_BOX_DATA, useValue: data },
-                { provide: LunaModalRef, useValue: ref }
-            ]
+                { provide: LunaModalRef, useValue: ref },
+            ],
         });
 
         const portal = new ComponentPortal(MessageBoxComponent, null, injector);

@@ -1,12 +1,12 @@
-import { Component, HostListener, inject, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { A11yModule } from '@angular/cdk/a11y';
+import { CommonModule } from '@angular/common';
+import { Component, HostListener, inject, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
+import { MESSAGE_BOX_DATA, MessageBoxData, MessageBoxReturnData } from './message-box-data';
+import { LunaModalRef } from './modal-ref';
 import { ButtonComponent } from '../button/button.component';
 import { InputComponent } from '../input/input.component';
-import { LunaModalRef } from './modal-ref';
-import { MESSAGE_BOX_DATA, MessageBoxData, MessageBoxReturnData } from './message-box-data';
 
 /**
  * Modal body for alert, confirm, and prompt flows (`MESSAGE_BOX_DATA`), keyboard handling, and `LunaModalRef` close wiring.
@@ -16,7 +16,7 @@ import { MESSAGE_BOX_DATA, MessageBoxData, MessageBoxReturnData } from './messag
     standalone: true,
     imports: [ A11yModule, ButtonComponent, CommonModule, FormsModule, InputComponent ],
     templateUrl: './message-box.component.html',
-    styleUrls: [ './message-box.component.scss' ]
+    styleUrls: [ './message-box.component.scss' ],
 })
 export class MessageBoxComponent implements OnInit
 {
@@ -132,7 +132,7 @@ export class MessageBoxComponent implements OnInit
         {
             this.modalRef.close({
                 button: 'ok',
-                promptValue: this.promptValue
+                promptValue: this.promptValue,
             } as MessageBoxReturnData);
 
             return;

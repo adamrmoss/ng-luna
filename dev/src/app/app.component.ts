@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { BidiModule } from '@angular/cdk/bidi';
 import { OverlayModule } from '@angular/cdk/overlay';
-import type { LunaMenuEntry, LunaMenuItem } from 'ng-luna';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import {
+    type LunaMenuEntry,
+    type LunaMenuItem,
     ButtonComponent,
     CheckboxComponent,
     FieldsetComponent,
@@ -42,7 +43,7 @@ import {
     Play,
     Pause,
     SkipForward,
-    Volume2
+    Volume2,
 } from 'ng-luna';
 
 /**
@@ -73,10 +74,10 @@ import {
         TabsComponent,
         TextareaComponent,
         TooltipDirective,
-        WindowComponent
+        WindowComponent,
     ],
     templateUrl: './app.component.html',
-    styleUrls: [ './app.component.scss' ]
+    styleUrls: [ './app.component.scss' ],
 })
 export class AppComponent
 {
@@ -111,7 +112,7 @@ export class AppComponent
             { label: 'Paste' },
             { separator: true },
             { label: 'Find...' },
-            { label: 'Replace...' }
+            { label: 'Replace...' },
         ];
     }
 
@@ -126,7 +127,7 @@ export class AppComponent
             { label: 'Page Setup...' },
             { label: 'Print...' },
             { separator: true },
-            { label: 'Exit' }
+            { label: 'Exit' },
         ];
     }
 
@@ -135,7 +136,7 @@ export class AppComponent
         return [
             { label: 'Preferences...' },
             { separator: true },
-            { label: 'About...' }
+            { label: 'About...' },
         ];
     }
 
@@ -146,7 +147,7 @@ export class AppComponent
             { label: 'Show Status Bar', checked: this.showStatusBar },
             { separator: true },
             { label: 'Refresh' },
-            { label: 'Full Screen' }
+            { label: 'Full Screen' },
         ];
     }
 
@@ -296,7 +297,7 @@ export class AppComponent
             cancelValue: 'no',
             okLabel: 'Yes',
             okValue: 'yes',
-            title: 'Confirm Save'
+            title: 'Confirm Save',
         }).subscribe((result) =>
         {
             this.modalResult = result !== undefined ? `Result: ${result}` : 'Result: (dismissed)';
@@ -329,7 +330,7 @@ export class AppComponent
             okLabel: 'Save',
             promptDefaultValue: 'document.txt',
             promptPlaceholder: 'Enter filename',
-            title: 'Save As'
+            title: 'Save As',
         }).subscribe((result) =>
         {
             if (result.button === 'ok' && result.promptValue !== undefined)

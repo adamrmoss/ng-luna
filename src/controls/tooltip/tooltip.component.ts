@@ -13,7 +13,7 @@ import { LUNA_TOOLTIP_DATA } from './tooltip-data';
     selector: 'luna-tooltip',
     standalone: true,
     templateUrl: './tooltip.component.html',
-    styleUrls: [ './tooltip.component.scss' ]
+    styleUrls: [ './tooltip.component.scss' ],
 })
 export class TooltipComponent
 {

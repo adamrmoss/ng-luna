@@ -1,7 +1,7 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { NumberInput, coerceNumberProperty } from '@angular/cdk/coercion';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { NumberInput, coerceNumberProperty } from '@angular/cdk/coercion';
+import { CommonModule } from '@angular/common';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 import { LunaControl } from '../luna-control';
 
@@ -13,7 +13,7 @@ import { LunaControl } from '../luna-control';
     standalone: true,
     imports: [ CommonModule ],
     templateUrl: './progress.component.html',
-    styleUrls: [ './progress.component.scss' ]
+    styleUrls: [ './progress.component.scss' ],
 })
 export class ProgressComponent
     extends LunaControl implements OnChanges

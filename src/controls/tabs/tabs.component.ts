@@ -1,10 +1,10 @@
-import { Component, Input, Output, EventEmitter, QueryList, ViewChildren, ContentChildren, ElementRef, AfterViewInit, AfterContentInit, OnChanges, SimpleChanges } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { A11yModule, FocusKeyManager, FocusableOption, FocusOrigin } from '@angular/cdk/a11y';
 import { Platform } from '@angular/cdk/platform';
+import { CommonModule } from '@angular/common';
+import { Component, Input, Output, EventEmitter, QueryList, ViewChildren, ContentChildren, ElementRef, AfterViewInit, AfterContentInit, OnChanges, SimpleChanges } from '@angular/core';
 
-import { LunaControl } from '../luna-control';
 import { TabComponent } from './tab.component';
+import { LunaControl } from '../luna-control';
 
 /**
  * Bridges a tab button `ElementRef` to CDK `FocusableOption` for roving tabindex.
@@ -34,7 +34,7 @@ class TabButtonFocusable implements FocusableOption
     standalone: true,
     imports: [ CommonModule, A11yModule ],
     templateUrl: './tabs.component.html',
-    styleUrls: [ './tabs.component.scss' ]
+    styleUrls: [ './tabs.component.scss' ],
 })
 export class TabsComponent
     extends LunaControl implements AfterViewInit, AfterContentInit, OnChanges

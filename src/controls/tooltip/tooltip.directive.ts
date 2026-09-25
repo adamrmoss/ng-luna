@@ -1,3 +1,5 @@
+import { Overlay } from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
 import {
     Directive,
     ElementRef,
@@ -5,13 +7,11 @@ import {
     inject,
     Injector,
     Input,
-    OnDestroy
+    OnDestroy,
 } from '@angular/core';
-import { Overlay } from '@angular/cdk/overlay';
-import { ComponentPortal } from '@angular/cdk/portal';
 
-import { TooltipComponent } from './tooltip.component';
 import { LUNA_TOOLTIP_DATA } from './tooltip-data';
+import { TooltipComponent } from './tooltip.component';
 
 /**
  * CDK overlay tooltip directive, timers, and positioning helper for Luna tooltips.
@@ -46,7 +46,7 @@ function getPositionOrigin(element: HTMLElement): ElementRef<HTMLElement>
  */
 @Directive({
     selector: '[lunaTooltip]',
-    standalone: true
+    standalone: true,
 })
 export class TooltipDirective implements OnDestroy
 {
@@ -240,7 +240,7 @@ export class TooltipDirective implements OnDestroy
                 { overlayX: 'center', overlayY: 'top', originX: 'center', originY: 'bottom' },
                 { overlayX: 'center', overlayY: 'bottom', originX: 'center', originY: 'top' },
                 { overlayX: 'start', overlayY: 'center', originX: 'end', originY: 'center' },
-                { overlayX: 'end', overlayY: 'center', originX: 'start', originY: 'center' }
+                { overlayX: 'end', overlayY: 'center', originX: 'start', originY: 'center' },
             ])
             .withDefaultOffsetY(6)
             .withPush(false);
@@ -249,12 +249,12 @@ export class TooltipDirective implements OnDestroy
             panelClass: [ 'luna-tooltip-panel' ],
             positionStrategy,
             scrollStrategy: this.overlay.scrollStrategies.reposition(),
-            hasBackdrop: false
+            hasBackdrop: false,
         });
 
         const childInjector = Injector.create({
             parent: this.injector,
-            providers: [ { provide: LUNA_TOOLTIP_DATA, useValue: this.lunaTooltip } ]
+            providers: [ { provide: LUNA_TOOLTIP_DATA, useValue: this.lunaTooltip } ],
         });
 
         const portal = new ComponentPortal(TooltipComponent, null, childInjector);

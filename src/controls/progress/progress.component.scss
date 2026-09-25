@@ -37,7 +37,7 @@ progress
         background-color: $white;
         border: 1px solid $gray-darkest;
         border-radius: 4px;
-        box-shadow: inset 0px 0px 1px 0px rgba(104, 104, 104, 1);
+        box-shadow: inset 0px 0px 1px 0px #686868;
         box-sizing: border-box;
         height: 14px;
         overflow: hidden;
@@ -140,7 +140,7 @@ progress
         &::before
         {
             background-color: $white;
-            box-shadow: inset 0px 0px 1px 0px rgba(104, 104, 104, 1);
+            box-shadow: inset 0px 0px 1px 0px #686868;
             box-sizing: border-box;
             content: "";
             height: 100%;

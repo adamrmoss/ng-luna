@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
 
 import { LunaControl } from '../luna-control';
 
@@ -11,7 +11,7 @@ import { LunaControl } from '../luna-control';
     standalone: true,
     imports: [ CommonModule ],
     templateUrl: './tab.component.html',
-    styleUrls: [ './tab.component.scss' ]
+    styleUrls: [ './tab.component.scss' ],
 })
 export class TabComponent
     extends LunaControl

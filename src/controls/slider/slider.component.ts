@@ -1,9 +1,9 @@
-import { Component, Input, Output, EventEmitter, forwardRef, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { FocusMonitor, LiveAnnouncer } from '@angular/cdk/a11y';
 import { NumberInput, coerceNumberProperty } from '@angular/cdk/coercion';
 import { Platform } from '@angular/cdk/platform';
+import { CommonModule } from '@angular/common';
+import { Component, Input, Output, EventEmitter, forwardRef, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { LunaControl } from '../luna-control';
 
@@ -19,8 +19,8 @@ import { LunaControl } from '../luna-control';
     providers: [{
         provide: NG_VALUE_ACCESSOR,
         useExisting: forwardRef(() => SliderComponent),
-        multi: true
-    }]
+        multi: true,
+    }],
 })
 export class SliderComponent
     extends LunaControl implements ControlValueAccessor, AfterViewInit, OnDestroy

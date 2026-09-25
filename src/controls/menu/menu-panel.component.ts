@@ -1,12 +1,12 @@
+import { CommonModule } from '@angular/common';
 import {
     Component,
     HostListener,
     inject,
     OnInit,
     ViewChild,
-    ElementRef
+    ElementRef,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { isLunaMenuItem, LUNA_MENU_DATA, LunaMenuEntry, LunaMenuItem } from './menu-data';
 
@@ -18,7 +18,7 @@ import { isLunaMenuItem, LUNA_MENU_DATA, LunaMenuEntry, LunaMenuItem } from './m
     standalone: true,
     imports: [ CommonModule ],
     templateUrl: './menu-panel.component.html',
-    styleUrls: [ './menu-panel.component.scss' ]
+    styleUrls: [ './menu-panel.component.scss' ],
 })
 export class MenuPanelComponent implements OnInit
 {

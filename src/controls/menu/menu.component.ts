@@ -1,3 +1,5 @@
+import { Overlay } from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
 import {
     Component,
     ContentChild,
@@ -7,16 +9,14 @@ import {
     OnDestroy,
     Output,
     EventEmitter,
-    AfterContentInit
+    AfterContentInit,
+    Injector,
 } from '@angular/core';
-import { Injector } from '@angular/core';
-import { Overlay } from '@angular/cdk/overlay';
-import { ComponentPortal } from '@angular/cdk/portal';
 import { fromEvent, Subscription } from 'rxjs';
 
-import { MenuPanelComponent } from './menu-panel.component';
-import { LUNA_MENU_DATA, LunaMenuEntry, LunaMenuItem, LunaMenuPanelData } from './menu-data';
 import { LunaMenuCoordinatorService } from './menu-coordinator.service';
+import { LUNA_MENU_DATA, LunaMenuEntry, LunaMenuItem, LunaMenuPanelData } from './menu-data';
+import { MenuPanelComponent } from './menu-panel.component';
 import { LunaMenuTriggerDirective } from './menu-trigger.directive';
 
 /**
@@ -26,7 +26,7 @@ import { LunaMenuTriggerDirective } from './menu-trigger.directive';
     selector: 'luna-menu',
     standalone: true,
     templateUrl: './menu.component.html',
-    styleUrls: [ './menu.component.scss' ]
+    styleUrls: [ './menu.component.scss' ],
 })
 export class LunaMenuComponent implements AfterContentInit, OnDestroy
 {
@@ -120,7 +120,7 @@ export class LunaMenuComponent implements AfterContentInit, OnDestroy
                 { overlayX: 'start', overlayY: 'top', originX: 'start', originY: 'bottom' },
                 { overlayX: 'start', overlayY: 'bottom', originX: 'start', originY: 'top' },
                 { overlayX: 'end', overlayY: 'top', originX: 'end', originY: 'bottom' },
-                { overlayX: 'end', overlayY: 'bottom', originX: 'end', originY: 'top' }
+                { overlayX: 'end', overlayY: 'bottom', originX: 'end', originY: 'top' },
             ])
             .withDefaultOffsetY(2)
             .withPush(false);
@@ -129,7 +129,7 @@ export class LunaMenuComponent implements AfterContentInit, OnDestroy
             hasBackdrop: false,
             panelClass: [ 'luna-menu-overlay-panel' ],
             positionStrategy,
-            scrollStrategy: this.overlay.scrollStrategies.close()
+            scrollStrategy: this.overlay.scrollStrategies.close(),
         });
 
         // Close when the user clicks elsewhere (except inside the panel or on any menu trigger).
@@ -139,7 +139,7 @@ export class LunaMenuComponent implements AfterContentInit, OnDestroy
         const menubarNav = origin.nativeElement.closest('nav[role="menubar"]');
         const panelData: LunaMenuPanelData = {
             close: (selectedItem: LunaMenuItem | null) => this.close(selectedItem),
-            items: this.items
+            items: this.items,
         };
 
         if (menubarNav != null)
@@ -153,9 +153,9 @@ export class LunaMenuComponent implements AfterContentInit, OnDestroy
             providers: [
                 {
                     provide: LUNA_MENU_DATA,
-                    useValue: panelData
-                }
-            ]
+                    useValue: panelData,
+                },
+            ],
         });
 
         const portal = new ComponentPortal(MenuPanelComponent, null, childInjector);

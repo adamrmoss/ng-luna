@@ -1,7 +1,7 @@
-import { Component, Input, Output, EventEmitter, ElementRef, OnDestroy, AfterViewInit, Optional } from '@angular/core';
-import { BidiModule, Dir } from '@angular/cdk/bidi';
 import { FocusMonitor } from '@angular/cdk/a11y';
+import { BidiModule, Dir } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
+import { Component, Input, Output, EventEmitter, ElementRef, OnDestroy, AfterViewInit, Optional } from '@angular/core';
 
 import { LunaControl } from '../luna-control';
 
@@ -38,7 +38,7 @@ export type PopoverTargetAction = 'show' | 'hide' | 'toggle';
     standalone: true,
     imports: [ BidiModule ],
     templateUrl: './button.component.html',
-    styleUrls: [ './button.component.scss' ]
+    styleUrls: [ './button.component.scss' ],
 })
 export class ButtonComponent
     extends LunaControl implements AfterViewInit, OnDestroy

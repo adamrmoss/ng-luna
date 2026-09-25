@@ -1,8 +1,8 @@
-import { Component, Input, Output, EventEmitter, ElementRef, AfterViewInit, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { DragDropModule, CdkDrag } from '@angular/cdk/drag-drop';
-import { ScrollingModule } from '@angular/cdk/scrolling';
 import { Platform } from '@angular/cdk/platform';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { CommonModule } from '@angular/common';
+import { Component, Input, Output, EventEmitter, ElementRef, AfterViewInit, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 
 import { LunaControl } from '../luna-control';
 
@@ -14,7 +14,7 @@ import { LunaControl } from '../luna-control';
     standalone: true,
     imports: [ CommonModule, DragDropModule, ScrollingModule ],
     templateUrl: './window.component.html',
-    styleUrls: [ './window.component.scss' ]
+    styleUrls: [ './window.component.scss' ],
 })
 export class WindowComponent
     extends LunaControl implements AfterViewInit, OnChanges

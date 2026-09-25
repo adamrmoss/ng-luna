@@ -5,7 +5,7 @@ import {
     HostBinding,
     HostListener,
     inject,
-    Input
+    Input,
 } from '@angular/core';
 
 import { LunaMenuComponent } from './menu.component';
@@ -15,7 +15,7 @@ import { LunaMenuComponent } from './menu.component';
  */
 @Directive({
     selector: '[lunaMenuTrigger]',
-    standalone: true
+    standalone: true,
 })
 export class LunaMenuTriggerDirective
 {

@@ -1,9 +1,9 @@
+import { FocusMonitor, LiveAnnouncer } from '@angular/cdk/a11y';
+import { BidiModule, Dir } from '@angular/cdk/bidi';
+import { Platform } from '@angular/cdk/platform';
+import { TextFieldModule } from '@angular/cdk/text-field';
 import { Component, Input, Output, EventEmitter, forwardRef, ElementRef, OnDestroy, AfterViewInit, ViewChild, Optional } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { FocusMonitor, LiveAnnouncer } from '@angular/cdk/a11y';
-import { TextFieldModule } from '@angular/cdk/text-field';
-import { Platform } from '@angular/cdk/platform';
-import { BidiModule, Dir } from '@angular/cdk/bidi';
 
 import { LunaControl } from '../luna-control';
 
@@ -24,8 +24,8 @@ export type InputType = 'text' | 'password' | 'email';
     providers: [{
         provide: NG_VALUE_ACCESSOR,
         useExisting: forwardRef(() => InputComponent),
-        multi: true
-    }]
+        multi: true,
+    }],
 })
 export class InputComponent
     extends LunaControl implements ControlValueAccessor, AfterViewInit, OnDestroy

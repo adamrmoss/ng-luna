@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
 
 import { LunaControl } from '../luna-control';
 
@@ -11,7 +11,7 @@ import { LunaControl } from '../luna-control';
     standalone: true,
     imports: [ CommonModule ],
     templateUrl: './fieldset.component.html',
-    styleUrls: [ './fieldset.component.scss' ]
+    styleUrls: [ './fieldset.component.scss' ],
 })
 export class FieldsetComponent extends LunaControl
 {

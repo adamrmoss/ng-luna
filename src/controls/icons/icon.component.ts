@@ -14,7 +14,7 @@ export type IconSize = '12' | '16' | '20' | '24' | '32' | '48';
     selector: 'luna-icon',
     standalone: true,
     styleUrl: './icon.component.scss',
-    templateUrl: './icon.component.html'
+    templateUrl: './icon.component.html',
 })
 export class IconComponent
 {

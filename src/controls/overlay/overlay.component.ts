@@ -1,12 +1,12 @@
+import { OverlayContainer } from '@angular/cdk/overlay';
 import {
     AfterViewInit,
     Component,
     ElementRef,
     inject,
     ViewChild,
-    ViewEncapsulation
+    ViewEncapsulation,
 } from '@angular/core';
-import { OverlayContainer } from '@angular/cdk/overlay';
 
 import { LunaOverlayContainer } from './overlay-container';
 
@@ -18,7 +18,7 @@ import { LunaOverlayContainer } from './overlay-container';
     standalone: true,
     encapsulation: ViewEncapsulation.None,
     templateUrl: './overlay.component.html',
-    styleUrls: [ './overlay.component.scss' ]
+    styleUrls: [ './overlay.component.scss' ],
 })
 export class OverlayComponent implements AfterViewInit
 {

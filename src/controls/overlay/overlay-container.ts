@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
+import { Injectable } from '@angular/core';
 
 /**
  * CDK `OverlayContainer` that can redirect overlay roots into a custom DOM subtree.
