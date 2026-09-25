@@ -1,8 +1,8 @@
-// Font declarations using bundled fonts
-// Fonts are bundled to /assets/fonts/ in the dist package
-// Path is relative to where the CSS is served from (typically root or node_modules/ng-luna)
+// Font declarations using bundled fonts.
+// Published files are flat under dist/fonts/.
+// Path is where the CSS is served from (typically the app root).
 
-$font-assets-path: '/assets/fonts' !default;
+$font-assets-path: '/fonts' !default;
 
 // IBM Plex Mono
 @font-face
@@ -10,8 +10,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Mono';
     font-style: normal;
     font-weight: 100;
-    src: url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-Thin.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff/IBMPlexMono-Thin.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexMono-Thin.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexMono-Thin.woff') format('woff');
 }
 
 @font-face
@@ -19,8 +19,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Mono';
     font-style: italic;
     font-weight: 100;
-    src: url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-ThinItalic.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff/IBMPlexMono-ThinItalic.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexMono-ThinItalic.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexMono-ThinItalic.woff') format('woff');
 }
 
 @font-face
@@ -28,8 +28,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Mono';
     font-style: normal;
     font-weight: 200;
-    src: url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-ExtraLight.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff/IBMPlexMono-ExtraLight.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexMono-ExtraLight.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexMono-ExtraLight.woff') format('woff');
 }
 
 @font-face
@@ -37,8 +37,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Mono';
     font-style: italic;
     font-weight: 200;
-    src: url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-ExtraLightItalic.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff/IBMPlexMono-ExtraLightItalic.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexMono-ExtraLightItalic.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexMono-ExtraLightItalic.woff') format('woff');
 }
 
 @font-face
@@ -46,8 +46,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Mono';
     font-style: normal;
     font-weight: 300;
-    src: url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-Light.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff/IBMPlexMono-Light.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexMono-Light.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexMono-Light.woff') format('woff');
 }
 
 @font-face
@@ -55,8 +55,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Mono';
     font-style: italic;
     font-weight: 300;
-    src: url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-LightItalic.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff/IBMPlexMono-LightItalic.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexMono-LightItalic.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexMono-LightItalic.woff') format('woff');
 }
 
 @font-face
@@ -64,8 +64,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Mono';
     font-style: normal;
     font-weight: 400;
-    src: url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-Regular.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff/IBMPlexMono-Regular.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexMono-Regular.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexMono-Regular.woff') format('woff');
 }
 
 @font-face
@@ -73,8 +73,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Mono';
     font-style: italic;
     font-weight: 400;
-    src: url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-Italic.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff/IBMPlexMono-Italic.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexMono-Italic.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexMono-Italic.woff') format('woff');
 }
 
 @font-face
@@ -82,8 +82,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Mono';
     font-style: normal;
     font-weight: 500;
-    src: url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-Medium.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff/IBMPlexMono-Medium.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexMono-Medium.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexMono-Medium.woff') format('woff');
 }
 
 @font-face
@@ -91,8 +91,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Mono';
     font-style: italic;
     font-weight: 500;
-    src: url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-MediumItalic.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff/IBMPlexMono-MediumItalic.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexMono-MediumItalic.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexMono-MediumItalic.woff') format('woff');
 }
 
 @font-face
@@ -100,8 +100,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Mono';
     font-style: normal;
     font-weight: 600;
-    src: url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-SemiBold.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff/IBMPlexMono-SemiBold.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexMono-SemiBold.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexMono-SemiBold.woff') format('woff');
 }
 
 @font-face
@@ -109,8 +109,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Mono';
     font-style: italic;
     font-weight: 600;
-    src: url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-SemiBoldItalic.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff/IBMPlexMono-SemiBoldItalic.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexMono-SemiBoldItalic.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexMono-SemiBoldItalic.woff') format('woff');
 }
 
 @font-face
@@ -118,8 +118,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Mono';
     font-style: normal;
     font-weight: 700;
-    src: url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-Bold.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff/IBMPlexMono-Bold.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexMono-Bold.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexMono-Bold.woff') format('woff');
 }
 
 @font-face
@@ -127,8 +127,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Mono';
     font-style: italic;
     font-weight: 700;
-    src: url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-BoldItalic.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff/IBMPlexMono-BoldItalic.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexMono-BoldItalic.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexMono-BoldItalic.woff') format('woff');
 }
 
 @font-face
@@ -136,8 +136,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Mono';
     font-style: normal;
     font-weight: 450;
-    src: url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-Text.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff/IBMPlexMono-Text.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexMono-Text.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexMono-Text.woff') format('woff');
 }
 
 @font-face
@@ -145,8 +145,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Mono';
     font-style: italic;
     font-weight: 450;
-    src: url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-TextItalic.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Mono/fonts/complete/woff/IBMPlexMono-TextItalic.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexMono-TextItalic.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexMono-TextItalic.woff') format('woff');
 }
 
 // IBM Plex Sans
@@ -155,8 +155,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Sans';
     font-style: normal;
     font-weight: 100;
-    src: url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff2/IBMPlexSans-Thin.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff/IBMPlexSans-Thin.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSans-Thin.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSans-Thin.woff') format('woff');
 }
 
 @font-face
@@ -164,8 +164,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Sans';
     font-style: italic;
     font-weight: 100;
-    src: url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff2/IBMPlexSans-ThinItalic.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff/IBMPlexSans-ThinItalic.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSans-ThinItalic.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSans-ThinItalic.woff') format('woff');
 }
 
 @font-face
@@ -173,8 +173,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Sans';
     font-style: normal;
     font-weight: 200;
-    src: url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff2/IBMPlexSans-ExtraLight.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff/IBMPlexSans-ExtraLight.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSans-ExtraLight.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSans-ExtraLight.woff') format('woff');
 }
 
 @font-face
@@ -182,8 +182,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Sans';
     font-style: italic;
     font-weight: 200;
-    src: url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff2/IBMPlexSans-ExtraLightItalic.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff/IBMPlexSans-ExtraLightItalic.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSans-ExtraLightItalic.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSans-ExtraLightItalic.woff') format('woff');
 }
 
 @font-face
@@ -191,8 +191,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Sans';
     font-style: normal;
     font-weight: 300;
-    src: url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff2/IBMPlexSans-Light.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff/IBMPlexSans-Light.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSans-Light.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSans-Light.woff') format('woff');
 }
 
 @font-face
@@ -200,8 +200,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Sans';
     font-style: italic;
     font-weight: 300;
-    src: url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff2/IBMPlexSans-LightItalic.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff/IBMPlexSans-LightItalic.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSans-LightItalic.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSans-LightItalic.woff') format('woff');
 }
 
 @font-face
@@ -209,8 +209,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Sans';
     font-style: normal;
     font-weight: 400;
-    src: url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff2/IBMPlexSans-Regular.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff/IBMPlexSans-Regular.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSans-Regular.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSans-Regular.woff') format('woff');
 }
 
 @font-face
@@ -218,8 +218,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Sans';
     font-style: italic;
     font-weight: 400;
-    src: url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff2/IBMPlexSans-Italic.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff/IBMPlexSans-Italic.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSans-Italic.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSans-Italic.woff') format('woff');
 }
 
 @font-face
@@ -227,8 +227,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Sans';
     font-style: normal;
     font-weight: 500;
-    src: url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff2/IBMPlexSans-Medium.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff/IBMPlexSans-Medium.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSans-Medium.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSans-Medium.woff') format('woff');
 }
 
 @font-face
@@ -236,8 +236,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Sans';
     font-style: italic;
     font-weight: 500;
-    src: url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff2/IBMPlexSans-MediumItalic.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff/IBMPlexSans-MediumItalic.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSans-MediumItalic.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSans-MediumItalic.woff') format('woff');
 }
 
 @font-face
@@ -245,8 +245,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Sans';
     font-style: normal;
     font-weight: 600;
-    src: url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff2/IBMPlexSans-SemiBold.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff/IBMPlexSans-SemiBold.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSans-SemiBold.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSans-SemiBold.woff') format('woff');
 }
 
 @font-face
@@ -254,8 +254,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Sans';
     font-style: italic;
     font-weight: 600;
-    src: url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff2/IBMPlexSans-SemiBoldItalic.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff/IBMPlexSans-SemiBoldItalic.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSans-SemiBoldItalic.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSans-SemiBoldItalic.woff') format('woff');
 }
 
 @font-face
@@ -263,8 +263,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Sans';
     font-style: normal;
     font-weight: 700;
-    src: url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff2/IBMPlexSans-Bold.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff/IBMPlexSans-Bold.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSans-Bold.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSans-Bold.woff') format('woff');
 }
 
 @font-face
@@ -272,8 +272,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Sans';
     font-style: italic;
     font-weight: 700;
-    src: url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff2/IBMPlexSans-BoldItalic.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff/IBMPlexSans-BoldItalic.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSans-BoldItalic.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSans-BoldItalic.woff') format('woff');
 }
 
 @font-face
@@ -281,8 +281,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Sans';
     font-style: normal;
     font-weight: 450;
-    src: url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff2/IBMPlexSans-Text.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff/IBMPlexSans-Text.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSans-Text.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSans-Text.woff') format('woff');
 }
 
 @font-face
@@ -290,8 +290,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Sans';
     font-style: italic;
     font-weight: 450;
-    src: url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff2/IBMPlexSans-TextItalic.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Sans/fonts/complete/woff/IBMPlexSans-TextItalic.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSans-TextItalic.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSans-TextItalic.woff') format('woff');
 }
 
 // IBM Plex Serif
@@ -300,8 +300,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Serif';
     font-style: normal;
     font-weight: 100;
-    src: url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff2/IBMPlexSerif-Thin.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff/IBMPlexSerif-Thin.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSerif-Thin.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSerif-Thin.woff') format('woff');
 }
 
 @font-face
@@ -309,8 +309,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Serif';
     font-style: italic;
     font-weight: 100;
-    src: url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff2/IBMPlexSerif-ThinItalic.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff/IBMPlexSerif-ThinItalic.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSerif-ThinItalic.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSerif-ThinItalic.woff') format('woff');
 }
 
 @font-face
@@ -318,8 +318,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Serif';
     font-style: normal;
     font-weight: 200;
-    src: url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff2/IBMPlexSerif-ExtraLight.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff/IBMPlexSerif-ExtraLight.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSerif-ExtraLight.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSerif-ExtraLight.woff') format('woff');
 }
 
 @font-face
@@ -327,8 +327,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Serif';
     font-style: italic;
     font-weight: 200;
-    src: url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff2/IBMPlexSerif-ExtraLightItalic.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff/IBMPlexSerif-ExtraLightItalic.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSerif-ExtraLightItalic.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSerif-ExtraLightItalic.woff') format('woff');
 }
 
 @font-face
@@ -336,8 +336,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Serif';
     font-style: normal;
     font-weight: 300;
-    src: url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff2/IBMPlexSerif-Light.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff/IBMPlexSerif-Light.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSerif-Light.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSerif-Light.woff') format('woff');
 }
 
 @font-face
@@ -345,8 +345,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Serif';
     font-style: italic;
     font-weight: 300;
-    src: url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff2/IBMPlexSerif-LightItalic.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff/IBMPlexSerif-LightItalic.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSerif-LightItalic.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSerif-LightItalic.woff') format('woff');
 }
 
 @font-face
@@ -354,8 +354,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Serif';
     font-style: normal;
     font-weight: 400;
-    src: url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff2/IBMPlexSerif-Regular.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff/IBMPlexSerif-Regular.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSerif-Regular.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSerif-Regular.woff') format('woff');
 }
 
 @font-face
@@ -363,8 +363,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Serif';
     font-style: italic;
     font-weight: 400;
-    src: url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff2/IBMPlexSerif-Italic.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff/IBMPlexSerif-Italic.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSerif-Italic.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSerif-Italic.woff') format('woff');
 }
 
 @font-face
@@ -372,8 +372,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Serif';
     font-style: normal;
     font-weight: 500;
-    src: url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff2/IBMPlexSerif-Medium.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff/IBMPlexSerif-Medium.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSerif-Medium.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSerif-Medium.woff') format('woff');
 }
 
 @font-face
@@ -381,8 +381,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Serif';
     font-style: italic;
     font-weight: 500;
-    src: url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff2/IBMPlexSerif-MediumItalic.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff/IBMPlexSerif-MediumItalic.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSerif-MediumItalic.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSerif-MediumItalic.woff') format('woff');
 }
 
 @font-face
@@ -390,8 +390,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Serif';
     font-style: normal;
     font-weight: 600;
-    src: url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff2/IBMPlexSerif-SemiBold.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff/IBMPlexSerif-SemiBold.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSerif-SemiBold.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSerif-SemiBold.woff') format('woff');
 }
 
 @font-face
@@ -399,8 +399,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Serif';
     font-style: italic;
     font-weight: 600;
-    src: url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff2/IBMPlexSerif-SemiBoldItalic.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff/IBMPlexSerif-SemiBoldItalic.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSerif-SemiBoldItalic.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSerif-SemiBoldItalic.woff') format('woff');
 }
 
 @font-face
@@ -408,8 +408,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Serif';
     font-style: normal;
     font-weight: 700;
-    src: url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff2/IBMPlexSerif-Bold.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff/IBMPlexSerif-Bold.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSerif-Bold.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSerif-Bold.woff') format('woff');
 }
 
 @font-face
@@ -417,8 +417,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Serif';
     font-style: italic;
     font-weight: 700;
-    src: url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff2/IBMPlexSerif-BoldItalic.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff/IBMPlexSerif-BoldItalic.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSerif-BoldItalic.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSerif-BoldItalic.woff') format('woff');
 }
 
 @font-face
@@ -426,8 +426,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Serif';
     font-style: normal;
     font-weight: 450;
-    src: url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff2/IBMPlexSerif-Text.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff/IBMPlexSerif-Text.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSerif-Text.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSerif-Text.woff') format('woff');
 }
 
 @font-face
@@ -435,8 +435,8 @@ $font-assets-path: '/assets/fonts' !default;
     font-family: 'IBM Plex Serif';
     font-style: italic;
     font-weight: 450;
-    src: url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff2/IBMPlexSerif-TextItalic.woff2') format('woff2'),
-         url('#{$font-assets-path}/IBM-Plex-Serif/fonts/complete/woff/IBMPlexSerif-TextItalic.woff') format('woff');
+    src: url('#{$font-assets-path}/IBMPlexSerif-TextItalic.woff2') format('woff2'),
+         url('#{$font-assets-path}/IBMPlexSerif-TextItalic.woff') format('woff');
 }
 
 // Define static SCSS variables for consistent usage

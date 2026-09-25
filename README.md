@@ -71,7 +71,7 @@ Overlay styles (menu trigger, backdrop, modal pane, tooltip panel) are encapsula
 
 ### Using Bundled Fonts
 
-The IBM Plex fonts are bundled with ng-luna and need to be copied to your application's assets folder.
+The IBM Plex fonts are bundled with ng-luna and need to be copied to `/fonts` in your application.
 
 #### Setup
 
@@ -87,8 +87,8 @@ Add the following to your `angular.json` in the `assets` array of your project's
             "assets": [
               {
                 "glob": "**/*",
-                "input": "node_modules/ng-luna/assets/fonts",
-                "output": "/assets/fonts"
+                "input": "node_modules/ng-luna/fonts",
+                "output": "/fonts"
               }
             ]
           }
@@ -99,7 +99,7 @@ Add the following to your `angular.json` in the `assets` array of your project's
 }
 ```
 
-This copies the font files from the ng-luna package to your application's `/assets/fonts/` directory during build.
+This copies the font files from the ng-luna package to your application's `/fonts/` directory during build.
 
 #### Using Fonts in Your Styles
 
@@ -124,7 +124,7 @@ Once configured, you can use the fonts directly in your CSS/SCSS:
 - `'IBM Plex Mono', monospace` - Monospace font
 - `'IBM Plex Serif', serif` - Serif font
 
-**Note:** The ng-luna components will automatically use these fonts once they are available in your assets folder.
+**Note:** The ng-luna components will automatically use these fonts once they are available at `/fonts`.
 
 ### Using Icons
 
@@ -770,7 +770,7 @@ The build process uses `ng-packagr` to:
 - Compile TypeScript to ESM modules
 - Generate type definitions
 - Bundle everything into `dist/fesm2022/ng-luna.mjs`
-- Copy assets (fonts, SCSS themes)
+- Copy fonts and SCSS themes
 - Create a production-ready `package.json`
 
 All exports go through `src/public-api.ts` → `src/controls/index.ts` → individual components.

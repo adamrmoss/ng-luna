@@ -1,5 +1,9 @@
 import type { StorybookConfig } from '@storybook/angular';
 
+import { stageFonts } from '../scripts/stage-fonts.mjs';
+
+stageFonts();
+
 /**
  * Storybook workspace for ng-luna: colocated stories, accessibility checks, and IBM Plex fonts.
  */
@@ -13,8 +17,8 @@ const config: StorybookConfig = {
     },
     staticDirs: [
         {
-            from: '../node_modules/@ibm/plex',
-            to: '/assets/fonts',
+            from: '../.cache/fonts',
+            to: '/fonts',
         },
     ],
     stories: [

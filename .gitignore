@@ -2,6 +2,7 @@
 
 # Compiled output
 /dist
+/.cache
 /storybook-static
 /documentation.json
 /debug-storybook.log

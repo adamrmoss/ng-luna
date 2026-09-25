@@ -81,7 +81,7 @@ import { ButtonComponent, IconComponent, Home, Save } from 'ng-luna';
   },
   "assets": [
     "THIRD-PARTY-LICENSES.md",
-    "node_modules/@ibm/plex/IBM-Plex-*/",
+    ".cache/fonts",
     "src/theme/*.scss"
   ],
   "allowedNonPeerDependencies": [
@@ -96,7 +96,7 @@ import { ButtonComponent, IconComponent, Home, Save } from 'ng-luna';
 1. **Compiles** all TypeScript code starting from `src/public-api.ts`
 2. **Bundles** all code (including Lucide icons) into a flat ESM module
 3. **Generates** TypeScript definition files (`.d.ts`)
-4. **Copies** font files from `@ibm/plex` to `dist/assets/fonts/`
+4. **Copies** referenced font files to `dist/fonts/`
 5. **Copies** SCSS theme files to `dist/theme/`
 6. **Creates** production-ready `package.json`
 
@@ -111,7 +111,7 @@ import { ButtonComponent, IconComponent, Home, Save } from 'ng-luna';
 **Size**: ~1.5MB uncompressed, but tree-shakable (consumers only get what they import)
 
 **Copied as separate files:**
-- Font files: `dist/assets/fonts/`
+- Font files: `dist/fonts/`
 - SCSS files: `dist/theme/`
 - License: `dist/THIRD-PARTY-LICENSES.md`
 
@@ -122,11 +122,7 @@ dist/
 ├── fesm2022/
 │   ├── ng-luna.mjs             # 📦 Complete bundled library
 │   └── ng-luna.mjs.map         # Source map
-├── assets/
-│   └── fonts/
-│       ├── IBM-Plex-Mono/      # Monospace font
-│       ├── IBM-Plex-Sans/      # Sans-serif font  
-│       └── IBM-Plex-Serif/     # Serif font
+├── fonts/                      # Flat woff and woff2 files named in theme/_fonts.scss
 ├── theme/
 │   ├── _breakpoints.scss       # Responsive breakpoints
 │   ├── _fonts.scss             # Font face declarations
@@ -215,8 +211,8 @@ Fonts need to be copied to the consuming app's assets:
 {
   "assets": [{
     "glob": "**/*",
-    "input": "node_modules/ng-luna/assets/fonts",
-    "output": "/assets/fonts"
+    "input": "node_modules/ng-luna/fonts",
+    "output": "/fonts"
   }]
 }
 ```
@@ -342,11 +338,11 @@ $font-serif: 'IBM Plex Serif', serif;
 The font files are referenced with a configurable path:
 
 ```scss
-$font-assets-path: '/assets/fonts' !default;
+$font-assets-path: '/fonts' !default;
 
 @font-face {
   font-family: 'IBM Plex Sans';
-  src: url('#{$font-assets-path}/IBM-Plex-Sans/.../Regular.woff2');
+  src: url('#{$font-assets-path}/IBMPlexSans-Regular.woff2');
 }
 ```
 
@@ -379,7 +375,7 @@ npm run build
 Output goes to `dist/`. The build:
 1. Compiles TypeScript
 2. Bundles all code and icons into `fesm2022/ng-luna.mjs`
-3. Copies fonts to `dist/assets/fonts/`
+3. Copies fonts to `dist/fonts/`
 4. Copies SCSS to `dist/theme/`
 5. Generates type definitions
 

@@ -6,7 +6,7 @@ ng-luna includes and redistributes the following open-source software:
 
 **License**: SIL Open Font License 1.1  
 **Copyright**: © 2017 IBM Corp. with Reserved Font Name "Plex"  
-**Location**: `assets/fonts/`  
+**Location**: `fonts/`  
 **Website**: https://github.com/IBM/plex
 
 The SIL Open Font License allows the fonts to be bundled, embedded, redistributed and/or sold with any software. The full license text is available at: http://scripts.sil.org/OFL

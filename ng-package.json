@@ -8,14 +8,9 @@
             "output": "/"
         },
         {
-            "input": "./node_modules/@ibm/plex",
-            "glob": "IBM-Plex-*/fonts/complete/woff2/**/*",
-            "output": "/assets/fonts"
-        },
-        {
-            "input": "./node_modules/@ibm/plex",
-            "glob": "IBM-Plex-*/fonts/complete/woff/**/*",
-            "output": "/assets/fonts"
+            "input": "./.cache/fonts",
+            "glob": "**/*",
+            "output": "/fonts"
         },
         {
             "input": "./src/theme",
