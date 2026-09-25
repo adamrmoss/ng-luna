@@ -1,19 +1,19 @@
 ---
-description: Angular component library + dev demo — standalone components, templates, icons, README
-globs: "**/src/**/*.ts"
+description: Angular component library and Storybook — standalone components, templates, icons, README
+globs: "**/{src,.storybook}/**/*.ts"
 alwaysApply: false
 ---
 
-# Angular (ng-luna library + dev demo)
+# Angular (ng-luna library + Storybook)
 
-This repo is a **publishable component library**: implementation and public surface live under repository **`src/`** (e.g. `src/controls/`, theme). The **`dev/`** folder is a **small Angular dev application** used to build, serve, and manually test the library — including its **`AppComponent`** and any demo-only pieces. Treat **`dev/`** as a playground, not a second full product.
+This repo is a **publishable component library**: implementation and public surface live under repository **`src/`** (e.g. `src/controls/`, theme). **Storybook** (`.storybook/` and `src/**/*.stories.ts`) is the workshop for trying controls. Treat stories as examples, not a second product.
 
-The rules below apply to **library** TypeScript under repo `src/` and to **demo app** TypeScript under `dev/src/`.
+The rules below apply to **library** TypeScript under repo `src/` and to Storybook files under `.storybook/`. Story `template` strings are the Storybook API. Components still use separate template and style files.
 
 - **Standalone components** — every `@Component` must include `standalone: true`
 - Use separate files for templates (`.html`) and stylesheets (`.scss`); do not embed HTML or SCSS in the TypeScript file (`templateUrl` / `styleUrl` or equivalent)
 - Prefer TypeScript over JavaScript and SCSS over CSS
-- **Icons** — use this repo’s icon control (`IconComponent`, `<luna-icon>`) and existing symbols in **library** code; in **`dev/`**, prefer the same so the demo matches consumer usage. Do not add ad hoc SVG icon markup or a parallel icon system
+- **Icons** — use this repo’s icon control (`IconComponent`, `<luna-icon>`) and existing symbols in **library** code and in stories, so examples match consumer usage. Do not add ad hoc SVG icon markup or a parallel icon system
   - For drag images or other DOM work, reuse or clone real `luna-icon` DOM as needed; do not hand-build lookalikes
 - **Component API and usage** — for menus, buttons, overlays, window, tabs, forms, and related patterns, treat the repository root **`README.md`** as the source of truth for selectors, inputs/outputs, and examples
   - `node_modules/ng-luna/README.md` is for **consumers** of the published package; inside this workspace, use the project **`README.md`**

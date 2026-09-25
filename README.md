@@ -18,9 +18,12 @@ npm install ng-luna
 
 This library requires the following peer dependencies:
 
+- `@angular/cdk`: 19.x.x
 - `@angular/common`: 19.x.x
 - `@angular/core`: 19.x.x
 - `@angular/forms`: 19.x.x
+- `@angular/platform-browser`: 19.x.x
+- `rxjs`: 7.x.x
 
 ## Usage
 
@@ -729,6 +732,24 @@ export class MyComponent
 
 ## Development
 
+### Storybook
+
+Run the component workshop:
+
+```bash
+npm run storybook
+```
+
+This serves stories at `http://localhost:6006`. Each public control has a story next to its source under `src/controls/`. The Controls panel edits inputs. Menus, modals, and tooltips render inside `luna-overlay`, which `.storybook/preview.ts` adds to every story and pairs with `LunaOverlayContainer`.
+
+A static build:
+
+```bash
+npm run build-storybook
+```
+
+Output goes to `dist/storybook`.
+
 For a detailed explanation of the library architecture, build process, and how the public API works, see [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ### Building the Library
@@ -758,6 +779,7 @@ All exports go through `src/public-api.ts` → `src/controls/index.ts` → indiv
 
 ```
 ng-luna/
+├── .storybook/          # Workshop preview, theme, and overlay host
 ├── src/
 │   ├── controls/          # Component library controls
 │   │   ├── button/        # Button component
@@ -796,9 +818,10 @@ ng-luna/
 
 ## Dependencies
 
-- **@angular/cdk** (19.x.x) - Angular Component Dev Kit
-- **@ibm/plex** (v6.4.1) - IBM Plex font families (fonts are bundled with the library)
-- **lucide-static** - Lucide icon set (icons are bundled with the library)
+- **lucide-static** (0.468.0) – icon modules re-exported from `ng-luna`
+- **tslib** (2.x.x) – TypeScript helpers; the range lets npm dedupe it with Angular
+
+IBM Plex fonts are copied into the published package when the library is built. Consumers do not install `@ibm/plex`.
 
 ## Publishing
 

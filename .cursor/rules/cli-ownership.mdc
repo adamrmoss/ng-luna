@@ -42,11 +42,11 @@ import { render } from "some-declared-package";
 
 ```markdown
 // ❌ BAD — agent runs verification
-npm run dev:build
+npm run build-storybook
 
 // ✅ GOOD — agent pauses
-Run: npm run dev:build
-Why: confirms the control template change still compiles in the demo app.
+Run: npm run build-storybook
+Why: confirms the control template change still compiles in Storybook.
 ```
 
 ## When blocked without CLI

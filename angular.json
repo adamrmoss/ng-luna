@@ -1,0 +1,88 @@
+{
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "ng-luna": {
+            "projectType": "application",
+            "root": "",
+            "sourceRoot": "src",
+            "prefix": "luna",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:application",
+                    "options": {
+                        "outputPath": "dist/storybook-app",
+                        "index": ".storybook/index.html",
+                        "browser": ".storybook/bootstrap.ts",
+                        "polyfills": [
+                            "zone.js"
+                        ],
+                        "tsConfig": "tsconfig.storybook.json",
+                        "inlineStyleLanguage": "scss",
+                        "assets": [],
+                        "styles": [
+                            ".storybook/styles.scss"
+                        ],
+                        "stylePreprocessorOptions": {
+                            "includePaths": [
+                                "src/theme",
+                                "node_modules"
+                            ]
+                        },
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "development": {
+                            "optimization": false,
+                            "extractLicenses": false,
+                            "sourceMap": true
+                        }
+                    },
+                    "defaultConfiguration": "development"
+                },
+                "storybook": {
+                    "builder": "@storybook/angular:start-storybook",
+                    "options": {
+                        "browserTarget": "ng-luna:build",
+                        "compodoc": false,
+                        "configDir": ".storybook",
+                        "port": 6006,
+                        "tsConfig": "tsconfig.storybook.json",
+                        "styles": [
+                            ".storybook/styles.scss"
+                        ],
+                        "stylePreprocessorOptions": {
+                            "includePaths": [
+                                "src/theme",
+                                "node_modules"
+                            ]
+                        }
+                    }
+                },
+                "build-storybook": {
+                    "builder": "@storybook/angular:build-storybook",
+                    "options": {
+                        "browserTarget": "ng-luna:build",
+                        "compodoc": false,
+                        "configDir": ".storybook",
+                        "outputDir": "dist/storybook",
+                        "tsConfig": "tsconfig.storybook.json",
+                        "styles": [
+                            ".storybook/styles.scss"
+                        ],
+                        "stylePreprocessorOptions": {
+                            "includePaths": [
+                                "src/theme",
+                                "node_modules"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "cli": {
+        "analytics": false
+    }
+}

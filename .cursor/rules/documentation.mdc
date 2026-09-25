@@ -25,7 +25,7 @@ Applies to READMEs and `docs/`. In-source comments follow `comments.mdc`.
 
 ## Style vs architecture
 
-- **Agent contract** (`.cursor/rules/*.mdc`): comment density, TSDoc, TypeScript, Angular, SCSS, and CLI ownership. Do not keep a second style guide under `src/`, `dev/`, or `docs/`.
+- **Agent contract** (`.cursor/rules/*.mdc`): comment density, TSDoc, TypeScript, Angular, SCSS, and CLI ownership. Do not keep a second style guide under `src/`, `.storybook/`, or `docs/`.
 - **READMEs and `docs/`**: how this library works. Purpose, layout, public API, and how controls compose. Not house style.
 
 ## Present-state prose
@@ -36,7 +36,7 @@ Applies to READMEs and `docs/`. In-source comments follow `comments.mdc`.
 
 ## Markdown documentation throughout the repository
 
-**Repository entrypoint** — [`README.md`](README.md) at the repo root is the main guide for installing, using, and extending **ng-luna** (components, overlays, styling, public API). The **`dev/`** app exists only to develop and showcase the library; consumer-facing documentation is the root README and published package docs, not a full “application” story inside `dev/`.
+**Repository entrypoint** — [`README.md`](README.md) at the repo root is the main guide for installing, using, and extending **ng-luna** (components, overlays, styling, public API). **Storybook** exists only to develop and showcase the library; consumer-facing documentation is the root README and published package docs.
 
 **Co-located READMEs** — If you add deeper docs later (e.g. under `src/controls/…` or a `docs/` folder), prefer a `README.md` beside the code it describes. This project currently relies on the root README for most contributor and consumer information.
 
@@ -52,7 +52,7 @@ Applies to READMEs and `docs/`. In-source comments follow `comments.mdc`.
 **When working in a directory:**
 
 - Prefer an existing README in that directory over guessing structure
-- Use the README to understand how controls, theme tokens, and the optional **`dev/`** demo relate
+- Use the README to understand how controls, theme tokens, and Storybook stories relate
 
 **Good documentation for this library covers:**
 

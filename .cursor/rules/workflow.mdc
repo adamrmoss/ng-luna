@@ -5,9 +5,9 @@ alwaysApply: true
 
 # Problem-solving strategy
 
-Primary code lives in **`src/`** (the library); **`dev/`** is for local verification. When solving problems, follow this workflow:
+Primary code lives in **`src/`** (the library); **Storybook** (`.storybook/` and `src/**/*.stories.ts`) is for local verification. When solving problems, follow this workflow:
 
-1. **Plan first**: Understand the problem, read examples (library and `dev/` if relevant), identify patterns
+1. **Plan first**: Understand the problem, read examples (library and stories if relevant), identify patterns
 2. **Test manually**: Apply a **small, focused edit** to one file or symbol first to validate the approach
 3. **Apply systematically**: Find other call sites or copies with search, then fix iteratively with the same pattern
 4. **Only script when necessary**: Prefer direct edits; use scripts only when repetition is impractical

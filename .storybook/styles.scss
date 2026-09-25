@@ -1,0 +1,12 @@
+// Story canvas: Luna global theme and the silver desktop background.
+@use '../src/theme/global' as *;
+@use '../src/theme/palette' as *;
+
+html,
+body
+{
+    background: $silver;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
