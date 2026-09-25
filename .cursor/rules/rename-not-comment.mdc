@@ -1,0 +1,20 @@
+---
+description: Rename wrong identifiers; never leave the old name and explain it in a comment
+alwaysApply: true
+---
+
+# Rename, do not annotate
+
+When a name is wrong, **change the name**. Do not leave the old identifier and add a comment, README note, or alias that says what it “really” means.
+
+This includes TypeScript types and files, component inputs and outputs, CSS class names, and user-facing terms.
+
+## Wrong
+
+Keep `buttonKind` because renaming would touch every template, then write `// this is the visual variant`.
+
+## Right
+
+Rename to `variant` and update the call sites. A wide rename is justified when the identifier is wrong.
+
+Avoiding the edit is not a reason to ship the wrong name.

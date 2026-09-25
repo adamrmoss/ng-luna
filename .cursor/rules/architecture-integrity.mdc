@@ -1,0 +1,25 @@
+---
+description: Never gut designed architecture just to green a check; pause for user-run CLI
+alwaysApply: true
+---
+
+# Architecture integrity
+
+## Forbidden workarounds
+
+- Never remove, gut, or permanently skip a designed layer (overlay host, theme tokens, shared control base, public barrel) to make a demo or check pass.
+- Never invent a “temporary forever” workaround that recreates a removed layer somewhere else.
+- Never leave a wrong identifier in place (types, inputs, files, public API) and explain the real name in a comment. Rename it. See **`rename-not-comment.mdc`**.
+
+## When tooling blocks the design
+
+- Stop and propose a real fix: repair the component or types, fix or request upstream library behavior, or park behind an explicit temporary flag with a tracked follow-up.
+- Prefer failing loudly or documenting a blocker over shipping a degraded architecture as if it were the target state.
+
+## CLI ownership
+
+- Pause whenever a CLI command is needed.
+- Provide a named `npm run` (or short existing CLI) and why it is needed, then wait for the user to run it and report the result.
+- Do not run terminal commands on the user's behalf.
+- Do not paste inline programs as the command.
+- Do not embed CLI or network workarounds in repo scripts. Full rule: **`cli-ownership.mdc`**.

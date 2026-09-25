@@ -9,11 +9,32 @@ alwaysApply: false
 In-source comments and TSDoc: see **`comments.mdc`**. READMEs and `docs/`: see **`documentation.mdc`**.
 
 - **Imports first** — all import statements at the top of the file, before any other code (exports, types, classes, etc.), unless there is a special reason (e.g. dynamic import, circular dependency workaround)
+- **Semicolons** — terminate statements with semicolons; never rely on automatic semicolon insertion (ASI) or omit optional semicolons
+- **Function keyword spacing** — no space between `function` and `(`: `function foo()` and `function()`, not `function foo ()` or `function ()`
+- **Import order** — group imports with a blank line between groups: (1) external packages (`@angular/*`, `rxjs`, …), (2) local relative (`../` and `./`). Alphabetize by module path within each group. Keep relative `../` imports; this library does not use path aliases for in-repo code
 - **Prefer traditional object-oriented structures** — use classes with explicit access modifiers (`public`, `private`, `protected`) rather than object literals or functional patterns for namespaced logic. Prefer `class X { public static method() { } }` over `const X = { method() { } }`. No implied access levels
 - Prefer `switch` statements over `else-if` chains when checking the same variable
 - Use braces `{ }` for all control structures, even single-line blocks
 - **Decorators** — all decorators on their own line (never on the same line as the property or method they decorate)
 - **Explicit access** — all class properties and methods must have explicit access modifiers (`public`, `private`, or `protected`)
+- **Trailing commas** — when list elements are written one per line (array literals, object properties, argument lists, import specifiers, etc.), put a comma after the last item. Single-line lists may omit the trailing comma
+
+```typescript
+// ✅ GOOD — multiline
+const variants = [
+    'primary',
+    'default',
+];
+
+// ✅ GOOD — single line
+const variants = ['primary', 'default'];
+
+// ❌ BAD — multiline without trailing comma
+const variants = [
+    'primary',
+    'default'
+];
+```
 
 ## Braces, indentation, and spacing
 
@@ -33,6 +54,9 @@ In-source comments and TSDoc: see **`comments.mdc`**. READMEs and `docs/`: see *
 - Use **type aliases** for commonly repeated shapes
 - Prefer explicit types over `any`
 - For finite string sets (enum-like values), use **string literal unions** instead of plain `string` (e.g. `export type ButtonType = 'button' | 'submit' | 'reset'`)
+- **Named types over ad-hoc object shapes** — when a complex object shape (multi-property objects, long unions, or nested shapes) is a real concept in a signature, field, or exported constant, extract a documented `interface` or `type` alias. Do not leave that shape inline
+- **Do not name a type only to package a return value.** Decompose: return the existing pieces, a primitive, or values that already have names. A wrapper whose only job is to bundle a method’s outputs is not required
+- Primitives, single-property wrappers, and well-known utility types (`Partial<T>`, `Readonly<T>`) may stay inline
 
 ## Type safety and assertions
 
@@ -64,6 +88,10 @@ In-source comments and TSDoc: see **`comments.mdc`**. READMEs and `docs/`: see *
 - Never use exceptions or `console.error`/`console.warn` for expected failure cases (e.g. missing API in tests, invalid input)
 - Passing tests must not produce stack traces, `console.error`, or `console.warn` output
 - **try/catch only for exceptional behaviour** — use try/catch for truly unexpected errors. For expected conditions, check and return or set state; do not throw or log as if it were exceptional
+
+## Colors in strings
+
+- Do not use `rgba()` in inline `style` strings. Use `#rrggbbaa`. See **`scss-conventions.mdc`**.
 
 ## Module organization and barrel files
 

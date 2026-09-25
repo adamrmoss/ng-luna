@@ -1,5 +1,5 @@
 ---
-description: SCSS structure and alphabetical property order within blocks
+description: SCSS structure, alphabetical property order, and #rrggbbaa for translucent colors
 globs: "**/*.scss"
 alwaysApply: false
 ---
@@ -15,3 +15,16 @@ alwaysApply: false
 - Applies to all selector blocks, including nested selectors, pseudo-classes (`:hover`, `:active`, etc.), and pseudo-elements (`::placeholder`, etc.)
 - Example: `{ align-items: center; background-color: $navy; display: flex; }` correct
 - Example: `{ display: flex; align-items: center; background-color: $navy; }` incorrect
+
+# Color literals (alpha)
+
+- **Do not use** `rgba()` in CSS, SCSS, or inline `style` strings in TypeScript (e.g. `box-shadow`, `color`).
+- **Use** 8-digit hex: `#rrggbbaa` (alpha is the last byte: `00` = transparent, `ff` = opaque).
+- When converting from `rgba(r, g, b, a)` with `a` in 0..1, set the alpha byte to `Math.round(a * 255)` as two hex digits (e.g. `0.4` → `66` → `#00000066` for black at 40% opacity).
+
+**Examples**
+
+- `rgba(255, 255, 255, 0.35)` → `#ffffff59`
+- `rgba(0, 0, 0, 0.4)` → `#00000066`
+
+Opaque colors: prefer `#rrggbb` where a single hex color is enough. This section targets **translucency** without `rgba()`. Existing `rgba()` stays until the file that contains it is edited.

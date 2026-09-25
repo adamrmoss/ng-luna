@@ -19,4 +19,5 @@ Avoid bulk automation as a first step when a targeted change would prove the app
 # Communication and workflow
 
 - When the user says they already fixed something, acknowledge it and move on (do not offer to fix it again)
+- When the user answers their own question (including past tense “was meant to be”), that is the answer standard — see **`answer-corrections.mdc`**
 - Save all standalone executable code (SQL scripts, etc.) to files instead of only displaying in chat

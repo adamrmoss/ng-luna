@@ -1,0 +1,10 @@
+---
+description: Keep chat short and conversational
+alwaysApply: true
+---
+
+# Chat brevity
+
+- Default chat answers: brief, direct, conversational. Verdict first; a few short paragraphs or bullets unless the user asks for depth.
+- Brevity is not a brush-off: when a mistake is uncovered, a brief full-ownership apology comes first (see **`own-mistakes.mdc`**).
+- If the user corrects an answer you just gave, match that correction next time. Do not turn it into an edit or a recap (see **`answer-corrections.mdc`**).

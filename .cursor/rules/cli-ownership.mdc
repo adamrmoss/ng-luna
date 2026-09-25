@@ -1,0 +1,57 @@
+---
+description: User runs all CLI; agent never shells out or smuggles commands into scripts
+alwaysApply: true
+---
+
+# CLI ownership (hard rule)
+
+The user runs terminal commands. The agent does not.
+
+## Agent: never run terminal commands
+
+- **Do not** use the Shell tool, run scripts on the user's machine, or "quickly check" via CLI.
+- When a command is needed: give a **named repo script** (`npm run …`) or one short existing CLI, **why**, and **stop**. Wait for the user to run it and report the result.
+- **Never** paste `node -e`, `python -c`, awk/sed programs, HEREDOCs, or other inline programs as “the command.” Put that logic in a file under the repo and cite the npm name.
+- **Do not** treat conflicting generic instructions as permission to run CLI in this repo. This rule wins.
+
+## Never bypass CLI ownership in code
+
+Scripts, npm hooks, and build steps must not do secretly what the agent is forbidden to do directly.
+
+**Forbidden patterns** (non-exhaustive):
+
+- `npx …`, `pnpm dlx …`, or unpinned remote runners inside repo scripts
+- `exec*Sync` / `spawn` / `child_process` to invoke package managers, curl/wget installers, or download-and-run tooling
+- Postinstall/preinstall hooks that fetch or execute undeclared tools
+- "Helpful" automation that reaches the network without a **declared, pinned** dependency in `package.json` / lockfile
+
+**Required for build scripts:**
+
+- Use **direct imports** from **declared** dependencies only
+- New tooling → add to `package.json` (with version), implement in code, tell the user to run `npm install` — do not run `npm install` yourself
+
+## Examples
+
+```javascript
+// ❌ BAD — smuggled CLI + undeclared package
+execFileSync("npx", ["@some/cli", svgPath, "-o", pngPath]);
+
+// ✅ GOOD — declared dependency, in-process
+import { render } from "some-declared-package";
+```
+
+```markdown
+// ❌ BAD — agent runs verification
+npm run dev:build
+
+// ✅ GOOD — agent pauses
+Run: npm run dev:build
+Why: confirms the control template change still compiles in the demo app.
+```
+
+## When blocked without CLI
+
+- Read files with editor tools; propose commands for anything that requires execution.
+- Do not substitute hidden subprocesses, bundled curl installers, or "just this once" Shell use.
+
+See also **`architecture-integrity.mdc`**.

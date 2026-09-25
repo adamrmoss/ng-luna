@@ -14,6 +14,24 @@ This rule covers **markdown and other authored documentation files** that live b
 | **Project documentation** | READMEs, `docs/*.md`, guides | This file (`documentation.mdc`) |
 | **In-source documentation** | `//` comments, `/** */` docblocks, TSDoc on APIs | `comments.mdc` |
 
+## Punctuation (prose)
+
+- **Em dashes (—)**: use sparingly. When you do use one, put **spaces on both sides**: ` word — word `.
+- **Prefer** a **colon**, **comma**, **semicolon**, or **ellipsis** (…) when one of those carries the pause or break clearly.
+- **En dashes (–)** are for **ranges and spans** only (versions 19–21, items 1–8). Do not substitute an em dash for a range en dash.
+
+Applies to READMEs and `docs/`. In-source comments follow `comments.mdc`.
+
+## Style vs architecture
+
+- **Agent contract** (`.cursor/rules/*.mdc`): comment density, TSDoc, TypeScript, Angular, SCSS, and CLI ownership. Do not keep a second style guide under `src/`, `dev/`, or `docs/`.
+- **READMEs and `docs/`**: how this library works. Purpose, layout, public API, and how controls compose. Not house style.
+
+## Present-state prose
+
+- Document **how the library works today**: purpose, layout, inputs and outputs, and how pieces compose.
+- Do **not** narrate past designs, migrations, or rejected approaches in READMEs and architecture guides.
+- Dated audits and one-off investigations may live under **`docs/`** when they serve as reference snapshots; standing docs stay current-state only.
 
 ## Markdown documentation throughout the repository
 
@@ -41,3 +59,5 @@ This rule covers **markdown and other authored documentation files** that live b
 - Inputs, outputs, and standalone `imports` patterns
 - Styling and theme conventions where non-obvious
 - Examples that match real usage (including overlay setup if relevant)
+
+It does **not** cover house style. That lives in `.cursor/rules/`.

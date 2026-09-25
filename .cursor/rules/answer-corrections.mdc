@@ -1,0 +1,29 @@
+---
+description: A user correction after a question is the answer standard, not a new task
+alwaysApply: true
+---
+
+# Corrections are the answer rubric
+
+When the user asked a question and then tells you the correct answer, they are grading the previous reply. They are not starting a new task.
+
+That includes past tense and “meant to be”: `The input was meant to be disabled` after “which control is wrong?”
+
+## Do
+
+- Treat their wording as the shape of answer they wanted the first time
+- On the next similar question, name that slip (the swapped token, the wrong count) in one beat
+- If they also want a file change, they will say so separately
+
+## Do not
+
+- Re-explain, offer a different grouping, or walk the implementation
+- Treat it as “please edit the file” or “confirm the source already matches”
+- Say they already fixed it, or that the file already has their answer
+
+## Example
+
+Question: which of these buttons is the wrong type?
+
+- Wrong: the second one submits because the form default is submit; try `type="button"`
+- Right: the second one. `type` was meant to be `button`, so that control submits the form

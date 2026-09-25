@@ -7,18 +7,23 @@ alwaysApply: true
 
 ## Forbidden actions
 
-- Never run shell commands or terminal commands (user has sole discretion)
+- Never run shell commands or terminal commands (user has sole discretion); pause with a named `npm run` (or short existing CLI), why, and wait (see **`cli-ownership.mdc`**)
+- Never paste inline programs (`node -e`, awk blobs, HEREDOCs) as the command the user should run (see **`cli-ownership.mdc`**)
 - Never make code changes without explicit user request
 - Never assume work is complete without verification
 - Never create generic folders like `controllers/`, `views/`, `services/`
+- Never gut designed architecture to green a demo or check (see **`architecture-integrity.mdc`**)
 - Follow **`comments.mdc`** for in-source comments and TSDoc; **`documentation.mdc`** for READMEs and `docs/`
+- Keep chat short (see **`chat-brevity.mdc`**)
 - Never include HTML/SCSS directly in TypeScript components (use separate files)
 
 ## Required actions
 
+- When a mistake is uncovered, apologize immediately with full ownership (see **`own-mistakes.mdc`**)
 - For checklist-backed multi-step work, follow **`checklist-discipline.mdc`**: one row at a time (read → fix → `[x]` before the next row); if the user says checklist items were missed, recover from the first `[ ]` in order without rebuilding the list
 - Always answer questions directly before taking action
 - Always verify changes by reading the actual file output
 - Always use standalone Angular components with separate template/stylesheet files
 - Always use explicit `this.` where applicable for instance members
 - Always use braces `{ }` for all control structures, even single-line blocks
+- Always terminate JavaScript and TypeScript statements with semicolons (see **`typescript-style.mdc`**)
