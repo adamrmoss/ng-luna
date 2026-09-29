@@ -16,15 +16,14 @@
         "strictInputAccessModifiers": true,
         "strictTemplates": true
     },
-    "files": [
-        ".storybook/bootstrap.ts"
-    ],
     "include": [
         "src/**/*.stories.ts",
-        ".storybook/**/*.ts"
+        ".storybook/preview.ts"
     ],
     "exclude": [
         "dist",
-        "node_modules"
+        "node_modules",
+        ".storybook/bootstrap.ts",
+        ".storybook/main.ts"
     ]
 }
