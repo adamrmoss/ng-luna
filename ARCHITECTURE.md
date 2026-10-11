@@ -382,10 +382,10 @@ Output goes to `dist/`. The build:
 ### Publishing
 
 ```bash
-npm run publish
+npm publish ./dist
 ```
 
-This builds and publishes `dist/` to npm. Consumers get the complete self-contained library.
+`prepublishOnly` builds first. ng-packagr has already copied fonts and theme into `dist/`.
 
 ## Summary
 

@@ -1001,22 +1001,7 @@ npm login
 
 ### Publishing Steps
 
-1. **Build the library:**
-
-```bash
-npm run build
-```
-
-2. **Test the build (optional but recommended):**
-
-```bash
-cd dist
-npm pack
-```
-
-This creates a `.tgz` file you can inspect or test locally before publishing.
-
-3. **Publish to npm:**
+`prepublishOnly` builds the library. The built package is `dist/`, which already contains `fonts/` and `theme/`.
 
 ```bash
 npm publish ./dist
@@ -1027,15 +1012,11 @@ npm publish ./dist
 When you need to publish a new version:
 
 ```bash
-# Update the version number (choose one):
-npm version patch  # 0.0.1 -> 0.0.2 (bug fixes)
-npm version minor  # 0.0.1 -> 0.1.0 (new features)
-npm version major  # 0.0.1 -> 1.0.0 (breaking changes)
-
-# Build and publish
-npm run build
+npm version patch
 npm publish ./dist
 ```
+
+`npm version` also accepts `minor` and `major`.
 
 ## License
 
