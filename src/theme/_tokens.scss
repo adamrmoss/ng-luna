@@ -1,0 +1,156 @@
+// CSS custom properties for the EduBASIC default paint.
+// Fallbacks are typography aliases and palette colors. Controls call `luna-token()`.
+@use 'sass:map';
+@use 'palette' as *;
+@use 'typography' as *;
+
+// A component token falls back to its role, then to the palette value.
+$luna-roles: (
+    'button-action-background': 'color-action',
+    'button-action-background-hover': 'color-action-hover',
+    'button-action-danger-background': 'color-danger',
+    'button-default-background': 'color-action',
+    'button-default-background-hover': 'color-action-hover',
+    'button-default-border': 'color-navy',
+    'input-background': 'color-navy',
+    'input-border': 'color-border',
+    'input-border-focus': 'color-action',
+    'input-disk-background': 'color-navy',
+    'input-disk-border': 'color-border',
+    'input-disk-border-focus': 'color-action',
+    'menu-context-background': 'color-navy-darkest',
+    'menu-context-danger-color': 'color-danger',
+    'tab-background': 'color-navy-darkest',
+    'tab-selected-background': 'color-navy',
+    'window-background': 'color-navy',
+    'window-title-background': 'color-action',
+);
+
+$luna-fallbacks: (
+    'button-action-background': $blue-bright,
+    'button-action-background-hover': $blue-bright-dark,
+    'button-action-danger-background': $orange,
+    'button-action-font-size': $button-action-font-size,
+    'button-action-gap': $button-action-gap,
+    'button-action-padding-x': $button-action-padding-x,
+    'button-action-padding-y': $button-action-padding-y,
+    'button-action-radius': $button-action-radius,
+    'button-command-background': $blue-steel,
+    'button-command-background-active': $blue-steel-dark,
+    'button-command-background-hover': $blue-steel-light,
+    'button-command-font-size': $button-command-font-size,
+    'button-command-padding-x': $button-command-padding-x,
+    'button-command-padding-y': $button-command-padding-y,
+    'button-command-radius': $button-command-radius,
+    'button-default-background': $blue-bright,
+    'button-default-background-hover': $blue-bright-dark,
+    'button-default-border': $navy,
+    'button-default-font-size': $button-font-size,
+    'button-default-padding-x': $button-padding-x,
+    'button-default-padding-y': $button-padding-y,
+    'button-default-radius': $button-radius,
+    'button-icon-compact-background': $white-10,
+    'button-icon-compact-background-hover': $white-20,
+    'button-icon-compact-danger-background': $orange-20,
+    'button-icon-compact-danger-background-hover': $orange-30,
+    'button-icon-compact-font-size': $button-icon-compact-font-size,
+    'button-icon-compact-radius': $button-icon-compact-radius,
+    'button-icon-compact-size': $button-icon-compact-size,
+    'button-icon-font-size': $button-icon-font-size,
+    'button-icon-radius': $button-icon-radius,
+    'button-icon-size': $button-icon-size,
+    'color-action': $blue-bright,
+    'color-action-hover': $blue-bright-dark,
+    'color-border': $blue-steel-dark,
+    'color-danger': $orange,
+    'color-navy': $navy,
+    'color-navy-dark': $navy-dark,
+    'color-navy-darkest': $navy-darkest,
+    'color-text': $white,
+    'color-text-secondary': $silver-soft,
+    'input-background': $navy,
+    'input-border': $blue-steel-dark,
+    'input-border-focus': $blue-bright,
+    'input-placeholder': '#e0e0e08c',
+    'input-disk-background': $navy,
+    'input-disk-border': $blue-steel-dark,
+    'input-disk-border-focus': $blue-bright,
+    'input-disk-font-size': $input-disk-font-size,
+    'input-disk-padding-x': $input-disk-padding-x,
+    'input-disk-padding-y': $input-disk-padding-y,
+    'input-disk-placeholder': '#e0e0e08c',
+    'input-disk-radius': $input-disk-radius,
+    'input-font-size': $input-font-size,
+    'input-padding-x': $input-padding-x,
+    'input-padding-y': $input-padding-y,
+    'input-radius': $input-radius,
+    'menu-context-background': $navy-darkest,
+    'menu-context-danger-color': $orange,
+    'menu-context-danger-hover-background': '#e5a01a1a',
+    'menu-context-font-size': $menu-context-font-size,
+    'menu-context-item-gap': $menu-context-item-gap,
+    'menu-context-item-padding': $menu-context-item-padding,
+    'menu-context-item-radius': $menu-context-item-radius,
+    'menu-context-min-width': $menu-context-min-width,
+    'menu-context-padding': $menu-context-padding,
+    'menu-context-radius': $menu-context-radius,
+    'menu-context-row-gap': $menu-context-row-gap,
+    'menu-context-shadow': '0 4px 12px #00000066',
+    'menu-menubar-background': $gray-light-warm,
+    'menu-menubar-color': $black,
+    'menu-menubar-check-gap': $menu-menubar-check-gap,
+    'menu-menubar-font-size': $menu-menubar-font-size,
+    'menu-menubar-item-padding-left': $menu-menubar-item-padding-left,
+    'menu-menubar-item-padding-x': $menu-menubar-item-padding-x,
+    'menu-menubar-item-padding-y': $menu-menubar-item-padding-y,
+    'menu-menubar-margin-bottom': $menu-menubar-margin-bottom,
+    'menu-menubar-min-width': $menu-menubar-min-width,
+    'menu-menubar-radius': $menu-menubar-radius,
+    'tab-background': $navy-darkest,
+    'tab-font-size': $tab-font-size,
+    'tab-margin-right': $tab-margin-right,
+    'tab-padding-bottom': $tab-padding-bottom,
+    'tab-padding-x': $tab-padding-x,
+    'tab-padding-y': $tab-padding-y,
+    'tab-panel-padding': $tab-panel-padding,
+    'tab-selected-background': $navy,
+    'toolbar-cluster-gap': $toolbar-cluster-gap,
+    'toolbar-command-gap': $toolbar-command-gap,
+    'toolbar-command-padding': $toolbar-command-padding,
+    'toolbar-editor-group-end-gap': $toolbar-editor-group-end-gap,
+    'toolbar-editor-group-start-gap': $toolbar-editor-group-start-gap,
+    'toolbar-editor-min-height': $toolbar-editor-min-height,
+    'toolbar-editor-padding-x': $toolbar-editor-padding-x,
+    'toolbar-editor-padding-y': $toolbar-editor-padding-y,
+    'toolbar-float-offset': $toolbar-float-offset,
+    'window-background': $navy,
+    'window-body-padding': $window-body-padding,
+    'window-frame-padding': $window-frame-padding,
+    'window-radius': $window-radius,
+    'window-title-background': $blue-bright,
+    'window-title-control-gap': $window-title-control-gap,
+    'window-title-control-size': $window-title-control-size,
+    'window-title-font-size': $window-title-font-size,
+    'window-title-height': $window-title-height,
+    'window-title-padding': $window-title-padding,
+);
+
+// Returns `var(--luna-<name>, <fallback>)` for a key in `$luna-fallbacks`.
+@function luna-token($name)
+{
+    @if not map.has-key($luna-fallbacks, $name)
+    {
+        @error 'Unknown Luna token `#{$name}`.';
+    }
+
+    $fallback: map.get($luna-fallbacks, $name);
+    $role: map.get($luna-roles, $name);
+
+    // Role first, so `--luna-color-navy` reskins every surface that shares it.
+    @if $role != null
+    {
+        @return var(--luna-#{$name}, var(--luna-#{$role}, #{$fallback}));
+    }
+
+    @return var(--luna-#{$name}, #{$fallback});
+}

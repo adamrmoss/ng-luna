@@ -1,8 +1,9 @@
-// Range track, thumb, and optional vertical/box-thumb variants.
-@use '../../theme/palette' as *;
+// Range track on the field surface. Thumb art stays the shared grip graphic.
 @use '../../theme/graphics' as *;
+@use '../../theme/tokens' as *;
+@use '../../theme/typography' as *;
 
-:host
+:host:not([hidden])
 {
     display: contents;
 }
@@ -29,41 +30,23 @@ input[type="range"]
 
     &::-webkit-slider-runnable-track
     {
-        background: $beige-lighter;
-        border-bottom: 1px solid $cream;
-        border-radius: 2px;
-        border-right: 1px solid $cream;
-        box-shadow:
-            1px 0 0 $white,
-            1px 1px 0 $white,
-            0 1px 0 $white,
-            -1px 0 0 $gray-dark,
-            -1px -1px 0 $gray-dark,
-            0 -1px 0 $gray-dark,
-            -1px 1px 0 $white,
-            1px -1px $gray-dark;
+        background: luna-token('input-background');
+        border: 1px solid luna-token('input-border');
+        border-radius: $input-radius;
+        box-shadow: none;
         box-sizing: border-box;
-        height: 2px;
+        height: 4px;
         width: 100%;
     }
 
     &::-moz-range-track
     {
-        background: $beige-lighter;
-        border-bottom: 1px solid $cream;
-        border-radius: 2px;
-        border-right: 1px solid $cream;
-        box-shadow:
-            1px 0 0 $white,
-            1px 1px 0 $white,
-            0 1px 0 $white,
-            -1px 0 0 $gray-dark,
-            -1px -1px 0 $gray-dark,
-            0 -1px 0 $gray-dark,
-            -1px 1px 0 $white,
-            1px -1px $gray-dark;
+        background: luna-token('input-background');
+        border: 1px solid luna-token('input-border');
+        border-radius: $input-radius;
+        box-shadow: none;
         box-sizing: border-box;
-        height: 2px;
+        height: 4px;
         width: 100%;
     }
 }
@@ -87,33 +70,17 @@ input[type="range"].has-box-indicator
 {
     &::-webkit-slider-runnable-track
     {
-        border-bottom: 1px solid $cream;
-        border-left: 1px solid $cream;
+        border-bottom: 1px solid luna-token('input-border');
+        border-left: 1px solid luna-token('input-border');
         border-right: 0;
-        box-shadow:
-            -1px 0 0 $white,
-            -1px 1px 0 $white,
-            0 1px 0 $white,
-            1px 0 0 $gray-dark,
-            1px -1px 0 $gray-dark,
-            0 -1px 0 $gray-dark,
-            1px 1px 0 $white,
-            -1px -1px $gray-dark;
+        box-shadow: none;
     }
 
     &::-moz-range-track
     {
-        border-bottom: 1px solid $cream;
-        border-left: 1px solid $cream;
+        border-bottom: 1px solid luna-token('input-border');
+        border-left: 1px solid luna-token('input-border');
         border-right: 0;
-        box-shadow:
-            -1px 0 0 $white,
-            -1px 1px 0 $white,
-            0 1px 0 $white,
-            1px 0 0 $gray-dark,
-            1px -1px 0 $gray-dark,
-            0 -1px 0 $gray-dark,
-            1px 1px 0 $white,
-            -1px -1px $gray-dark;
+        box-shadow: none;
     }
 }

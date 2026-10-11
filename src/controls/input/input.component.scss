@@ -1,14 +1,13 @@
-// Single-line text field chrome aligned to Luna form tokens.
-@use '../../theme/layout' as *;
-@use '../../theme/palette' as *;
+// Disk name field. Other fields do not use these metrics.
 @use '../../theme/fonts' as *;
+@use '../../theme/layout' as *;
+@use '../../theme/tokens' as *;
 @use '../../theme/typography' as *;
 
-:host
+:host:not([hidden])
 {
     display: contents;
 }
-
 
 :host(.luna-maximized) input
 {
@@ -19,23 +18,30 @@ input[type="text"],
 input[type="password"],
 input[type="email"]
 {
-    border: 1px solid $blue-steel;
-    border-radius: $border-radius-sm;
+    background: luna-token('input-disk-background');
+    border: 1px solid luna-token('input-disk-border');
+    border-radius: luna-token('input-disk-radius');
     box-sizing: border-box;
-    font-family: $font-sans;
-    font-size: $input-font-size;
-    line-height: $input-line-height;
-    padding: $input-padding-y $input-padding-x;
+    color: luna-token('color-text');
+    font-family: $font-mono;
+    font-size: luna-token('input-disk-font-size');
+    line-height: $input-disk-line-height;
+    padding: luna-token('input-disk-padding-y') luna-token('input-disk-padding-x');
+
+    &::placeholder
+    {
+        color: luna-token('input-disk-placeholder');
+    }
 
     &::selection
     {
-        background: var(--dialog-blue);
-        color: $white;
+        background: luna-token('color-action');
+        color: luna-token('color-text');
     }
 
     &:focus
     {
+        border-color: luna-token('input-disk-border-focus');
         outline: none;
-        box-shadow: inset 2px 2px $white, inset -2px -2px $white;
     }
 }

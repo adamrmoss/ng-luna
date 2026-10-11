@@ -1,10 +1,10 @@
 # ng-luna
 
-An Angular component library inspired by Windows XP aesthetics, built with IBM Plex fonts.
+An Angular component library. The default paint is the EduBASIC navy theme, set in IBM Plex Sans and IBM Plex Mono.
 
 ## Overview
 
-ng-luna provides a collection of Angular components styled to match the classic Windows XP design language. The library uses custom styling inspired by Windows XP and [IBM Plex](https://www.ibm.com/plex/) fonts for typography.
+ng-luna provides standalone Angular components. Buttons, fields, menus, windows, tabs, and dialogs ship with the EduBASIC surfaces: navy grounds, bright-blue actions, and white text. Another app reskins that theme with CSS custom properties. Font families stay [IBM Plex](https://www.ibm.com/plex/) Sans and IBM Plex Mono.
 
 All components are **standalone** and implement Angular's reactive forms API where applicable, making them compatible with `FormControl`, `FormGroup`, and `ngModel`. Components are built on **Angular CDK** for enhanced accessibility, keyboard navigation, drag-and-drop, and cross-platform support.
 
@@ -120,15 +120,130 @@ Once configured, you can use the fonts directly in your CSS/SCSS:
 ```
 
 **Available font families:**
-- `'IBM Plex Sans', sans-serif` - Default sans-serif font used by components
-- `'IBM Plex Mono', monospace` - Monospace font
-- `'IBM Plex Serif', serif` - Serif font
+- `'IBM Plex Sans', sans-serif` - Default and command buttons, menubar rows and triggers, select, textarea, tabs, title bar, dialog titles, fieldset legends
+- `'IBM Plex Mono', monospace` - Action buttons, the disk name field, and context menu rows
+- `'IBM Plex Serif', serif` - Available for app styles; controls do not use it
 
-**Note:** The ng-luna components will automatically use these fonts once they are available at `/fonts`.
+**Note:** The ng-luna components will automatically use these fonts once they are available at `/fonts`. Font families are not custom properties.
+
+### Theme
+
+The default paint is the EduBASIC palette. Set any property below on `:root` or an ancestor to reskin a control. When the variable is unset, the control uses the fallback. A component property that shares a role falls back to that role first, so `--luna-color-navy` reskins the window, the selected tab, and the fields unless that control's own property is set. Each metric names its component and variant. `_palette.scss` and `_typography.scss` in the published `theme/` folder remain the SCSS source for layout you write yourself.
+
+Solid danger hover on an action button, and on an icon button at the default size, is `color-mix` of `--luna-button-action-danger-background` 10% toward black.
+
+| Property | Fallback | Read by |
+|---|---|---|
+| `--luna-color-navy` | `#003c74` | Menubar row hover. Role for the window, the selected tab, and field fills |
+| `--luna-color-navy-darkest` | `#00138c` | Role for unselected tabs, the menubar, and the context menu |
+| `--luna-color-navy-dark` | `#001ea0` | Unselected tab hover and context menu row hover |
+| `--luna-color-action` | `#0053ee` | Button focus outline and text selection. Role for default and action button fills, field focus, and the window title |
+| `--luna-color-action-hover` | `#0050ee` | Window control buttons. Role for default and action button hover |
+| `--luna-color-border` | `#1d5281` | Command button border, menu border, dialog, tab panel, fieldset, and field borders |
+| `--luna-color-text` | `#ffffff` | Button, field, menu, window, tab, and dialog text |
+| `--luna-color-text-secondary` | `#e0e0e0` | Disabled menu rows |
+| `--luna-color-danger` | `#e5a01a` | Compact danger icon text. Role for the action danger fill and context danger text |
+| `--luna-button-default-background` | `#0053ee` | Default button |
+| `--luna-button-default-background-hover` | `#0050ee` | Default button hover |
+| `--luna-button-default-border` | `#003c74` | Default button border |
+| `--luna-button-default-font-size` | `11px` | Default button |
+| `--luna-button-default-padding-x` | `12px` | Default button |
+| `--luna-button-default-padding-y` | `4px` | Default button |
+| `--luna-button-default-radius` | `3px` | Default button |
+| `--luna-button-action-background` | `#0053ee` | Action button and default-size icon button |
+| `--luna-button-action-background-hover` | `#0050ee` | Action button and default-size icon button hover |
+| `--luna-button-action-danger-background` | `#e5a01a` | Danger action button and danger icon button at default size |
+| `--luna-button-action-font-size` | `12px` | Action button |
+| `--luna-button-action-gap` | `8px` | Action button |
+| `--luna-button-action-padding-x` | `12px` | Action button |
+| `--luna-button-action-padding-y` | `8px` | Action button |
+| `--luna-button-action-radius` | `4px` | Action button |
+| `--luna-button-command-background` | `#7f9db9` | Command button |
+| `--luna-button-command-background-hover` | `#91a7b4` | Command button hover |
+| `--luna-button-command-background-active` | `#1d5281` | Command button active |
+| `--luna-button-command-font-size` | `12px` | Command button |
+| `--luna-button-command-padding-x` | `12px` | Command button |
+| `--luna-button-command-padding-y` | `4px` | Command button |
+| `--luna-button-command-radius` | `0` | Command button |
+| `--luna-button-icon-size` | `28px` | Icon button |
+| `--luna-button-icon-font-size` | `16px` | Icon button |
+| `--luna-button-icon-radius` | `4px` | Icon button |
+| `--luna-button-icon-compact-size` | `24px` | Compact icon button |
+| `--luna-button-icon-compact-font-size` | `12px` | Compact icon button |
+| `--luna-button-icon-compact-radius` | `3px` | Compact icon button |
+| `--luna-button-icon-compact-background` | `#ffffff1a` | Compact icon button |
+| `--luna-button-icon-compact-background-hover` | `#ffffff33` | Compact icon button hover |
+| `--luna-button-icon-compact-danger-background` | `#e5a01a33` | Compact danger icon button |
+| `--luna-button-icon-compact-danger-background-hover` | `#e5a01a4d` | Compact danger icon button hover |
+| `--luna-input-disk-background` | `#003c74` | Disk name field (`luna-input`) |
+| `--luna-input-disk-border` | `#1d5281` | Disk name field |
+| `--luna-input-disk-border-focus` | `#0053ee` | Disk name field focus |
+| `--luna-input-disk-font-size` | `13px` | Disk name field |
+| `--luna-input-disk-padding-x` | `12px` | Disk name field |
+| `--luna-input-disk-padding-y` | `8px` | Disk name field |
+| `--luna-input-disk-placeholder` | `#e0e0e08c` | Disk name field placeholder |
+| `--luna-input-disk-radius` | `4px` | Disk name field |
+| `--luna-input-background` | `#003c74` | Select, textarea, checkbox, radio, slider track, progress track |
+| `--luna-input-border` | `#1d5281` | Select, textarea, checkbox, radio, slider track, progress track |
+| `--luna-input-border-focus` | `#0053ee` | Select and textarea focus |
+| `--luna-input-font-size` | `11px` | Select and textarea |
+| `--luna-input-padding-x` | `4px` | Select and textarea |
+| `--luna-input-padding-y` | `4px` | Select and textarea |
+| `--luna-input-placeholder` | `#e0e0e08c` | Textarea placeholder |
+| `--luna-input-radius` | `2px` | Select and textarea |
+| `--luna-menu-menubar-background` | `#dcdcd7` | Menubar and menubar dropdown |
+| `--luna-menu-menubar-color` | `#000000` | Menubar text and triggers |
+| `--luna-menu-menubar-font-size` | `11px` | Menubar rows and triggers |
+| `--luna-menu-menubar-item-padding-y` | `4px` | Menubar row and trigger |
+| `--luna-menu-menubar-item-padding-x` | `12px` | Menubar row and trigger |
+| `--luna-menu-menubar-item-padding-left` | `8px` | Menubar row |
+| `--luna-menu-menubar-check-gap` | `8px` | Menubar check slot |
+| `--luna-menu-menubar-margin-bottom` | `8px` | Menubar |
+| `--luna-menu-menubar-min-width` | `10rem` | Menubar dropdown |
+| `--luna-menu-menubar-radius` | `0` | Menubar dropdown and trigger |
+| `--luna-menu-context-background` | `#00138c` | Context menu |
+| `--luna-menu-context-font-size` | `13px` | Context menu rows |
+| `--luna-menu-context-padding` | `4px` | Context menu panel |
+| `--luna-menu-context-row-gap` | `2px` | Context menu rows |
+| `--luna-menu-context-item-padding` | `12px` | Context menu row |
+| `--luna-menu-context-item-gap` | `12px` | Context menu row |
+| `--luna-menu-context-item-radius` | `4px` | Context menu row |
+| `--luna-menu-context-radius` | `6px` | Context menu panel |
+| `--luna-menu-context-min-width` | `180px` | Context menu panel |
+| `--luna-menu-context-shadow` | `0 4px 12px #00000066` | Context menu panel |
+| `--luna-menu-context-danger-color` | `#e5a01a` | Context menu danger row |
+| `--luna-menu-context-danger-hover-background` | `#e5a01a1a` | Context menu danger row hover |
+| `--luna-tab-background` | `#00138c` | Unselected tab |
+| `--luna-tab-selected-background` | `#003c74` | Selected tab |
+| `--luna-tab-font-size` | `11px` | Tab |
+| `--luna-tab-padding-y` | `4px` | Tab |
+| `--luna-tab-padding-x` | `12px` | Tab |
+| `--luna-tab-padding-bottom` | `4px` | Tab |
+| `--luna-tab-margin-right` | `2px` | Tab |
+| `--luna-tab-panel-padding` | `8px` | Tab panel |
+| `--luna-toolbar-cluster-gap` | `4px` | Cluster toolbar |
+| `--luna-toolbar-editor-padding-y` | `12px` | Editor toolbar |
+| `--luna-toolbar-editor-padding-x` | `16px` | Editor toolbar |
+| `--luna-toolbar-editor-min-height` | `56px` | Editor toolbar |
+| `--luna-toolbar-editor-group-start-gap` | `12px` | First group in an editor toolbar |
+| `--luna-toolbar-editor-group-end-gap` | `8px` | Later groups in an editor toolbar |
+| `--luna-toolbar-command-padding` | `8px` | Command toolbar |
+| `--luna-toolbar-command-gap` | `8px` | Command toolbar |
+| `--luna-toolbar-float-offset` | `16px` | Float toolbar |
+| `--luna-window-background` | `#003c74` | Window body, tab panel, dialog body, fieldset |
+| `--luna-window-title-background` | `#0053ee` | Window frame, title bar, dialog title |
+| `--luna-window-frame-padding` | `4px` | Window frame |
+| `--luna-window-title-height` | `21px` | Window title bar |
+| `--luna-window-title-padding` | `4px` | Window title bar |
+| `--luna-window-title-font-size` | `11px` | Window title |
+| `--luna-window-title-control-gap` | `2px` | Window title controls |
+| `--luna-window-title-control-size` | `21px` | Window title controls |
+| `--luna-window-body-padding` | `8px` | Window body |
+| `--luna-window-radius` | `6px` | Window |
 
 ### Using Icons
 
-ng-luna includes [Lucide Icons](https://lucide.dev/), a comprehensive set of over 1,400 clean, consistent SVG icons that complement the Windows XP aesthetic. Icons are provided as **tree-shakable ES modules** - only the icons you import will be included in your bundle.
+ng-luna includes [Lucide Icons](https://lucide.dev/), a comprehensive set of over 1,400 clean, consistent SVG icons. Icons are provided as **tree-shakable ES modules** - only the icons you import will be included in your bundle.
 
 #### Import Icons
 
@@ -155,7 +270,7 @@ export class MyComponent {
 ##### Inputs
 
 - `svg: string` (required) - The SVG string from an imported Lucide icon
-- `size?: IconSize` - Icon size: `'12' | '16' | '20' | '24' | '32' | '48'` (default: `'24'`)
+- `size?: IconSize` - Icon size: `'12' | '14' | '16' | '20' | '24' | '32' | '48'` (default: `'24'`)
 
 ##### Example
 
@@ -173,7 +288,7 @@ export class MyComponent {
 
 Lucide provides over 1,400 icons. Browse all available icons at [lucide.dev/icons](https://lucide.dev/icons).
 
-**Common icons for XP-style interfaces:**
+**Common icons:**
 - `Home`, `Folder`, `File` - Navigation
 - `Settings`, `Tool`, `Wrench` - Configuration
 - `User`, `Users` - User management
@@ -209,9 +324,19 @@ These inputs are inherited from the base class and available on all components u
 
 ### Button Component
 
-The `luna-button` component provides a Windows XP-styled button.
+The `luna-button` component paints one variant at a time. `size` applies only with `variant="icon"`.
 
 **Selector:** `luna-button`
+
+`variant="default"` is IBM Plex Sans, 11px, line-height 1.2, padding `4px 12px`, a navy border, radius `3px`, and the action fill. An active press moves it down 1px.
+
+`variant="action"` is IBM Plex Mono, 12px, weight 500, padding `8px 12px`, gap `8px`, no border, radius `4px`, and the same fill and press. Projected content, including a `luna-icon` at `size="16"`, is centered in that gap.
+
+`variant="command"` is IBM Plex Sans, 12px, padding `4px 12px`, no gap, a steel border, square corners, and a steel fill. Hover lightens the fill. An active press uses the dark steel fill.
+
+`variant="icon"` is a 28px square, padding `0`, radius `4px`, with the action fill. `size="compact"` is a 24px square, radius `3px`, with a translucent fill. The glyph stays `luna-icon` `size="16"`.
+
+`tone="danger"` on an action button, and on an icon button at the default size, uses a solid danger fill. Compact danger keeps the 24px box: danger text on a translucent danger fill. `disabled` sets `cursor: not-allowed`, opacity `0.6`, and drops hover and active treatment on every variant.
 
 #### Inputs
 
@@ -225,8 +350,11 @@ The `luna-button` component provides a Windows XP-styled button.
 - `formtarget?: FormTarget` - Where to display form response: `'_self' | '_blank' | '_parent' | '_top'`
 - `popovertarget?: string` - ID of popover element to control
 - `popovertargetaction?: PopoverTargetAction` - Popover action: `'show' | 'hide' | 'toggle'`
+- `size: LunaSize` - Density: `'default' | 'compact'` (default: `'default'`). Compact applies with `variant="icon"`.
+- `tone: LunaTone` - Semantic recolor: `'default' | 'danger'` (default: `'default'`)
 - `type: ButtonType` - Button type: `'button' | 'submit' | 'reset'` (default: `'button'`)
 - `value?: string` - Value attribute for the button
+- `variant: LunaButtonVariant` - Structure: `'default' | 'action' | 'command' | 'icon'` (default: `'default'`)
 
 #### Outputs
 
@@ -245,7 +373,7 @@ The `luna-button` component provides a Windows XP-styled button.
 
 ### Checkbox Component
 
-The `luna-checkbox` component provides a Windows XP-styled checkbox that implements `ControlValueAccessor` for reactive forms support.
+The `luna-checkbox` component is a checkbox on the shared field surface. It implements `ControlValueAccessor` for reactive forms support.
 
 **Selector:** `luna-checkbox`
 
@@ -270,7 +398,7 @@ The `luna-checkbox` component provides a Windows XP-styled checkbox that impleme
 
 ### Fieldset Component
 
-The `luna-fieldset` component provides a Windows XP-styled fieldset for grouping form controls.
+The `luna-fieldset` component groups form controls on the window surface.
 
 **Selector:** `luna-fieldset`
 
@@ -297,7 +425,7 @@ The `luna-icon` component provides a convenient way to render Lucide icons with 
 #### Inputs
 
 - `svg: string` (required) - The SVG string from an imported Lucide icon
-- `size?: IconSize` - Icon size: `'12' | '16' | '20' | '24' | '32' | '48'` (default: `'24'`)
+- `size?: IconSize` - Icon size: `'12' | '14' | '16' | '20' | '24' | '32' | '48'` (default: `'24'`)
 
 #### Example
 
@@ -325,6 +453,35 @@ export class MyComponent {
 
 For more information on importing and using icons, see the [Using Icons](#using-icons) section above.
 
+### Toolbar Component
+
+The `luna-toolbar` component is a horizontal bar. `luna-toolbar-group` is a row inside it. The variant owns the bar's padding and gap. There is no gap input.
+
+**Selector:** `luna-toolbar`
+
+**Group selector:** `luna-toolbar-group`
+
+- `variant="cluster"`: padding `0`, gap `4px`, no background. Icon buttons.
+- `variant="editor"`: padding `12px 16px`, navy-darkest bar, steel bottom border, `min-height: 56px`, space between, centered. The first group gaps at `12px`. A following group gaps at `8px`.
+- `variant="command"`: padding `8px`, gap `8px`, the same bar, centered. Command buttons.
+- `variant="end"`: padding `0`, gap `0`, aligned to the end, `flex-shrink: 0`.
+- `variant="float"`: padding `0`, gap `0`, `position: absolute`, `top: 16px`, `right: 16px`.
+
+#### Example
+
+```html
+<luna-toolbar variant="editor">
+    <luna-toolbar-group>
+        <luna-button variant="icon" type="button">
+            <luna-icon [svg]="saveIcon" size="16"></luna-icon>
+        </luna-button>
+    </luna-toolbar-group>
+    <luna-toolbar-group>
+        <luna-button variant="command" type="button">Start</luna-button>
+    </luna-toolbar-group>
+</luna-toolbar>
+```
+
 ### Menu Bar Component
 
 The `luna-menu-bar` component is a container that renders a horizontal menu bar (e.g. under a window title bar). It is a flex container; place one or more `luna-menu` components inside it. It extends `LunaControl` (optional `id`, `name`, `tabindex`, `autofocus`).
@@ -346,7 +503,7 @@ The `luna-menu-bar` component is a container that renders a horizontal menu bar 
 
 ### Menu Component
 
-The `luna-menu` component provides a classic dropdown menu (DOS/Windows 9x style) with a trigger and a list of items. It supports checked items, hover highlighting, Up/Down to move the highlight within the list, closing with Escape, and Enter to activate the highlighted row. When the menu sits inside a **Menu Bar Component**, Left/Right move to the previous or next top-level menu in the bar (with wraparound).
+The `luna-menu` component opens a menu panel from a trigger, or at a viewport point. It supports checked items, icons, a danger tone, hover highlighting, Up/Down to move the highlight within the list, closing with Escape, and Enter to activate the highlighted row. When the menu sits inside a **Menu Bar Component**, Left/Right move to the previous or next top-level menu in the bar (with wraparound).
 
 **Selector:** `luna-menu`
 
@@ -356,7 +513,13 @@ Use `LunaOverlayComponent` and `LunaOverlayContainer` as described in **Overlay 
 
 #### Inputs
 
-- `items: LunaMenuEntry[]` – Menu entries. Each item: `{ label: string, checked?: boolean, disabled?: boolean }`. Use `{ separator: true }` for a divider line.
+- `items: LunaMenuEntry[]` – Menu entries. Each item: `{ label: string, checked?: boolean, disabled?: boolean, icon?: string, tone?: LunaTone }`. `icon` is SVG markup, the same string as `luna-icon` `svg`, drawn at 16px. `tone: 'danger'` recolors the row. Use `{ separator: true }` for a divider line.
+- `variant: LunaMenuVariant` – Panel paint: `'menubar' | 'context'` (default: `'menubar'`). Menubar is Sans 11px on `#dcdcd7`, black text, with padding `4px 12px 4px 8px` and square corners. The open row and the open trigger are navy with white text. Context is Mono 13px, panel padding `4px`, row gap `2px`, row padding `12px`, radius `6px`. The value is passed into the overlay panel.
+
+#### Methods
+
+- `open(origin)` – Opens the panel anchored to a trigger element. `lunaMenuTrigger` calls this.
+- `openAt(x, y)` – Opens the panel at viewport coordinates. No trigger child is required.
 
 #### Outputs
 
@@ -399,7 +562,7 @@ export class MyComponent {
 
 ### Input Component
 
-The `luna-input` component provides a Windows XP-styled text input that implements `ControlValueAccessor` for reactive forms support.
+The `luna-input` component is the disk name field: IBM Plex Mono, 13px, padding `8px 12px`, radius `4px`, navy fill, steel border. It implements `ControlValueAccessor` for reactive forms support.
 
 **Selector:** `luna-input`
 
@@ -427,7 +590,7 @@ The `luna-input` component provides a Windows XP-styled text input that implemen
 
 ### Progress Component
 
-The `luna-progress` component provides a Windows XP-styled progress bar.
+The `luna-progress` component is a progress bar. The track uses the field surface and the indicator uses the action color.
 
 **Selector:** `luna-progress`
 
@@ -447,7 +610,7 @@ The `luna-progress` component provides a Windows XP-styled progress bar.
 
 ### Radio Component
 
-The `luna-radio` component provides a Windows XP-styled radio button that implements `ControlValueAccessor` for reactive forms support.
+The `luna-radio` component is a radio button on the shared field surface. It implements `ControlValueAccessor` for reactive forms support.
 
 **Selector:** `luna-radio`
 
@@ -481,7 +644,7 @@ The `luna-radio` component provides a Windows XP-styled radio button that implem
 
 ### Select Component
 
-The `luna-select` component provides a Windows XP-styled select dropdown that implements `ControlValueAccessor` for reactive forms support.
+The `luna-select` component is a select: IBM Plex Sans, 11px, padding `4px`, radius `2px`, navy fill, steel border. It implements `ControlValueAccessor` for reactive forms support.
 
 **Selector:** `luna-select`
 
@@ -506,7 +669,7 @@ No additional inputs beyond the common base inputs.
 
 ### Slider Component
 
-The `luna-slider` component provides a Windows XP-styled range slider that implements `ControlValueAccessor` for reactive forms support.
+The `luna-slider` component is a range slider. The track uses the field surface. It implements `ControlValueAccessor` for reactive forms support.
 
 **Selector:** `luna-slider`
 
@@ -536,7 +699,7 @@ The `luna-slider` component provides a Windows XP-styled range slider that imple
 
 ### Tabs Component
 
-The `luna-tabs` component provides a Windows XP-styled tab interface with keyboard navigation support. Use `luna-tab` children to define each tab and its content.
+The `luna-tabs` component is a tab interface with keyboard navigation support. Unselected tabs are navy-darkest. The selected tab and its panel are navy, with white text. The selected tab overlaps the panel by 1px. Use `luna-tab` children to define each tab and its content.
 
 **Selector:** `luna-tabs`
 
@@ -589,7 +752,7 @@ onTabChange(tabId: string) { this.activeTabId = tabId; }
 
 ### Textarea Component
 
-The `luna-textarea` component provides a Windows XP-styled textarea that implements `ControlValueAccessor` for reactive forms support.
+The `luna-textarea` component is a multiline field: IBM Plex Sans, 11px, padding `4px`, radius `2px`, navy fill, steel border. It implements `ControlValueAccessor` for reactive forms support.
 
 **Selector:** `luna-textarea`
 
@@ -627,7 +790,7 @@ The `luna-overlay` component is **infrastructure** for menu, modal, and tooltip 
 
 ### Window Component
 
-The `luna-window` component provides a Windows XP-styled draggable window with title bar and controls.
+The `luna-window` component is a draggable window with a title bar and window controls. The body uses the window ground and the title bar uses the action color.
 
 **Selector:** `luna-window`
 
@@ -797,6 +960,7 @@ ng-luna/
 │   │   ├── slider/        # Slider component
 │   │   ├── tabs/          # Tabs + tab components
 │   │   ├── textarea/      # Textarea component
+│   │   ├── toolbar/       # Toolbar and toolbar group
 │   │   ├── tooltip/       # Tooltip directive + component
 │   │   ├── window/        # Window component
 │   │   └── index.ts       # Controls barrel export
@@ -808,6 +972,7 @@ ng-luna/
 │   │   ├── _layout.scss   # Layout mixins (fill-parent)
 │   │   ├── _palette.scss  # Color palette
 │   │   ├── _reset.scss
+│   │   ├── _tokens.scss   # Custom properties and luna-token()
 │   │   ├── _typography.scss
 │   │   └── _z-layers.scss
 │   └── public-api.ts      # Public API surface

@@ -1,4 +1,5 @@
-// Named z-index scale for overlays, modals, and alerts relative to app content.
+// Named stacking scale. position plus one of these values starts a new context:
+// descendants use the scale again, and their numbers stay inside that parent.
 $far-below: -100;
 $below: -10;
 $under: -5;

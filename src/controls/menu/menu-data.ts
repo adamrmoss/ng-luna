@@ -1,7 +1,9 @@
 import { InjectionToken } from '@angular/core';
 
+import { LunaTone } from '../luna-tone';
+
 /**
- * Selectable menu row with optional checked and disabled state.
+ * Selectable menu row with optional checked, icon, and danger state.
  */
 export interface LunaMenuItem
 {
@@ -11,8 +13,14 @@ export interface LunaMenuItem
     /** When true, the row is non-interactive. */
     disabled?: boolean;
 
+    /** SVG markup rendered at 16px. Same string as `luna-icon` `svg`. */
+    icon?: string;
+
     /** Primary text shown for the row. */
     label: string;
+
+    /** Semantic recolor. Danger uses the danger text color. */
+    tone?: LunaTone;
 }
 
 /**
@@ -58,6 +66,9 @@ export interface LunaMenuPanelData
      * menu (wraps); omitted for standalone dropdowns.
      */
     navigateMenubarAdjacent?: (direction: -1 | 1) => void;
+
+    /** Panel paint. Matches `LunaMenuVariant` on `luna-menu`. */
+    variant: 'menubar' | 'context';
 }
 
 /**

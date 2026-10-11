@@ -1,68 +1,172 @@
-// Native button appearance: Luna palette, typography, and pressed/hover states.
-@use '../../theme/palette' as *;
+// Each variant owns its type, padding, and radius. Fills come from the palette tokens.
 @use '../../theme/fonts' as *;
+@use '../../theme/tokens' as *;
 @use '../../theme/typography' as *;
 
-:host
+:host:not([hidden])
 {
     display: contents;
 }
 
 button
 {
-    background: linear-gradient(
-        180deg,
-        $white 0%,
-        $beige-light 86%,
-        $beige-medium 100%
-    );
-    border: 1px solid $navy;
-    border-radius: $border-radius-base;
-    box-shadow: none;
+    align-items: center;
+    background: luna-token('button-default-background');
+    border: 1px solid luna-token('button-default-border');
+    border-radius: luna-token('button-default-radius');
     box-sizing: border-box;
+    color: luna-token('color-text');
+    cursor: pointer;
+    display: inline-flex;
     font-family: $font-sans;
-    font-size: $button-font-size;
+    font-size: luna-token('button-default-font-size');
+    gap: 0;
+    justify-content: center;
     line-height: $button-line-height;
-    padding: $button-padding-y $button-padding-x;
+    padding: luna-token('button-default-padding-y') luna-token('button-default-padding-x');
 
     &:not(:disabled)
     {
-        &:active,
-        &.active
+        &:active
         {
-            box-shadow: none;
-            background: linear-gradient(
-                180deg,
-                $gray-medium 0%,
-                $gray-light 8%,
-                $gray-lighter 94%,
-                $gray-lightest 100%
-            );
+            transform: translateY(1px);
         }
 
         &:hover
         {
-            box-shadow:
-                inset -1px 1px $cream-light,
-                inset 1px 2px $yellow-light,
-                inset -2px 2px $yellow-medium,
-                inset 2px -2px $orange;
+            background: luna-token('button-default-background-hover');
         }
     }
 
-    &:focus,
-    &.focused
+    &:disabled
     {
-        box-shadow:
-            inset -1px 1px $blue-lightest,
-            inset 1px 2px $blue-medium,
-            inset -2px 2px $blue-light,
-            inset 1px -1px $blue,
-            inset 2px -2px $blue;
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
+
+    &:focus-visible
+    {
+        outline: 2px solid luna-token('color-action');
+        outline-offset: 2px;
     }
 
     &::-moz-focus-inner
     {
         border: 0;
+    }
+}
+
+:host([variant='action']) button
+{
+    background: luna-token('button-action-background');
+    border: none;
+    border-radius: luna-token('button-action-radius');
+    font-family: $font-mono;
+    font-size: luna-token('button-action-font-size');
+    font-weight: 500;
+    gap: luna-token('button-action-gap');
+    line-height: $button-action-line-height;
+    padding: luna-token('button-action-padding-y') luna-token('button-action-padding-x');
+
+    &:not(:disabled):hover
+    {
+        background: luna-token('button-action-background-hover');
+    }
+}
+
+:host([variant='action'][tone='danger']) button
+{
+    background: luna-token('button-action-danger-background');
+
+    &:not(:disabled):hover
+    {
+        // Solid danger hover is the danger fill mixed 10% toward black.
+        background: color-mix(in srgb, luna-token('button-action-danger-background') 90%, black);
+    }
+}
+
+:host([variant='command']) button
+{
+    background: luna-token('button-command-background');
+    border: 1px solid luna-token('color-border');
+    border-radius: luna-token('button-command-radius');
+    font-family: $font-sans;
+    font-size: luna-token('button-command-font-size');
+    font-weight: 400;
+    gap: 0;
+    line-height: $button-command-line-height;
+    padding: luna-token('button-command-padding-y') luna-token('button-command-padding-x');
+
+    &:not(:disabled)
+    {
+        &:hover
+        {
+            background: luna-token('button-command-background-hover');
+        }
+
+        &:active
+        {
+            background: luna-token('button-command-background-active');
+            transform: none;
+        }
+    }
+}
+
+:host([variant='icon']) button
+{
+    background: luna-token('button-action-background');
+    border: none;
+    border-radius: luna-token('button-icon-radius');
+    font-size: luna-token('button-icon-font-size');
+    gap: 0;
+    height: luna-token('button-icon-size');
+    line-height: $button-icon-line-height;
+    padding: 0;
+    width: luna-token('button-icon-size');
+
+    &:not(:disabled):hover
+    {
+        background: luna-token('button-action-background-hover');
+    }
+}
+
+:host([variant='icon'][tone='danger']) button
+{
+    background: luna-token('button-action-danger-background');
+
+    &:not(:disabled):hover
+    {
+        background: color-mix(in srgb, luna-token('button-action-danger-background') 90%, black);
+    }
+}
+
+:host([variant='icon'][size='compact']) button
+{
+    background: luna-token('button-icon-compact-background');
+    border-radius: luna-token('button-icon-compact-radius');
+    font-size: luna-token('button-icon-compact-font-size');
+    height: luna-token('button-icon-compact-size');
+    line-height: $button-icon-compact-line-height;
+    width: luna-token('button-icon-compact-size');
+
+    &:not(:disabled):active
+    {
+        transform: none;
+    }
+
+    &:not(:disabled):hover
+    {
+        background: luna-token('button-icon-compact-background-hover');
+    }
+}
+
+:host([variant='icon'][size='compact'][tone='danger']) button
+{
+    background: luna-token('button-icon-compact-danger-background');
+    color: luna-token('color-danger');
+
+    &:not(:disabled):hover
+    {
+        background: luna-token('button-icon-compact-danger-background-hover');
     }
 }

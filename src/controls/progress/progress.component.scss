@@ -1,8 +1,12 @@
-// Native progress bar skinned to Luna bevel and fill colors.
+// Progress track on the navy surface. The indicator stays green.
 @use '../../theme/layout' as *;
 @use '../../theme/palette' as *;
+@use '../../theme/tokens' as *;
+@use '../../theme/typography' as *;
 
-:host
+$progress-indicator: linear-gradient(to bottom, $green-lightest, $green, $green-dark);
+
+:host:not([hidden])
 {
     display: contents;
 }
@@ -34,10 +38,10 @@ progress
         -moz-appearance: none;
         -webkit-appearance: none;
         appearance: none;
-        background-color: $white;
-        border: 1px solid $gray-darkest;
-        border-radius: 4px;
-        box-shadow: inset 0px 0px 1px 0px #686868;
+        background-color: luna-token('input-background');
+        border: 1px solid luna-token('input-border');
+        border-radius: $input-radius;
+        box-shadow: none;
         box-sizing: border-box;
         height: 14px;
         overflow: hidden;
@@ -53,48 +57,14 @@ progress
 
         &::-webkit-progress-value
         {
-            background: repeating-linear-gradient(
-                    to right,
-                    $white 0px,
-                    $white 2px,
-                    transparent 2px,
-                    transparent 10px
-                ),
-                linear-gradient(
-                    to bottom,
-                    $green-mint 0%,
-                    $green-lighter 14%,
-                    $green 28%,
-                    $green-darkest 42%,
-                    $green-dark 57%,
-                    $green-light 71%,
-                    $green-lightest 85%,
-                    $white 100%
-                );
-            border-radius: 2px;
+            background: $progress-indicator;
+            border-radius: $border-radius-sm;
         }
 
         &::-moz-progress-bar
         {
-            background: repeating-linear-gradient(
-                    to right,
-                    $white 0px,
-                    $white 2px,
-                    transparent 2px,
-                    transparent 10px
-                ),
-                linear-gradient(
-                    to bottom,
-                    $green-mint 0%,
-                    $green-lighter 14%,
-                    $green 28%,
-                    $green-darkest 42%,
-                    $green-dark 57%,
-                    $green-light 71%,
-                    $green-lightest 85%,
-                    $white 100%
-                );
-            border-radius: 2px;
+            background: $progress-indicator;
+            border-radius: $border-radius-sm;
         }
     }
 
@@ -103,32 +73,7 @@ progress
         &::-webkit-progress-bar
         {
             animation: sliding 2s linear 0s infinite;
-            background: repeating-linear-gradient(
-                    to right,
-                    transparent 0px,
-                    transparent 8px,
-                    $white 8px,
-                    $white 10px,
-                    transparent 10px,
-                    transparent 18px,
-                    $white 18px,
-                    $white 20px,
-                    transparent 20px,
-                    transparent 28px,
-                    $white 28px,
-                    $white 100%
-                ),
-                linear-gradient(
-                    to bottom,
-                    $green-mint 0%,
-                    $green-lighter 14%,
-                    $green 28%,
-                    $green-darkest 42%,
-                    $green-dark 57%,
-                    $green-light 71%,
-                    $green-lightest 85%,
-                    $white 100%
-                );
+            background: $progress-indicator;
             width: 100%;
         }
 
@@ -139,8 +84,7 @@ progress
 
         &::before
         {
-            background-color: $white;
-            box-shadow: inset 0px 0px 1px 0px #686868;
+            background-color: luna-token('input-background');
             box-sizing: border-box;
             content: "";
             height: 100%;
@@ -153,33 +97,8 @@ progress
         &::after
         {
             animation: sliding 2s linear 0s infinite;
-            background: repeating-linear-gradient(
-                    to right,
-                    transparent 0px,
-                    transparent 8px,
-                    $white 8px,
-                    $white 10px,
-                    transparent 10px,
-                    transparent 18px,
-                    $white 18px,
-                    $white 20px,
-                    transparent 20px,
-                    transparent 28px,
-                    $white 28px,
-                    $white 100%
-                ),
-                linear-gradient(
-                    to bottom,
-                    $green-mint 0%,
-                    $green-lighter 14%,
-                    $green 28%,
-                    $green-darkest 42%,
-                    $green-dark 57%,
-                    $green-light 71%,
-                    $green-lightest 85%,
-                    $white 100%
-                );
-            border-radius: 2px;
+            background: $progress-indicator;
+            border-radius: $border-radius-sm;
             box-sizing: border-box;
             content: "";
             height: calc(100% - 2px);
@@ -193,32 +112,7 @@ progress
         &::-moz-progress-bar
         {
             animation: sliding 2s linear 0s infinite;
-            background: repeating-linear-gradient(
-                    to right,
-                    transparent 0px,
-                    transparent 8px,
-                    $white 8px,
-                    $white 10px,
-                    transparent 10px,
-                    transparent 18px,
-                    $white 18px,
-                    $white 20px,
-                    transparent 20px,
-                    transparent 28px,
-                    $white 28px,
-                    $white 100%
-                ),
-                linear-gradient(
-                    to bottom,
-                    $green-mint 0%,
-                    $green-lighter 14%,
-                    $green 28%,
-                    $green-darkest 42%,
-                    $green-dark 57%,
-                    $green-light 71%,
-                    $green-lightest 85%,
-                    $white 100%
-                );
+            background: $progress-indicator;
             width: 100%;
         }
     }

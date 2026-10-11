@@ -1,10 +1,10 @@
-// Multiline field sizing and borders consistent with `luna-input`.
-@use '../../theme/layout' as *;
-@use '../../theme/palette' as *;
+// Multiline field. Sans 11px and the field padding, recolored onto the navy surface.
 @use '../../theme/fonts' as *;
+@use '../../theme/layout' as *;
+@use '../../theme/tokens' as *;
 @use '../../theme/typography' as *;
 
-:host
+:host:not([hidden])
 {
     display: contents;
 }
@@ -16,24 +16,31 @@
 
 textarea
 {
-    border: 1px solid $blue-steel;
-    border-radius: $border-radius-sm;
+    background: luna-token('input-background');
+    border: 1px solid luna-token('input-border');
+    border-radius: luna-token('input-radius');
     box-sizing: border-box;
+    color: luna-token('color-text');
     font-family: $font-sans;
-    font-size: $input-font-size;
+    font-size: luna-token('input-font-size');
     line-height: $input-line-height;
-    padding: $input-padding-y $input-padding-x;
+    padding: luna-token('input-padding-y') luna-token('input-padding-x');
     resize: both;
+
+    &::placeholder
+    {
+        color: luna-token('input-placeholder');
+    }
 
     &::selection
     {
-        background: var(--dialog-blue);
-        color: $white;
+        background: luna-token('color-action');
+        color: luna-token('color-text');
     }
 
     &:focus
     {
+        border-color: luna-token('input-border-focus');
         outline: none;
-        box-shadow: inset 2px 2px $white, inset -2px -2px $white;
     }
 }

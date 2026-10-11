@@ -1,20 +1,24 @@
-// Overlay menu list: items, separators, checkmarks, and highlight state.
+// Menubar dropdown. Context paint is the `.luna-menu-panel-context` block.
 @use '../../theme/fonts' as *;
 @use '../../theme/graphics' as *;
 @use '../../theme/palette' as *;
+@use '../../theme/tokens' as *;
 @use '../../theme/typography' as *;
 
 .luna-menu-panel
 {
-    background: $gray-light-warm;
-    border: 1px solid $blue-steel-dark;
-    box-shadow: 1px 1px 0 0 $quarter-shadow;
+    background: luna-token('menu-menubar-background');
+    border: 1px solid $gray-dark;
+    border-radius: luna-token('menu-menubar-radius');
+    box-shadow: none;
+    box-sizing: border-box;
+    color: luna-token('menu-menubar-color');
     font-family: $font-sans;
-    font-size: $font-size-xs;
-    line-height: $line-height-tight;
+    font-size: luna-token('menu-menubar-font-size');
+    line-height: $menu-menubar-line-height;
     list-style: none;
     margin: 0;
-    min-width: 10rem;
+    min-width: luna-token('menu-menubar-min-width');
     outline: none;
     padding: 0;
 }
@@ -23,9 +27,10 @@
 {
     align-items: center;
     display: inline-flex;
+    flex: 0 0 auto;
     height: 1em;
     justify-content: center;
-    margin-right: $spacing-sm;
+    margin-right: luna-token('menu-menubar-check-gap');
     width: 1em;
 }
 
@@ -45,8 +50,8 @@
 
 .luna-menu-item-highlighted:not(.luna-menu-item-disabled)
 {
-    background: $navy;
-    color: $white;
+    background: luna-token('color-navy');
+    color: luna-token('color-text');
     cursor: default;
 
     .luna-menu-item-checkmark
@@ -57,7 +62,7 @@
 
 .luna-menu-separator
 {
-    background: $blue-steel-dark;
+    background: $gray-dark;
     height: 1px;
     overflow: hidden;
     padding: 0;
@@ -65,18 +70,91 @@
 
 li[role="menuitem"]
 {
+    align-items: center;
+    border-radius: luna-token('menu-menubar-radius');
     cursor: pointer;
-    padding: $spacing-xs $spacing-md $spacing-xs $spacing-sm;
+    display: flex;
+    gap: 0;
+    padding: luna-token('menu-menubar-item-padding-y') luna-token('menu-menubar-item-padding-x') luna-token('menu-menubar-item-padding-y') luna-token('menu-menubar-item-padding-left');
     white-space: nowrap;
 
     &:not(.luna-menu-item-disabled):hover
     {
-        background: $navy;
-        color: $white;
+        background: luna-token('color-navy');
+        color: luna-token('color-text');
 
         .luna-menu-item-checkmark
         {
             filter: invert(1);
+        }
+    }
+}
+
+li[role="menuitem"].luna-menu-item-danger:not(.luna-menu-item-disabled)
+{
+    color: luna-token('color-danger');
+}
+
+.luna-menu-panel-context
+{
+    background: luna-token('menu-context-background');
+    border: 1px solid luna-token('color-border');
+    border-radius: luna-token('menu-context-radius');
+    box-shadow: luna-token('menu-context-shadow');
+    color: luna-token('color-text');
+    display: flex;
+    flex-direction: column;
+    font-family: $font-mono;
+    font-size: luna-token('menu-context-font-size');
+    gap: luna-token('menu-context-row-gap');
+    line-height: $menu-context-line-height;
+    min-width: luna-token('menu-context-min-width');
+    padding: luna-token('menu-context-padding');
+
+    .luna-menu-item-checkbox
+    {
+        margin-right: 0;
+    }
+
+    .luna-menu-item-checkmark
+    {
+        filter: invert(1);
+    }
+
+    .luna-menu-item-disabled
+    {
+        color: luna-token('color-text-secondary');
+    }
+
+    .luna-menu-separator
+    {
+        background: luna-token('color-border');
+    }
+
+    li[role="menuitem"]
+    {
+        border-radius: luna-token('menu-context-item-radius');
+        font-family: $font-mono;
+        gap: luna-token('menu-context-item-gap');
+        padding: luna-token('menu-context-item-padding');
+
+        &:not(.luna-menu-item-disabled):hover,
+        &.luna-menu-item-highlighted:not(.luna-menu-item-disabled)
+        {
+            background: luna-token('color-navy-dark');
+            color: luna-token('color-text');
+        }
+    }
+
+    li[role="menuitem"].luna-menu-item-danger:not(.luna-menu-item-disabled)
+    {
+        color: luna-token('menu-context-danger-color');
+
+        &:hover,
+        &.luna-menu-item-highlighted
+        {
+            background: luna-token('menu-context-danger-hover-background');
+            color: luna-token('menu-context-danger-color');
         }
     }
 }

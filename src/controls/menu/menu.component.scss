@@ -1,5 +1,5 @@
 // Centers the projected menu trigger within the optional bar layout.
-:host
+:host:not([hidden])
 {
     align-items: center;
     display: flex;

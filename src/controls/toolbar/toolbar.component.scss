@@ -1,0 +1,50 @@
+// Bar metrics per variant. Group gaps for the editor bar live on `luna-toolbar-group`.
+@use '../../theme/tokens' as *;
+
+:host:not([hidden])
+{
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+}
+
+:host([variant='cluster']:not([hidden]))
+{
+    background: transparent;
+    gap: luna-token('toolbar-cluster-gap');
+    padding: 0;
+}
+
+:host([variant='editor']:not([hidden]))
+{
+    background: luna-token('color-navy-darkest');
+    border-bottom: 1px solid luna-token('color-border');
+    justify-content: space-between;
+    min-height: luna-token('toolbar-editor-min-height');
+    padding: luna-token('toolbar-editor-padding-y') luna-token('toolbar-editor-padding-x');
+}
+
+:host([variant='command']:not([hidden]))
+{
+    background: luna-token('color-navy-darkest');
+    border-bottom: 1px solid luna-token('color-border');
+    gap: luna-token('toolbar-command-gap');
+    padding: luna-token('toolbar-command-padding');
+}
+
+:host([variant='end']:not([hidden]))
+{
+    flex-shrink: 0;
+    gap: 0;
+    justify-content: flex-end;
+    padding: 0;
+}
+
+:host([variant='float']:not([hidden]))
+{
+    gap: 0;
+    padding: 0;
+    position: absolute;
+    right: luna-token('toolbar-float-offset');
+    top: luna-token('toolbar-float-offset');
+}

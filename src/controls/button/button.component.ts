@@ -1,9 +1,10 @@
 import { FocusMonitor } from '@angular/cdk/a11y';
 import { BidiModule, Dir } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
-import { Component, Input, Output, EventEmitter, ElementRef, OnDestroy, AfterViewInit, Optional } from '@angular/core';
+import { Component, HostBinding, Input, Output, EventEmitter, ElementRef, OnDestroy, AfterViewInit, Optional } from '@angular/core';
 
 import { LunaControl } from '../luna-control';
+import { LunaTone } from '../luna-tone';
 
 /**
  * Allowed values for the host button `type` attribute.
@@ -29,6 +30,16 @@ export type FormTarget = '_self' | '_blank' | '_parent' | '_top';
  * Allowed values for the host `popovertargetaction` attribute.
  */
 export type PopoverTargetAction = 'show' | 'hide' | 'toggle';
+
+/**
+ * Button structure. Each value owns its own type, padding, and radius.
+ */
+export type LunaButtonVariant = 'default' | 'action' | 'command' | 'icon';
+
+/**
+ * Button density. Compact metrics apply with `variant="icon"`.
+ */
+export type LunaSize = 'default' | 'compact';
 
 /**
  * Native-like button that forwards form and popover attributes and honors `LunaControl` inputs.
@@ -83,6 +94,16 @@ export class ButtonComponent
     @Input()
     public popovertargetaction?: PopoverTargetAction;
 
+    /** Button density. Compact metrics apply with `variant="icon"`. */
+    @Input()
+    @HostBinding('attr.size')
+    public size: LunaSize = 'default';
+
+    /** Semantic recolor. */
+    @Input()
+    @HostBinding('attr.tone')
+    public tone: LunaTone = 'default';
+
     /** Sets the host `type` attribute. */
     @Input()
     public type: ButtonType = 'button';
@@ -90,6 +111,11 @@ export class ButtonComponent
     /** Sets the host `value` attribute when bound. */
     @Input()
     public value?: string;
+
+    /** Button structure. */
+    @Input()
+    @HostBinding('attr.variant')
+    public variant: LunaButtonVariant = 'default';
 
     /** Emits when the host is clicked and not disabled. */
     @Output()

@@ -1,9 +1,9 @@
-// Fieldset border, legend, and disabled treatment.
+// Fieldset border, legend, and row layout on the window surface.
 @use '../../theme/layout' as *;
-@use '../../theme/palette' as *;
+@use '../../theme/tokens' as *;
 @use '../../theme/typography' as *;
 
-:host
+:host:not([hidden])
 {
     display: contents;
 }
@@ -15,19 +15,20 @@
 
 fieldset
 {
-    background: $white;
-    border: 1px solid $beige-khaki;
+    background: luna-token('window-background');
+    border: 1px solid luna-token('color-border');
     border-radius: $border-radius-md;
     box-shadow: none;
+    color: luna-token('color-text');
     padding: $spacing-sm;
 }
 
 legend
 {
-    background: $white;
-    border: 1px solid $beige-khaki;
-    border-radius: $border-radius-base;
-    color: $black;
+    background: luna-token('window-background');
+    border: 1px solid luna-token('color-border');
+    border-radius: $border-radius-md;
+    color: luna-token('color-text');
     font-size: $legend-font-size;
     line-height: $legend-line-height;
     padding: $legend-padding-y $legend-padding-x;

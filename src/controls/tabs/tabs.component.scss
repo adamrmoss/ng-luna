@@ -1,8 +1,10 @@
-// Tab list buttons and focus ring for keyboard navigation.
-@use '../../theme/palette' as *;
+// Tab list. Unselected tabs are navy-darkest. The selected tab is navy and overlaps the panel.
+@use '../../theme/fonts' as *;
+@use '../../theme/tokens' as *;
 @use '../../theme/typography' as *;
+@use '../../theme/z-layers' as *;
 
-:host
+:host:not([hidden])
 {
     display: contents;
 }
@@ -17,48 +19,41 @@ div[role="tablist"]
 
     button
     {
-        background: linear-gradient(
-            180deg,
-            $white 0%,
-            $gray-lightest 100%
-        );
-        border: 1px solid $white;
-        border-bottom-color: $gray-dark;
-        border-left-color: $white;
-        border-radius: 0;
-        border-right-color: $gray-dark;
-        border-top-color: $white;
-        border-top-left-radius: $border-radius-sm;
-        border-top-right-radius: $border-radius-sm;
-        color: $black;
+        background: luna-token('tab-background');
+        border: none;
+        border-radius: $border-radius-base $border-radius-base 0 0;
+        color: luna-token('color-text');
         cursor: pointer;
-        font-family: 'IBM Plex Sans', sans-serif;
-        font-size: $tab-font-size;
+        font-family: $font-sans;
+        font-size: luna-token('tab-font-size');
         line-height: $tab-line-height;
-        margin-right: 2px;
-        padding: $tab-padding-y $tab-padding-x 3px;
+        margin-right: luna-token('tab-margin-right');
+        padding: luna-token('tab-padding-y') luna-token('tab-padding-x') luna-token('tab-padding-bottom');
         position: relative;
 
         &:hover
         {
-            background: linear-gradient(
-                180deg,
-                $white 0%,
-                $cream-pale 100%
-            );
+            background: luna-token('color-navy-dark');
         }
 
         &[aria-selected="true"]
         {
-            background: $beige-lighter;
-            border-bottom-color: $beige-lighter;
-            border-left-color: $gray-light;
-            border-right-color: $gray-dark;
-            border-top-color: $gray-light;
+            background: luna-token('tab-selected-background');
             font-weight: 600;
             margin-bottom: -1px;
-            padding-bottom: 4px;
-            z-index: 1;
+            padding-bottom: luna-token('tab-padding-bottom');
+            z-index: $over;
+
+            &:hover
+            {
+                background: luna-token('tab-selected-background');
+            }
+        }
+
+        &:focus-visible
+        {
+            outline: 2px solid luna-token('color-action');
+            outline-offset: 2px;
         }
     }
 }

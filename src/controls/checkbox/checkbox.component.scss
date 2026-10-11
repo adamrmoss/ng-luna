@@ -1,9 +1,9 @@
-// Checkbox and label layout with SVG checkmark from theme graphics.
-@use '../../theme/palette' as *;
+// Checkbox and label on the field surface, with a light check mark.
 @use '../../theme/graphics' as *;
+@use '../../theme/tokens' as *;
 @use '../../theme/typography' as *;
 
-:host
+:host:not([hidden])
 {
     align-items: center;
     display: flex;
@@ -11,19 +11,13 @@
     padding: $spacing-xxs 0;
 }
 
-
 input[type="checkbox"]
 {
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
-    background: linear-gradient(
-        135deg,
-        $gray-light-warm 0%,
-        $white 100%
-    );
-    border: 1px solid $blue-steel-dark;
-    box-shadow: none;
+    background: luna-token('input-background');
+    border: 1px solid luna-token('input-border');
     box-sizing: border-box;
     cursor: pointer;
     flex-shrink: 0;
@@ -46,44 +40,25 @@ input[type="checkbox"]
     &:checked::after
     {
         background: $checkmark-svg no-repeat center;
+        filter: invert(1);
     }
 
-    &:focus
+    &:focus-visible
     {
-        outline: 1px dotted $black;
+        outline: 2px solid luna-token('color-action');
         outline-offset: 1px;
-    }
-
-    &:not([disabled]):not(:active):hover
-    {
-        box-shadow: inset -2px -2px $gold, inset 2px 2px $yellow-cream;
-    }
-
-    &:active
-    {
-        background: linear-gradient(
-            135deg,
-            $gray-darker 0%,
-            $beige-pale 100%
-        );
     }
 
     &[disabled]
     {
-        background: $white;
-        border: 1px solid $beige-tan;
-        cursor: default;
-
-        &:checked::after
-        {
-            opacity: 0.5;
-        }
+        cursor: not-allowed;
+        opacity: 0.6;
     }
-
 }
 
 label
 {
+    color: luna-token('color-text');
     cursor: pointer;
     line-height: $line-height-tight;
 }

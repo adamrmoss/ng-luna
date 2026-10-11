@@ -21,6 +21,7 @@ const meta: Meta<IconStoryArgs> = {
             control: 'select',
             options: [
                 '12',
+                '14',
                 '16',
                 '20',
                 '24',

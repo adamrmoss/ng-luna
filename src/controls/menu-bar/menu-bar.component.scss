@@ -1,8 +1,7 @@
-// Menubar row alignment and trigger spacing.
-@use '../../theme/palette' as *;
-@use '../../theme/typography' as *;
+// Menubar strip. Triggers are painted by the overlay trigger rule.
+@use '../../theme/tokens' as *;
 
-:host
+:host:not([hidden])
 {
     display: block;
 }
@@ -10,15 +9,16 @@
 nav[role="menubar"]
 {
     align-items: stretch;
-    background: $gray-light-warm;
+    background: luna-token('menu-menubar-background');
+    color: luna-token('menu-menubar-color');
     display: flex;
     flex-shrink: 0;
     gap: 0;
     justify-content: flex-start;
-    margin-bottom: $spacing-sm;
+    margin-bottom: luna-token('menu-menubar-margin-bottom');
     padding: 0;
 
-    ::ng-deep luna-menu
+    ::ng-deep luna-menu:not([hidden])
     {
         display: flex;
     }

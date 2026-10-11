@@ -8,6 +8,7 @@ $base-spacing-unit: $base-font-size * $base-line-height; // 24px
 
 // Font sizes (maintaining rhythm)
 $font-size-xs: 11px;      // Small UI text (buttons, tabs, labels)
+$font-size-12: 12px;      // Action and command button type. Not a spacing step.
 $font-size-sm: 13px;      // Secondary text
 $font-size-base: 16px;    // Body text
 $font-size-md: 18px;      // Subheadings
@@ -36,26 +37,110 @@ $border-radius-base: 3px;  // Standard rounding (most components)
 $border-radius-md: 4px;    // Medium rounding (fieldsets, windows)
 $border-radius-lg: 6px;    // Large rounding (modals, large cards)
 
-// Component-specific typography
+// Component aliases. Each control names its own metrics. Padding, gap, and margin
+// point at the spacing scale. Halfway values snap to the larger step.
+
+// Default button
 $button-font-size: $font-size-xs;
 $button-line-height: $line-height-tight;
-$button-padding-y: 4px;
-$button-padding-x: 12px;
+$button-padding-y: $spacing-xs;
+$button-padding-x: $spacing-md;
+$button-radius: $border-radius-base;
 
+// Action button. Vertical padding and gap snap from 6px to $spacing-sm.
+$button-action-font-size: $font-size-12;
+$button-action-line-height: $line-height-tight;
+$button-action-padding-y: $spacing-sm;
+$button-action-padding-x: $spacing-md;
+$button-action-gap: $spacing-sm;
+$button-action-radius: $border-radius-md;
+
+// Command button
+$button-command-font-size: $font-size-12;
+$button-command-line-height: $line-height-tight;
+$button-command-padding-y: $spacing-xs;
+$button-command-padding-x: $spacing-md;
+$button-command-radius: $border-radius-none;
+
+// Icon button. 28px is the control box. Compact box is $spacing-lg.
+$button-icon-size: 28px;
+$button-icon-font-size: $font-size-base;
+$button-icon-line-height: 1;
+$button-icon-radius: $border-radius-md;
+$button-icon-compact-size: $spacing-lg;
+$button-icon-compact-font-size: $font-size-12;
+$button-icon-compact-line-height: 1;
+$button-icon-compact-radius: $border-radius-base;
+
+// Disk name field. Horizontal padding snaps from 10px to $spacing-md.
+$input-disk-font-size: $font-size-sm;
+$input-disk-line-height: $line-height-tight;
+$input-disk-padding-y: $spacing-sm;
+$input-disk-padding-x: $spacing-md;
+$input-disk-radius: $border-radius-md;
+
+// Select and textarea. Vertical padding snaps from 3px to $spacing-xs.
 $input-font-size: $font-size-xs;
 $input-line-height: $line-height-tight;
-$input-padding-y: 3px;
-$input-padding-x: 4px;
+$input-padding-y: $spacing-xs;
+$input-padding-x: $spacing-xs;
+$input-radius: $border-radius-sm;
 
+// Menubar dropdown
+$menu-menubar-font-size: $font-size-xs;
+$menu-menubar-line-height: $line-height-tight;
+$menu-menubar-item-padding-y: $spacing-xs;
+$menu-menubar-item-padding-x: $spacing-md;
+$menu-menubar-item-padding-left: $spacing-sm;
+$menu-menubar-check-gap: $spacing-sm;
+$menu-menubar-margin-bottom: $spacing-sm;
+$menu-menubar-radius: $border-radius-none;
+$menu-menubar-min-width: 10rem;
+
+// Context menu. Row padding and icon gap snap from 10px to $spacing-md.
+$menu-context-font-size: $font-size-sm;
+$menu-context-line-height: $line-height-tight;
+$menu-context-padding: $spacing-xs;
+$menu-context-row-gap: $spacing-xxs;
+$menu-context-item-padding: $spacing-md;
+$menu-context-item-gap: $spacing-md;
+$menu-context-radius: $border-radius-lg;
+$menu-context-item-radius: $border-radius-md;
+$menu-context-min-width: 180px;
+
+// Toolbars
+$toolbar-cluster-gap: $spacing-xs;
+$toolbar-editor-padding-y: $spacing-md;
+$toolbar-editor-padding-x: $spacing-base;
+$toolbar-editor-min-height: 56px;
+$toolbar-editor-group-start-gap: $spacing-md;
+$toolbar-editor-group-end-gap: $spacing-sm;
+$toolbar-command-padding: $spacing-sm;
+$toolbar-command-gap: $spacing-sm;
+$toolbar-float-offset: $spacing-base;
+
+// Tabs. The extra bottom pixel snaps from 3px to $spacing-xs.
 $tab-font-size: $font-size-xs;
 $tab-line-height: $line-height-tight;
-$tab-padding-y: 4px;
-$tab-padding-x: 12px;
+$tab-padding-y: $spacing-xs;
+$tab-padding-x: $spacing-md;
+$tab-padding-bottom: $spacing-xs;
+$tab-margin-right: $spacing-xxs;
+$tab-panel-padding: $spacing-sm;
 
+// Window. Frame and title padding snap from 3px to $spacing-xs.
 $window-title-font-size: $font-size-xs;
 $window-title-line-height: $line-height-tight;
+$window-frame-padding: $spacing-xs;
+$window-title-height: 21px;
+$window-title-padding: $spacing-xs;
+$window-title-control-gap: $spacing-xxs;
+$window-title-control-size: 21px;
+$window-body-padding: $spacing-sm;
+$window-radius: $border-radius-lg;
 
+// Fieldset legend
 $legend-font-size: $font-size-xs;
 $legend-line-height: $line-height-tight;
-$legend-padding-y: 2px;
-$legend-padding-x: 8px;
+$legend-padding-y: $spacing-xxs;
+$legend-padding-x: $spacing-sm;

@@ -1,34 +1,34 @@
 // Window chrome: blue frame via padding; inner stack clipped by one border-radius on `.window`.
-@use '../../theme/layout' as *;
-@use '../../theme/palette' as *;
 @use '../../theme/fonts' as *;
 @use '../../theme/graphics' as *;
+@use '../../theme/layout' as *;
+@use '../../theme/palette' as *;
+@use '../../theme/tokens' as *;
 @use '../../theme/typography' as *;
 
-$window-ring: $spacing-xs - 1px;
-
-:host
+:host:not([hidden])
 {
     display: contents;
 }
 
 .window
 {
-    background: $blue-bright;
-    border-radius: $border-radius-lg;
+    background: luna-token('window-title-background');
+    border-radius: luna-token('window-radius');
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    padding: $window-ring;
+    padding: luna-token('window-frame-padding');
 }
 
 .window-inner
 {
-    background: $beige-light;
-    border-bottom-left-radius: $border-radius-lg;
-    border-bottom-right-radius: $border-radius-lg;
+    background: luna-token('window-background');
+    border-bottom-left-radius: luna-token('window-radius');
+    border-bottom-right-radius: luna-token('window-radius');
     box-sizing: border-box;
+    color: luna-token('color-text');
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
@@ -50,19 +50,19 @@ $window-ring: $spacing-xs - 1px;
 .title-bar
 {
     align-items: center;
-    background: $blue-bright;
+    background: luna-token('window-title-background');
     box-sizing: border-box;
-    color: $white;
+    color: luna-token('color-text');
     display: flex;
     flex: 0 0 auto;
     font-family: $font-sans;
-    font-size: $window-title-font-size;
-    height: 21px;
+    font-size: luna-token('window-title-font-size');
+    height: luna-token('window-title-height');
     justify-content: space-between;
     line-height: $window-title-line-height;
     margin: 0;
     min-width: 0;
-    padding: $spacing-xs - 1px;
+    padding: luna-token('window-title-padding');
     text-shadow: 1px 1px $navy-darker;
 }
 
@@ -70,27 +70,27 @@ $window-ring: $spacing-xs - 1px;
 {
     flex: 1 1 auto;
     min-width: 0;
-    padding-left: $spacing-xs - 1px;
+    padding-left: luna-token('window-title-padding');
 }
 
 .title-bar-controls
 {
     display: flex;
     flex: 0 0 auto;
-    gap: $spacing-xxs;
+    gap: luna-token('window-title-control-gap');
 
     button
     {
-        background-color: $blue-bright-dark;
+        background-color: luna-token('color-action-hover');
         background-position: center;
         background-repeat: no-repeat;
         border: none;
         box-shadow: none;
         cursor: pointer;
-        flex: 0 0 21px;
-        height: 21px;
+        flex: 0 0 luna-token('window-title-control-size');
+        height: luna-token('window-title-control-size');
         transition: background 100ms;
-        width: 21px;
+        width: luna-token('window-title-control-size');
 
         &:active,
         &:hover,
@@ -178,17 +178,18 @@ $window-ring: $spacing-xs - 1px;
 
 .window-body
 {
-    background: $beige-light;
-    border-bottom-left-radius: $border-radius-lg;
-    border-bottom-right-radius: $border-radius-lg;
+    background: luna-token('window-background');
+    border-bottom-left-radius: luna-token('window-radius');
+    border-bottom-right-radius: luna-token('window-radius');
     box-sizing: border-box;
+    color: luna-token('color-text');
     flex: 1 1 auto;
     margin: 0;
     min-width: 0;
-    padding: $spacing-sm;
+    padding: luna-token('window-body-padding');
 }
 
-:host(.luna-maximized)
+:host(.luna-maximized):not([hidden])
 {
     @include fill-parent;
     display: block;
@@ -208,7 +209,7 @@ $window-ring: $spacing-xs - 1px;
     border-bottom-right-radius: 0;
 }
 
-:host(.luna-maximized) .window-body
+:host(.luna-maximized) .window-body:not([hidden])
 {
     display: flex;
     flex-direction: column;

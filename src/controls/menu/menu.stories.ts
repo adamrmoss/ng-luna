@@ -1,9 +1,10 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
+import { File as FileIcon, Trash } from 'lucide-static';
 import { fn } from 'storybook/test';
 
 import { type LunaMenuEntry } from './menu-data';
 import { LunaMenuTriggerDirective } from './menu-trigger.directive';
-import { LunaMenuComponent } from './menu.component';
+import { LunaMenuComponent, type LunaMenuVariant } from './menu.component';
 
 const fileItems: LunaMenuEntry[] = [
     { label: 'New' },
@@ -20,10 +21,16 @@ const viewItems: LunaMenuEntry[] = [
     { disabled: true, label: 'Refresh' },
 ];
 
+const diskItems: LunaMenuEntry[] = [
+    { icon: FileIcon, label: 'New File' },
+    { icon: Trash, label: 'Delete', tone: 'danger' },
+];
+
 type MenuStoryArgs = {
     itemSelect: (item: { label: string } | null) => void;
     items: LunaMenuEntry[];
     label: string;
+    variant: LunaMenuVariant;
 };
 
 /**
@@ -34,6 +41,16 @@ const meta: Meta<MenuStoryArgs> = {
         itemSelect: fn(),
         items: fileItems,
         label: 'File',
+        variant: 'menubar',
+    },
+    argTypes: {
+        variant: {
+            control: 'select',
+            options: [
+                'menubar',
+                'context',
+            ],
+        },
     },
     component: LunaMenuComponent,
     decorators: [
@@ -48,6 +65,7 @@ const meta: Meta<MenuStoryArgs> = {
         template: `
             <luna-menu
                 [items]="items"
+                [variant]="variant"
                 (itemSelect)="itemSelect($event)">
                 <button
                     lunaMenuTrigger
@@ -78,4 +96,56 @@ export const View: Story = {
         items: viewItems,
         label: 'View',
     },
+};
+
+/**
+ * Context menu. Rows use mono type, and Delete keeps the danger tone.
+ */
+export const Context: Story = {
+    args: {
+        items: diskItems,
+        label: 'Disk',
+        variant: 'context',
+    },
+};
+
+/**
+ * Rows with icons. Delete uses the danger tone.
+ */
+export const WithIcons: Story = {
+    args: {
+        items: diskItems,
+        label: 'Disk',
+    },
+};
+
+/**
+ * Opens at the pointer with `openAt` and no trigger child.
+ */
+export const OpenAtPoint: Story = {
+    args: {
+        items: diskItems,
+    },
+    render: (args) => ({
+        props: {
+            ...args,
+            openContext(event: MouseEvent, menu: LunaMenuComponent): void
+            {
+                // Keep the browser menu closed and open Luna at the pointer.
+                event.preventDefault();
+                menu.openAt(event.clientX, event.clientY);
+            },
+        },
+        template: `
+            <div (contextmenu)="openContext($event, menu)">
+                Right-click
+                <luna-menu
+                    #menu
+                    variant="context"
+                    [items]="items"
+                    (itemSelect)="itemSelect($event)">
+                </luna-menu>
+            </div>
+        `,
+    }),
 };

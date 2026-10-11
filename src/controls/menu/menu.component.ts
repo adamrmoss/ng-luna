@@ -1,9 +1,10 @@
-import { Overlay } from '@angular/cdk/overlay';
+import { Overlay, PositionStrategy } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import {
     Component,
     ContentChild,
     ElementRef,
+    HostBinding,
     inject,
     Input,
     OnDestroy,
@@ -20,6 +21,11 @@ import { MenuPanelComponent } from './menu-panel.component';
 import { LunaMenuTriggerDirective } from './menu-trigger.directive';
 
 /**
+ * Panel paint. Menubar is the bar dropdown. Context is the disk menu.
+ */
+export type LunaMenuVariant = 'menubar' | 'context';
+
+/**
  * Hosts a trigger and opens a CDK overlay menu panel backed by `items`.
  */
 @Component({
@@ -33,6 +39,11 @@ export class LunaMenuComponent implements AfterContentInit, OnDestroy
     /** Menu rows shown in the overlay panel. */
     @Input()
     public items: LunaMenuEntry[] = [];
+
+    /** Panel paint passed through to the overlay. */
+    @Input()
+    @HostBinding('attr.variant')
+    public variant: LunaMenuVariant = 'menubar';
 
     /** Emits when the panel closes with a chosen item or null on dismiss. */
     @Output()
@@ -108,10 +119,6 @@ export class LunaMenuComponent implements AfterContentInit, OnDestroy
             return;
         }
 
-        // Close any other menu first, then discard our own previous overlay if present.
-        this.coordinator.notifyOpening(this);
-        this.destroyOverlay();
-
         // Prefer dropping below the trigger, with fallbacks above and horizontally flipped.
         const positionStrategy = this.overlay
             .position()
@@ -125,6 +132,67 @@ export class LunaMenuComponent implements AfterContentInit, OnDestroy
             .withDefaultOffsetY(2)
             .withPush(false);
 
+        // Offer left/right menubar navigation only when the trigger sits under a menubar landmark.
+        const menubarNav = origin.nativeElement.closest('nav[role="menubar"]');
+
+        this.present(
+            positionStrategy,
+            menubarNav != null
+                ? (direction: -1 | 1) => this.navigateAdjacentInMenubar(origin, direction)
+                : undefined,
+        );
+
+        // Keep the menubar trigger styled like hover while this dropdown is open.
+        this.trigger?.setMenuOpenHighlight(true);
+    }
+
+    /**
+     * Opens the menu at viewport coordinates with no trigger child.
+     *
+     * @param x - Viewport x coordinate for the panel's top-left corner.
+     * @param y - Viewport y coordinate for the panel's top-left corner.
+     */
+    public openAt(x: number, y: number): void
+    {
+        // Avoid opening an empty panel.
+        if (this.items.length === 0)
+        {
+            return;
+        }
+
+        // Pin the top-left to the point, then flip toward the opposite edges when space runs out.
+        const positionStrategy = this.overlay
+            .position()
+            .flexibleConnectedTo({ x, y })
+            .withPositions([
+                { overlayX: 'start', overlayY: 'top', originX: 'start', originY: 'top' },
+                { overlayX: 'start', overlayY: 'bottom', originX: 'start', originY: 'top' },
+                { overlayX: 'end', overlayY: 'top', originX: 'end', originY: 'top' },
+                { overlayX: 'end', overlayY: 'bottom', originX: 'end', originY: 'top' },
+            ])
+            .withPush(false);
+
+        this.present(positionStrategy);
+
+        // A point open has no trigger, so drop any highlight left by a previous `open`.
+        this.trigger?.setMenuOpenHighlight(false);
+    }
+
+    /**
+     * Opens the overlay with `positionStrategy`, replacing any panel already open for this menu.
+     *
+     * @param positionStrategy - CDK strategy that places the panel.
+     * @param navigateMenubarAdjacent - When set, Left/Right move to the neighboring menubar menu.
+     */
+    private present(
+        positionStrategy: PositionStrategy,
+        navigateMenubarAdjacent?: (direction: -1 | 1) => void,
+    ): void
+    {
+        // Close any other menu first, then discard our own previous overlay if present.
+        this.coordinator.notifyOpening(this);
+        this.destroyOverlay();
+
         this.overlayRef = this.overlay.create({
             hasBackdrop: false,
             panelClass: [ 'luna-menu-overlay-panel' ],
@@ -135,16 +203,15 @@ export class LunaMenuComponent implements AfterContentInit, OnDestroy
         // Close when the user clicks elsewhere (except inside the panel or on any menu trigger).
         this.attachOutsideClickListener();
 
-        // Offer left/right menubar navigation only when the trigger sits under a menubar landmark.
-        const menubarNav = origin.nativeElement.closest('nav[role="menubar"]');
         const panelData: LunaMenuPanelData = {
             close: (selectedItem: LunaMenuItem | null) => this.close(selectedItem),
             items: this.items,
+            variant: this.variant,
         };
 
-        if (menubarNav != null)
+        if (navigateMenubarAdjacent != null)
         {
-            panelData.navigateMenubarAdjacent = (direction: -1 | 1) => this.navigateAdjacentInMenubar(origin, direction);
+            panelData.navigateMenubarAdjacent = navigateMenubarAdjacent;
         }
 
         // Provide panel data and a close callback bound to this host.
@@ -161,9 +228,6 @@ export class LunaMenuComponent implements AfterContentInit, OnDestroy
         const portal = new ComponentPortal(MenuPanelComponent, null, childInjector);
         this.overlayRef.attach(portal);
         this.coordinator.notifyOpened(this);
-
-        // Keep the menubar trigger styled like hover while this dropdown is open.
-        this.trigger?.setMenuOpenHighlight(true);
     }
 
     /**

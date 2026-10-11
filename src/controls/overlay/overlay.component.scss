@@ -1,8 +1,10 @@
 // Overlay host positioning and stacking for CDK panes attached under Luna.
-@use '../../theme/palette' as *;
+@use '../../theme/fonts' as *;
+@use '../../theme/tokens' as *;
 @use '../../theme/typography' as *;
 @use '../../theme/z-layers' as *;
 
+// Stacking-context reset. CDK backdrops and panes are attached inside this host.
 .luna-overlay-host
 {
     inset: 0;
@@ -18,27 +20,29 @@
 
 button[lunaMenuTrigger]
 {
-    background: $gray-light-warm;
+    background: transparent;
     border: none;
-    border-radius: 0;
-    font-family: inherit;
-    font-size: $font-size-xs;
-    line-height: $line-height-tight;
-    padding: $spacing-xs $spacing-md;
+    border-radius: luna-token('menu-menubar-radius');
+    color: luna-token('menu-menubar-color');
+    cursor: pointer;
+    font-family: $font-sans;
+    font-size: luna-token('menu-menubar-font-size');
+    line-height: $menu-menubar-line-height;
+    padding: luna-token('menu-menubar-item-padding-y') luna-token('menu-menubar-item-padding-x');
     text-decoration: underline;
 
     &:hover,
     &.luna-menu-trigger-active
     {
-        background: $navy;
-        color: $white;
+        background: luna-token('color-navy');
+        color: luna-token('color-text');
     }
 }
 
 .luna-menu-backdrop
 {
     background: transparent;
-    z-index: 0;
+    z-index: $normal;
 }
 
 .luna-menu-overlay-panel
@@ -50,7 +54,7 @@ button[lunaMenuTrigger]
 {
     background: #00000080;
     cursor: default;
-    z-index: 0;
+    z-index: $normal;
 
     &:focus
     {
@@ -60,7 +64,7 @@ button[lunaMenuTrigger]
 
 .luna-modal-pane
 {
-    z-index: 1;
+    z-index: $over;
 }
 
 .luna-tooltip-panel

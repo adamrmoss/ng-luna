@@ -4,7 +4,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 /**
  * Named pixel sizes supported by `IconComponent`.
  */
-export type IconSize = '12' | '16' | '20' | '24' | '32' | '48';
+export type IconSize = '12' | '14' | '16' | '20' | '24' | '32' | '48';
 
 /**
  * Renders a trusted SVG string inside a span sized by `size`.

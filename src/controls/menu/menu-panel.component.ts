@@ -8,6 +8,7 @@ import {
     ElementRef,
 } from '@angular/core';
 
+import { IconComponent } from '../icons';
 import { isLunaMenuItem, LUNA_MENU_DATA, LunaMenuEntry, LunaMenuItem } from './menu-data';
 
 /**
@@ -16,7 +17,7 @@ import { isLunaMenuItem, LUNA_MENU_DATA, LunaMenuEntry, LunaMenuItem } from './m
 @Component({
     selector: 'luna-menu-panel',
     standalone: true,
-    imports: [ CommonModule ],
+    imports: [ CommonModule, IconComponent ],
     templateUrl: './menu-panel.component.html',
     styleUrls: [ './menu-panel.component.scss' ],
 })
@@ -35,6 +36,15 @@ export class MenuPanelComponent implements OnInit
     protected get entries(): LunaMenuEntry[]
     {
         return this.data.items;
+    }
+
+    /**
+     * True when any row uses the checked affordance, so those labels stay aligned.
+     */
+    protected get reservesCheckColumn(): boolean
+    {
+        // Icon-only menus stay flush; a checked row reserves the gutter for the whole list.
+        return this.entries.some((entry) => isLunaMenuItem(entry) && entry.checked != null);
     }
 
     /**
