@@ -50,7 +50,7 @@
 
 .luna-menu-item-highlighted:not(.luna-menu-item-disabled)
 {
-    background: luna-token('color-navy');
+    background: luna-token('color-accent-light');
     color: luna-token('color-text');
     cursor: default;
 
@@ -80,7 +80,7 @@ li[role="menuitem"]
 
     &:not(.luna-menu-item-disabled):hover
     {
-        background: luna-token('color-navy');
+        background: luna-token('color-accent-light');
         color: luna-token('color-text');
 
         .luna-menu-item-checkmark
@@ -141,7 +141,7 @@ li[role="menuitem"].luna-menu-item-danger:not(.luna-menu-item-disabled)
         &:not(.luna-menu-item-disabled):hover,
         &.luna-menu-item-highlighted:not(.luna-menu-item-disabled)
         {
-            background: luna-token('color-navy-dark');
+            background: luna-token('menu-context-hover-background');
             color: luna-token('color-text');
         }
     }

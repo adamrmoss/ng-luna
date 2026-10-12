@@ -17,7 +17,7 @@
 
 :host([variant='editor']:not([hidden]))
 {
-    background: luna-token('color-navy-darkest');
+    background: luna-token('color-accent-dark');
     border-bottom: 1px solid luna-token('color-border');
     justify-content: space-between;
     min-height: luna-token('toolbar-editor-min-height');
@@ -26,7 +26,7 @@
 
 :host([variant='command']:not([hidden]))
 {
-    background: luna-token('color-navy-darkest');
+    background: luna-token('color-accent-dark');
     border-bottom: 1px solid luna-token('color-border');
     gap: luna-token('toolbar-command-gap');
     padding: luna-token('toolbar-command-padding');

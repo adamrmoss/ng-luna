@@ -1,4 +1,4 @@
-// Tab list. Unselected tabs are navy-darkest. The selected tab is navy and overlaps the panel.
+// Tab list. Inactive tabs are white. The selected tab is navy-darkest and overlaps the panel.
 @use '../../theme/fonts' as *;
 @use '../../theme/tokens' as *;
 @use '../../theme/typography' as *;
@@ -22,7 +22,7 @@ div[role="tablist"]
         background: luna-token('tab-background');
         border: none;
         border-radius: $border-radius-base $border-radius-base 0 0;
-        color: luna-token('color-text');
+        color: luna-token('tab-color');
         cursor: pointer;
         font-family: $font-sans;
         font-size: luna-token('tab-font-size');
@@ -33,12 +33,13 @@ div[role="tablist"]
 
         &:hover
         {
-            background: luna-token('color-navy-dark');
+            background: luna-token('tab-background-hover');
         }
 
         &[aria-selected="true"]
         {
             background: luna-token('tab-selected-background');
+            color: luna-token('tab-selected-color');
             font-weight: 600;
             margin-bottom: -1px;
             padding-bottom: luna-token('tab-padding-bottom');

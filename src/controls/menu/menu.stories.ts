@@ -1,7 +1,8 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
-import { File as FileIcon, Trash } from 'lucide-static';
-import { fn } from 'storybook/test';
+import { fn, userEvent, within } from 'storybook/test';
 
+import { FileSvg, TrashSvg } from '../icons';
+import { MenuBarComponent } from '../menu-bar/menu-bar.component';
 import { type LunaMenuEntry } from './menu-data';
 import { LunaMenuTriggerDirective } from './menu-trigger.directive';
 import { LunaMenuComponent, type LunaMenuVariant } from './menu.component';
@@ -22,8 +23,8 @@ const viewItems: LunaMenuEntry[] = [
 ];
 
 const diskItems: LunaMenuEntry[] = [
-    { icon: FileIcon, label: 'New File' },
-    { icon: Trash, label: 'Delete', tone: 'danger' },
+    { icon: FileSvg, label: 'New File' },
+    { icon: TrashSvg, label: 'Delete', tone: 'danger' },
 ];
 
 type MenuStoryArgs = {
@@ -57,22 +58,25 @@ const meta: Meta<MenuStoryArgs> = {
         moduleMetadata({
             imports: [
                 LunaMenuTriggerDirective,
+                MenuBarComponent,
             ],
         }),
     ],
     render: (args) => ({
         props: args,
         template: `
-            <luna-menu
-                [items]="items"
-                [variant]="variant"
-                (itemSelect)="itemSelect($event)">
-                <button
-                    lunaMenuTrigger
-                    type="button">
-                    {{ label }}
-                </button>
-            </luna-menu>
+            <luna-menu-bar>
+                <luna-menu
+                    [items]="items"
+                    [variant]="variant"
+                    (itemSelect)="itemSelect($event)">
+                    <button
+                        lunaMenuTrigger
+                        type="button">
+                        {{ label }}
+                    </button>
+                </luna-menu>
+            </luna-menu-bar>
         `,
     }),
     tags: ['autodocs'],
@@ -84,9 +88,16 @@ export default meta;
 type Story = StoryObj<MenuStoryArgs>;
 
 /**
- * File menu with a separator.
+ * File menu with a separator. The panel opens so the rows are on screen.
  */
-export const File: Story = {};
+export const File: Story = {
+    play: async ({ canvasElement }) =>
+    {
+        // The trigger sits on the bar. Open it so the dropdown is visible.
+        const canvas = within(canvasElement);
+        await userEvent.click(canvas.getByRole('button', { name: 'File' }));
+    },
+};
 
 /**
  * View menu with a checked row and a disabled row.

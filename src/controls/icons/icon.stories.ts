@@ -1,7 +1,6 @@
 import { argsToTemplate, type Meta, type StoryObj } from '@storybook/angular';
-import { Home } from 'lucide-static';
 
-import { IconComponent, type IconSize } from './icon.component';
+import { HomeSvg, IconComponent, type IconSize } from '.';
 
 type IconStoryArgs = {
     size: IconSize;
@@ -14,7 +13,7 @@ type IconStoryArgs = {
 const meta: Meta<IconStoryArgs> = {
     args: {
         size: '24',
-        svg: Home,
+        svg: HomeSvg,
     },
     argTypes: {
         size: {

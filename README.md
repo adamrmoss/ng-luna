@@ -4,7 +4,7 @@ An Angular component library. The default paint is the EduBASIC navy theme, set 
 
 ## Overview
 
-ng-luna provides standalone Angular components. Buttons, fields, menus, windows, tabs, and dialogs ship with the EduBASIC surfaces: navy grounds, bright-blue actions, and white text. Another app reskins that theme with CSS custom properties. Font families stay [IBM Plex](https://www.ibm.com/plex/) Sans and IBM Plex Mono.
+ng-luna provides standalone Angular components. Buttons, fields, menus, windows, tabs, and dialogs ship with the EduBASIC surfaces: a light window and default button, navy fields, and bright-blue actions. Another app reskins that theme with CSS custom properties. Font families stay [IBM Plex](https://www.ibm.com/plex/) Sans and IBM Plex Mono.
 
 All components are **standalone** and implement Angular's reactive forms API where applicable, making them compatible with `FormControl`, `FormGroup`, and `ngModel`. Components are built on **Angular CDK** for enhanced accessibility, keyboard navigation, drag-and-drop, and cross-platform support.
 
@@ -128,24 +128,24 @@ Once configured, you can use the fonts directly in your CSS/SCSS:
 
 ### Theme
 
-The default paint is the EduBASIC palette. Set any property below on `:root` or an ancestor to reskin a control. When the variable is unset, the control uses the fallback. A component property that shares a role falls back to that role first, so `--luna-color-navy` reskins the window, the selected tab, and the fields unless that control's own property is set. Each metric names its component and variant. `_palette.scss` and `_typography.scss` in the published `theme/` folder remain the SCSS source for layout you write yourself.
+The default paint is the EduBASIC palette. Set any property below on `:root` or an ancestor to reskin a control. When the variable is unset, the control uses the fallback. A component property that shares a role falls back to that role first, so `--luna-color-accent-light` reskins the fields unless that control's own property is set. The window body and the tab panel use their own fill. Each metric names its component and variant. `_palette.scss` and `_typography.scss` in the published `theme/` folder remain the SCSS source for layout you write yourself.
 
 Solid danger hover on an action button, and on an icon button at the default size, is `color-mix` of `--luna-button-action-danger-background` 10% toward black.
 
 | Property | Fallback | Read by |
 |---|---|---|
-| `--luna-color-navy` | `#003c74` | Menubar row hover. Role for the window, the selected tab, and field fills |
-| `--luna-color-navy-darkest` | `#00138c` | Role for unselected tabs, the menubar, and the context menu |
-| `--luna-color-navy-dark` | `#001ea0` | Unselected tab hover and context menu row hover |
-| `--luna-color-action` | `#0053ee` | Button focus outline and text selection. Role for default and action button fills, field focus, and the window title |
-| `--luna-color-action-hover` | `#0050ee` | Window control buttons. Role for default and action button hover |
-| `--luna-color-border` | `#1d5281` | Command button border, menu border, dialog, tab panel, fieldset, and field borders |
-| `--luna-color-text` | `#ffffff` | Button, field, menu, window, tab, and dialog text |
+| `--luna-color-accent-light` | `#003c74` | Menubar row hover. Role for field fills, the fieldset, and the dialog body |
+| `--luna-color-accent-dark` | `#00138c` | Editor and command toolbars. Role for the selected tab and the context menu |
+| `--luna-color-action` | `#0053ee` | Button focus outline and text selection. Role for action button fills, field focus, and the window title |
+| `--luna-color-action-hover` | `#0050ee` | Window control buttons. Role for action button hover |
+| `--luna-color-border` | `#1d5281` | Command button border, menu border, dialog, fieldset, and field borders |
+| `--luna-color-text` | `#ffffff` | Action and icon button, field, context menu, window title, selected tab, and dialog text |
 | `--luna-color-text-secondary` | `#e0e0e0` | Disabled menu rows |
 | `--luna-color-danger` | `#e5a01a` | Compact danger icon text. Role for the action danger fill and context danger text |
-| `--luna-button-default-background` | `#0053ee` | Default button |
-| `--luna-button-default-background-hover` | `#0050ee` | Default button hover |
-| `--luna-button-default-border` | `#003c74` | Default button border |
+| `--luna-button-default-background` | `#ffffff` | Default button |
+| `--luna-button-default-background-hover` | `#f2f2f1` | Default button hover |
+| `--luna-button-default-border` | `#9d9c99` | Default button border |
+| `--luna-button-default-color` | `#000000` | Default button text |
 | `--luna-button-default-font-size` | `11px` | Default button |
 | `--luna-button-default-padding-x` | `12px` | Default button |
 | `--luna-button-default-padding-y` | `4px` | Default button |
@@ -202,6 +202,7 @@ Solid danger hover on an action button, and on an icon button at the default siz
 | `--luna-menu-menubar-min-width` | `10rem` | Menubar dropdown |
 | `--luna-menu-menubar-radius` | `0` | Menubar dropdown and trigger |
 | `--luna-menu-context-background` | `#00138c` | Context menu |
+| `--luna-menu-context-hover-background` | `#001ea0` | Context menu row hover |
 | `--luna-menu-context-font-size` | `13px` | Context menu rows |
 | `--luna-menu-context-padding` | `4px` | Context menu panel |
 | `--luna-menu-context-row-gap` | `2px` | Context menu rows |
@@ -213,8 +214,12 @@ Solid danger hover on an action button, and on an icon button at the default siz
 | `--luna-menu-context-shadow` | `0 4px 12px #00000066` | Context menu panel |
 | `--luna-menu-context-danger-color` | `#e5a01a` | Context menu danger row |
 | `--luna-menu-context-danger-hover-background` | `#e5a01a1a` | Context menu danger row hover |
-| `--luna-tab-background` | `#00138c` | Unselected tab |
-| `--luna-tab-selected-background` | `#003c74` | Selected tab |
+| `--luna-tab-background` | `#ffffff` | Inactive tab |
+| `--luna-tab-background-hover` | `#f2f2f1` | Inactive tab hover |
+| `--luna-tab-color` | `#000000` | Inactive tab text |
+| `--luna-tab-selected-background` | `#00138c` | Selected tab |
+| `--luna-tab-selected-color` | `#ffffff` | Selected tab text |
+| `--luna-tab-panel-border` | `#dcdcd7` | Tab panel border |
 | `--luna-tab-font-size` | `11px` | Tab |
 | `--luna-tab-padding-y` | `4px` | Tab |
 | `--luna-tab-padding-x` | `12px` | Tab |
@@ -230,7 +235,7 @@ Solid danger hover on an action button, and on an icon button at the default siz
 | `--luna-toolbar-command-padding` | `8px` | Command toolbar |
 | `--luna-toolbar-command-gap` | `8px` | Command toolbar |
 | `--luna-toolbar-float-offset` | `16px` | Float toolbar |
-| `--luna-window-background` | `#003c74` | Window body, tab panel, dialog body, fieldset |
+| `--luna-window-background` | `#ecebe5` | Window body and tab panel |
 | `--luna-window-title-background` | `#0053ee` | Window frame, title bar, dialog title |
 | `--luna-window-frame-padding` | `4px` | Window frame |
 | `--luna-window-title-height` | `21px` | Window title bar |
@@ -243,12 +248,12 @@ Solid danger hover on an action button, and on an icon button at the default siz
 
 ### Using Icons
 
-ng-luna includes [Lucide Icons](https://lucide.dev/), a comprehensive set of over 1,400 clean, consistent SVG icons. Icons are provided as **tree-shakable ES modules** - only the icons you import will be included in your bundle.
+ng-luna includes [Lucide Icons](https://lucide.dev/), a comprehensive set of over 1,400 clean, consistent SVG icons. Each icon is a tree-shakable string export whose name is the Lucide name plus `Svg`, such as `CopySvg` and `FolderOpenSvg`. Only the icons you import are included in your bundle.
 
 #### Import Icons
 
 ```typescript
-import { IconComponent, Home, Save, Folder, Settings } from 'ng-luna';
+import { IconComponent, HomeSvg, SaveSvg, FolderSvg, SettingsSvg } from 'ng-luna';
 
 @Component({
     imports: [ IconComponent ],
@@ -258,8 +263,8 @@ import { IconComponent, Home, Save, Folder, Settings } from 'ng-luna';
     `
 })
 export class MyComponent {
-    homeIcon = Home;
-    saveIcon = Save;
+    homeIcon = HomeSvg;
+    saveIcon = SaveSvg;
 }
 ```
 
@@ -289,21 +294,21 @@ export class MyComponent {
 Lucide provides over 1,400 icons. Browse all available icons at [lucide.dev/icons](https://lucide.dev/icons).
 
 **Common icons:**
-- `Home`, `Folder`, `File` - Navigation
-- `Settings`, `Tool`, `Wrench` - Configuration
-- `User`, `Users` - User management
-- `Save`, `Download`, `Upload` - File operations
-- `X`, `Minimize2`, `Maximize2` - Window controls
-- `ChevronLeft`, `ChevronRight`, `ChevronDown` - Navigation arrows
-- `Check`, `AlertTriangle` - Status indicators
+- `HomeSvg`, `FolderSvg`, `FileSvg` - Navigation
+- `SettingsSvg`, `CogSvg`, `WrenchSvg` - Configuration
+- `UserSvg`, `UsersSvg` - User management
+- `SaveSvg`, `DownloadSvg`, `UploadSvg` - File operations
+- `XSvg`, `Minimize2Svg`, `Maximize2Svg` - Window controls
+- `ChevronLeftSvg`, `ChevronRightSvg`, `ChevronDownSvg` - Navigation arrows
+- `CheckSvg`, `AlertTriangleSvg` - Status indicators
 
 #### Tree-Shaking
 
 Icons use ES modules for automatic tree-shaking. Only imported icons are included in your final bundle:
 
 ```typescript
-// ✅ Good: Only Home and Save icons included in bundle
-import { Home, Save } from 'ng-luna';
+// ✅ Good: Only HomeSvg and SaveSvg are included in the bundle
+import { HomeSvg, SaveSvg } from 'ng-luna';
 
 // ❌ Avoid: Imports entire icon library
 import * as Icons from 'ng-luna';
@@ -328,7 +333,7 @@ The `luna-button` component paints one variant at a time. `size` applies only wi
 
 **Selector:** `luna-button`
 
-`variant="default"` is IBM Plex Sans, 11px, line-height 1.2, padding `4px 12px`, a navy border, radius `3px`, and the action fill. An active press moves it down 1px.
+`variant="default"` is IBM Plex Sans, 11px, line-height 1.2, padding `4px 12px`, a gray border, radius `3px`, a white face, and black text. Hover is `$gray-lightest`. An active press moves it down 1px.
 
 `variant="action"` is IBM Plex Mono, 12px, weight 500, padding `8px 12px`, gap `8px`, no border, radius `4px`, and the same fill and press. Projected content, including a `luna-icon` at `size="16"`, is centered in that gap.
 
@@ -439,15 +444,15 @@ The `luna-icon` component provides a convenient way to render Lucide icons with 
 ```
 
 ```typescript
-import { IconComponent, Home, Save } from 'ng-luna';
+import { IconComponent, HomeSvg, SaveSvg } from 'ng-luna';
 
 @Component({
     imports: [ IconComponent ],
     // ...
 })
 export class MyComponent {
-    homeIcon = Home;
-    saveIcon = Save;
+    homeIcon = HomeSvg;
+    saveIcon = SaveSvg;
 }
 ```
 
@@ -699,7 +704,7 @@ The `luna-slider` component is a range slider. The track uses the field surface.
 
 ### Tabs Component
 
-The `luna-tabs` component is a tab interface with keyboard navigation support. Unselected tabs are navy-darkest. The selected tab and its panel are navy, with white text. The selected tab overlaps the panel by 1px. Use `luna-tab` children to define each tab and its content.
+The `luna-tabs` component is a tab interface with keyboard navigation support. Inactive tabs are white with black text. The selected tab is navy-darkest with white text, and it overlaps the panel by 1px. The panel fill is the window body color, with a gray border. Use `luna-tab` children to define each tab and its content.
 
 **Selector:** `luna-tabs`
 
@@ -983,7 +988,7 @@ ng-luna/
 
 ## Dependencies
 
-- **lucide-static** (0.468.0) – icon modules re-exported from `ng-luna`
+- **lucide-static** (0.468.0) – icon SVG strings re-exported from `ng-luna` with an `Svg` suffix (`CopySvg`, `SaveSvg`, and the rest)
 - **tslib** (2.x.x) – TypeScript helpers; the range lets npm dedupe it with Angular
 
 IBM Plex fonts are copied into the published package when the library is built. Consumers do not install `@ibm/plex`.

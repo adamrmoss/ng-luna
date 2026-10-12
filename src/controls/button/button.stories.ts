@@ -1,8 +1,7 @@
 import { argsToTemplate, moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
-import { Save, Trash } from 'lucide-static';
 import { fn } from 'storybook/test';
 
-import { IconComponent } from '../icons';
+import { IconComponent, SaveSvg, TrashSvg } from '../icons';
 import { type LunaTone } from '../luna-tone';
 import { ButtonComponent, type ButtonType, type LunaButtonVariant, type LunaSize } from './button.component';
 
@@ -100,7 +99,7 @@ export const Action: Story = {
     render: (args) => ({
         props: {
             ...args,
-            saveIcon: Save,
+            saveIcon: SaveSvg,
         },
         template: `
             <luna-button ${argsToTemplate(args, { exclude: ['label'] })}>
@@ -131,7 +130,7 @@ export const Icon: Story = {
     render: (args) => ({
         props: {
             ...args,
-            saveIcon: Save,
+            saveIcon: SaveSvg,
         },
         template: `
             <luna-button ${argsToTemplate(args, { exclude: ['label'] })}>
@@ -153,7 +152,7 @@ export const IconCompactDanger: Story = {
     render: (args) => ({
         props: {
             ...args,
-            trashIcon: Trash,
+            trashIcon: TrashSvg,
         },
         template: `
             <luna-button ${argsToTemplate(args, { exclude: ['label'] })}>

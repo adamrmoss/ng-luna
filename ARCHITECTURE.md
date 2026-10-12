@@ -60,12 +60,12 @@ export * from './input/input.component';
 
 // src/controls/icons/index.ts
 export * from './icon.component';
-export * from 'lucide-static';  // All icon strings
+export * from './lucide-svg';
 ```
 
 **Result:** Consumers import everything from one place:
 ```typescript
-import { ButtonComponent, IconComponent, Home, Save } from 'ng-luna';
+import { ButtonComponent, IconComponent, HomeSvg, SaveSvg } from 'ng-luna';
 ```
 
 ## Build Process
@@ -185,9 +185,9 @@ That's it! All components, icons, and fonts are included.
 import { 
   ButtonComponent, 
   IconComponent,
-  Home,           // Icon string from Lucide
-  Save,           // Icon string from Lucide
-  Folder 
+  HomeSvg,
+  SaveSvg,
+  FolderSvg
 } from 'ng-luna';
 
 @Component({
@@ -198,7 +198,7 @@ import {
   `
 })
 export class MyComponent {
-  homeIcon = Home;
+  homeIcon = HomeSvg;
 }
 ```
 
@@ -263,21 +263,21 @@ import { ButtonComponent } from 'ng-luna';
 
 ### How Icons are Bundled
 
-Lucide icons are JavaScript string constants:
+Lucide icons are JavaScript string constants. `lucide-static` exports them under plain names (`Copy`, `Save`). ng-luna re-exports each one with an `Svg` suffix from `src/controls/icons/lucide-svg.ts`:
 
 ```typescript
-// From lucide-static
-export const Home = `<svg ...>...</svg>`;
-export const Save = `<svg ...>...</svg>`;
-// ... 1400+ more
+export { Copy as CopySvg } from 'lucide-static';
+export { Save as SaveSvg } from 'lucide-static';
 ```
+
+Regenerate that file with `npm run write-lucide-svg-barrel` after changing the `lucide-static` version.
 
 These get compiled into `ng-luna.mjs` as:
 
 ```javascript
-const Home = `<svg xmlns="http://www.w3.org/2000/svg"...>...</svg>`;
+const Copy = `<svg xmlns="http://www.w3.org/2000/svg"...>...</svg>`;
 const Save = `<svg xmlns="http://www.w3.org/2000/svg"...>...</svg>`;
-export { Home, Save, /* ... all icons */ };
+export { Copy as CopySvg, Save as SaveSvg, /* ... all icons */ };
 ```
 
 ### Tree-Shaking Icons
@@ -285,8 +285,8 @@ export { Home, Save, /* ... all icons */ };
 Icons are individually exported, so tree-shaking works at the icon level:
 
 ```typescript
-import { Home, Save } from 'ng-luna';
-// ✅ Only Home and Save strings are in the final bundle
+import { HomeSvg, SaveSvg } from 'ng-luna';
+// ✅ Only HomeSvg and SaveSvg strings are in the final bundle
 
 import * as Icons from 'ng-luna';
 // ❌ All 1400+ icons included (don't do this!)

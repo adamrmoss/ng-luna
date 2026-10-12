@@ -34,7 +34,7 @@ button[lunaMenuTrigger]
     &:hover,
     &.luna-menu-trigger-active
     {
-        background: luna-token('color-navy');
+        background: luna-token('color-accent-light');
         color: luna-token('color-text');
     }
 }

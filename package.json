@@ -1,6 +1,6 @@
 {
     "name": "ng-luna",
-    "version": "1.1.0",
+    "version": "1.1.2",
     "description": "An Angular component library inspired by Windows XP aesthetics, built with IBM Plex fonts",
     "author": {
         "name": "Adam R Moss",
@@ -21,14 +21,15 @@
         "nostalgic"
     ],
     "scripts": {
+        "publish": "npm install && npm run build && npm publish ./dist",
         "prebuild": "node scripts/stage-fonts.mjs",
         "build": "ng-packagr -p ng-package.json",
         "clean": "rm -rf dist",
-        "prepublishOnly": "npm run build",
         "prestorybook": "node scripts/stage-fonts.mjs",
         "storybook": "ng run ng-luna:storybook",
         "prebuild-storybook": "node scripts/stage-fonts.mjs",
-        "build-storybook": "ng run ng-luna:build-storybook"
+        "build-storybook": "ng run ng-luna:build-storybook",
+        "write-lucide-svg-barrel": "node scripts/write-lucide-svg-barrel.mjs"
     },
     "peerDependencies": {
         "@angular/cdk": "19.x.x",

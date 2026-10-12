@@ -1,8 +1,7 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
-import { Save, Trash } from 'lucide-static';
 
 import { ButtonComponent } from '../button/button.component';
-import { IconComponent } from '../icons';
+import { IconComponent, SaveSvg, TrashSvg } from '../icons';
 import { ToolbarGroupComponent } from './toolbar-group.component';
 import { ToolbarComponent } from './toolbar.component';
 
@@ -34,8 +33,8 @@ type Story = StoryObj<ToolbarComponent>;
 export const Cluster: Story = {
     render: () => ({
         props: {
-            saveIcon: Save,
-            trashIcon: Trash,
+            saveIcon: SaveSvg,
+            trashIcon: TrashSvg,
         },
         template: `
             <luna-toolbar variant="cluster">
@@ -56,8 +55,8 @@ export const Cluster: Story = {
 export const Editor: Story = {
     render: () => ({
         props: {
-            saveIcon: Save,
-            trashIcon: Trash,
+            saveIcon: SaveSvg,
+            trashIcon: TrashSvg,
         },
         template: `
             <luna-toolbar variant="editor">
@@ -115,7 +114,7 @@ export const End: Story = {
 export const Float: Story = {
     render: () => ({
         props: {
-            trashIcon: Trash,
+            trashIcon: TrashSvg,
         },
         template: `
             <div style="position: relative; height: 80px;">

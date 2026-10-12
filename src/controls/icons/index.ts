@@ -1,6 +1,6 @@
 /**
- * Barrel re-export for Luna icon building blocks and Lucide static paths.
+ * Barrel re-export for Luna icon building blocks and suffixed Lucide SVG strings.
  */
 
 export * from './icon.component';
-export * from 'lucide-static';
+export * from './lucide-svg';

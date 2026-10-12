@@ -1,4 +1,4 @@
-// Fieldset border, legend, and row layout on the window surface.
+// Fieldset border and legend on the navy ground. The window body is a separate fill.
 @use '../../theme/layout' as *;
 @use '../../theme/tokens' as *;
 @use '../../theme/typography' as *;
@@ -15,7 +15,7 @@
 
 fieldset
 {
-    background: luna-token('window-background');
+    background: luna-token('color-accent-light');
     border: 1px solid luna-token('color-border');
     border-radius: $border-radius-md;
     box-shadow: none;
@@ -25,7 +25,7 @@ fieldset
 
 legend
 {
-    background: luna-token('window-background');
+    background: luna-token('color-accent-light');
     border: 1px solid luna-token('color-border');
     border-radius: $border-radius-md;
     color: luna-token('color-text');

@@ -15,7 +15,7 @@ button
     border: 1px solid luna-token('button-default-border');
     border-radius: luna-token('button-default-radius');
     box-sizing: border-box;
-    color: luna-token('color-text');
+    color: luna-token('button-default-color');
     cursor: pointer;
     display: inline-flex;
     font-family: $font-sans;
@@ -61,6 +61,7 @@ button
     background: luna-token('button-action-background');
     border: none;
     border-radius: luna-token('button-action-radius');
+    color: luna-token('color-text');
     font-family: $font-mono;
     font-size: luna-token('button-action-font-size');
     font-weight: 500;
@@ -90,6 +91,7 @@ button
     background: luna-token('button-command-background');
     border: 1px solid luna-token('color-border');
     border-radius: luna-token('button-command-radius');
+    color: luna-token('color-text');
     font-family: $font-sans;
     font-size: luna-token('button-command-font-size');
     font-weight: 400;
@@ -117,6 +119,7 @@ button
     background: luna-token('button-action-background');
     border: none;
     border-radius: luna-token('button-icon-radius');
+    color: luna-token('color-text');
     font-size: luna-token('button-icon-font-size');
     gap: 0;
     height: luna-token('button-icon-size');
