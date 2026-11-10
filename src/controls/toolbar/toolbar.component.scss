@@ -1,5 +1,5 @@
 // Bar metrics per variant. Group gaps for the editor bar live on `luna-toolbar-group`.
-@use '../../theme/tokens' as *;
+@use '../../theme/typography' as *;
 
 :host:not([hidden])
 {
@@ -11,25 +11,25 @@
 :host([variant='cluster']:not([hidden]))
 {
     background: transparent;
-    gap: luna-token('toolbar-cluster-gap');
+    gap: var(--luna-toolbar-cluster-gap);
     padding: 0;
 }
 
 :host([variant='editor']:not([hidden]))
 {
-    background: luna-token('color-accent-dark');
-    border-bottom: 1px solid luna-token('color-border');
+    background: var(--luna-color-accent-dark);
+    border-bottom: $border-width solid var(--luna-color-border);
     justify-content: space-between;
-    min-height: luna-token('toolbar-editor-min-height');
-    padding: luna-token('toolbar-editor-padding-y') luna-token('toolbar-editor-padding-x');
+    min-height: var(--luna-toolbar-editor-min-height);
+    padding: var(--luna-toolbar-editor-padding-y) var(--luna-toolbar-editor-padding-x);
 }
 
 :host([variant='command']:not([hidden]))
 {
-    background: luna-token('color-accent-dark');
-    border-bottom: 1px solid luna-token('color-border');
-    gap: luna-token('toolbar-command-gap');
-    padding: luna-token('toolbar-command-padding');
+    background: var(--luna-color-accent-dark);
+    border-bottom: $border-width solid var(--luna-color-border);
+    gap: var(--luna-toolbar-command-gap);
+    padding: var(--luna-toolbar-command-padding);
 }
 
 :host([variant='end']:not([hidden]))
@@ -45,6 +45,6 @@
     gap: 0;
     padding: 0;
     position: absolute;
-    right: luna-token('toolbar-float-offset');
-    top: luna-token('toolbar-float-offset');
+    right: var(--luna-toolbar-float-offset);
+    top: var(--luna-toolbar-float-offset);
 }

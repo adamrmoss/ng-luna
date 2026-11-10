@@ -1,6 +1,4 @@
 // Flex row. Editor bars set a wider gap on the first group.
-@use '../../theme/tokens' as *;
-
 :host:not([hidden])
 {
     align-items: center;
@@ -9,10 +7,10 @@
 
 :host-context(luna-toolbar[variant='editor']):not([hidden])
 {
-    gap: luna-token('toolbar-editor-group-start-gap');
+    gap: var(--luna-toolbar-editor-group-start-gap);
 }
 
 :host-context(luna-toolbar[variant='editor']):not(:first-child):not([hidden])
 {
-    gap: luna-token('toolbar-editor-group-end-gap');
+    gap: var(--luna-toolbar-editor-group-end-gap);
 }

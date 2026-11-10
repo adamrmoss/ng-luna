@@ -1,6 +1,6 @@
 // Tab panel on the window surface. Maximized panels opt into flex only while visible.
 @use '../../theme/layout' as *;
-@use '../../theme/tokens' as *;
+@use '../../theme/typography' as *;
 
 :host:not([hidden])
 {
@@ -9,10 +9,10 @@
 
 [role="tabpanel"]
 {
-    background: luna-token('window-background');
-    border: 1px solid luna-token('tab-panel-border');
-    color: luna-token('color-text');
-    padding: luna-token('tab-panel-padding');
+    background: var(--luna-window-background);
+    border: $border-width solid var(--luna-tab-panel-border);
+    color: var(--luna-color-text);
+    padding: var(--luna-tab-panel-padding);
 }
 
 :host(.luna-maximized) [role="tabpanel"]:not([hidden])

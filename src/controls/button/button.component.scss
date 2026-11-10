@@ -1,6 +1,5 @@
 // Each variant owns its type, padding, and radius. Fills come from the palette tokens.
 @use '../../theme/fonts' as *;
-@use '../../theme/tokens' as *;
 @use '../../theme/typography' as *;
 
 :host:not([hidden])
@@ -11,30 +10,30 @@
 button
 {
     align-items: center;
-    background: luna-token('button-default-background');
-    border: 1px solid luna-token('button-default-border');
-    border-radius: luna-token('button-default-radius');
+    background: var(--luna-button-default-background);
+    border: $border-width solid var(--luna-button-default-border);
+    border-radius: var(--luna-button-default-radius);
     box-sizing: border-box;
-    color: luna-token('button-default-color');
+    color: var(--luna-button-default-color);
     cursor: pointer;
     display: inline-flex;
     font-family: $font-sans;
-    font-size: luna-token('button-default-font-size');
+    font-size: var(--luna-button-default-font-size);
     gap: 0;
     justify-content: center;
     line-height: $button-line-height;
-    padding: luna-token('button-default-padding-y') luna-token('button-default-padding-x');
+    padding: var(--luna-button-default-padding-y) var(--luna-button-default-padding-x);
 
     &:not(:disabled)
     {
         &:active
         {
-            transform: translateY(1px);
+            transform: translateY($border-width);
         }
 
         &:hover
         {
-            background: luna-token('button-default-background-hover');
+            background: var(--luna-button-default-background-hover);
         }
     }
 
@@ -46,8 +45,8 @@ button
 
     &:focus-visible
     {
-        outline: 2px solid luna-token('color-action');
-        outline-offset: 2px;
+        outline: $spacing-xxs solid var(--luna-color-action);
+        outline-offset: $spacing-xxs;
     }
 
     &::-moz-focus-inner
@@ -58,57 +57,57 @@ button
 
 :host([variant='action']) button
 {
-    background: luna-token('button-action-background');
+    background: var(--luna-button-action-background, var(--luna-color-action));
     border: none;
-    border-radius: luna-token('button-action-radius');
-    color: luna-token('color-text');
+    border-radius: var(--luna-button-action-radius);
+    color: var(--luna-color-text);
     font-family: $font-mono;
-    font-size: luna-token('button-action-font-size');
+    font-size: var(--luna-button-action-font-size);
     font-weight: 500;
-    gap: luna-token('button-action-gap');
+    gap: var(--luna-button-action-gap);
     line-height: $button-action-line-height;
-    padding: luna-token('button-action-padding-y') luna-token('button-action-padding-x');
+    padding: var(--luna-button-action-padding-y) var(--luna-button-action-padding-x);
 
     &:not(:disabled):hover
     {
-        background: luna-token('button-action-background-hover');
+        background: var(--luna-button-action-background-hover, var(--luna-color-action-hover));
     }
 }
 
 :host([variant='action'][tone='danger']) button
 {
-    background: luna-token('button-action-danger-background');
+    background: var(--luna-button-action-danger-background, var(--luna-color-danger));
 
     &:not(:disabled):hover
     {
         // Solid danger hover is the danger fill mixed 10% toward black.
-        background: color-mix(in srgb, luna-token('button-action-danger-background') 90%, black);
+        background: color-mix(in srgb, var(--luna-button-action-danger-background, var(--luna-color-danger)) 90%, black);
     }
 }
 
 :host([variant='command']) button
 {
-    background: luna-token('button-command-background');
-    border: 1px solid luna-token('color-border');
-    border-radius: luna-token('button-command-radius');
-    color: luna-token('color-text');
+    background: var(--luna-button-command-background);
+    border: $border-width solid var(--luna-color-border);
+    border-radius: var(--luna-button-command-radius);
+    color: var(--luna-color-text);
     font-family: $font-sans;
-    font-size: luna-token('button-command-font-size');
+    font-size: var(--luna-button-command-font-size);
     font-weight: 400;
     gap: 0;
     line-height: $button-command-line-height;
-    padding: luna-token('button-command-padding-y') luna-token('button-command-padding-x');
+    padding: var(--luna-button-command-padding-y) var(--luna-button-command-padding-x);
 
     &:not(:disabled)
     {
         &:hover
         {
-            background: luna-token('button-command-background-hover');
+            background: var(--luna-button-command-background-hover);
         }
 
         &:active
         {
-            background: luna-token('button-command-background-active');
+            background: var(--luna-button-command-background-active);
             transform: none;
         }
     }
@@ -116,41 +115,41 @@ button
 
 :host([variant='icon']) button
 {
-    background: luna-token('button-action-background');
+    background: var(--luna-button-action-background, var(--luna-color-action));
     border: none;
-    border-radius: luna-token('button-icon-radius');
-    color: luna-token('color-text');
-    font-size: luna-token('button-icon-font-size');
+    border-radius: var(--luna-button-icon-radius);
+    color: var(--luna-color-text);
+    font-size: var(--luna-button-icon-font-size);
     gap: 0;
-    height: luna-token('button-icon-size');
+    height: var(--luna-button-icon-size);
     line-height: $button-icon-line-height;
     padding: 0;
-    width: luna-token('button-icon-size');
+    width: var(--luna-button-icon-size);
 
     &:not(:disabled):hover
     {
-        background: luna-token('button-action-background-hover');
+        background: var(--luna-button-action-background-hover, var(--luna-color-action-hover));
     }
 }
 
 :host([variant='icon'][tone='danger']) button
 {
-    background: luna-token('button-action-danger-background');
+    background: var(--luna-button-action-danger-background, var(--luna-color-danger));
 
     &:not(:disabled):hover
     {
-        background: color-mix(in srgb, luna-token('button-action-danger-background') 90%, black);
+        background: color-mix(in srgb, var(--luna-button-action-danger-background, var(--luna-color-danger)) 90%, black);
     }
 }
 
 :host([variant='icon'][size='compact']) button
 {
-    background: luna-token('button-icon-compact-background');
-    border-radius: luna-token('button-icon-compact-radius');
-    font-size: luna-token('button-icon-compact-font-size');
-    height: luna-token('button-icon-compact-size');
+    background: var(--luna-button-icon-compact-background);
+    border-radius: var(--luna-button-icon-compact-radius);
+    font-size: var(--luna-button-icon-compact-font-size);
+    height: var(--luna-button-icon-compact-size);
     line-height: $button-icon-compact-line-height;
-    width: luna-token('button-icon-compact-size');
+    width: var(--luna-button-icon-compact-size);
 
     &:not(:disabled):active
     {
@@ -159,17 +158,17 @@ button
 
     &:not(:disabled):hover
     {
-        background: luna-token('button-icon-compact-background-hover');
+        background: var(--luna-button-icon-compact-background-hover);
     }
 }
 
 :host([variant='icon'][size='compact'][tone='danger']) button
 {
-    background: luna-token('button-icon-compact-danger-background');
-    color: luna-token('color-danger');
+    background: var(--luna-button-icon-compact-danger-background);
+    color: var(--luna-color-danger);
 
     &:not(:disabled):hover
     {
-        background: luna-token('button-icon-compact-danger-background-hover');
+        background: var(--luna-button-icon-compact-danger-background-hover);
     }
 }

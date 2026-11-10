@@ -1,0 +1,7 @@
+<luna-button type="button" (click)="onOpen()">Open window</luna-button>
+@if (isOpen)
+{
+    <luna-window class="demo-window" title="Entrance" (close)="onClose()">
+        <p>Opacity runs from nothing to solid. Close it and open it again.</p>
+    </luna-window>
+}

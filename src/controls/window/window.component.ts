@@ -2,7 +2,7 @@ import { DragDropModule, CdkDrag } from '@angular/cdk/drag-drop';
 import { Platform } from '@angular/cdk/platform';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
-import { Component, Input, Output, EventEmitter, ElementRef, AfterViewInit, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, HostBinding, Input, Output, EventEmitter, ElementRef, AfterViewInit, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 
 import { LunaControl } from '../luna-control';
 
@@ -112,6 +112,17 @@ export class WindowComponent
         {
             this.dragInstance.reset();
         }
+    }
+
+    /**
+     * Puts `id` on this host only.
+     *
+     * @returns The host id, or null when unset.
+     */
+    @HostBinding('attr.id')
+    public get hostId(): string | null
+    {
+        return this.id ?? null;
     }
 
     /**

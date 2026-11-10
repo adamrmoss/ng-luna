@@ -1,0 +1,41 @@
+<p class="demo-status">{{ status }}</p>
+<div class="demo-stage demo-inset">
+    <luna-window
+        title="Shelf"
+        [isMaximized]="true"
+        [showHelp]="false"
+        [showMinimize]="false">
+        <luna-menu-bar>
+            <luna-menu
+                [items]="fileItems"
+                (itemSelect)="onMenu($event)">
+                <button
+                    lunaMenuTrigger
+                    type="button">
+                    File
+                </button>
+            </luna-menu>
+            <luna-menu
+                [items]="editItems"
+                (itemSelect)="onMenu($event)">
+                <button
+                    lunaMenuTrigger
+                    type="button">
+                    Edit
+                </button>
+            </luna-menu>
+            <a
+                lunaMenuLink
+                href="#guide"
+                (click)="onGuide($event)">
+                Guide
+            </a>
+        </luna-menu-bar>
+        <p>Escape closes an open menu, then a modal, then the popup. A popup veil click closes the popup. A modal veil click leaves the modal open.</p>
+        <luna-button
+            type="button"
+            (click)="onOpenPopup()">
+            Open popup
+        </luna-button>
+    </luna-window>
+</div>

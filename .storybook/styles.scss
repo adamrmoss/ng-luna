@@ -1,6 +1,9 @@
 // Story canvas: Luna global theme on the navy window ground.
+@use 'sass:map';
 @use '../src/theme/global' as *;
 @use '../src/theme/palette' as *;
+@use '../src/theme/breakpoints' as *;
+@use '../src/theme/typography' as *;
 
 html,
 body
@@ -10,4 +13,48 @@ body
     height: 100%;
     margin: 0;
     padding: 0;
+}
+
+.demo-stage
+{
+    height: $spacing-xxl * 7;
+    position: relative;
+}
+
+.demo-window
+{
+    width: $spacing-xxl * 8;
+}
+
+.demo-surface
+{
+    display: block;
+    max-width: map.get($breakpoints, md);
+    width: 100%;
+}
+
+.demo-inset luna-window
+{
+    --luna-window-inset: #{$spacing-sm};
+}
+
+.demo-recolor
+{
+    --luna-window-body-color: var(--luna-color-text);
+    --luna-window-title-color: var(--luna-color-accent-dark);
+}
+
+.demo-role
+{
+    --luna-color-action: var(--luna-color-accent-light);
+}
+
+.demo-specific
+{
+    --luna-window-title-background: var(--luna-color-danger);
+}
+
+.demo-status
+{
+    margin-top: $spacing-sm;
 }

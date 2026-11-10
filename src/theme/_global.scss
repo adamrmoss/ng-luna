@@ -1,6 +1,8 @@
 // Global Luna utilities: CDK helpers, form controls, and shared layout tokens.
+@use '../theme';
 @use 'palette' as *;
 @use 'graphics' as *;
+@use 'typography' as *;
 @use 'reset';
 
 .cdk-visually-hidden
@@ -9,20 +11,20 @@
     -webkit-appearance: none;
     border: 0;
     clip: rect(0 0 0 0);
-    height: 1px;
+    height: $border-width;
     left: 0;
-    margin: -1px;
+    margin: -$border-width;
     outline: 0;
     overflow: hidden;
     padding: 0;
     position: absolute;
     white-space: nowrap;
-    width: 1px;
+    width: $border-width;
 }
 
 ::-webkit-scrollbar
 {
-    width: 17px;
+    width: $scrollbar-size;
 }
 
 ::-webkit-scrollbar-corner
@@ -48,11 +50,11 @@
     background-color: $blue-light;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 7px;
-    border: 1px solid $white;
-    border-radius: 2px;
-    box-shadow: inset -3px 0 $blue-lightest,
-                inset 1px 1px $blue-medium;
+    background-size: $scrollbar-thumb-glyph;
+    border: $border-width solid $white;
+    border-radius: $border-radius-sm;
+    box-shadow: inset #{-$border-radius-base} 0 $blue-lightest,
+                inset $border-width $border-width $blue-medium;
 
     &:vertical
     {
@@ -62,7 +64,7 @@
     &:horizontal
     {
         background-image: $scrollbar-thumb-horizontal-svg;
-        background-size: 8px;
+        background-size: $spacing-sm;
     }
 }
 
@@ -73,13 +75,13 @@
         &:start
         {
             background-image: $scrollbar-arrow-up-svg;
-            height: 17px;
+            height: $scrollbar-size;
         }
 
         &:end
         {
             background-image: $scrollbar-arrow-down-svg;
-            height: 17px;
+            height: $scrollbar-size;
         }
     }
 
@@ -88,13 +90,13 @@
         &:start
         {
             background-image: $scrollbar-arrow-left-svg;
-            width: 17px;
+            width: $scrollbar-size;
         }
 
         &:end
         {
             background-image: $scrollbar-arrow-right-svg;
-            width: 17px;
+            width: $scrollbar-size;
         }
     }
 }

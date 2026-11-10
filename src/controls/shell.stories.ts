@@ -1,6 +1,7 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { fn } from 'storybook/test';
 
+import { ShelfStoryComponent } from '../../.storybook/shelf-story.component';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { type LunaMenuEntry } from './menu/menu-data';
 import { LunaMenuTriggerDirective } from './menu/menu-trigger.directive';
@@ -101,3 +102,17 @@ type Story = StoryObj<ShellStoryArgs>;
  * Window and menu bar composed together.
  */
 export const Desktop: Story = {};
+
+/**
+ * Maximized window with an inset, a menu link, a popup, and a modal stacked on that popup.
+ */
+export const Shelf: Story = {
+    decorators: [
+        moduleMetadata({
+            imports: [ShelfStoryComponent],
+        }),
+    ],
+    render: () => ({
+        template: `<app-shelf-story></app-shelf-story>`,
+    }),
+};

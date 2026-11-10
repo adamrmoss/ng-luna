@@ -1,7 +1,6 @@
 // Multiline field. Sans 11px and the field padding, recolored onto the navy surface.
 @use '../../theme/fonts' as *;
 @use '../../theme/layout' as *;
-@use '../../theme/tokens' as *;
 @use '../../theme/typography' as *;
 
 :host:not([hidden])
@@ -16,31 +15,31 @@
 
 textarea
 {
-    background: luna-token('input-background');
-    border: 1px solid luna-token('input-border');
-    border-radius: luna-token('input-radius');
+    background: var(--luna-input-background, var(--luna-color-accent-light));
+    border: $border-width solid var(--luna-input-border, var(--luna-color-border));
+    border-radius: var(--luna-input-radius);
     box-sizing: border-box;
-    color: luna-token('color-text');
+    color: var(--luna-color-text);
     font-family: $font-sans;
-    font-size: luna-token('input-font-size');
+    font-size: var(--luna-input-font-size);
     line-height: $input-line-height;
-    padding: luna-token('input-padding-y') luna-token('input-padding-x');
+    padding: var(--luna-input-padding-y) var(--luna-input-padding-x);
     resize: both;
 
     &::placeholder
     {
-        color: luna-token('input-placeholder');
+        color: var(--luna-input-placeholder);
     }
 
     &::selection
     {
-        background: luna-token('color-action');
-        color: luna-token('color-text');
+        background: var(--luna-color-action);
+        color: var(--luna-color-text);
     }
 
     &:focus
     {
-        border-color: luna-token('input-border-focus');
+        border-color: var(--luna-input-border-focus, var(--luna-color-action));
         outline: none;
     }
 }

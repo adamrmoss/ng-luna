@@ -22,3 +22,4 @@ export * from './menu';
 export * from './menu-bar/menu-bar.component';
 export * from './modal';
 export * from './overlay';
+export * from './popup';

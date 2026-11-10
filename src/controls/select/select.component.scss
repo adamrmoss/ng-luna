@@ -2,7 +2,6 @@
 @use '../../theme/fonts' as *;
 @use '../../theme/graphics' as *;
 @use '../../theme/layout' as *;
-@use '../../theme/tokens' as *;
 @use '../../theme/typography' as *;
 
 :host:not([hidden])
@@ -17,23 +16,23 @@
 
 select
 {
-    background-color: luna-token('input-background');
+    background-color: var(--luna-input-background, var(--luna-color-accent-light));
     background-image: $select-dropdown-on-field-svg;
     background-position: right center;
     background-repeat: no-repeat;
-    background-size: 15px;
-    border: 1px solid luna-token('input-border');
-    border-radius: luna-token('input-radius');
-    color: luna-token('color-text');
+    background-size: $select-chevron-size;
+    border: $border-width solid var(--luna-input-border, var(--luna-color-border));
+    border-radius: var(--luna-input-radius);
+    color: var(--luna-color-text);
     font-family: $font-sans;
-    font-size: luna-token('input-font-size');
+    font-size: var(--luna-input-font-size);
     line-height: $input-line-height;
-    padding: luna-token('input-padding-y') luna-token('input-padding-x');
-    padding-right: 20px;
+    padding: var(--luna-input-padding-y) var(--luna-input-padding-x);
+    padding-right: $select-padding-end;
 
     &:focus
     {
-        border-color: luna-token('input-border-focus');
+        border-color: var(--luna-input-border-focus, var(--luna-color-action));
         outline: none;
     }
 }

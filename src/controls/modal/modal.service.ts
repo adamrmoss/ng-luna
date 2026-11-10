@@ -1,8 +1,7 @@
-import { Overlay } from '@angular/cdk/overlay';
-import { ComponentPortal } from '@angular/cdk/portal';
-import { Injectable, Injector, inject, Type, Provider } from '@angular/core';
+import { Injectable, inject, Type, Provider } from '@angular/core';
 import { EMPTY, Observable } from 'rxjs';
 
+import { LunaSurfaceService } from '../overlay/surface.service';
 import {
     MESSAGE_BOX_DATA,
     MessageBoxData,
@@ -23,9 +22,7 @@ import { LunaModalRef } from './modal-ref';
 @Injectable({ providedIn: 'root' })
 export class LunaModalService
 {
-    private readonly overlay = inject(Overlay);
-
-    private readonly injector = inject(Injector);
+    private readonly surfaces = inject(LunaSurfaceService);
 
     private isMessageBoxOpen = false;
 
@@ -122,7 +119,7 @@ export class LunaModalService
     }
 
     /**
-     * Opens a custom component inside the standard modal shell.
+     * Opens a custom component on the modal veil. The caller owns the window.
      *
      * @param component - Standalone component type to attach.
      * @param config - Optional `MODAL_DATA` value for DI.
@@ -130,27 +127,7 @@ export class LunaModalService
      */
     public open<T>(component: Type<unknown>, config?: { data?: unknown }): Observable<T | undefined>
     {
-        // Center a modal pane with backdrop and block scroll behind it.
-        const overlayRef = this.overlay.create({
-            backdropClass: 'luna-modal-backdrop',
-            hasBackdrop: true,
-            panelClass: 'luna-modal-pane',
-            positionStrategy: this.overlay
-                .position()
-                .global()
-                .centerHorizontally()
-                .centerVertically(),
-            scrollStrategy: this.overlay.scrollStrategies.block(),
-        });
-
-        // Tie overlay disposal to `close` so callers always get a single `afterClosed` emission.
-        const ref = new LunaModalRef<T>(() =>
-        {
-            overlayRef.detach();
-            overlayRef.dispose();
-        });
-
-        const providers: Provider[] = [ { provide: LunaModalRef, useValue: ref } ];
+        const providers: Provider[] = [];
 
         // Optional arbitrary payload for custom dialog content.
         if (config?.data !== undefined)
@@ -158,17 +135,14 @@ export class LunaModalService
             providers.push({ provide: MODAL_DATA, useValue: config.data });
         }
 
-        const injector = Injector.create({
-            parent: this.injector,
+        // 50% veil. Backdrop click does not close. Escape does.
+        return this.surfaces.mount(
+            component as Type<object>,
+            'modal',
+            LunaModalRef,
+            (onClose) => new LunaModalRef<T>(onClose),
             providers,
-        });
-
-        const portal = new ComponentPortal(component as Type<object>, null, injector);
-
-        // Attach after injector wiring so the component resolves `LunaModalRef` and `MODAL_DATA`.
-        overlayRef.attach(portal);
-
-        return ref.afterClosed as Observable<T | undefined>;
+        );
     }
 
     /**
@@ -217,38 +191,19 @@ export class LunaModalService
 
         this.isMessageBoxOpen = true;
 
-        // Same centered shell as generic `open`, dedicated to the message box component.
-        const overlayRef = this.overlay.create({
-            backdropClass: 'luna-modal-backdrop',
-            hasBackdrop: true,
-            panelClass: 'luna-modal-pane',
-            positionStrategy: this.overlay
-                .position()
-                .global()
-                .centerHorizontally()
-                .centerVertically(),
-            scrollStrategy: this.overlay.scrollStrategies.block(),
-        });
-
-        const ref = new LunaModalRef<T | undefined>(() =>
-        {
-            this.isMessageBoxOpen = false;
-            overlayRef.detach();
-            overlayRef.dispose();
-        });
-
-        const injector = Injector.create({
-            parent: this.injector,
-            providers: [
+        // Same centered shell as generic `open`. The component registers its own Escape behavior.
+        return this.surfaces.mount(
+            MessageBoxComponent,
+            'modal',
+            LunaModalRef,
+            (onClose) => new LunaModalRef<T>(() =>
+            {
+                this.isMessageBoxOpen = false;
+                onClose();
+            }),
+            [
                 { provide: MESSAGE_BOX_DATA, useValue: data },
-                { provide: LunaModalRef, useValue: ref },
             ],
-        });
-
-        const portal = new ComponentPortal(MessageBoxComponent, null, injector);
-
-        overlayRef.attach(portal);
-
-        return ref.afterClosed;
+        );
     }
 }

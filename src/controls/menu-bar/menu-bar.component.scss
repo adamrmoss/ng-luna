@@ -1,6 +1,4 @@
 // Menubar strip. Triggers are painted by the overlay trigger rule.
-@use '../../theme/tokens' as *;
-
 :host:not([hidden])
 {
     display: block;
@@ -9,13 +7,13 @@
 nav[role="menubar"]
 {
     align-items: stretch;
-    background: luna-token('menu-menubar-background');
-    color: luna-token('menu-menubar-color');
+    background: var(--luna-menu-menubar-background);
+    color: var(--luna-menu-menubar-color);
     display: flex;
     flex-shrink: 0;
     gap: 0;
     justify-content: flex-start;
-    margin-bottom: luna-token('menu-menubar-margin-bottom');
+    margin-bottom: var(--luna-menu-menubar-margin-bottom);
     padding: 0;
 
     ::ng-deep luna-menu:not([hidden])

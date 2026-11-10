@@ -1,5 +1,6 @@
-import { type Meta, type StoryObj } from '@storybook/angular';
+import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 
+import { ModalCustomStoryComponent } from '../../../.storybook/modal-custom-story.component';
 import { ModalStoryComponent } from '../../../.storybook/modal-story.component';
 
 /**
@@ -19,3 +20,17 @@ type Story = StoryObj<ModalStoryComponent>;
  * Modal service dialogs. Results appear under the buttons.
  */
 export const Dialogs: Story = {};
+
+/**
+ * Custom dialog. The veil is 50% with no blur. Backdrop click leaves it open. Escape closes it.
+ */
+export const Custom: Story = {
+    decorators: [
+        moduleMetadata({
+            imports: [ModalCustomStoryComponent],
+        }),
+    ],
+    render: () => ({
+        template: `<app-modal-custom-story></app-modal-custom-story>`,
+    }),
+};

@@ -1,0 +1,124 @@
+// Default paint on :root. Component styles read these variables.
+// Role aliases stay unset so a later override of the role still reaches them.
+@use './theme/palette' as *;
+@use './theme/typography' as *;
+
+:root
+{
+    --luna-button-action-font-size: #{$button-action-font-size};
+    --luna-button-action-gap: #{$button-action-gap};
+    --luna-button-action-padding-x: #{$button-action-padding-x};
+    --luna-button-action-padding-y: #{$button-action-padding-y};
+    --luna-button-action-radius: #{$button-action-radius};
+    --luna-button-command-background: #{$blue-steel};
+    --luna-button-command-background-active: #{$blue-steel-dark};
+    --luna-button-command-background-hover: #{$blue-steel-light};
+    --luna-button-command-font-size: #{$button-command-font-size};
+    --luna-button-command-padding-x: #{$button-command-padding-x};
+    --luna-button-command-padding-y: #{$button-command-padding-y};
+    --luna-button-command-radius: #{$button-command-radius};
+    --luna-button-default-background: #{$white};
+    --luna-button-default-background-hover: #{$gray-lightest};
+    --luna-button-default-border: #{$gray-dark};
+    --luna-button-default-color: #{$black};
+    --luna-button-default-font-size: #{$button-font-size};
+    --luna-button-default-padding-x: #{$button-padding-x};
+    --luna-button-default-padding-y: #{$button-padding-y};
+    --luna-button-default-radius: #{$button-radius};
+    --luna-button-icon-compact-background: #{$white-10};
+    --luna-button-icon-compact-background-hover: #{$white-20};
+    --luna-button-icon-compact-danger-background: #{$orange-20};
+    --luna-button-icon-compact-danger-background-hover: #{$orange-30};
+    --luna-button-icon-compact-font-size: #{$button-icon-compact-font-size};
+    --luna-button-icon-compact-radius: #{$button-icon-compact-radius};
+    --luna-button-icon-compact-size: #{$button-icon-compact-size};
+    --luna-button-icon-font-size: #{$button-icon-font-size};
+    --luna-button-icon-radius: #{$button-icon-radius};
+    --luna-button-icon-size: #{$button-icon-size};
+    --luna-color-accent-dark: #{$navy-darkest};
+    --luna-color-accent-light: #{$navy};
+    --luna-color-action: #{$blue-bright};
+    --luna-color-action-hover: #{$blue-bright-dark};
+    --luna-color-border: #{$blue-steel-dark};
+    --luna-color-danger: #{$orange};
+    --luna-color-text: #{$white};
+    --luna-color-text-secondary: #{$silver-soft};
+    --luna-input-disk-font-size: #{$input-disk-font-size};
+    --luna-input-disk-padding-x: #{$input-disk-padding-x};
+    --luna-input-disk-padding-y: #{$input-disk-padding-y};
+    --luna-input-disk-placeholder: #{$silver-soft-55};
+    --luna-input-disk-radius: #{$input-disk-radius};
+    --luna-input-font-size: #{$input-font-size};
+    --luna-input-padding-x: #{$input-padding-x};
+    --luna-input-padding-y: #{$input-padding-y};
+    --luna-input-placeholder: #{$silver-soft-55};
+    --luna-input-radius: #{$input-radius};
+    --luna-menu-context-danger-hover-background: #{$orange-10};
+    --luna-menu-context-font-size: #{$menu-context-font-size};
+    --luna-menu-context-hover-background: #{$navy-dark};
+    --luna-menu-context-item-gap: #{$menu-context-item-gap};
+    --luna-menu-context-item-padding: #{$menu-context-item-padding};
+    --luna-menu-context-item-radius: #{$menu-context-item-radius};
+    --luna-menu-context-min-width: #{$menu-context-min-width};
+    --luna-menu-context-padding: #{$menu-context-padding};
+    --luna-menu-context-radius: #{$menu-context-radius};
+    --luna-menu-context-row-gap: #{$menu-context-row-gap};
+    --luna-menu-context-shadow: 0 #{$spacing-xs} #{$spacing-md} #{$shadow-40};
+    --luna-menu-menubar-background: #{$gray-light-warm};
+    --luna-menu-menubar-check-gap: #{$menu-menubar-check-gap};
+    --luna-menu-menubar-color: #{$black};
+    --luna-menu-menubar-font-size: #{$menu-menubar-font-size};
+    --luna-menu-menubar-item-padding-left: #{$menu-menubar-item-padding-left};
+    --luna-menu-menubar-item-padding-x: #{$menu-menubar-item-padding-x};
+    --luna-menu-menubar-item-padding-y: #{$menu-menubar-item-padding-y};
+    --luna-menu-menubar-margin-bottom: #{$menu-menubar-margin-bottom};
+    --luna-menu-menubar-min-width: #{$menu-menubar-min-width};
+    --luna-menu-menubar-radius: #{$menu-menubar-radius};
+    --luna-overlay-shadow-half: #{$half-shadow};
+    --luna-overlay-shadow-quarter: #{$quarter-shadow};
+    --luna-tab-background: #{$white};
+    --luna-tab-background-hover: #{$gray-lightest};
+    --luna-tab-color: #{$black};
+    --luna-tab-font-size: #{$tab-font-size};
+    --luna-tab-margin-right: #{$tab-margin-right};
+    --luna-tab-padding-bottom: #{$tab-padding-bottom};
+    --luna-tab-padding-x: #{$tab-padding-x};
+    --luna-tab-padding-y: #{$tab-padding-y};
+    --luna-tab-panel-border: #{$gray-light-warm};
+    --luna-tab-panel-padding: #{$tab-panel-padding};
+    --luna-tab-selected-color: #{$white};
+    --luna-toolbar-cluster-gap: #{$toolbar-cluster-gap};
+    --luna-toolbar-command-gap: #{$toolbar-command-gap};
+    --luna-toolbar-command-padding: #{$toolbar-command-padding};
+    --luna-toolbar-editor-group-end-gap: #{$toolbar-editor-group-end-gap};
+    --luna-toolbar-editor-group-start-gap: #{$toolbar-editor-group-start-gap};
+    --luna-toolbar-editor-min-height: #{$toolbar-editor-min-height};
+    --luna-toolbar-editor-padding-x: #{$toolbar-editor-padding-x};
+    --luna-toolbar-editor-padding-y: #{$toolbar-editor-padding-y};
+    --luna-toolbar-float-offset: #{$toolbar-float-offset};
+    --luna-window-background: #{$beige-light};
+    --luna-window-body-color: #{$black};
+    --luna-window-body-padding: #{$window-body-padding};
+    --luna-window-frame-padding: #{$window-frame-padding};
+    --luna-window-inset: 0;
+    --luna-window-radius: #{$window-radius};
+    --luna-window-title-color: #{$white};
+    --luna-window-title-control-gap: #{$window-title-control-gap};
+    --luna-window-title-control-size: #{$window-title-control-size};
+    --luna-window-title-font-size: #{$window-title-font-size};
+    --luna-window-title-height: #{$window-title-height};
+    --luna-window-title-padding: #{$window-title-padding};
+}
+
+@keyframes luna-surface-in
+{
+    from
+    {
+        opacity: 0;
+    }
+
+    to
+    {
+        opacity: 1;
+    }
+}

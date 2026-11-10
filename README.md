@@ -42,32 +42,32 @@ import { ButtonComponent } from 'ng-luna';
 
 ### Overlay (menu, modal, tooltip)
 
-Menu, modal, and tooltip use Angular CDK Overlay. To have their overlays render inside your app (with correct styling), add `LunaOverlayComponent` to your root template and provide `LunaOverlayContainer`:
+Menu, modal, and tooltip render through Angular CDK Overlay. Put `OverlayComponent` in the root template and provide `LunaOverlayContainer` so those panes attach inside the app and use Luna styles.
 
-**1. Root template** (e.g. `app.component.html`):
+**1. Root template** (`app.component.html`):
 
 ```html
 <luna-overlay></luna-overlay>
 <!-- rest of your app -->
 ```
 
-**2. Root providers** (e.g. `main.ts`):
+**2. Root component** imports `OverlayComponent` from `ng-luna`.
+
+**3. Root providers** (`main.ts`):
 
 ```typescript
 import { OverlayContainer } from '@angular/cdk/overlay';
+import { bootstrapApplication } from '@angular/platform-browser';
 import { LunaOverlayContainer } from 'ng-luna';
 
 bootstrapApplication(AppComponent, {
     providers: [
-        // ... other providers
-        { provide: OverlayContainer, useClass: LunaOverlayContainer }
-    ]
+        { provide: OverlayContainer, useClass: LunaOverlayContainer },
+    ],
 });
 ```
 
-**3. Import** `OverlayModule` from `@angular/cdk/overlay` and `OverlayComponent` from `ng-luna` where your root component is declared.
-
-Overlay styles (menu trigger, backdrop, modal pane, tooltip panel) are encapsulated in `LunaOverlayComponent`; you do not need to include any overlay theme files in global styles.
+`@angular/cdk` is a peer dependency. Menu, modal, and tooltip inject CDK `Overlay` from that package. Menu trigger, backdrop, modal pane, and tooltip styles ship with `OverlayComponent`.
 
 ### Using Bundled Fonts
 
@@ -99,7 +99,9 @@ Add the following to your `angular.json` in the `assets` array of your project's
 }
 ```
 
-This copies the font files from the ng-luna package to your application's `/fonts/` directory during build.
+This copies the font files from the ng-luna package to your application's `/fonts/` directory during build. Component styles already include the `@font-face` rules, and those rules request the files from `/fonts`.
+
+That URL is compiled into the published CSS. To serve the files from another path, change `$font-assets-path` in `src/theme/_fonts.scss` and rebuild the library.
 
 #### Using Fonts in Your Styles
 
@@ -128,18 +130,34 @@ Once configured, you can use the fonts directly in your CSS/SCSS:
 
 ### Theme
 
-The default paint is the EduBASIC palette. Set any property below on `:root` or an ancestor to reskin a control. When the variable is unset, the control uses the fallback. A component property that shares a role falls back to that role first, so `--luna-color-accent-light` reskins the fields unless that control's own property is set. The window body and the tab panel use their own fill. Each metric names its component and variant. `_palette.scss` and `_typography.scss` in the published `theme/` folder remain the SCSS source for layout you write yourself.
+The default paint is the EduBASIC palette, written on `:root` by `@use 'ng-luna/theme'`. Set any property below on `:root` or an ancestor to reskin a control. A role reskin still works because the component writes a two-level `var()`, for example `var(--luna-window-title-background, var(--luna-color-action))`. `:root` does not assign those role aliases, so changing `--luna-color-action` still reaches the title bar unless the specific token is set. The window body and the tab panel use their own fill. Each metric names its component and variant.
+
+Load the theme from an app stylesheet. `@use 'ng-luna/theme/global'` loads the same paint, plus the reset and the scrollbar. An app that loads neither leaves the variables unset.
+
+```scss
+@use 'ng-luna/theme';
+```
+
+`global` applies `box-sizing: border-box`, IBM Plex Serif on `body`, IBM Plex Sans on headings, and the Luna scrollbar. `_palette.scss` and `_typography.scss` in the published `theme/` folder are the SCSS source for layout you write yourself:
+
+```scss
+@use 'ng-luna/theme/palette' as palette;
+
+.stage {
+    background: palette.$beige-light;
+}
+```
 
 Solid danger hover on an action button, and on an icon button at the default size, is `color-mix` of `--luna-button-action-danger-background` 10% toward black.
 
-| Property | Fallback | Read by |
+| Property | :root value | Read by |
 |---|---|---|
 | `--luna-color-accent-light` | `#003c74` | Menubar row hover. Role for field fills, the fieldset, and the dialog body |
 | `--luna-color-accent-dark` | `#00138c` | Editor and command toolbars. Role for the selected tab and the context menu |
 | `--luna-color-action` | `#0053ee` | Button focus outline and text selection. Role for action button fills, field focus, and the window title |
 | `--luna-color-action-hover` | `#0050ee` | Window control buttons. Role for action button hover |
 | `--luna-color-border` | `#1d5281` | Command button border, menu border, dialog, fieldset, and field borders |
-| `--luna-color-text` | `#ffffff` | Action and icon button, field, context menu, window title, selected tab, and dialog text |
+| `--luna-color-text` | `#ffffff` | Action and icon button, field, context menu, selected tab, and dialog text |
 | `--luna-color-text-secondary` | `#e0e0e0` | Disabled menu rows |
 | `--luna-color-danger` | `#e5a01a` | Compact danger icon text. Role for the action danger fill and context danger text |
 | `--luna-button-default-background` | `#ffffff` | Default button |
@@ -245,6 +263,11 @@ Solid danger hover on an action button, and on an icon button at the default siz
 | `--luna-window-title-control-size` | `21px` | Window title controls |
 | `--luna-window-body-padding` | `8px` | Window body |
 | `--luna-window-radius` | `6px` | Window |
+| `--luna-window-title-color` | `#ffffff` | Window title text |
+| `--luna-window-body-color` | `#000000` | Window body text |
+| `--luna-window-inset` | `0` | Maximized window gutter. A shell stylesheet sets this on the host |
+| `--luna-overlay-shadow-half` | `#00000080` | Modal veil |
+| `--luna-overlay-shadow-quarter` | `#00000040` | Popup veil |
 
 ### Using Icons
 
@@ -316,7 +339,7 @@ import * as Icons from 'ng-luna';
 
 ## Components
 
-All components extend the `LunaControl` base class, which provides the following common inputs available on every component:
+`LunaControl` supplies these inputs on button, checkbox, fieldset, input, menu bar, progress, radio, select, slider, tab, tabs, textarea, and window:
 
 - `id?: string` - Element ID
 - `name?: string` - Name attribute
@@ -325,7 +348,7 @@ All components extend the `LunaControl` base class, which provides the following
 - `tabindex?: number` - Tab index for keyboard navigation
 - `autofocus: boolean` - Whether the control should be autofocused (default: `false`)
 
-These inputs are inherited from the base class and available on all components unless otherwise noted in the component-specific documentation below.
+Icon, menu, toolbar, overlay, and tooltip have their own inputs, listed on those components.
 
 ### Button Component
 
@@ -333,7 +356,7 @@ The `luna-button` component paints one variant at a time. `size` applies only wi
 
 **Selector:** `luna-button`
 
-`variant="default"` is IBM Plex Sans, 11px, line-height 1.2, padding `4px 12px`, a gray border, radius `3px`, a white face, and black text. Hover is `$gray-lightest`. An active press moves it down 1px.
+`variant="default"` is IBM Plex Sans, 11px, line-height 1.2, padding `4px 12px`, a gray border, radius `3px`, a white face, and black text. Hover uses `--luna-button-default-background-hover`. An active press moves it down 1px.
 
 `variant="action"` is IBM Plex Mono, 12px, weight 500, padding `8px 12px`, gap `8px`, no border, radius `4px`, and the same fill and press. Projected content, including a `luna-icon` at `size="16"`, is centered in that gap.
 
@@ -403,7 +426,7 @@ The `luna-checkbox` component is a checkbox on the shared field surface. It impl
 
 ### Fieldset Component
 
-The `luna-fieldset` component groups form controls on the window surface.
+The `luna-fieldset` component groups form controls. The frame and legend use the light accent fill (`--luna-color-accent-light`), a steel border, and white text. The window body is a separate fill.
 
 **Selector:** `luna-fieldset`
 
@@ -466,6 +489,10 @@ The `luna-toolbar` component is a horizontal bar. `luna-toolbar-group` is a row 
 
 **Group selector:** `luna-toolbar-group`
 
+#### Inputs
+
+- `variant: LunaToolbarVariant` - Bar metrics: `'cluster' | 'editor' | 'command' | 'end' | 'float'` (default: `'cluster'`)
+
 - `variant="cluster"`: padding `0`, gap `4px`, no background. Icon buttons.
 - `variant="editor"`: padding `12px 16px`, navy-darkest bar, steel bottom border, `min-height: 56px`, space between, centered. The first group gaps at `12px`. A following group gaps at `8px`.
 - `variant="command"`: padding `8px`, gap `8px`, the same bar, centered. Command buttons.
@@ -489,7 +516,7 @@ The `luna-toolbar` component is a horizontal bar. `luna-toolbar-group` is a row 
 
 ### Menu Bar Component
 
-The `luna-menu-bar` component is a container that renders a horizontal menu bar (e.g. under a window title bar). It is a flex container; place one or more `luna-menu` components inside it. It extends `LunaControl` (optional `id`, `name`, `tabindex`, `autofocus`).
+The `luna-menu-bar` component is a horizontal bar for one or more `luna-menu` components, for example under a window title. It uses the shared `LunaControl` inputs.
 
 **Selector:** `luna-menu-bar`
 
@@ -512,9 +539,11 @@ The `luna-menu` component opens a menu panel from a trigger, or at a viewport po
 
 **Selector:** `luna-menu`
 
-**Trigger directive:** `lunaMenuTrigger` – attach to the element that opens the menu (e.g. a button).
+**Trigger directive:** `lunaMenuTrigger` – attach to the button that opens the menu.
 
-Use `LunaOverlayComponent` and `LunaOverlayContainer` as described in **Overlay (menu, modal, tooltip)** above so the menu overlay and trigger are styled. For a top-level menu bar, use the **Menu Bar Component** and place one or more `luna-menu` inside it.
+**Link directive:** `lunaMenuLink` – attach to an anchor in the menu bar. It uses the same chrome as the trigger, including hover, and does not open a menu. The active class stays on the button.
+
+Use `OverlayComponent` and `LunaOverlayContainer` as described in **Overlay (menu, modal, tooltip)** above so the menu overlay and trigger are styled. For a top-level menu bar, use the **Menu Bar Component** and place one or more `luna-menu` inside it.
 
 #### Inputs
 
@@ -533,9 +562,32 @@ Use `LunaOverlayComponent` and `LunaOverlayContainer` as described in **Overlay 
 #### Example
 
 ```html
-<luna-menu [items]="menuItems" (itemSelect)="onMenuSelect($event)">
-    <button lunaMenuTrigger>File</button>
-</luna-menu>
+<luna-menu-bar>
+    <luna-menu [items]="menuItems" (itemSelect)="onMenuSelect($event)">
+        <button lunaMenuTrigger type="button">File</button>
+    </luna-menu>
+    <a lunaMenuLink href="/guide">Guide</a>
+</luna-menu-bar>
+```
+
+A menubar trigger is black text on a transparent button. Place it in `luna-menu-bar` so it sits on the gray bar. A context menu uses `variant="context"` and can open from a point with no trigger child:
+
+```html
+<div (contextmenu)="onContext($event, menu)">
+    <luna-menu
+        #menu
+        variant="context"
+        [items]="menuItems"
+        (itemSelect)="onMenuSelect($event)">
+    </luna-menu>
+</div>
+```
+
+```typescript
+onContext(event: MouseEvent, menu: LunaMenuComponent): void {
+    event.preventDefault();
+    menu.openAt(event.clientX, event.clientY);
+}
 ```
 
 ```typescript
@@ -595,7 +647,7 @@ The `luna-input` component is the disk name field: IBM Plex Mono, 13px, padding 
 
 ### Progress Component
 
-The `luna-progress` component is a progress bar. The track uses the field surface and the indicator uses the action color.
+The `luna-progress` component is a 14px progress bar. The track uses the field surface. The indicator is a green gradient. Leave `value` unset for an indeterminate sliding bar.
 
 **Selector:** `luna-progress`
 
@@ -787,15 +839,130 @@ The `luna-textarea` component is a multiline field: IBM Plex Sans, 11px, padding
 
 ### Overlay Component
 
-The `luna-overlay` component is **infrastructure** for menu, modal, and tooltip overlays. Add it once to your root template (e.g. as a sibling to your main content) and provide `LunaOverlayContainer` so that overlay content is attached inside your app and styled correctly. See **Overlay (menu, modal, tooltip)** in the [Usage](#usage) section for setup. This component has no inputs or outputs.
+The `luna-overlay` component is the host for menu, modal, and tooltip panes. Add it once, at the root, and provide `LunaOverlayContainer`. Setup is in **Overlay (menu, modal, tooltip)** under [Usage](#usage). The component has no inputs or outputs.
 
 **Selector:** `luna-overlay`
 
-**Related:** `LunaOverlayContainer` – provide it in your root providers so CDK Overlay uses the overlay host element from `LunaOverlayComponent`.
+**Class:** `OverlayComponent`
+
+**Related:** `LunaOverlayContainer`, provided as CDK `OverlayContainer`, so panes attach to this host.
+
+### Modal
+
+`LunaModalService` opens a centered dialog on a 50% black veil with no blur. A backdrop click leaves it open. Escape closes it through the shared dismiss stack. It is `providedIn: 'root'`. A second alert, confirm, or prompt while one is already open is ignored. Custom dialogs opened with `open` can stack.
+
+The message box body uses the light accent fill. The title bar uses the window title color. Message boxes still handle Enter themselves. Their Escape handler sits above the modal close: Escape cancels a confirm or prompt, and confirms an alert.
+
+#### Message boxes
+
+- `alert(message, title?)` returns `Observable<void | undefined>`. Enter and Escape both confirm.
+- `confirm(message, title?)` returns `Observable<boolean>`. OK is `true`. Cancel and Escape are `false`.
+- `prompt(message, title?)` returns `Observable<MessageBoxReturnData>`: `{ button: 'ok' | 'cancel', promptValue?: string }`.
+- `alertWith`, `confirmWith`, and `promptWith` take `MessageBoxOptions` for button labels, a prompt placeholder, a default prompt value, and custom OK or cancel payloads.
+
+```typescript
+import { LunaModalService } from 'ng-luna';
+import type { MessageBoxReturnData } from 'ng-luna';
+
+export class MyComponent {
+    constructor(private modal: LunaModalService) {}
+
+    save(): void {
+        this.modal.prompt('File name', 'Save As').subscribe((result: MessageBoxReturnData) => {
+            if (result.button === 'ok') {
+                console.log(result.promptValue);
+            }
+        });
+    }
+}
+```
+
+#### Custom dialog
+
+`open(component, { data })` portals a standalone component and returns `Observable<T | undefined>`. The service does not build a window. The caller sets the caption, size, and chrome. The dialog injects `LunaModalRef` and calls `close(result)`. `MODAL_DATA` is the optional `data` value. A backdrop click leaves it open. Escape closes it.
+
+```typescript
+import { Component, inject } from '@angular/core';
+import { LunaModalRef, LunaModalService, MODAL_DATA } from 'ng-luna';
+
+@Component({
+    selector: 'app-rename-dialog',
+    standalone: true,
+    template: `<button type="button" (click)="modalRef.close(name)">OK</button>`,
+})
+export class RenameDialog {
+    modalRef = inject(LunaModalRef<string>);
+    name = inject(MODAL_DATA) as string;
+}
+
+// caller
+this.modal.open<string>(RenameDialog, { data: 'untitled' }).subscribe((name) => {
+    console.log(name);
+});
+```
+
+### Popup
+
+`LunaPopupService` portals a caller component the same way a modal does: centered, with scroll locked. The veil is 25% black plus a blur. A backdrop click closes it. Escape closes it through the same dismiss stack. The caller owns `luna-window` when the surface should look like a window. The service does not build one.
+
+`open(component, { data })` returns `Observable<T | undefined>`. The component injects `LunaPopupRef` and calls `close(result)`. `POPUP_DATA` is the optional `data` value.
+
+```typescript
+import { Component, inject } from '@angular/core';
+import { LunaPopupRef, LunaPopupService, POPUP_DATA, WindowComponent } from 'ng-luna';
+
+@Component({
+    selector: 'app-publication',
+    standalone: true,
+    imports: [ WindowComponent ],
+    template: `
+        <luna-window title="Publication" (close)="onClose()">
+            <p>{{ note }}</p>
+        </luna-window>
+    `,
+})
+export class Publication {
+    note = inject(POPUP_DATA) as string;
+    private popupRef = inject(LunaPopupRef<string>);
+
+    onClose(): void {
+        this.popupRef.close(this.note);
+    }
+}
+
+// caller
+this.popups.open<string>(Publication, { data: 'A note from the shelf.' }).subscribe((note) => {
+    console.log(note);
+});
+```
+
+### Tooltip
+
+The `lunaTooltip` directive shows a delayed tooltip on hover and focus. An empty string leaves it closed. Show delay defaults to 60ms. Hide delay defaults to 250ms.
+
+**Directive:** `TooltipDirective`, selector `[lunaTooltip]`
+
+#### Inputs
+
+- `lunaTooltip: string` - Tooltip text (default: `''`)
+- `lunaTooltipShowDelay: number` - Milliseconds before show (default: `60`)
+- `lunaTooltipHideDelay: number` - Milliseconds before hide (default: `250`)
+
+```html
+<button lunaTooltip="Save the document" type="button">Save</button>
+```
+
+```typescript
+import { TooltipDirective } from 'ng-luna';
+
+@Component({
+    imports: [ TooltipDirective ],
+})
+```
 
 ### Window Component
 
-The `luna-window` component is a draggable window with a title bar and window controls. The body uses the window ground and the title bar uses the action color.
+The `luna-window` component is a draggable window with a title bar and window controls. The host is the frame box. The body uses `--luna-window-body-color` and the title uses `--luna-window-title-color`. The title bar background follows the action color unless `--luna-window-title-background` is set. There are no style inputs. `id` is the host only.
 
 **Selector:** `luna-window`
 
@@ -810,7 +977,7 @@ The `luna-window` component is a draggable window with a title bar and window co
 - `boundaryElement?: string` - CSS selector for element that constrains window dragging
 - `scrollable: boolean` - Whether the window body should be scrollable (default: `false`)
 
-`isMaximized` is inherited from `LunaControl` (see common inputs above). When true, the window fills its containing block.
+`isMaximized` is inherited from `LunaControl` (see common inputs above). When true, the window fills its containing block and keeps its frame and radius.
 
 #### Outputs
 
@@ -824,7 +991,7 @@ The `luna-window` component is a draggable window with a title bar and window co
 
 The window can be dragged by its title bar. Double-clicking the title bar toggles maximize/restore when `showMaximize` is `true`.
 
-When `isMaximized` is `true`, dragging is disabled and the window fills its containing block (the element that sizes the `luna-window` host). To fill the full viewport, ensure the host's ancestors have `height: 100%` down to `html`. Drag position is reset when maximizing so the window is flush with its container.
+When `isMaximized` is `true`, dragging is disabled. The host margin is `var(--luna-window-inset)` and the width and height are `calc(100% - 2 * var(--luna-window-inset))`. `:root` sets the inset to `0`. A shell stylesheet opts into a gutter by setting `--luna-window-inset` on the window. To fill the viewport, the host's ancestors need `height: 100%` down to `html`. Drag position is reset when maximizing. Every window fades in with opacity over 150ms. The same entrance runs on modal and popup veils and panes.
 
 #### Example
 
@@ -843,22 +1010,16 @@ When `isMaximized` is `true`, dragging is disabled and the window fills its cont
 
 ## Accessibility & CDK Features
 
-All components leverage **Angular CDK** for enhanced functionality:
-
-- **Focus Management** - All form components track focus states for better accessibility
-- **Keyboard Navigation** - Tabs support arrow key navigation with focus management
-- **Screen Reader Support** - Components announce state changes via `LiveAnnouncer`
-- **Drag & Drop** - Window component supports draggable functionality with boundary constraints
-- **Scrolling** - Window body supports scrollable content areas
-- **Platform Detection** - Components adapt behavior based on platform/browser
-- **RTL Support** - Input and button components support right-to-left layouts
-- **Type Coercion** - Number inputs use type-safe coercion utilities
-
-Screen reader announcements are non-intrusive and only audible to assistive technology users.
+- **Focus** - Button, checkbox, input, radio, select, slider, and textarea monitor focus with CDK `FocusMonitor`.
+- **Announcements** - Checkbox, input, progress, radio, select, slider, and textarea announce state changes with `LiveAnnouncer`.
+- **Keyboard** - Tabs move with Left and Right. An open menu moves with Up and Down and activates with Enter. Inside a menu bar, Left and Right move to the neighboring menu. Escape closes the top menu, message box, modal, or popup. A field inside that surface does not swallow Escape. A message box confirms with Enter; Escape cancels, or confirms when the box is an alert.
+- **Drag** - `luna-window` drags from the title bar, optionally inside `boundaryElement`.
+- **Direction** - Button and input honor CDK `Dir` when an ancestor provides it.
+- **Numbers** - Progress and slider coerce numeric inputs through CDK.
 
 ## Reactive Forms Support
 
-Components that implement `ControlValueAccessor` (checkbox, input, radio, select, slider, textarea) can be used with Angular's reactive forms:
+Checkbox, input, radio, select, slider, and textarea implement `ControlValueAccessor`. Import `FormsModule` for `ngModel`, or `ReactiveFormsModule` for `formControlName`.
 
 ```typescript
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -908,7 +1069,7 @@ Run the component workshop:
 npm run storybook
 ```
 
-This serves stories at `http://localhost:6006`. Each public control has a story next to its source under `src/controls/`. The Controls panel edits inputs. Menus, modals, and tooltips render inside `luna-overlay`, which `.storybook/preview.ts` adds to every story and pairs with `LunaOverlayContainer`.
+This serves stories at `http://localhost:6006`. Each public control has a story next to its source under `src/controls/`. The Controls panel edits inputs. Menus, modals, popups, and tooltips render inside `luna-overlay`, which `.storybook/preview.ts` adds to every story and pairs with `LunaOverlayContainer`.
 
 A static build:
 
@@ -949,16 +1110,18 @@ All exports go through `src/public-api.ts` → `src/controls/index.ts` → indiv
 ng-luna/
 ├── .storybook/          # Workshop preview, theme, and overlay host
 ├── src/
+│   ├── _theme.scss        # :root paint. @use 'ng-luna/theme'
 │   ├── controls/          # Component library controls
 │   │   ├── button/        # Button component
 │   │   ├── checkbox/      # Checkbox component
 │   │   ├── fieldset/      # Fieldset component
 │   │   ├── icons/         # Icon component + Lucide icons
 │   │   ├── input/         # Input component
-│   │   ├── menu/          # Menu component + trigger, panel
+│   │   ├── menu/          # Menu component, trigger, link, panel
 │   │   ├── menu-bar/      # Menu bar container
 │   │   ├── modal/         # Modal service + message box
-│   │   ├── overlay/       # Overlay component + container (menu/modal/tooltip host)
+│   │   ├── overlay/       # Overlay host, surface opener, dismiss stack
+│   │   ├── popup/         # Popup service, ref, and data token
 │   │   ├── progress/      # Progress component
 │   │   ├── radio/         # Radio component
 │   │   ├── select/        # Select component
@@ -977,7 +1140,6 @@ ng-luna/
 │   │   ├── _layout.scss   # Layout mixins (fill-parent)
 │   │   ├── _palette.scss  # Color palette
 │   │   ├── _reset.scss
-│   │   ├── _tokens.scss   # Custom properties and luna-token()
 │   │   ├── _typography.scss
 │   │   └── _z-layers.scss
 │   └── public-api.ts      # Public API surface
@@ -1006,19 +1168,17 @@ npm login
 
 ### Publishing Steps
 
-`prepublishOnly` builds the library. The built package is `dist/`, which already contains `fonts/` and `theme/`.
-
 ```bash
-npm publish ./dist
+npm run publish
 ```
+
+That script installs dependencies, builds with ng-packagr, and publishes `./dist`. The built package already contains `fonts/` and `theme/`.
 
 ### Publishing Updates
 
-When you need to publish a new version:
-
 ```bash
 npm version patch
-npm publish ./dist
+npm run publish
 ```
 
 `npm version` also accepts `minor` and `major`.

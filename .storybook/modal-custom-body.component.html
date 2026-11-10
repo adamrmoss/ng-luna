@@ -1,0 +1,13 @@
+<luna-window
+    title="Note"
+    [showHelp]="false"
+    [showMaximize]="false"
+    [showMinimize]="false"
+    (close)="onClose()">
+    <p>{{ note }}</p>
+    <luna-button
+        type="button"
+        (click)="onClose()">
+        Close
+    </luna-button>
+</luna-window>

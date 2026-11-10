@@ -2,23 +2,22 @@
 @use '../../theme/fonts' as *;
 @use '../../theme/graphics' as *;
 @use '../../theme/palette' as *;
-@use '../../theme/tokens' as *;
 @use '../../theme/typography' as *;
 
 .luna-menu-panel
 {
-    background: luna-token('menu-menubar-background');
-    border: 1px solid $gray-dark;
-    border-radius: luna-token('menu-menubar-radius');
+    background: var(--luna-menu-menubar-background);
+    border: $border-width solid $gray-dark;
+    border-radius: var(--luna-menu-menubar-radius);
     box-shadow: none;
     box-sizing: border-box;
-    color: luna-token('menu-menubar-color');
+    color: var(--luna-menu-menubar-color);
     font-family: $font-sans;
-    font-size: luna-token('menu-menubar-font-size');
+    font-size: var(--luna-menu-menubar-font-size);
     line-height: $menu-menubar-line-height;
     list-style: none;
     margin: 0;
-    min-width: luna-token('menu-menubar-min-width');
+    min-width: var(--luna-menu-menubar-min-width);
     outline: none;
     padding: 0;
 }
@@ -30,7 +29,7 @@
     flex: 0 0 auto;
     height: 1em;
     justify-content: center;
-    margin-right: luna-token('menu-menubar-check-gap');
+    margin-right: var(--luna-menu-menubar-check-gap);
     width: 1em;
 }
 
@@ -50,8 +49,8 @@
 
 .luna-menu-item-highlighted:not(.luna-menu-item-disabled)
 {
-    background: luna-token('color-accent-light');
-    color: luna-token('color-text');
+    background: var(--luna-color-accent-light);
+    color: var(--luna-color-text);
     cursor: default;
 
     .luna-menu-item-checkmark
@@ -63,7 +62,7 @@
 .luna-menu-separator
 {
     background: $gray-dark;
-    height: 1px;
+    height: $border-width;
     overflow: hidden;
     padding: 0;
 }
@@ -71,17 +70,17 @@
 li[role="menuitem"]
 {
     align-items: center;
-    border-radius: luna-token('menu-menubar-radius');
+    border-radius: var(--luna-menu-menubar-radius);
     cursor: pointer;
     display: flex;
     gap: 0;
-    padding: luna-token('menu-menubar-item-padding-y') luna-token('menu-menubar-item-padding-x') luna-token('menu-menubar-item-padding-y') luna-token('menu-menubar-item-padding-left');
+    padding: var(--luna-menu-menubar-item-padding-y) var(--luna-menu-menubar-item-padding-x) var(--luna-menu-menubar-item-padding-y) var(--luna-menu-menubar-item-padding-left);
     white-space: nowrap;
 
     &:not(.luna-menu-item-disabled):hover
     {
-        background: luna-token('color-accent-light');
-        color: luna-token('color-text');
+        background: var(--luna-color-accent-light);
+        color: var(--luna-color-text);
 
         .luna-menu-item-checkmark
         {
@@ -92,24 +91,24 @@ li[role="menuitem"]
 
 li[role="menuitem"].luna-menu-item-danger:not(.luna-menu-item-disabled)
 {
-    color: luna-token('color-danger');
+    color: var(--luna-color-danger);
 }
 
 .luna-menu-panel-context
 {
-    background: luna-token('menu-context-background');
-    border: 1px solid luna-token('color-border');
-    border-radius: luna-token('menu-context-radius');
-    box-shadow: luna-token('menu-context-shadow');
-    color: luna-token('color-text');
+    background: var(--luna-menu-context-background, var(--luna-color-accent-dark));
+    border: $border-width solid var(--luna-color-border);
+    border-radius: var(--luna-menu-context-radius);
+    box-shadow: var(--luna-menu-context-shadow);
+    color: var(--luna-color-text);
     display: flex;
     flex-direction: column;
     font-family: $font-mono;
-    font-size: luna-token('menu-context-font-size');
-    gap: luna-token('menu-context-row-gap');
+    font-size: var(--luna-menu-context-font-size);
+    gap: var(--luna-menu-context-row-gap);
     line-height: $menu-context-line-height;
-    min-width: luna-token('menu-context-min-width');
-    padding: luna-token('menu-context-padding');
+    min-width: var(--luna-menu-context-min-width);
+    padding: var(--luna-menu-context-padding);
 
     .luna-menu-item-checkbox
     {
@@ -123,38 +122,38 @@ li[role="menuitem"].luna-menu-item-danger:not(.luna-menu-item-disabled)
 
     .luna-menu-item-disabled
     {
-        color: luna-token('color-text-secondary');
+        color: var(--luna-color-text-secondary);
     }
 
     .luna-menu-separator
     {
-        background: luna-token('color-border');
+        background: var(--luna-color-border);
     }
 
     li[role="menuitem"]
     {
-        border-radius: luna-token('menu-context-item-radius');
+        border-radius: var(--luna-menu-context-item-radius);
         font-family: $font-mono;
-        gap: luna-token('menu-context-item-gap');
-        padding: luna-token('menu-context-item-padding');
+        gap: var(--luna-menu-context-item-gap);
+        padding: var(--luna-menu-context-item-padding);
 
         &:not(.luna-menu-item-disabled):hover,
         &.luna-menu-item-highlighted:not(.luna-menu-item-disabled)
         {
-            background: luna-token('menu-context-hover-background');
-            color: luna-token('color-text');
+            background: var(--luna-menu-context-hover-background);
+            color: var(--luna-color-text);
         }
     }
 
     li[role="menuitem"].luna-menu-item-danger:not(.luna-menu-item-disabled)
     {
-        color: luna-token('menu-context-danger-color');
+        color: var(--luna-menu-context-danger-color, var(--luna-color-danger));
 
         &:hover,
         &.luna-menu-item-highlighted
         {
-            background: luna-token('menu-context-danger-hover-background');
-            color: luna-token('menu-context-danger-color');
+            background: var(--luna-menu-context-danger-hover-background);
+            color: var(--luna-menu-context-danger-color, var(--luna-color-danger));
         }
     }
 }

@@ -37,8 +37,36 @@ $border-radius-base: 3px;  // Standard rounding (most components)
 $border-radius-md: 4px;    // Medium rounding (fieldsets, windows)
 $border-radius-lg: 6px;    // Large rounding (modals, large cards)
 
-// Component aliases. Each control names its own metrics. Padding, gap, and margin
-// point at the spacing scale. Halfway values snap to the larger step.
+// Hairline. Borders, 1px shifts, and the visually hidden clip use this.
+$border-width: 1px;
+
+// Icon host sizes. A step that matches the scale points at that step.
+$icon-size-12: $font-size-12;
+$icon-size-14: 14px;
+$icon-size-16: $font-size-base;
+$icon-size-20: $font-size-lg;
+$icon-size-24: $font-size-xl;
+$icon-size-32: $spacing-xl;
+$icon-size-48: $spacing-xxl;
+
+// Boxes and shifts that are not a spacing step.
+$chrome-size: 21px;
+$checkbox-size: $font-size-sm;
+$checkbox-mark-size: $font-size-xs;
+$radio-mark-size: 5px;
+$radio-mark-inset: $border-radius-base;
+$progress-track-height: 14px;
+$progress-indeterminate-shift: 30px;
+$slider-thumb-width: $font-size-xs;
+$slider-track-height: $spacing-xs;
+$slider-thumb-shift: 10px;
+$select-chevron-size: 15px;
+$select-padding-end: $font-size-lg;
+$scrollbar-size: 17px;
+$scrollbar-thumb-glyph: 7px;
+$message-box-min-width: 200px;
+
+// Component aliases. Each control names its own metrics. Lengths on the spacing scale use that step.
 
 // Default button
 $button-font-size: $font-size-xs;
@@ -47,7 +75,7 @@ $button-padding-y: $spacing-xs;
 $button-padding-x: $spacing-md;
 $button-radius: $border-radius-base;
 
-// Action button. Vertical padding and gap snap from 6px to $spacing-sm.
+// Action button.
 $button-action-font-size: $font-size-12;
 $button-action-line-height: $line-height-tight;
 $button-action-padding-y: $spacing-sm;
@@ -63,7 +91,7 @@ $button-command-padding-x: $spacing-md;
 $button-command-radius: $border-radius-none;
 
 // Icon button. 28px is the control box. Compact box is $spacing-lg.
-$button-icon-size: 28px;
+$button-icon-size: 28px; // Control box. Not a spacing step.
 $button-icon-font-size: $font-size-base;
 $button-icon-line-height: 1;
 $button-icon-radius: $border-radius-md;
@@ -72,14 +100,14 @@ $button-icon-compact-font-size: $font-size-12;
 $button-icon-compact-line-height: 1;
 $button-icon-compact-radius: $border-radius-base;
 
-// Disk name field. Horizontal padding snaps from 10px to $spacing-md.
+// Disk name field.
 $input-disk-font-size: $font-size-sm;
 $input-disk-line-height: $line-height-tight;
 $input-disk-padding-y: $spacing-sm;
 $input-disk-padding-x: $spacing-md;
 $input-disk-radius: $border-radius-md;
 
-// Select and textarea. Vertical padding snaps from 3px to $spacing-xs.
+// Select and textarea.
 $input-font-size: $font-size-xs;
 $input-line-height: $line-height-tight;
 $input-padding-y: $spacing-xs;
@@ -97,7 +125,7 @@ $menu-menubar-margin-bottom: $spacing-sm;
 $menu-menubar-radius: $border-radius-none;
 $menu-menubar-min-width: 10rem;
 
-// Context menu. Row padding and icon gap snap from 10px to $spacing-md.
+// Context menu.
 $menu-context-font-size: $font-size-sm;
 $menu-context-line-height: $line-height-tight;
 $menu-context-padding: $spacing-xs;
@@ -119,7 +147,7 @@ $toolbar-command-padding: $spacing-sm;
 $toolbar-command-gap: $spacing-sm;
 $toolbar-float-offset: $spacing-base;
 
-// Tabs. The extra bottom pixel snaps from 3px to $spacing-xs.
+// Tabs.
 $tab-font-size: $font-size-xs;
 $tab-line-height: $line-height-tight;
 $tab-padding-y: $spacing-xs;
@@ -128,14 +156,14 @@ $tab-padding-bottom: $spacing-xs;
 $tab-margin-right: $spacing-xxs;
 $tab-panel-padding: $spacing-sm;
 
-// Window. Frame and title padding snap from 3px to $spacing-xs.
+// Window.
 $window-title-font-size: $font-size-xs;
 $window-title-line-height: $line-height-tight;
 $window-frame-padding: $spacing-xs;
-$window-title-height: 21px;
+$window-title-height: $chrome-size;
 $window-title-padding: $spacing-xs;
 $window-title-control-gap: $spacing-xxs;
-$window-title-control-size: 21px;
+$window-title-control-size: $chrome-size;
 $window-body-padding: $spacing-sm;
 $window-radius: $border-radius-lg;
 

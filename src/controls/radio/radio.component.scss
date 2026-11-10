@@ -1,6 +1,5 @@
 // Radio and label on the field surface, with a light dot.
 @use '../../theme/graphics' as *;
-@use '../../theme/tokens' as *;
 @use '../../theme/typography' as *;
 
 :host:not([hidden])
@@ -17,26 +16,26 @@ input[type="radio"]
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
-    background: luna-token('input-background');
-    border: 1px solid luna-token('input-border');
+    background: var(--luna-input-background, var(--luna-color-accent-light));
+    border: $border-width solid var(--luna-input-border, var(--luna-color-border));
     border-radius: 50%;
     box-sizing: border-box;
     cursor: pointer;
     flex-shrink: 0;
-    height: 13px;
+    height: $checkbox-size;
     margin: 0;
     position: relative;
-    width: 13px;
+    width: $checkbox-size;
 
     &::after
     {
         background: none;
         content: "";
-        height: 5px;
-        left: 3px;
+        height: $radio-mark-size;
+        left: $radio-mark-inset;
         position: absolute;
-        top: 3px;
-        width: 5px;
+        top: $radio-mark-inset;
+        width: $radio-mark-size;
     }
 
     &:checked::after
@@ -47,8 +46,8 @@ input[type="radio"]
 
     &:focus-visible
     {
-        outline: 2px solid luna-token('color-action');
-        outline-offset: 1px;
+        outline: $spacing-xxs solid var(--luna-color-action);
+        outline-offset: $border-width;
     }
 
     &[disabled]
@@ -60,7 +59,7 @@ input[type="radio"]
 
 label
 {
-    color: luna-token('color-text');
+    color: var(--luna-color-text);
     cursor: pointer;
     line-height: $line-height-tight;
 }

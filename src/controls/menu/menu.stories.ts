@@ -4,6 +4,7 @@ import { fn, userEvent, within } from 'storybook/test';
 import { FileSvg, TrashSvg } from '../icons';
 import { MenuBarComponent } from '../menu-bar/menu-bar.component';
 import { type LunaMenuEntry } from './menu-data';
+import { LunaMenuLinkDirective } from './menu-link.directive';
 import { LunaMenuTriggerDirective } from './menu-trigger.directive';
 import { LunaMenuComponent, type LunaMenuVariant } from './menu.component';
 
@@ -57,6 +58,7 @@ const meta: Meta<MenuStoryArgs> = {
     decorators: [
         moduleMetadata({
             imports: [
+                LunaMenuLinkDirective,
                 LunaMenuTriggerDirective,
                 MenuBarComponent,
             ],
@@ -157,6 +159,39 @@ export const OpenAtPoint: Story = {
                     (itemSelect)="itemSelect($event)">
                 </luna-menu>
             </div>
+        `,
+    }),
+};
+
+/**
+ * Menu-bar link beside a trigger. The link uses the same chrome and does not open a menu.
+ */
+export const Link: Story = {
+    render: () => ({
+        props: {
+            fileItems,
+            onGuide(event: Event): void
+            {
+                // Stay on the story. The link is chrome, not a menu trigger.
+                event.preventDefault();
+            },
+        },
+        template: `
+            <luna-menu-bar>
+                <luna-menu [items]="fileItems">
+                    <button
+                        lunaMenuTrigger
+                        type="button">
+                        File
+                    </button>
+                </luna-menu>
+                <a
+                    lunaMenuLink
+                    href="#guide"
+                    (click)="onGuide($event)">
+                    Guide
+                </a>
+            </luna-menu-bar>
         `,
     }),
 };

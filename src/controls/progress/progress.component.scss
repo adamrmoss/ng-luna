@@ -1,7 +1,6 @@
 // Progress track on the navy surface. The indicator stays green.
 @use '../../theme/layout' as *;
 @use '../../theme/palette' as *;
-@use '../../theme/tokens' as *;
 @use '../../theme/typography' as *;
 
 $progress-indicator: linear-gradient(to bottom, $green-lightest, $green, $green-dark);
@@ -15,7 +14,7 @@ $progress-indicator: linear-gradient(to bottom, $green-lightest, $green, $green-
 {
     0%
     {
-        transform: translateX(-30px);
+        transform: translateX(-$progress-indeterminate-shift);
     }
 
     100%
@@ -38,14 +37,14 @@ progress
         -moz-appearance: none;
         -webkit-appearance: none;
         appearance: none;
-        background-color: luna-token('input-background');
-        border: 1px solid luna-token('input-border');
+        background-color: var(--luna-input-background, var(--luna-color-accent-light));
+        border: $border-width solid var(--luna-input-border, var(--luna-color-border));
         border-radius: $input-radius;
         box-shadow: none;
         box-sizing: border-box;
-        height: 14px;
+        height: $progress-track-height;
         overflow: hidden;
-        padding: 1px 2px 1px 0px;
+        padding: $border-width $spacing-xxs $border-width 0;
     }
 
     &[value]
@@ -84,7 +83,7 @@ progress
 
         &::before
         {
-            background-color: luna-token('input-background');
+            background-color: var(--luna-input-background, var(--luna-color-accent-light));
             box-sizing: border-box;
             content: "";
             height: 100%;
@@ -101,11 +100,11 @@ progress
             border-radius: $border-radius-sm;
             box-sizing: border-box;
             content: "";
-            height: calc(100% - 2px);
-            left: 2px;
-            padding: 1px 2px 1px 2px;
+            height: calc(100% - #{$spacing-xxs});
+            left: $spacing-xxs;
+            padding: $border-width $spacing-xxs;
             position: absolute;
-            top: 1px;
+            top: $border-width;
             width: 100%;
         }
 

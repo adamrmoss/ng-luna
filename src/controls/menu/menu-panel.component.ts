@@ -3,12 +3,14 @@ import {
     Component,
     HostListener,
     inject,
+    OnDestroy,
     OnInit,
     ViewChild,
     ElementRef,
 } from '@angular/core';
 
 import { IconComponent } from '../icons';
+import { LunaDismissStack } from '../overlay/dismiss-stack.service';
 import { isLunaMenuItem, LUNA_MENU_DATA, LunaMenuEntry, LunaMenuItem } from './menu-data';
 
 /**
@@ -21,13 +23,17 @@ import { isLunaMenuItem, LUNA_MENU_DATA, LunaMenuEntry, LunaMenuItem } from './m
     templateUrl: './menu-panel.component.html',
     styleUrls: [ './menu-panel.component.scss' ],
 })
-export class MenuPanelComponent implements OnInit
+export class MenuPanelComponent implements OnInit, OnDestroy
 {
     @ViewChild('panel')
     private panelRef: ElementRef<HTMLElement> | null = null;
 
     /** Injected panel payload (items + close callback). */
     protected readonly data = inject(LUNA_MENU_DATA);
+
+    private readonly dismissStack = inject(LunaDismissStack);
+
+    private releaseEscape: (() => void) | null = null;
 
     /** Index of the row receiving keyboard focus styling. */
     protected highlightedIndex = 0;
@@ -48,7 +54,7 @@ export class MenuPanelComponent implements OnInit
     }
 
     /**
-     * Handles arrow keys, Enter, and Escape for the open panel.
+     * Handles arrow keys and Enter for the open panel. Escape is the dismiss stack.
      *
      * @param event - Keydown bubbled from the document.
      */
@@ -86,10 +92,6 @@ export class MenuPanelComponent implements OnInit
                 event.preventDefault();
                 this.activateHighlighted();
                 break;
-            case 'Escape':
-                event.preventDefault();
-                this.data.close(null);
-                break;
         }
     }
 
@@ -103,6 +105,21 @@ export class MenuPanelComponent implements OnInit
 
         // Defer focus until the view child exists in the DOM.
         setTimeout(() => this.focusPanel(), 0);
+
+        // This panel is the top surface until it closes, so Escape dismisses the menu first.
+        this.releaseEscape = this.dismissStack.push(() =>
+        {
+            this.data.close(null);
+        });
+    }
+
+    /**
+     * Drops this panel's Escape handler.
+     */
+    public ngOnDestroy(): void
+    {
+        this.releaseEscape?.();
+        this.releaseEscape = null;
     }
 
     /**

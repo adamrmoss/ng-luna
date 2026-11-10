@@ -13,6 +13,11 @@
             "output": "/fonts"
         },
         {
+            "input": "./src",
+            "glob": "_theme.scss",
+            "output": "/"
+        },
+        {
             "input": "./src/theme",
             "glob": "_*.scss",
             "output": "/theme"

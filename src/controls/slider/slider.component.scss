@@ -1,6 +1,5 @@
 // Range track on the field surface. Thumb art stays the shared grip graphic.
 @use '../../theme/graphics' as *;
-@use '../../theme/tokens' as *;
 @use '../../theme/typography' as *;
 
 :host:not([hidden])
@@ -13,9 +12,9 @@ input[type="range"]
     &::-webkit-slider-thumb
     {
         background: $slider-thumb-svg;
-        height: 21px;
-        transform: translateY(-8px);
-        width: 11px;
+        height: $chrome-size;
+        transform: translateY(-$spacing-sm);
+        width: $slider-thumb-width;
     }
 
     &::-moz-range-thumb
@@ -23,30 +22,30 @@ input[type="range"]
         background: $slider-thumb-svg;
         border: 0;
         border-radius: 0;
-        height: 21px;
-        transform: translateY(2px);
-        width: 11px;
+        height: $chrome-size;
+        transform: translateY($spacing-xxs);
+        width: $slider-thumb-width;
     }
 
     &::-webkit-slider-runnable-track
     {
-        background: luna-token('input-background');
-        border: 1px solid luna-token('input-border');
+        background: var(--luna-input-background, var(--luna-color-accent-light));
+        border: $border-width solid var(--luna-input-border, var(--luna-color-border));
         border-radius: $input-radius;
         box-shadow: none;
         box-sizing: border-box;
-        height: 4px;
+        height: $slider-track-height;
         width: 100%;
     }
 
     &::-moz-range-track
     {
-        background: luna-token('input-background');
-        border: 1px solid luna-token('input-border');
+        background: var(--luna-input-background, var(--luna-color-accent-light));
+        border: $border-width solid var(--luna-input-border, var(--luna-color-border));
         border-radius: $input-radius;
         box-shadow: none;
         box-sizing: border-box;
-        height: 4px;
+        height: $slider-track-height;
         width: 100%;
     }
 }
@@ -56,13 +55,13 @@ input[type="range"].has-box-indicator
     &::-webkit-slider-thumb
     {
         background: $slider-thumb-svg;
-        transform: translateY(-10px);
+        transform: translateY(-$slider-thumb-shift);
     }
 
     &::-moz-range-thumb
     {
         background: $slider-thumb-svg;
-        transform: translateY(0px);
+        transform: translateY(0);
     }
 }
 
@@ -70,16 +69,16 @@ input[type="range"].has-box-indicator
 {
     &::-webkit-slider-runnable-track
     {
-        border-bottom: 1px solid luna-token('input-border');
-        border-left: 1px solid luna-token('input-border');
+        border-bottom: $border-width solid var(--luna-input-border, var(--luna-color-border));
+        border-left: $border-width solid var(--luna-input-border, var(--luna-color-border));
         border-right: 0;
         box-shadow: none;
     }
 
     &::-moz-range-track
     {
-        border-bottom: 1px solid luna-token('input-border');
-        border-left: 1px solid luna-token('input-border');
+        border-bottom: $border-width solid var(--luna-input-border, var(--luna-color-border));
+        border-left: $border-width solid var(--luna-input-border, var(--luna-color-border));
         border-right: 0;
         box-shadow: none;
     }

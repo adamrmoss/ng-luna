@@ -1,6 +1,5 @@
 // Message box dialog frame, title, body, prompt field, and footer buttons.
 @use '../../theme/fonts' as *;
-@use '../../theme/tokens' as *;
 @use '../../theme/typography' as *;
 
 :host:not([hidden])
@@ -10,22 +9,22 @@
 
 .message-box
 {
-    background: luna-token('color-accent-light');
-    border: 1px solid luna-token('color-border');
+    background: var(--luna-color-accent-light);
+    border: $border-width solid var(--luna-color-border);
     border-radius: $border-radius-base;
     box-sizing: border-box;
-    color: luna-token('color-text');
+    color: var(--luna-color-text);
     display: flex;
     flex-direction: column;
-    min-width: 200px;
+    min-width: $message-box-min-width;
     padding: 0;
 }
 
 .message-box-title
 {
-    background: luna-token('window-title-background');
+    background: var(--luna-window-title-background, var(--luna-color-action));
     border-radius: $border-radius-base $border-radius-base 0 0;
-    color: luna-token('color-text');
+    color: var(--luna-color-text);
     font-family: $font-sans;
     font-size: $font-size-xs;
     font-weight: 600;

@@ -1,401 +1,113 @@
-# ng-luna Library Architecture
+# ng-luna library architecture
 
-This document explains how ng-luna is structured, built, and packaged as a self-contained Angular component library.
+How the library is structured, built, and installed.
 
-## Self-Contained Design
+## What an install contains
 
-**ng-luna is completely self-contained.** When you install it, you get everything:
-- ✅ All Angular components (compiled and bundled)
-- ✅ All 1400+ Lucide icons (bundled as tree-shakable exports)
-- ✅ IBM Plex font files (3 font families, all weights)
-- ✅ SCSS theme files (colors, breakpoints, etc.)
+`npm install ng-luna` installs the compiled controls, the IBM Plex font files, and the SCSS theme partials. `lucide-static` is a direct dependency, so npm installs it with the package. `@angular/cdk`, the Angular packages, and `rxjs` are peers. The app supplies those.
 
-**Consumers only need to install:** `npm install ng-luna`
+Public imports come from one entry:
 
-No additional dependencies for fonts or icons. Everything is included.
+```typescript
+import { ButtonComponent, IconComponent, HomeSvg, SaveSvg } from 'ng-luna';
+```
 
-## Source Structure
+`src/public-api.ts` re-exports `src/controls/index.ts`. That barrel re-exports each control. Icon strings are re-exported from `src/controls/icons/lucide-svg.ts`.
+
+## Source layout
 
 ```
 src/
-├── controls/              # All components
+├── _theme.scss            # Published at the package root. @use 'ng-luna/theme'
+├── controls/
 │   ├── button/
 │   ├── checkbox/
-│   ├── icons/             # IconComponent + Lucide icon re-exports
+│   ├── fieldset/
+│   ├── icons/             # IconComponent and suffixed Lucide re-exports
 │   ├── input/
+│   ├── menu/
+│   ├── menu-bar/
+│   ├── modal/             # LunaModalService, LunaModalRef, message box data
+│   ├── overlay/           # Overlay host, shared surface opener, dismiss stack
+│   ├── popup/             # LunaPopupService, LunaPopupRef, POPUP_DATA
 │   ├── progress/
 │   ├── radio/
 │   ├── select/
 │   ├── slider/
 │   ├── tabs/
 │   ├── textarea/
+│   ├── toolbar/
+│   ├── tooltip/
 │   ├── window/
-│   ├── luna-control.ts    # Base class
-│   └── index.ts           # Barrel export for all controls
-├── theme/                 # SCSS variables and mixins
+│   ├── luna-control.ts
+│   └── index.ts
+├── theme/
 │   ├── _breakpoints.scss
 │   ├── _fonts.scss
 │   ├── _global.scss
-│   ├── _graphics.scss     # Embedded SVG graphics
+│   ├── _graphics.scss
+│   ├── _layout.scss
 │   ├── _palette.scss
 │   ├── _reset.scss
+│   ├── _typography.scss
 │   └── _z-layers.scss
-└── public-api.ts          # Main entry point
+└── public-api.ts
 ```
 
-### Export Chain (Barrel Pattern)
+## Icons
 
-The library uses a **barrel export pattern** for a clean public API:
-
-```typescript
-// src/public-api.ts
-export * from './controls';
-
-// src/controls/index.ts
-export * from './button/button.component';
-export * from './checkbox/checkbox.component';
-export * from './icons';
-export * from './input/input.component';
-// ... all components
-
-// src/controls/icons/index.ts
-export * from './icon.component';
-export * from './lucide-svg';
-```
-
-**Result:** Consumers import everything from one place:
-```typescript
-import { ButtonComponent, IconComponent, HomeSvg, SaveSvg } from 'ng-luna';
-```
-
-## Build Process
-
-### Configuration (`ng-package.json`)
-
-```json
-{
-  "dest": "./dist",
-  "lib": {
-    "entryFile": "src/public-api.ts",
-    "cssUrl": "none"
-  },
-  "assets": [
-    "THIRD-PARTY-LICENSES.md",
-    ".cache/fonts",
-    "src/theme/*.scss"
-  ],
-  "allowedNonPeerDependencies": [
-    "@angular/cdk",
-    "@ibm/plex"
-  ]
-}
-```
-
-### What ng-packagr Does
-
-1. **Compiles** all TypeScript code starting from `src/public-api.ts`
-2. **Bundles** all code (including Lucide icons) into a flat ESM module
-3. **Generates** TypeScript definition files (`.d.ts`)
-4. **Copies** referenced font files to `dist/fonts/`
-5. **Copies** SCSS theme files to `dist/theme/`
-6. **Creates** production-ready `package.json`
-
-### What Gets Bundled
-
-**In `dist/fesm2022/ng-luna.mjs` (the main bundle):**
-- All component code (ButtonComponent, IconComponent, etc.)
-- LunaControl base class
-- All Lucide icon strings (1400+ string constants)
-- All type definitions and Angular metadata
-
-**Size**: ~1.5MB uncompressed, but tree-shakable (consumers only get what they import)
-
-**Copied as separate files:**
-- Font files: `dist/fonts/`
-- SCSS files: `dist/theme/`
-- License: `dist/THIRD-PARTY-LICENSES.md`
-
-## Distribution Structure
-
-```
-dist/
-├── fesm2022/
-│   ├── ng-luna.mjs             # 📦 Complete bundled library
-│   └── ng-luna.mjs.map         # Source map
-├── fonts/                      # Flat woff and woff2 files named in theme/_fonts.scss
-├── theme/
-│   ├── _breakpoints.scss       # Responsive breakpoints
-│   ├── _fonts.scss             # Font face declarations
-│   ├── _palette.scss           # Color variables
-│   ├── _reset.scss             # CSS reset
-│   └── _z-layers.scss          # Z-index layers
-├── controls/
-│   ├── */
-│   │   └── *.component.d.ts    # TypeScript definitions
-│   └── index.d.ts
-├── index.d.ts                  # Main type entry
-├── public-api.d.ts
-├── package.json                # Package metadata
-├── LICENSE                     # MIT license
-├── THIRD-PARTY-LICENSES.md     # Bundled software licenses
-└── README.md
-```
-
-### Package Metadata (`dist/package.json`)
-
-```json
-{
-  "name": "ng-luna",
-  "version": "0.3.2",
-  "module": "fesm2022/ng-luna.mjs",
-  "typings": "index.d.ts",
-  "sideEffects": false,
-  "exports": {
-    ".": {
-      "types": "./index.d.ts",
-      "default": "./fesm2022/ng-luna.mjs"
-    }
-  },
-  "dependencies": {
-    "@angular/cdk": "19.x.x",
-    "tslib": "2.x.x"
-  }
-}
-```
-
-**Key points:**
-- `"sideEffects": false` - enables tree-shaking
-- `"module"` - points to the ESM bundle
-- `"exports"` - defines what consumers can import
-- Dependencies only include Angular CDK (fonts and icons are bundled)
-
-## How Consumers Use It
-
-### Installation
-
-```bash
-npm install ng-luna
-```
-
-That's it! All components, icons, and fonts are included.
-
-### Importing Components & Icons
-
-```typescript
-import { 
-  ButtonComponent, 
-  IconComponent,
-  HomeSvg,
-  SaveSvg,
-  FolderSvg
-} from 'ng-luna';
-
-@Component({
-  imports: [ ButtonComponent, IconComponent ],
-  template: `
-    <luna-button>Click Me</luna-button>
-    <luna-icon [svg]="homeIcon" size="24"></luna-icon>
-  `
-})
-export class MyComponent {
-  homeIcon = HomeSvg;
-}
-```
-
-### Using Fonts
-
-Fonts need to be copied to the consuming app's assets:
-
-```json
-// angular.json
-{
-  "assets": [{
-    "glob": "**/*",
-    "input": "node_modules/ng-luna/fonts",
-    "output": "/fonts"
-  }]
-}
-```
-
-### Using SCSS Themes
-
-```scss
-// styles.scss
-@use 'ng-luna/theme/palette';
-@use 'ng-luna/theme/breakpoints';
-
-.my-component {
-  background: palette.$blue-bright;
-  
-  @include breakpoints.media-breakpoint-up(md) {
-    padding: 2rem;
-  }
-}
-```
-
-## Tree-Shaking
-
-Despite bundling everything into one file, tree-shaking works perfectly:
-
-```typescript
-// Consumer only imports ButtonComponent
-import { ButtonComponent } from 'ng-luna';
-
-// Build process:
-// 1. Angular compiler sees you only use ButtonComponent
-// 2. Tree-shaking removes all unused exports from ng-luna.mjs
-// 3. Final app bundle contains only ButtonComponent code
-```
-
-**How it works:**
-- ESM modules with `export` statements are tree-shakable
-- Modern bundlers (esbuild, Webpack 5+) analyze the dependency graph
-- Unused exports are marked as "dead code" and removed
-- `"sideEffects": false` confirms no global side effects
-
-**Example sizes (approximate, after tree-shaking + minification):**
-- ButtonComponent only: ~8KB
-- ButtonComponent + IconComponent + 3 icons: ~12KB
-- All components: ~45KB
-- All components + all icons: ~180KB
-
-## Icon System
-
-### How Icons are Bundled
-
-Lucide icons are JavaScript string constants. `lucide-static` exports them under plain names (`Copy`, `Save`). ng-luna re-exports each one with an `Svg` suffix from `src/controls/icons/lucide-svg.ts`:
+Lucide names are re-exported with an `Svg` suffix:
 
 ```typescript
 export { Copy as CopySvg } from 'lucide-static';
 export { Save as SaveSvg } from 'lucide-static';
 ```
 
-Regenerate that file with `npm run write-lucide-svg-barrel` after changing the `lucide-static` version.
+`npm run write-lucide-svg-barrel` regenerates `src/controls/icons/lucide-svg.ts` from the pinned `lucide-static` package. The strings stay in `lucide-static`. An application bundler keeps the icons that are imported by name. `import * as Icons from 'ng-luna'` pulls the whole set.
 
-These get compiled into `ng-luna.mjs` as:
+`IconComponent` sanitizes the SVG string and sizes it with `IconSize`: `'12' | '14' | '16' | '20' | '24' | '32' | '48'`.
 
-```javascript
-const Copy = `<svg xmlns="http://www.w3.org/2000/svg"...>...</svg>`;
-const Save = `<svg xmlns="http://www.w3.org/2000/svg"...>...</svg>`;
-export { Copy as CopySvg, Save as SaveSvg, /* ... all icons */ };
-```
+## Fonts
 
-### Tree-Shaking Icons
+`src/theme/_fonts.scss` declares IBM Plex Sans, IBM Plex Mono, and IBM Plex Serif. Each face has woff2 and woff, weights 100 through 700, and italics. The URL prefix is `$font-assets-path`, which defaults to `/fonts`.
 
-Icons are individually exported, so tree-shaking works at the icon level:
+`npm run build` runs `scripts/stage-fonts.mjs` first. That script copies the files named in `_fonts.scss` from `@ibm/plex` into `.cache/fonts/`. ng-packagr then copies `.cache/fonts` to `dist/fonts`. Consumers copy `node_modules/ng-luna/fonts` to `/fonts` in their app assets. They do not install `@ibm/plex`.
 
-```typescript
-import { HomeSvg, SaveSvg } from 'ng-luna';
-// ✅ Only HomeSvg and SaveSvg strings are in the final bundle
+Component styles `@use` the font partial, so the published CSS contains the `@font-face` rules.
 
-import * as Icons from 'ng-luna';
-// ❌ All 1400+ icons included (don't do this!)
-```
+## Theme partials
 
-### IconComponent
+`src/_theme.scss` is published at the package root and is `@use 'ng-luna/theme'`. It writes the palette and metrics onto `:root`. `dist/theme/` still holds the partials. Component styles use `var(--luna-…)`. Role aliases stay unset on `:root`, and the component writes the two-level `var()` so a role reskin still reaches them. The README theme table lists each property, its `:root` value, and what reads it.
 
-The IconComponent handles sanitization and sizing:
+`@use 'ng-luna/theme/global'` still loads the reset and the scrollbar, and it pulls in the parent theme. Palette names such as `palette.$beige-light` are for app layout. Control padding and type stay on the theme variables. An app that loads neither `ng-luna/theme` nor `ng-luna/theme/global` leaves those variables unset.
 
-```typescript
-@Input({ required: true }) svg: string;  // Raw SVG string
-@Input() size: IconSize = '24';          // '12' | '16' | '20' | '24' | '32' | '48'
-```
+## Overlay host
 
-It automatically sanitizes the SVG through Angular's DomSanitizer for security.
+Menu, modal, popup, and tooltip inject CDK `Overlay`. `OverlayComponent` (`luna-overlay`) registers a host element on `LunaOverlayContainer`. The app provides that class as `OverlayContainer` and places `<luna-overlay>` in the root template. Trigger, backdrop, pane, and tooltip rules live in `overlay.component.scss` with `ViewEncapsulation.None`, so they apply to the CDK panes attached under that host.
 
-## Font System
+`LunaModalService` and `LunaPopupService` share one opener. It centers the caller's component, locks scroll, and attaches one backdrop per surface. The modal veil is 50% black. The popup veil is 25% black plus a blur, and a backdrop click closes the popup. A second surface stacks another veil. Neither service builds a `luna-window`.
 
-### Font Families Included
+`LunaDismissStack` owns Escape for menus, message boxes, modals, and popups. Each surface pushes a close handler when it opens and removes it when it closes. Escape runs the top handler only. Message boxes still handle Enter themselves, and their Escape handler confirms an alert or cancels the other boxes.
 
-- **IBM Plex Sans** - Primary UI font (16 weights)
-- **IBM Plex Mono** - Monospace font (16 weights)
-- **IBM Plex Serif** - Serif font (16 weights)
+## Build
 
-### Font Files
-
-Each font includes:
-- WOFF2 (modern browsers, best compression)
-- WOFF (fallback for older browsers)
-- All weights: Thin (100) through Bold (700)
-- Italic variants
-
-### How Components Use Fonts
-
-Components use SCSS variables:
-
-```scss
-// From theme/_fonts.scss
-$font-sans: 'IBM Plex Sans', sans-serif;
-$font-mono: 'IBM Plex Mono', monospace;
-$font-serif: 'IBM Plex Serif', serif;
-
-// In component styles
-.button {
-  font-family: $font-sans;
-}
-```
-
-The font files are referenced with a configurable path:
-
-```scss
-$font-assets-path: '/fonts' !default;
-
-@font-face {
-  font-family: 'IBM Plex Sans';
-  src: url('#{$font-assets-path}/IBMPlexSans-Regular.woff2');
-}
-```
-
-## License Compliance
-
-ng-luna is MIT licensed and bundles the following open-source software:
-
-| Software     | License     | Usage                |
-|--------------|-------------|----------------------|
-| IBM Plex     | SIL OFL 1.1 | Bundled fonts        |
-| Lucide Icons | ISC         | Bundled icon strings |
-| Angular CDK  | MIT         | Peer dependency      |
-
-All licenses permit bundling and redistribution. Full license texts are in `THIRD-PARTY-LICENSES.md`.
-
-### License Requirements Met
-
-✅ **Angular CDK (MIT)**: Peer dependency, not redistributed  
-✅ **IBM Plex (SIL OFL)**: License file included in font assets  
-✅ **Lucide (ISC)**: Copyright notice in THIRD-PARTY-LICENSES.md  
-
-## Development
-
-### Building the Library
+`ng-package.json` sets the entry to `src/public-api.ts`, `cssUrl` to `none`, and allows `lucide-static` as a non-peer dependency. Assets copied into `dist/` are `THIRD-PARTY-LICENSES.md`, the staged fonts, `src/_theme.scss`, and the theme partials.
 
 ```bash
 npm run build
 ```
 
-Output goes to `dist/`. The build:
-1. Compiles TypeScript
-2. Bundles all code and icons into `fesm2022/ng-luna.mjs`
-3. Copies fonts to `dist/fonts/`
-4. Copies SCSS to `dist/theme/`
-5. Generates type definitions
+ng-packagr compiles the public entry to `dist/fesm2022/ng-luna.mjs`, writes the `.d.ts` files, and emits `dist/package.json`. `lucide-static` and `tslib` stay dependencies of that package. `"sideEffects": false` lets the app bundler drop unused exports.
 
-### Publishing
+Publish from the repo with `npm run publish`. That installs, builds, and runs `npm publish ./dist`.
 
-```bash
-npm publish ./dist
-```
+## Licenses
 
-`prepublishOnly` builds first. ng-packagr has already copied fonts and theme into `dist/`.
+| Software | License | How it ships |
+|---|---|---|
+| ng-luna | MIT | The library |
+| IBM Plex | SIL OFL 1.1 | Font files in `dist/fonts` |
+| Lucide | ISC | `lucide-static` dependency |
+| Angular CDK | MIT | Peer dependency |
 
-## Summary
-
-**ng-luna is a self-contained, tree-shakable Angular component library:**
-
-- ✅ **Self-contained**: All dependencies bundled (components, icons, fonts)
-- ✅ **Single import**: Everything from `'ng-luna'`
-- ✅ **Tree-shakable**: Only import what you use, rest is removed
-- ✅ **Type-safe**: Full TypeScript definitions
-- ✅ **Compliant**: All licenses properly attributed
-- ✅ **Modern**: ESM modules, Angular 19, TypeScript 5
-
-Consumers get a complete UI toolkit with zero additional dependencies.
+Full texts are in `THIRD-PARTY-LICENSES.md`.

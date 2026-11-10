@@ -1,6 +1,5 @@
 // Overlay host positioning and stacking for CDK panes attached under Luna.
 @use '../../theme/fonts' as *;
-@use '../../theme/tokens' as *;
 @use '../../theme/typography' as *;
 @use '../../theme/z-layers' as *;
 
@@ -18,25 +17,31 @@
     }
 }
 
-button[lunaMenuTrigger]
+button[lunaMenuTrigger],
+a[lunaMenuLink]
 {
     background: transparent;
     border: none;
-    border-radius: luna-token('menu-menubar-radius');
-    color: luna-token('menu-menubar-color');
+    border-radius: var(--luna-menu-menubar-radius);
+    color: var(--luna-menu-menubar-color);
     cursor: pointer;
     font-family: $font-sans;
-    font-size: luna-token('menu-menubar-font-size');
+    font-size: var(--luna-menu-menubar-font-size);
     line-height: $menu-menubar-line-height;
-    padding: luna-token('menu-menubar-item-padding-y') luna-token('menu-menubar-item-padding-x');
-    text-decoration: underline;
+    padding: var(--luna-menu-menubar-item-padding-y) var(--luna-menu-menubar-item-padding-x);
+    text-decoration: none;
 
-    &:hover,
-    &.luna-menu-trigger-active
+    &:hover
     {
-        background: luna-token('color-accent-light');
-        color: luna-token('color-text');
+        background: var(--luna-color-accent-light);
+        color: var(--luna-color-text);
     }
+}
+
+button[lunaMenuTrigger].luna-menu-trigger-active
+{
+    background: var(--luna-color-accent-light);
+    color: var(--luna-color-text);
 }
 
 .luna-menu-backdrop
@@ -50,9 +55,10 @@ button[lunaMenuTrigger]
     z-index: $popup;
 }
 
-.luna-modal-backdrop
+.luna-modal-backdrop,
+.luna-popup-backdrop
 {
-    background: #00000080;
+    animation: luna-surface-in 150ms ease-out both;
     cursor: default;
     z-index: $normal;
 
@@ -62,8 +68,22 @@ button[lunaMenuTrigger]
     }
 }
 
-.luna-modal-pane
+.luna-modal-backdrop
 {
+    background: var(--luna-overlay-shadow-half);
+}
+
+.luna-popup-backdrop
+{
+    -webkit-backdrop-filter: blur($spacing-sm);
+    backdrop-filter: blur($spacing-sm);
+    background: var(--luna-overlay-shadow-quarter);
+}
+
+.luna-modal-pane,
+.luna-popup-pane
+{
+    animation: luna-surface-in 150ms ease-out both;
     z-index: $over;
 }
 

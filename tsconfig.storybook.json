@@ -18,7 +18,8 @@
     },
     "include": [
         "src/**/*.stories.ts",
-        ".storybook/preview.ts"
+        ".storybook/preview.ts",
+        ".storybook/**/*.component.ts"
     ],
     "exclude": [
         "dist",
