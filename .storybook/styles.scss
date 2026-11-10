@@ -1,4 +1,4 @@
-// Story canvas: Luna global theme on the navy window ground.
+// Story canvas: Luna global theme on the darker navy ground.
 @use 'sass:map';
 @use '../src/theme/global' as *;
 @use '../src/theme/palette' as *;
@@ -8,7 +8,7 @@
 html,
 body
 {
-    background: $navy;
+    background: $black;
     color: $white;
     height: 100%;
     margin: 0;
