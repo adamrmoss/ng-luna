@@ -11,7 +11,7 @@ Primary code lives in **`src/`** (the library); **Storybook** (`.storybook/` and
 2. **Test manually**: Apply a **small, focused edit** to one file or symbol first to validate the approach
 3. **Apply systematically**: Find other call sites or copies with search, then fix iteratively with the same pattern
 4. **Only script when necessary**: Prefer direct edits; use scripts only when repetition is impractical
-5. **Verify work**: Read the actual file output to confirm changes
+5. **Verify work**: Read the actual file output to confirm changes. If Storybook or a command is required, ask; do not launch it (see **`cli-ownership.mdc`**)
 6. **Never be overconfident**: Do not claim completion without verification
 
 Avoid bulk automation as a first step when a targeted change would prove the approach.

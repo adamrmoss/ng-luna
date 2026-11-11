@@ -20,6 +20,6 @@ alwaysApply: true
 
 - Pause whenever a CLI command is needed.
 - Provide a named `npm run` (or short existing CLI) and why it is needed, then wait for the user to run it and report the result.
-- Do not run terminal commands on the user's behalf.
+- Do not run terminal commands, launch Storybook, start a server, or open a browser on the user's behalf.
 - Do not paste inline programs as the command.
 - Do not embed CLI or network workarounds in repo scripts. Full rule: **`cli-ownership.mdc`**.

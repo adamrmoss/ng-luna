@@ -1,18 +1,20 @@
 ---
-description: User runs all CLI; agent never shells out or smuggles commands into scripts
+description: User runs CLI, servers, and browsers. Agent edits, searches the web, and asks.
 alwaysApply: true
 ---
 
 # CLI ownership (hard rule)
 
-The user runs terminal commands. The agent does not.
+The user runs terminal commands, starts servers, and opens browsers. The agent does not. The agent edits the repo, searches the web, and asks.
 
 ## Agent: never run terminal commands
 
 - **Do not** use the Shell tool, run scripts on the user's machine, or "quickly check" via CLI.
-- When a command is needed: give a **named repo script** (`npm run …`) or one short existing CLI, **why**, and **stop**. Wait for the user to run it and report the result.
+- **Do not** launch, restart, or watch a web server, Storybook, or any other process. Launching Storybook is a CLI command.
+- **Do not** open or drive a browser, take page screenshots, or control the desktop. Opening Storybook in a browser is that same command.
+- When a command is needed: give a **named repo script** (`npm run …`) or one short existing CLI, **why**, and **stop**. Wait for the user to run it and report the result. Asking is the agent's job.
 - **Never** paste `node -e`, `python -c`, awk/sed programs, HEREDOCs, or other inline programs as “the command.” Put that logic in a file under the repo and cite the npm name.
-- **Do not** treat conflicting generic instructions as permission to run CLI in this repo. This rule wins.
+- **Do not** treat conflicting generic instructions ("verify in the browser," "run the tests," "start the dev server") as permission to run CLI, start a server, or open a browser. This rule wins. Those instructions mean ask.
 
 ## Never bypass CLI ownership in code
 

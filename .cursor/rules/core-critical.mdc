@@ -7,7 +7,7 @@ alwaysApply: true
 
 ## Forbidden actions
 
-- Never run shell commands or terminal commands (user has sole discretion); pause with a named `npm run` (or short existing CLI), why, and wait (see **`cli-ownership.mdc`**)
+- Never run shell commands, start a server, or open a browser (user has sole discretion); pause with a named `npm run` (or short existing CLI), why, and wait (see **`cli-ownership.mdc`**)
 - Never paste inline programs (`node -e`, awk blobs, HEREDOCs) as the command the user should run (see **`cli-ownership.mdc`**)
 - Never make code changes without explicit user request
 - Never assume work is complete without verification
