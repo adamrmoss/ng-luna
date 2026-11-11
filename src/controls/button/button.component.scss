@@ -70,7 +70,8 @@ button
 
     &:not(:disabled):hover
     {
-        background: var(--luna-button-action-background-hover, var(--luna-color-action-hover));
+        // Hover brightens the action fill 10% toward white.
+        background: color-mix(in srgb, var(--luna-button-action-background, var(--luna-color-action)) 90%, white);
     }
 }
 
@@ -128,7 +129,8 @@ button
 
     &:not(:disabled):hover
     {
-        background: var(--luna-button-action-background-hover, var(--luna-color-action-hover));
+        // Hover brightens the action fill 10% toward white.
+        background: color-mix(in srgb, var(--luna-button-action-background, var(--luna-color-action)) 90%, white);
     }
 }
 

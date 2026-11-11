@@ -79,7 +79,7 @@ Component styles `@use` the font partial, so the published CSS contains the `@fo
 
 `src/_theme.scss` is published at the package root and is `@use 'ng-luna/theme'`. It writes the palette and metrics onto `:root`. `dist/theme/` still holds the partials. Component styles use `var(--luna-…)`. Role aliases stay unset on `:root`, and the component writes the two-level `var()` so a role reskin still reaches them. The README theme table lists each property, its `:root` value, and what reads it.
 
-`@use 'ng-luna/theme/global'` still loads the reset and the scrollbar, and it pulls in the parent theme. Palette names such as `palette.$beige-light` are for app layout. Control padding and type stay on the theme variables. An app that loads neither `ng-luna/theme` nor `ng-luna/theme/global` leaves those variables unset.
+`@use 'ng-luna/theme/global'` still loads the reset and the scrollbar, and it pulls in the parent theme. Palette names such as `palette.$beige-300` are for app layout. Control padding and type stay on the theme variables. An app that loads neither `ng-luna/theme` nor `ng-luna/theme/global` leaves those variables unset.
 
 ## Overlay host
 

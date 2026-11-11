@@ -144,18 +144,17 @@ Load the theme from an app stylesheet. `@use 'ng-luna/theme/global'` loads the s
 @use 'ng-luna/theme/palette' as palette;
 
 .stage {
-    background: palette.$beige-light;
+    background: palette.$beige-300;
 }
 ```
 
-Solid danger hover on an action button, and on an icon button at the default size, is `color-mix` of `--luna-button-action-danger-background` 10% toward black.
+Action hover, including the window caption buttons, is `color-mix` of the action fill 90% with white. Solid danger hover on an action button, and on an icon button at the default size, is `color-mix` of `--luna-button-action-danger-background` 10% toward black.
 
 | Property | :root value | Read by |
 |---|---|---|
 | `--luna-color-accent-light` | `#003c74` | Menubar row hover. Role for field fills, the fieldset, and the dialog body |
 | `--luna-color-accent-dark` | `#00138c` | Editor and command toolbars. Role for the selected tab and the context menu |
-| `--luna-color-action` | `#0053ee` | Button focus outline and text selection. Role for action button fills, field focus, and the window title |
-| `--luna-color-action-hover` | `#0050ee` | Window control buttons. Role for action button hover |
+| `--luna-color-action` | `#0053ee` | Button focus outline and text selection. Role for action button fills, field focus, the window title, and caption buttons |
 | `--luna-color-border` | `#1d5281` | Command button border, menu border, dialog, fieldset, and field borders |
 | `--luna-color-text` | `#ffffff` | Action and icon button, field, context menu, selected tab, and dialog text |
 | `--luna-color-text-secondary` | `#e0e0e0` | Disabled menu rows |
@@ -169,7 +168,6 @@ Solid danger hover on an action button, and on an icon button at the default siz
 | `--luna-button-default-padding-y` | `4px` | Default button |
 | `--luna-button-default-radius` | `3px` | Default button |
 | `--luna-button-action-background` | `#0053ee` | Action button and default-size icon button |
-| `--luna-button-action-background-hover` | `#0050ee` | Action button and default-size icon button hover |
 | `--luna-button-action-danger-background` | `#e5a01a` | Danger action button and danger icon button at default size |
 | `--luna-button-action-font-size` | `12px` | Action button |
 | `--luna-button-action-gap` | `8px` | Action button |

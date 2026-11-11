@@ -5,10 +5,10 @@
 
 :host:not([hidden])
 {
-    background: $cream;
-    border: $border-width solid $gray-dark;
+    background: $beige-100;
+    border: $border-width solid $stone-600;
     border-radius: $border-radius-sm;
-    box-shadow: 0 $border-width $spacing-xxs $shadow-15;
+    box-shadow: 0 $border-width $spacing-xxs $black-15;
     box-sizing: border-box;
     display: block;
 }

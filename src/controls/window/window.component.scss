@@ -69,7 +69,7 @@
     margin: 0;
     min-width: 0;
     padding: var(--luna-window-title-padding);
-    text-shadow: $border-width $border-width $navy-darker;
+    text-shadow: $border-width $border-width $indigo-800;
 }
 
 .title-bar-text
@@ -87,7 +87,8 @@
 
     button
     {
-        background-color: var(--luna-color-action-hover);
+        // Caption buttons are the action color brightened 10% toward white.
+        background-color: color-mix(in srgb, var(--luna-color-action) 90%, white);
         background-position: center;
         background-repeat: no-repeat;
         border: none;

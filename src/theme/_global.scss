@@ -47,14 +47,14 @@
 
 ::-webkit-scrollbar-thumb
 {
-    background-color: $blue-light;
+    background-color: $sky-200;
     background-position: center;
     background-repeat: no-repeat;
     background-size: $scrollbar-thumb-glyph;
-    border: $border-width solid $white;
+    border: $border-width solid $white-100;
     border-radius: $border-radius-sm;
-    box-shadow: inset #{-$border-radius-base} 0 $blue-lightest,
-                inset $border-width $border-width $blue-medium;
+    box-shadow: inset #{-$border-radius-base} 0 $sky-100,
+                inset $border-width $border-width $sky-300;
 
     &:vertical
     {

@@ -3,7 +3,7 @@
 @use '../../theme/palette' as *;
 @use '../../theme/typography' as *;
 
-$progress-indicator: linear-gradient(to bottom, $green-lightest, $green, $green-dark);
+$progress-indicator: linear-gradient(to bottom, $green-300, $green-600, $green-700);
 
 :host:not([hidden])
 {
