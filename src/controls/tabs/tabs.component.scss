@@ -28,7 +28,7 @@ div[role="tablist"]
         cursor: pointer;
         font-family: $font-sans;
         font-size: var(--luna-tab-font-size);
-        line-height: $tab-line-height;
+        line-height: $line-height-tight;
         margin-right: var(--luna-tab-margin-right);
         padding: var(--luna-tab-padding-y) var(--luna-tab-padding-x) var(--luna-tab-padding-bottom);
         position: relative;

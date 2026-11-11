@@ -26,7 +26,7 @@ select
     color: var(--luna-color-text);
     font-family: $font-sans;
     font-size: var(--luna-input-font-size);
-    line-height: $input-line-height;
+    line-height: $line-height-tight;
     padding: var(--luna-input-padding-y) var(--luna-input-padding-x);
     padding-right: $select-padding-end;
 

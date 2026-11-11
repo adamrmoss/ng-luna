@@ -21,7 +21,7 @@ button
     font-size: var(--luna-button-default-font-size);
     gap: 0;
     justify-content: center;
-    line-height: $button-line-height;
+    line-height: $line-height-tight;
     padding: var(--luna-button-default-padding-y) var(--luna-button-default-padding-x);
 
     &:not(:disabled)
@@ -65,7 +65,7 @@ button
     font-size: var(--luna-button-action-font-size);
     font-weight: 500;
     gap: var(--luna-button-action-gap);
-    line-height: $button-action-line-height;
+    line-height: $line-height-tight;
     padding: var(--luna-button-action-padding-y) var(--luna-button-action-padding-x);
 
     &:not(:disabled):hover
@@ -96,7 +96,7 @@ button
     font-size: var(--luna-button-command-font-size);
     font-weight: 400;
     gap: 0;
-    line-height: $button-command-line-height;
+    line-height: $line-height-tight;
     padding: var(--luna-button-command-padding-y) var(--luna-button-command-padding-x);
 
     &:not(:disabled)
@@ -123,7 +123,7 @@ button
     font-size: var(--luna-button-icon-font-size);
     gap: 0;
     height: var(--luna-button-icon-size);
-    line-height: $button-icon-line-height;
+    line-height: 1;
     padding: 0;
     width: var(--luna-button-icon-size);
 
@@ -150,7 +150,7 @@ button
     border-radius: var(--luna-button-icon-compact-radius);
     font-size: var(--luna-button-icon-compact-font-size);
     height: var(--luna-button-icon-compact-size);
-    line-height: $button-icon-compact-line-height;
+    line-height: 1;
     width: var(--luna-button-icon-compact-size);
 
     &:not(:disabled):active

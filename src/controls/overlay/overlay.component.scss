@@ -27,7 +27,7 @@ a[lunaMenuLink]
     cursor: pointer;
     font-family: $font-sans;
     font-size: var(--luna-menu-menubar-font-size);
-    line-height: $menu-menubar-line-height;
+    line-height: $line-height-tight;
     padding: var(--luna-menu-menubar-item-padding-y) var(--luna-menu-menubar-item-padding-x);
     text-decoration: none;
 

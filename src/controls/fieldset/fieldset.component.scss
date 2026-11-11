@@ -28,9 +28,9 @@ legend
     border: $border-width solid var(--luna-fieldset-border);
     border-radius: $border-radius-md;
     color: var(--luna-fieldset-color);
-    font-size: $legend-font-size;
-    line-height: $legend-line-height;
-    padding: $legend-padding-y $legend-padding-x;
+    font-size: $font-size-xs;
+    line-height: $line-height-tight;
+    padding: $spacing-xxs $spacing-sm;
 }
 
 .field-row
