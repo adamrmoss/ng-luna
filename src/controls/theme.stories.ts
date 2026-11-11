@@ -3,7 +3,7 @@ import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { WindowComponent } from './window/window.component';
 
 /**
- * Shows role paint and a token that wins over the role.
+ * Shows that each control reads its own token. A role set on an ancestor does not retarget it.
  */
 const meta: Meta = {
     decorators: [
@@ -20,7 +20,7 @@ export default meta;
 type Story = StoryObj;
 
 /**
- * Default paint, a wrapper that changes the action role, and a host that sets the title background alone.
+ * Default title paint, an ancestor action role that leaves it alone, and a host that sets the title background.
  */
 export const Paint: Story = {
     render: () => ({
@@ -28,19 +28,12 @@ export const Paint: Story = {
             <luna-window
                 class="demo-window"
                 title="Default">
-                <p>Title bar uses the action color.</p>
+                <p>The title bar reads its own background token.</p>
             </luna-window>
-            <div class="demo-role">
-                <luna-window
-                    class="demo-window"
-                    title="Role">
-                    <p>The title bar follows the action color on the wrapper.</p>
-                </luna-window>
-            </div>
             <luna-window
-                class="demo-window demo-specific"
-                title="Specific">
-                <p>The title background token wins over the role.</p>
+                class="demo-window demo-title"
+                title="Title">
+                <p>This host sets the title background.</p>
             </luna-window>
         `,
     }),

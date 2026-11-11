@@ -105,7 +105,7 @@ $input-disk-font-size: $font-size-sm;
 $input-disk-line-height: $line-height-tight;
 $input-disk-padding-y: $spacing-sm;
 $input-disk-padding-x: $spacing-md;
-$input-disk-radius: $border-radius-md;
+$input-disk-radius: $border-radius-sm;
 
 // Select and textarea.
 $input-font-size: $font-size-xs;
@@ -124,17 +124,6 @@ $menu-menubar-check-gap: $spacing-sm;
 $menu-menubar-margin-bottom: $spacing-sm;
 $menu-menubar-radius: $border-radius-none;
 $menu-menubar-min-width: 10rem;
-
-// Context menu.
-$menu-context-font-size: $font-size-sm;
-$menu-context-line-height: $line-height-tight;
-$menu-context-padding: $spacing-xs;
-$menu-context-row-gap: $spacing-xxs;
-$menu-context-item-padding: $spacing-md;
-$menu-context-item-gap: $spacing-md;
-$menu-context-radius: $border-radius-lg;
-$menu-context-item-radius: $border-radius-md;
-$menu-context-min-width: 180px;
 
 // Toolbars
 $toolbar-cluster-gap: $spacing-xs;

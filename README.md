@@ -123,7 +123,7 @@ Once configured, you can use the fonts directly in your CSS/SCSS:
 
 **Available font families:**
 - `'IBM Plex Sans', sans-serif` - Default and command buttons, menubar rows and triggers, select, textarea, tabs, title bar, dialog titles, fieldset legends
-- `'IBM Plex Mono', monospace` - Action buttons, the disk name field, and context menu rows
+- `'IBM Plex Mono', monospace` - Action buttons and the disk name field
 - `'IBM Plex Serif', serif` - Available for app styles; controls do not use it
 
 **Note:** The ng-luna components will automatically use these fonts once they are available at `/fonts`. Font families are not custom properties.
@@ -153,12 +153,11 @@ Action hover is `color-mix` of `--luna-button-action-background` 90% with white.
 | Property | :root value | Read by |
 |---|---|---|
 | `--luna-color-accent-dark` | `#00138c` | Editor and command toolbars |
-| `--luna-color-accent-light` | `#003c74` | Menubar row hover, fieldset, and dialog body |
+| `--luna-color-accent-light` | `#003c74` | Menu row hover and dialog body |
 | `--luna-color-action` | `#0053ee` | Button focus outline and text selection |
-| `--luna-color-border` | `#1d5281` | Command button border, context menu border, dialog, and fieldset |
-| `--luna-color-text` | `#ffffff` | Action and icon button, field, context menu, and dialog text |
-| `--luna-color-text-secondary` | `#e0e0e0` | Disabled menu rows |
-| `--luna-color-danger` | `#e5a01a` | Compact danger icon text |
+| `--luna-color-border` | `#1d5281` | Command button border and dialog |
+| `--luna-color-text` | `#ffffff` | Action and icon button, field, menu highlight, and dialog text |
+| `--luna-color-danger` | `#e5a01a` | Danger menu row and compact danger icon text |
 | `--luna-button-default-background` | `#ffffff` | Default button |
 | `--luna-button-default-background-hover` | `#f2f2f1` | Default button hover |
 | `--luna-button-default-border` | `#9d9c99` | Default button border |
@@ -191,47 +190,37 @@ Action hover is `color-mix` of `--luna-button-action-background` 90% with white.
 | `--luna-button-icon-compact-background-hover` | `#ffffff33` | Compact icon button hover |
 | `--luna-button-icon-compact-danger-background` | `#e5a01a33` | Compact danger icon button |
 | `--luna-button-icon-compact-danger-background-hover` | `#e5a01a4d` | Compact danger icon button hover |
-| `--luna-input-disk-background` | `#003c74` | Disk name field (`luna-input`) |
-| `--luna-input-disk-border` | `#1d5281` | Disk name field |
+| `--luna-fieldset-background` | `#ecebe5` | Fieldset and legend |
+| `--luna-fieldset-border` | `#000000` | Fieldset and legend border |
+| `--luna-fieldset-color` | `#000000` | Fieldset and legend text |
+| `--luna-input-disk-background` | `#ffffff` | Disk name field (`luna-input`) |
+| `--luna-input-disk-border` | `#000000` | Disk name field |
 | `--luna-input-disk-border-focus` | `#0053ee` | Disk name field focus |
+| `--luna-input-disk-color` | `#000000` | Disk name field text |
 | `--luna-input-disk-font-size` | `13px` | Disk name field |
 | `--luna-input-disk-padding-x` | `12px` | Disk name field |
 | `--luna-input-disk-padding-y` | `8px` | Disk name field |
-| `--luna-input-disk-placeholder` | `#e0e0e08c` | Disk name field placeholder |
+| `--luna-input-disk-placeholder` | `#858585` | Disk name field placeholder |
 | `--luna-input-disk-radius` | `4px` | Disk name field |
-| `--luna-input-background` | `#003c74` | Select, textarea, checkbox, radio, slider track, progress track |
-| `--luna-input-border` | `#1d5281` | Select, textarea, checkbox, radio, slider track, progress track |
+| `--luna-input-background` | `#003c74` | Select, checkbox, radio, slider track, progress track |
+| `--luna-input-border` | `#1d5281` | Select, checkbox, radio, slider track, progress track |
 | `--luna-input-border-focus` | `#0053ee` | Select and textarea focus |
 | `--luna-input-font-size` | `11px` | Select and textarea |
 | `--luna-input-padding-x` | `4px` | Select and textarea |
 | `--luna-input-padding-y` | `4px` | Select and textarea |
-| `--luna-input-placeholder` | `#e0e0e08c` | Textarea placeholder |
 | `--luna-input-radius` | `2px` | Select and textarea |
-| `--luna-menu-menubar-background` | `#dcdcd7` | Menubar and menubar dropdown |
-| `--luna-menu-menubar-border` | `#9d9c99` | Menubar dropdown border and separator |
-| `--luna-menu-menubar-color` | `#000000` | Menubar text and triggers |
-| `--luna-menu-menubar-disabled-color` | `#9d9c99` | Disabled menubar row |
-| `--luna-menu-menubar-font-size` | `11px` | Menubar rows and triggers |
-| `--luna-menu-menubar-item-padding-y` | `4px` | Menubar row and trigger |
-| `--luna-menu-menubar-item-padding-x` | `12px` | Menubar row and trigger |
-| `--luna-menu-menubar-item-padding-left` | `8px` | Menubar row |
-| `--luna-menu-menubar-check-gap` | `8px` | Menubar check slot |
-| `--luna-menu-menubar-margin-bottom` | `8px` | Menubar |
-| `--luna-menu-menubar-min-width` | `10rem` | Menubar dropdown |
-| `--luna-menu-menubar-radius` | `0` | Menubar dropdown and trigger |
-| `--luna-menu-context-background` | `#00138c` | Context menu |
-| `--luna-menu-context-hover-background` | `#001ea0` | Context menu row hover |
-| `--luna-menu-context-font-size` | `13px` | Context menu rows |
-| `--luna-menu-context-padding` | `4px` | Context menu panel |
-| `--luna-menu-context-row-gap` | `2px` | Context menu rows |
-| `--luna-menu-context-item-padding` | `12px` | Context menu row |
-| `--luna-menu-context-item-gap` | `12px` | Context menu row |
-| `--luna-menu-context-item-radius` | `4px` | Context menu row |
-| `--luna-menu-context-radius` | `6px` | Context menu panel |
-| `--luna-menu-context-min-width` | `180px` | Context menu panel |
-| `--luna-menu-context-shadow` | `0 4px 12px #00000066` | Context menu panel |
-| `--luna-menu-context-danger-color` | `#e5a01a` | Context menu danger row |
-| `--luna-menu-context-danger-hover-background` | `#e5a01a1a` | Context menu danger row hover |
+| `--luna-menu-menubar-background` | `#dcdcd7` | Menu bar and menu panel |
+| `--luna-menu-menubar-border` | `#9d9c99` | Menu panel border and separator |
+| `--luna-menu-menubar-color` | `#000000` | Menu text and triggers |
+| `--luna-menu-menubar-disabled-color` | `#9d9c99` | Disabled menu row |
+| `--luna-menu-menubar-font-size` | `11px` | Menu rows and triggers |
+| `--luna-menu-menubar-item-padding-y` | `4px` | Menu row and trigger |
+| `--luna-menu-menubar-item-padding-x` | `12px` | Menu row and trigger |
+| `--luna-menu-menubar-item-padding-left` | `8px` | Menu row |
+| `--luna-menu-menubar-check-gap` | `8px` | Menu check slot |
+| `--luna-menu-menubar-margin-bottom` | `8px` | Menu bar |
+| `--luna-menu-menubar-min-width` | `10rem` | Menu panel |
+| `--luna-menu-menubar-radius` | `0` | Menu panel and trigger |
 | `--luna-tab-background` | `#ecebe5` | Tab |
 | `--luna-tab-background-hover` | `#ecebe5` | Tab hover |
 | `--luna-tab-color` | `#000000` | Tab text |
@@ -246,6 +235,10 @@ Action hover is `color-mix` of `--luna-button-action-background` 90% with white.
 | `--luna-tab-padding-bottom` | `4px` | Tab |
 | `--luna-tab-margin-right` | `2px` | Tab |
 | `--luna-tab-panel-padding` | `8px` | Tab panel |
+| `--luna-textarea-background` | `#ffffff` | Textarea |
+| `--luna-textarea-border` | `#000000` | Textarea border |
+| `--luna-textarea-color` | `#000000` | Textarea text |
+| `--luna-textarea-placeholder` | `#858585` | Textarea placeholder |
 | `--luna-toolbar-cluster-gap` | `4px` | Cluster toolbar |
 | `--luna-toolbar-editor-padding-y` | `12px` | Editor toolbar |
 | `--luna-toolbar-editor-padding-x` | `16px` | Editor toolbar |
@@ -433,7 +426,7 @@ The `luna-checkbox` component is a checkbox on the shared field surface. It impl
 
 ### Fieldset Component
 
-The `luna-fieldset` component groups form controls. The frame and legend use the light accent fill (`--luna-color-accent-light`), a steel border, and white text. The window body is a separate fill.
+The `luna-fieldset` component groups form controls. Frame and legend colors come from the fieldset variables. Their defaults match the window body fill and text. The border defaults to black.
 
 **Selector:** `luna-fieldset`
 
@@ -542,7 +535,7 @@ The `luna-menu-bar` component is a horizontal bar for one or more `luna-menu` co
 
 ### Menu Component
 
-The `luna-menu` component opens a menu panel from a trigger, or at a viewport point. It supports checked items, icons, a danger tone, hover highlighting, Up/Down to move the highlight within the list, closing with Escape, and Enter to activate the highlighted row. When the menu sits inside a **Menu Bar Component**, Left/Right move to the previous or next top-level menu in the bar (with wraparound).
+The `luna-menu` component opens a menu panel from a trigger, or at a viewport point. The panel is Sans 11px on `#dcdcd7`, with black text, padding `4px 12px 4px 8px`, and square corners. A highlighted row and an open trigger are navy with white text. It supports checked items, icons, a danger tone, hover highlighting, Up/Down to move the highlight within the list, closing with Escape, and Enter to activate the highlighted row. When the menu sits inside a **Menu Bar Component**, Left/Right move to the previous or next top-level menu in the bar (with wraparound).
 
 **Selector:** `luna-menu`
 
@@ -555,7 +548,6 @@ Use `OverlayComponent` and `LunaOverlayContainer` as described in **Overlay (men
 #### Inputs
 
 - `items: LunaMenuEntry[]` – Menu entries. Each item: `{ label: string, checked?: boolean, disabled?: boolean, icon?: string, tone?: LunaTone }`. `icon` is SVG markup, the same string as `luna-icon` `svg`, drawn at 16px. `tone: 'danger'` recolors the row. Use `{ separator: true }` for a divider line.
-- `variant: LunaMenuVariant` – Panel paint: `'menubar' | 'context'` (default: `'menubar'`). Menubar is Sans 11px on `#dcdcd7`, black text, with padding `4px 12px 4px 8px` and square corners. The open row and the open trigger are navy with white text. Context is Mono 13px, panel padding `4px`, row gap `2px`, row padding `12px`, radius `6px`. The value is passed into the overlay panel.
 
 #### Methods
 
@@ -577,13 +569,12 @@ Use `OverlayComponent` and `LunaOverlayContainer` as described in **Overlay (men
 </luna-menu-bar>
 ```
 
-A menubar trigger is black text on a transparent button. Place it in `luna-menu-bar` so it sits on the gray bar. A context menu uses `variant="context"` and can open from a point with no trigger child:
+A menubar trigger is black text on a transparent button. Place it in `luna-menu-bar` so it sits on the gray bar. `openAt` opens that same panel at a viewport point:
 
 ```html
 <div (contextmenu)="onContext($event, menu)">
     <luna-menu
         #menu
-        variant="context"
         [items]="menuItems"
         (itemSelect)="onMenuSelect($event)">
     </luna-menu>
@@ -626,7 +617,7 @@ export class MyComponent {
 
 ### Input Component
 
-The `luna-input` component is the disk name field: IBM Plex Mono, 13px, padding `8px 12px`, radius `4px`, navy fill, steel border. It implements `ControlValueAccessor` for reactive forms support.
+The `luna-input` component is the disk name field: IBM Plex Mono, 13px, padding `8px 12px`, radius `4px`, white fill, black text, and a black border. It implements `ControlValueAccessor` for reactive forms support.
 
 **Selector:** `luna-input`
 
@@ -816,7 +807,7 @@ onTabChange(tabId: string) { this.activeTabId = tabId; }
 
 ### Textarea Component
 
-The `luna-textarea` component is a multiline field: IBM Plex Sans, 11px, padding `4px`, radius `2px`, navy fill, steel border. It implements `ControlValueAccessor` for reactive forms support.
+The `luna-textarea` component is a multiline field: IBM Plex Sans, 11px, padding `4px`, radius `2px`, white fill, black text, and a black border. It implements `ControlValueAccessor` for reactive forms support.
 
 **Selector:** `luna-textarea`
 
@@ -969,7 +960,7 @@ import { TooltipDirective } from 'ng-luna';
 
 ### Window Component
 
-The `luna-window` component is a draggable window with a title bar and window controls. The host is the frame box. The body uses `--luna-window-body-color` and the title uses `--luna-window-title-color`. The title bar background follows the action color unless `--luna-window-title-background` is set. There are no style inputs. `id` is the host only.
+The `luna-window` component is a draggable window with a title bar and window controls. The host is the frame box. The body uses `--luna-window-body-color` and the title uses `--luna-window-title-color`. The title bar background is `--luna-window-title-background`. There are no style inputs. `id` is the host only.
 
 **Selector:** `luna-window`
 

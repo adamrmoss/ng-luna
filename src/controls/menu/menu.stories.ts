@@ -6,7 +6,7 @@ import { MenuBarComponent } from '../menu-bar/menu-bar.component';
 import { type LunaMenuEntry } from './menu-data';
 import { LunaMenuLinkDirective } from './menu-link.directive';
 import { LunaMenuTriggerDirective } from './menu-trigger.directive';
-import { LunaMenuComponent, type LunaMenuVariant } from './menu.component';
+import { LunaMenuComponent } from './menu.component';
 
 const fileItems: LunaMenuEntry[] = [
     { label: 'New' },
@@ -32,7 +32,6 @@ type MenuStoryArgs = {
     itemSelect: (item: { label: string } | null) => void;
     items: LunaMenuEntry[];
     label: string;
-    variant: LunaMenuVariant;
 };
 
 /**
@@ -43,16 +42,6 @@ const meta: Meta<MenuStoryArgs> = {
         itemSelect: fn(),
         items: fileItems,
         label: 'File',
-        variant: 'menubar',
-    },
-    argTypes: {
-        variant: {
-            control: 'select',
-            options: [
-                'menubar',
-                'context',
-            ],
-        },
     },
     component: LunaMenuComponent,
     decorators: [
@@ -70,7 +59,6 @@ const meta: Meta<MenuStoryArgs> = {
             <luna-menu-bar>
                 <luna-menu
                     [items]="items"
-                    [variant]="variant"
                     (itemSelect)="itemSelect($event)">
                     <button
                         lunaMenuTrigger
@@ -112,17 +100,6 @@ export const View: Story = {
 };
 
 /**
- * Context menu. Rows use mono type, and Delete keeps the danger tone.
- */
-export const Context: Story = {
-    args: {
-        items: diskItems,
-        label: 'Disk',
-        variant: 'context',
-    },
-};
-
-/**
  * Rows with icons. Delete uses the danger tone.
  */
 export const WithIcons: Story = {
@@ -154,7 +131,6 @@ export const OpenAtPoint: Story = {
                 Right-click
                 <luna-menu
                     #menu
-                    variant="context"
                     [items]="items"
                     (itemSelect)="itemSelect($event)">
                 </luna-menu>

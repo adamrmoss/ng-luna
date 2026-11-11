@@ -4,7 +4,6 @@ import {
     Component,
     ContentChild,
     ElementRef,
-    HostBinding,
     inject,
     Input,
     OnDestroy,
@@ -21,11 +20,6 @@ import { MenuPanelComponent } from './menu-panel.component';
 import { LunaMenuTriggerDirective } from './menu-trigger.directive';
 
 /**
- * Panel paint. Menubar is the bar dropdown. Context is the disk menu.
- */
-export type LunaMenuVariant = 'menubar' | 'context';
-
-/**
  * Hosts a trigger and opens a CDK overlay menu panel backed by `items`.
  */
 @Component({
@@ -39,11 +33,6 @@ export class LunaMenuComponent implements AfterContentInit, OnDestroy
     /** Menu rows shown in the overlay panel. */
     @Input()
     public items: LunaMenuEntry[] = [];
-
-    /** Panel paint passed through to the overlay. */
-    @Input()
-    @HostBinding('attr.variant')
-    public variant: LunaMenuVariant = 'menubar';
 
     /** Emits when the panel closes with a chosen item or null on dismiss. */
     @Output()
@@ -206,7 +195,6 @@ export class LunaMenuComponent implements AfterContentInit, OnDestroy
         const panelData: LunaMenuPanelData = {
             close: (selectedItem: LunaMenuItem | null) => this.close(selectedItem),
             items: this.items,
-            variant: this.variant,
         };
 
         if (navigateMenubarAdjacent != null)

@@ -44,14 +44,9 @@ body
     --luna-window-title-color: var(--luna-color-accent-dark);
 }
 
-.demo-role
+.demo-title
 {
-    --luna-color-action: var(--luna-color-accent-light);
-}
-
-.demo-specific
-{
-    --luna-window-title-background: var(--luna-color-danger);
+    --luna-window-title-background: #{$orange-500};
 }
 
 .demo-status

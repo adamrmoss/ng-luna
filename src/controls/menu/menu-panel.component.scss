@@ -1,4 +1,4 @@
-// Menubar dropdown. Context paint is the `.luna-menu-panel-context` block.
+// Menu panel. Menubar triggers and point opens share this paint.
 @use '../../theme/fonts' as *;
 @use '../../theme/graphics' as *;
 @use '../../theme/typography' as *;
@@ -91,68 +91,4 @@ li[role="menuitem"]
 li[role="menuitem"].luna-menu-item-danger:not(.luna-menu-item-disabled)
 {
     color: var(--luna-color-danger);
-}
-
-.luna-menu-panel-context
-{
-    background: var(--luna-menu-context-background);
-    border: $border-width solid var(--luna-color-border);
-    border-radius: var(--luna-menu-context-radius);
-    box-shadow: var(--luna-menu-context-shadow);
-    color: var(--luna-color-text);
-    display: flex;
-    flex-direction: column;
-    font-family: $font-mono;
-    font-size: var(--luna-menu-context-font-size);
-    gap: var(--luna-menu-context-row-gap);
-    line-height: $menu-context-line-height;
-    min-width: var(--luna-menu-context-min-width);
-    padding: var(--luna-menu-context-padding);
-
-    .luna-menu-item-checkbox
-    {
-        margin-right: 0;
-    }
-
-    .luna-menu-item-checkmark
-    {
-        filter: invert(1);
-    }
-
-    .luna-menu-item-disabled
-    {
-        color: var(--luna-color-text-secondary);
-    }
-
-    .luna-menu-separator
-    {
-        background: var(--luna-color-border);
-    }
-
-    li[role="menuitem"]
-    {
-        border-radius: var(--luna-menu-context-item-radius);
-        font-family: $font-mono;
-        gap: var(--luna-menu-context-item-gap);
-        padding: var(--luna-menu-context-item-padding);
-
-        &:not(.luna-menu-item-disabled):hover,
-        &.luna-menu-item-highlighted:not(.luna-menu-item-disabled)
-        {
-            background: var(--luna-menu-context-hover-background);
-            color: var(--luna-color-text);
-        }
-    }
-
-    li[role="menuitem"].luna-menu-item-danger:not(.luna-menu-item-disabled)
-    {
-        color: var(--luna-menu-context-danger-color);
-
-        &:hover,
-        &.luna-menu-item-highlighted
-        {
-            background: var(--luna-menu-context-danger-hover-background);
-            color: var(--luna-menu-context-danger-color);
-        }
-    }
 }

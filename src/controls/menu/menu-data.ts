@@ -66,9 +66,6 @@ export interface LunaMenuPanelData
      * menu (wraps); omitted for standalone dropdowns.
      */
     navigateMenubarAdjacent?: (direction: -1 | 1) => void;
-
-    /** Panel paint. Matches `LunaMenuVariant` on `luna-menu`. */
-    variant: 'menubar' | 'context';
 }
 
 /**

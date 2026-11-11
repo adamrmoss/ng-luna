@@ -1,4 +1,4 @@
-// Fieldset border and legend on the navy ground. The window body is a separate fill.
+// Fieldset frame and legend. Fill and text match the window body by default.
 @use '../../theme/layout' as *;
 @use '../../theme/typography' as *;
 
@@ -14,20 +14,20 @@
 
 fieldset
 {
-    background: var(--luna-color-accent-light);
-    border: $border-width solid var(--luna-color-border);
+    background: var(--luna-fieldset-background);
+    border: $border-width solid var(--luna-fieldset-border);
     border-radius: $border-radius-md;
     box-shadow: none;
-    color: var(--luna-color-text);
+    color: var(--luna-fieldset-color);
     padding: $spacing-sm;
 }
 
 legend
 {
-    background: var(--luna-color-accent-light);
-    border: $border-width solid var(--luna-color-border);
+    background: var(--luna-fieldset-background);
+    border: $border-width solid var(--luna-fieldset-border);
     border-radius: $border-radius-md;
-    color: var(--luna-color-text);
+    color: var(--luna-fieldset-color);
     font-size: $legend-font-size;
     line-height: $legend-line-height;
     padding: $legend-padding-y $legend-padding-x;
