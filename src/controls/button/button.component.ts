@@ -158,7 +158,7 @@ export class ButtonComponent
     /**
      * Emits the click event when enabled; blocks default and propagation when disabled.
      *
-     * @param event - Native click event from the host button.
+     * @param event - Native click event from the inner button.
      */
     public onClick(event: MouseEvent): void
     {
@@ -171,7 +171,8 @@ export class ButtonComponent
             return;
         }
 
-        // Forward the native event to template subscribers.
+        // Host `(click)` listens to this output and to the native click. Stop the bubble so it runs once.
+        event.stopPropagation();
         this.click.emit(event);
     }
 }

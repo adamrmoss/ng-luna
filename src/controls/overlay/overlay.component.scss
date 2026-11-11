@@ -60,7 +60,6 @@ button[lunaMenuTrigger].luna-menu-trigger-active
 {
     animation: luna-surface-in 150ms ease-out both;
     cursor: default;
-    z-index: $normal;
 
     &:focus
     {
@@ -68,23 +67,35 @@ button[lunaMenuTrigger].luna-menu-trigger-active
     }
 }
 
-.luna-modal-backdrop
-{
-    background: var(--luna-overlay-shadow-half);
-}
-
+// Popup veil under the popup window. Modal veil over that window and under the modal window.
 .luna-popup-backdrop
 {
     -webkit-backdrop-filter: blur($spacing-sm);
     backdrop-filter: blur($spacing-sm);
     background: var(--luna-overlay-shadow-quarter);
+    z-index: $above;
+}
+
+.cdk-global-overlay-wrapper:has(.luna-popup-pane)
+{
+    z-index: $popup;
+}
+
+.luna-modal-backdrop
+{
+    background: var(--luna-overlay-shadow-half);
+    z-index: $overlay;
+}
+
+.cdk-global-overlay-wrapper:has(.luna-modal-pane)
+{
+    z-index: $modal;
 }
 
 .luna-modal-pane,
 .luna-popup-pane
 {
     animation: luna-surface-in 150ms ease-out both;
-    z-index: $over;
 }
 
 .luna-tooltip-panel
