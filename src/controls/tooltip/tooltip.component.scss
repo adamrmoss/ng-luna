@@ -1,15 +1,15 @@
-// Tooltip panel text and fade class used by the directive timing.
-@use '../../theme/palette' as *;
+// Tooltip panel. Paint comes from the tooltip tokens.
 @use '../../theme/fonts' as *;
 @use '../../theme/typography' as *;
 
 :host:not([hidden])
 {
-    background: $beige-100;
-    border: $border-width solid $stone-600;
+    background: var(--luna-tooltip-background);
+    border: $border-width solid var(--luna-tooltip-border);
     border-radius: $border-radius-sm;
-    box-shadow: 0 $border-width $spacing-xxs $black-15;
+    box-shadow: var(--luna-tooltip-shadow);
     box-sizing: border-box;
+    color: var(--luna-tooltip-color);
     display: block;
 }
 

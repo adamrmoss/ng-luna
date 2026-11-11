@@ -17,8 +17,8 @@ input[type="text"],
 input[type="password"],
 input[type="email"]
 {
-    background: var(--luna-input-disk-background, var(--luna-color-accent-light));
-    border: $border-width solid var(--luna-input-disk-border, var(--luna-color-border));
+    background: var(--luna-input-disk-background);
+    border: $border-width solid var(--luna-input-disk-border);
     border-radius: var(--luna-input-disk-radius);
     box-sizing: border-box;
     color: var(--luna-color-text);
@@ -40,7 +40,7 @@ input[type="email"]
 
     &:focus
     {
-        border-color: var(--luna-input-disk-border-focus, var(--luna-color-action));
+        border-color: var(--luna-input-disk-border-focus);
         outline: none;
     }
 }

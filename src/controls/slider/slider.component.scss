@@ -29,9 +29,9 @@ input[type="range"]
 
     &::-webkit-slider-runnable-track
     {
-        background: var(--luna-input-background, var(--luna-color-accent-light));
-        border: $border-width solid var(--luna-input-border, var(--luna-color-border));
-        border-radius: $input-radius;
+        background: var(--luna-input-background);
+        border: $border-width solid var(--luna-input-border);
+        border-radius: var(--luna-input-radius);
         box-shadow: none;
         box-sizing: border-box;
         height: $slider-track-height;
@@ -40,9 +40,9 @@ input[type="range"]
 
     &::-moz-range-track
     {
-        background: var(--luna-input-background, var(--luna-color-accent-light));
-        border: $border-width solid var(--luna-input-border, var(--luna-color-border));
-        border-radius: $input-radius;
+        background: var(--luna-input-background);
+        border: $border-width solid var(--luna-input-border);
+        border-radius: var(--luna-input-radius);
         box-shadow: none;
         box-sizing: border-box;
         height: $slider-track-height;
@@ -69,16 +69,16 @@ input[type="range"].has-box-indicator
 {
     &::-webkit-slider-runnable-track
     {
-        border-bottom: $border-width solid var(--luna-input-border, var(--luna-color-border));
-        border-left: $border-width solid var(--luna-input-border, var(--luna-color-border));
+        border-bottom: $border-width solid var(--luna-input-border);
+        border-left: $border-width solid var(--luna-input-border);
         border-right: 0;
         box-shadow: none;
     }
 
     &::-moz-range-track
     {
-        border-bottom: $border-width solid var(--luna-input-border, var(--luna-color-border));
-        border-left: $border-width solid var(--luna-input-border, var(--luna-color-border));
+        border-bottom: $border-width solid var(--luna-input-border);
+        border-left: $border-width solid var(--luna-input-border);
         border-right: 0;
         box-shadow: none;
     }

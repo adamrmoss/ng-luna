@@ -1,4 +1,4 @@
-// Tab list. Inactive tabs are white. The selected tab is navy-darkest and overlaps the panel.
+// Tab list. The selected tab overlaps the panel.
 @use '../../theme/fonts' as *;
 @use '../../theme/typography' as *;
 @use '../../theme/z-layers' as *;
@@ -19,8 +19,11 @@ div[role="tablist"]
     button
     {
         background: var(--luna-tab-background);
-        border: none;
+        border-color: var(--luna-tab-panel-border);
         border-radius: $border-radius-base $border-radius-base 0 0;
+        border-style: solid;
+        border-width: $border-width $border-width 0;
+        box-sizing: content-box;
         color: var(--luna-tab-color);
         cursor: pointer;
         font-family: $font-sans;
@@ -37,7 +40,7 @@ div[role="tablist"]
 
         &[aria-selected="true"]
         {
-            background: var(--luna-tab-selected-background, var(--luna-color-accent-dark));
+            background: var(--luna-tab-selected-background);
             color: var(--luna-tab-selected-color);
             font-weight: 600;
             margin-bottom: -$border-width;
@@ -46,13 +49,13 @@ div[role="tablist"]
 
             &:hover
             {
-                background: var(--luna-tab-selected-background, var(--luna-color-accent-dark));
+                background: var(--luna-tab-selected-background);
             }
         }
 
         &:focus-visible
         {
-            outline: $spacing-xxs solid var(--luna-color-action);
+            outline: $spacing-xxs solid var(--luna-tab-panel-border);
             outline-offset: $spacing-xxs;
         }
     }

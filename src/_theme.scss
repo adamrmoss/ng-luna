@@ -1,10 +1,11 @@
-// Default paint on :root. Component styles read these variables.
-// Role aliases stay unset so a later override of the role still reaches them.
+// Default paint on :root. Component styles read these variables with one var() lookup.
 @use './theme/palette' as *;
 @use './theme/typography' as *;
 
 :root
 {
+    --luna-button-action-background: #{$blue-300};
+    --luna-button-action-danger-background: #{$orange-500};
     --luna-button-action-font-size: #{$button-action-font-size};
     --luna-button-action-gap: #{$button-action-gap};
     --luna-button-action-padding-x: #{$button-action-padding-x};
@@ -42,6 +43,12 @@
     --luna-color-danger: #{$orange-500};
     --luna-color-text: #{$white-100};
     --luna-color-text-secondary: #{$gray-200};
+    --luna-input-background: #{$navy-800};
+    --luna-input-border: #{$steel-700};
+    --luna-input-border-focus: #{$blue-300};
+    --luna-input-disk-background: #{$navy-800};
+    --luna-input-disk-border: #{$steel-700};
+    --luna-input-disk-border-focus: #{$blue-300};
     --luna-input-disk-font-size: #{$input-disk-font-size};
     --luna-input-disk-padding-x: #{$input-disk-padding-x};
     --luna-input-disk-padding-y: #{$input-disk-padding-y};
@@ -52,6 +59,8 @@
     --luna-input-padding-y: #{$input-padding-y};
     --luna-input-placeholder: #{$gray-55};
     --luna-input-radius: #{$input-radius};
+    --luna-menu-context-background: #{$indigo-900};
+    --luna-menu-context-danger-color: #{$orange-500};
     --luna-menu-context-danger-hover-background: #{$orange-10};
     --luna-menu-context-font-size: #{$menu-context-font-size};
     --luna-menu-context-hover-background: #{$indigo-700};
@@ -64,8 +73,10 @@
     --luna-menu-context-row-gap: #{$menu-context-row-gap};
     --luna-menu-context-shadow: 0 #{$spacing-xs} #{$spacing-md} #{$black-40};
     --luna-menu-menubar-background: #{$stone-300};
+    --luna-menu-menubar-border: #{$stone-600};
     --luna-menu-menubar-check-gap: #{$menu-menubar-check-gap};
     --luna-menu-menubar-color: #{$black-900};
+    --luna-menu-menubar-disabled-color: #{$stone-600};
     --luna-menu-menubar-font-size: #{$menu-menubar-font-size};
     --luna-menu-menubar-item-padding-left: #{$menu-menubar-item-padding-left};
     --luna-menu-menubar-item-padding-x: #{$menu-menubar-item-padding-x};
@@ -75,17 +86,20 @@
     --luna-menu-menubar-radius: #{$menu-menubar-radius};
     --luna-overlay-shadow-half: #{$black-50};
     --luna-overlay-shadow-quarter: #{$black-25};
-    --luna-tab-background: #{$white-100};
-    --luna-tab-background-hover: #{$gray-100};
+    --luna-tab-background: #{$beige-200};
+    --luna-tab-background-hover: #{$beige-300};
     --luna-tab-color: #{$black-900};
     --luna-tab-font-size: #{$tab-font-size};
     --luna-tab-margin-right: #{$tab-margin-right};
     --luna-tab-padding-bottom: #{$tab-padding-bottom};
     --luna-tab-padding-x: #{$tab-padding-x};
     --luna-tab-padding-y: #{$tab-padding-y};
-    --luna-tab-panel-border: #{$stone-300};
+    --luna-tab-panel-background: #{$beige-300};
+    --luna-tab-panel-border: #{$black-900};
+    --luna-tab-panel-color: #{$black-900};
     --luna-tab-panel-padding: #{$tab-panel-padding};
-    --luna-tab-selected-color: #{$white-100};
+    --luna-tab-selected-background: #{$beige-300};
+    --luna-tab-selected-color: #{$black-900};
     --luna-toolbar-cluster-gap: #{$toolbar-cluster-gap};
     --luna-toolbar-command-gap: #{$toolbar-command-gap};
     --luna-toolbar-command-padding: #{$toolbar-command-padding};
@@ -95,18 +109,24 @@
     --luna-toolbar-editor-padding-x: #{$toolbar-editor-padding-x};
     --luna-toolbar-editor-padding-y: #{$toolbar-editor-padding-y};
     --luna-toolbar-float-offset: #{$toolbar-float-offset};
+    --luna-tooltip-background: #{$beige-100};
+    --luna-tooltip-border: #{$stone-600};
+    --luna-tooltip-color: #{$black-900};
+    --luna-tooltip-shadow: 0 #{$border-width} #{$spacing-xxs} #{$black-15};
     --luna-window-background: #{$beige-300};
     --luna-window-body-color: #{$black-900};
     --luna-window-body-padding: #{$window-body-padding};
     --luna-window-frame-padding: #{$window-frame-padding};
     --luna-window-inset: 0;
     --luna-window-radius: #{$window-radius};
+    --luna-window-title-background: #{$blue-300};
     --luna-window-title-color: #{$white-100};
     --luna-window-title-control-gap: #{$window-title-control-gap};
     --luna-window-title-control-size: #{$window-title-control-size};
     --luna-window-title-font-size: #{$window-title-font-size};
     --luna-window-title-height: #{$window-title-height};
     --luna-window-title-padding: #{$window-title-padding};
+    --luna-window-title-shadow: #{$border-width} #{$border-width} #{$indigo-800};
 }
 
 @keyframes luna-surface-in

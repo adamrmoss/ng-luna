@@ -15,8 +15,8 @@
 
 textarea
 {
-    background: var(--luna-input-background, var(--luna-color-accent-light));
-    border: $border-width solid var(--luna-input-border, var(--luna-color-border));
+    background: var(--luna-input-background);
+    border: $border-width solid var(--luna-input-border);
     border-radius: var(--luna-input-radius);
     box-sizing: border-box;
     color: var(--luna-color-text);
@@ -39,7 +39,7 @@ textarea
 
     &:focus
     {
-        border-color: var(--luna-input-border-focus, var(--luna-color-action));
+        border-color: var(--luna-input-border-focus);
         outline: none;
     }
 }

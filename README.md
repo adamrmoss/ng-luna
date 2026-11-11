@@ -130,7 +130,7 @@ Once configured, you can use the fonts directly in your CSS/SCSS:
 
 ### Theme
 
-The default paint is the EduBASIC palette, written on `:root` by `@use 'ng-luna/theme'`. Set any property below on `:root` or an ancestor to reskin a control. A role reskin still works because the component writes a two-level `var()`, for example `var(--luna-window-title-background, var(--luna-color-action))`. `:root` does not assign those role aliases, so changing `--luna-color-action` still reaches the title bar unless the specific token is set. The window body and the tab panel use their own fill. Each metric names its component and variant.
+The default paint is the EduBASIC palette, written on `:root` by `@use 'ng-luna/theme'`. Set any property below on `:root` or an ancestor to reskin a control. Each component reads its own token with one `var()` lookup, for example `var(--luna-window-title-background)`. Changing `--luna-color-action` does not change the title bar. Set `--luna-window-title-background` to reskin that fill. Each metric names its component and variant.
 
 Load the theme from an app stylesheet. `@use 'ng-luna/theme/global'` loads the same paint, plus the reset and the scrollbar. An app that loads neither leaves the variables unset.
 
@@ -148,17 +148,17 @@ Load the theme from an app stylesheet. `@use 'ng-luna/theme/global'` loads the s
 }
 ```
 
-Action hover, including the window caption buttons, is `color-mix` of the action fill 90% with white. Solid danger hover on an action button, and on an icon button at the default size, is `color-mix` of `--luna-button-action-danger-background` 10% toward black.
+Action hover is `color-mix` of `--luna-button-action-background` 90% with white. Window caption buttons mix `--luna-window-title-background` the same way. Solid danger hover on an action button, and on an icon button at the default size, is `color-mix` of `--luna-button-action-danger-background` 10% toward black.
 
 | Property | :root value | Read by |
 |---|---|---|
-| `--luna-color-accent-light` | `#003c74` | Menubar row hover. Role for field fills, the fieldset, and the dialog body |
-| `--luna-color-accent-dark` | `#00138c` | Editor and command toolbars. Role for the selected tab and the context menu |
-| `--luna-color-action` | `#0053ee` | Button focus outline and text selection. Role for action button fills, field focus, the window title, and caption buttons |
-| `--luna-color-border` | `#1d5281` | Command button border, menu border, dialog, fieldset, and field borders |
-| `--luna-color-text` | `#ffffff` | Action and icon button, field, context menu, selected tab, and dialog text |
+| `--luna-color-accent-dark` | `#00138c` | Editor and command toolbars |
+| `--luna-color-accent-light` | `#003c74` | Menubar row hover, fieldset, and dialog body |
+| `--luna-color-action` | `#0053ee` | Button focus outline and text selection |
+| `--luna-color-border` | `#1d5281` | Command button border, context menu border, dialog, and fieldset |
+| `--luna-color-text` | `#ffffff` | Action and icon button, field, context menu, and dialog text |
 | `--luna-color-text-secondary` | `#e0e0e0` | Disabled menu rows |
-| `--luna-color-danger` | `#e5a01a` | Compact danger icon text. Role for the action danger fill and context danger text |
+| `--luna-color-danger` | `#e5a01a` | Compact danger icon text |
 | `--luna-button-default-background` | `#ffffff` | Default button |
 | `--luna-button-default-background-hover` | `#f2f2f1` | Default button hover |
 | `--luna-button-default-border` | `#9d9c99` | Default button border |
@@ -208,7 +208,9 @@ Action hover, including the window caption buttons, is `color-mix` of the action
 | `--luna-input-placeholder` | `#e0e0e08c` | Textarea placeholder |
 | `--luna-input-radius` | `2px` | Select and textarea |
 | `--luna-menu-menubar-background` | `#dcdcd7` | Menubar and menubar dropdown |
+| `--luna-menu-menubar-border` | `#9d9c99` | Menubar dropdown border and separator |
 | `--luna-menu-menubar-color` | `#000000` | Menubar text and triggers |
+| `--luna-menu-menubar-disabled-color` | `#9d9c99` | Disabled menubar row |
 | `--luna-menu-menubar-font-size` | `11px` | Menubar rows and triggers |
 | `--luna-menu-menubar-item-padding-y` | `4px` | Menubar row and trigger |
 | `--luna-menu-menubar-item-padding-x` | `12px` | Menubar row and trigger |
@@ -230,12 +232,14 @@ Action hover, including the window caption buttons, is `color-mix` of the action
 | `--luna-menu-context-shadow` | `0 4px 12px #00000066` | Context menu panel |
 | `--luna-menu-context-danger-color` | `#e5a01a` | Context menu danger row |
 | `--luna-menu-context-danger-hover-background` | `#e5a01a1a` | Context menu danger row hover |
-| `--luna-tab-background` | `#ffffff` | Inactive tab |
-| `--luna-tab-background-hover` | `#f2f2f1` | Inactive tab hover |
-| `--luna-tab-color` | `#000000` | Inactive tab text |
-| `--luna-tab-selected-background` | `#00138c` | Selected tab |
-| `--luna-tab-selected-color` | `#ffffff` | Selected tab text |
-| `--luna-tab-panel-border` | `#dcdcd7` | Tab panel border |
+| `--luna-tab-background` | `#ecebe5` | Tab |
+| `--luna-tab-background-hover` | `#ecebe5` | Tab hover |
+| `--luna-tab-color` | `#000000` | Tab text |
+| `--luna-tab-selected-background` | `#e8e6dc` | Selected tab |
+| `--luna-tab-selected-color` | `#000000` | Selected tab text |
+| `--luna-tab-panel-background` | `#ecebe5` | Tab panel |
+| `--luna-tab-panel-border` | `#000000` | Tab and panel border |
+| `--luna-tab-panel-color` | `#000000` | Tab panel text |
 | `--luna-tab-font-size` | `11px` | Tab |
 | `--luna-tab-padding-y` | `4px` | Tab |
 | `--luna-tab-padding-x` | `12px` | Tab |
@@ -251,11 +255,16 @@ Action hover, including the window caption buttons, is `color-mix` of the action
 | `--luna-toolbar-command-padding` | `8px` | Command toolbar |
 | `--luna-toolbar-command-gap` | `8px` | Command toolbar |
 | `--luna-toolbar-float-offset` | `16px` | Float toolbar |
-| `--luna-window-background` | `#ecebe5` | Window body and tab panel |
+| `--luna-tooltip-background` | `#f3f2ea` | Tooltip |
+| `--luna-tooltip-border` | `#9d9c99` | Tooltip border |
+| `--luna-tooltip-color` | `#000000` | Tooltip text |
+| `--luna-tooltip-shadow` | `0 1px 2px #00000026` | Tooltip |
+| `--luna-window-background` | `#ecebe5` | Window body |
 | `--luna-window-title-background` | `#0053ee` | Window frame, title bar, dialog title |
 | `--luna-window-frame-padding` | `4px` | Window frame |
 | `--luna-window-title-height` | `21px` | Window title bar |
 | `--luna-window-title-padding` | `4px` | Window title bar |
+| `--luna-window-title-shadow` | `1px 1px #0f1089` | Window title text |
 | `--luna-window-title-font-size` | `11px` | Window title |
 | `--luna-window-title-control-gap` | `2px` | Window title controls |
 | `--luna-window-title-control-size` | `21px` | Window title controls |
@@ -754,7 +763,7 @@ The `luna-slider` component is a range slider. The track uses the field surface.
 
 ### Tabs Component
 
-The `luna-tabs` component is a tab interface with keyboard navigation support. Inactive tabs are white with black text. The selected tab is navy-darkest with white text, and it overlaps the panel by 1px. The panel fill is the window body color, with a gray border. Use `luna-tab` children to define each tab and its content.
+The `luna-tabs` component is a tab interface with keyboard navigation support. Tab and panel colors come from the tab variables. Their defaults match the window body fill and text. The panel border and the top, left, and right borders on every tab default to black. The selected tab fill is one step darker than the other tabs. The selected tab overlaps the panel by 1px. Use `luna-tab` children to define each tab and its content.
 
 **Selector:** `luna-tabs`
 

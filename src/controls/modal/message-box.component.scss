@@ -22,7 +22,7 @@
 
 .message-box-title
 {
-    background: var(--luna-window-title-background, var(--luna-color-action));
+    background: var(--luna-window-title-background);
     border-radius: $border-radius-base $border-radius-base 0 0;
     color: var(--luna-color-text);
     font-family: $font-sans;

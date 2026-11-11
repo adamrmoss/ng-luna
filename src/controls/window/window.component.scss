@@ -1,7 +1,6 @@
 // Window chrome: blue frame via padding; inner stack clipped by one border-radius on `.window`.
 @use '../../theme/fonts' as *;
 @use '../../theme/graphics' as *;
-@use '../../theme/palette' as *;
 @use '../../theme/typography' as *;
 
 :host:not([hidden])
@@ -16,7 +15,7 @@
 
 .window
 {
-    background: var(--luna-window-title-background, var(--luna-color-action));
+    background: var(--luna-window-title-background);
     border-radius: var(--luna-window-radius);
     box-sizing: border-box;
     display: flex;
@@ -56,7 +55,7 @@
 .title-bar
 {
     align-items: center;
-    background: var(--luna-window-title-background, var(--luna-color-action));
+    background: var(--luna-window-title-background);
     box-sizing: border-box;
     color: var(--luna-window-title-color);
     display: flex;
@@ -69,7 +68,7 @@
     margin: 0;
     min-width: 0;
     padding: var(--luna-window-title-padding);
-    text-shadow: $border-width $border-width $indigo-800;
+    text-shadow: var(--luna-window-title-shadow);
 }
 
 .title-bar-text
@@ -87,8 +86,8 @@
 
     button
     {
-        // Caption buttons are the action color brightened 10% toward white.
-        background-color: color-mix(in srgb, var(--luna-color-action) 90%, white);
+        // Caption buttons brighten the title fill 10% toward white.
+        background-color: color-mix(in srgb, var(--luna-window-title-background) 90%, white);
         background-position: center;
         background-repeat: no-repeat;
         border: none;

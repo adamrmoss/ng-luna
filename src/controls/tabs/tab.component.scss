@@ -1,4 +1,4 @@
-// Tab panel on the window surface. Maximized panels opt into flex only while visible.
+// Tab panel. Maximized panels opt into flex only while visible.
 @use '../../theme/layout' as *;
 @use '../../theme/typography' as *;
 
@@ -9,9 +9,13 @@
 
 [role="tabpanel"]
 {
-    background: var(--luna-window-background);
+    background: var(--luna-tab-panel-background);
     border: $border-width solid var(--luna-tab-panel-border);
-    color: var(--luna-color-text);
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+    box-sizing: content-box;
+    color: var(--luna-tab-panel-color);
     padding: var(--luna-tab-panel-padding);
 }
 

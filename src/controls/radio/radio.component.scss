@@ -16,8 +16,8 @@ input[type="radio"]
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
-    background: var(--luna-input-background, var(--luna-color-accent-light));
-    border: $border-width solid var(--luna-input-border, var(--luna-color-border));
+    background: var(--luna-input-background);
+    border: $border-width solid var(--luna-input-border);
     border-radius: 50%;
     box-sizing: border-box;
     cursor: pointer;

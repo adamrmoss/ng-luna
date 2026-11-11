@@ -57,7 +57,7 @@ button
 
 :host([variant='action']) button
 {
-    background: var(--luna-button-action-background, var(--luna-color-action));
+    background: var(--luna-button-action-background);
     border: none;
     border-radius: var(--luna-button-action-radius);
     color: var(--luna-color-text);
@@ -71,18 +71,18 @@ button
     &:not(:disabled):hover
     {
         // Hover brightens the action fill 10% toward white.
-        background: color-mix(in srgb, var(--luna-button-action-background, var(--luna-color-action)) 90%, white);
+        background: color-mix(in srgb, var(--luna-button-action-background) 90%, white);
     }
 }
 
 :host([variant='action'][tone='danger']) button
 {
-    background: var(--luna-button-action-danger-background, var(--luna-color-danger));
+    background: var(--luna-button-action-danger-background);
 
     &:not(:disabled):hover
     {
         // Solid danger hover is the danger fill mixed 10% toward black.
-        background: color-mix(in srgb, var(--luna-button-action-danger-background, var(--luna-color-danger)) 90%, black);
+        background: color-mix(in srgb, var(--luna-button-action-danger-background) 90%, black);
     }
 }
 
@@ -116,7 +116,7 @@ button
 
 :host([variant='icon']) button
 {
-    background: var(--luna-button-action-background, var(--luna-color-action));
+    background: var(--luna-button-action-background);
     border: none;
     border-radius: var(--luna-button-icon-radius);
     color: var(--luna-color-text);
@@ -130,17 +130,17 @@ button
     &:not(:disabled):hover
     {
         // Hover brightens the action fill 10% toward white.
-        background: color-mix(in srgb, var(--luna-button-action-background, var(--luna-color-action)) 90%, white);
+        background: color-mix(in srgb, var(--luna-button-action-background) 90%, white);
     }
 }
 
 :host([variant='icon'][tone='danger']) button
 {
-    background: var(--luna-button-action-danger-background, var(--luna-color-danger));
+    background: var(--luna-button-action-danger-background);
 
     &:not(:disabled):hover
     {
-        background: color-mix(in srgb, var(--luna-button-action-danger-background, var(--luna-color-danger)) 90%, black);
+        background: color-mix(in srgb, var(--luna-button-action-danger-background) 90%, black);
     }
 }
 

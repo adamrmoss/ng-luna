@@ -16,12 +16,12 @@
 
 select
 {
-    background-color: var(--luna-input-background, var(--luna-color-accent-light));
+    background-color: var(--luna-input-background);
     background-image: $select-dropdown-on-field-svg;
     background-position: right center;
     background-repeat: no-repeat;
     background-size: $select-chevron-size;
-    border: $border-width solid var(--luna-input-border, var(--luna-color-border));
+    border: $border-width solid var(--luna-input-border);
     border-radius: var(--luna-input-radius);
     color: var(--luna-color-text);
     font-family: $font-sans;
@@ -32,7 +32,7 @@ select
 
     &:focus
     {
-        border-color: var(--luna-input-border-focus, var(--luna-color-action));
+        border-color: var(--luna-input-border-focus);
         outline: none;
     }
 }
