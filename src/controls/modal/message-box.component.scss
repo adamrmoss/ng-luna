@@ -47,7 +47,8 @@
     line-height: $line-height-tight;
     margin: 0;
     min-width: 0;
-    padding: var(--luna-window-title-padding);
+    // No right padding: the frame is the gap outside the caption buttons. Bottom padding matches that frame.
+    padding: 0 0 var(--luna-window-frame-padding) var(--luna-window-title-padding);
     text-shadow: var(--luna-window-title-shadow);
 
     .message-box-title-heading

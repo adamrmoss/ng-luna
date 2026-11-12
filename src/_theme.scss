@@ -120,8 +120,8 @@
     --luna-window-title-color: #{$white-100};
     --luna-window-title-control-gap: #{$spacing-xxs};
     --luna-window-title-control-size: #{$chrome-size};
-    --luna-window-title-font-size: #{$font-size-xs};
-    --luna-window-title-height: #{$chrome-size};
+    --luna-window-title-font-size: #{$font-size-base};
+    --luna-window-title-height: #{$chrome-size + $spacing-xs};
     --luna-window-title-padding: #{$spacing-xs};
     --luna-window-title-shadow: #{$border-width} #{$border-width} #{$indigo-800};
 }

@@ -259,10 +259,10 @@ Action hover is `color-mix` of `--luna-button-action-background` 90% with white.
 | `--luna-window-background` | `#ecebe5` | Window body |
 | `--luna-window-title-background` | `#0053ee` | Window frame, title bar, dialog title |
 | `--luna-window-frame-padding` | `4px` | Window frame |
-| `--luna-window-title-height` | `21px` | Window title bar |
+| `--luna-window-title-height` | `25px` | Window and dialog title bar |
 | `--luna-window-title-padding` | `4px` | Window title bar |
 | `--luna-window-title-shadow` | `1px 1px #0f1089` | Window title text |
-| `--luna-window-title-font-size` | `11px` | Window title |
+| `--luna-window-title-font-size` | `12px` | Window and dialog title |
 | `--luna-window-title-control-gap` | `2px` | Window title controls |
 | `--luna-window-title-control-size` | `21px` | Window title controls |
 | `--luna-window-body-padding` | `8px` | Window body |
