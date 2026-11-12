@@ -22,7 +22,7 @@
     --luna-button-default-background-hover: #{$gray-100};
     --luna-button-default-border: #{$stone-600};
     --luna-button-default-color: #{$black-900};
-    --luna-button-default-font-size: #{$font-size-xs};
+    --luna-button-default-font-size: #{$font-size-12};
     --luna-button-default-padding-x: #{$spacing-md};
     --luna-button-default-padding-y: #{$spacing-xs};
     --luna-button-default-radius: #{$border-radius-base};
@@ -59,7 +59,7 @@
     --luna-input-disk-padding-y: #{$spacing-sm};
     --luna-input-disk-placeholder: #{$gray-500};
     --luna-input-disk-radius: #{$border-radius-sm};
-    --luna-input-font-size: #{$font-size-xs};
+    --luna-input-font-size: #{$font-size-12};
     --luna-input-padding-x: #{$spacing-xs};
     --luna-input-padding-y: #{$spacing-xs};
     --luna-input-radius: #{$border-radius-sm};
@@ -68,7 +68,7 @@
     --luna-menu-menubar-check-gap: #{$spacing-sm};
     --luna-menu-menubar-color: #{$black-900};
     --luna-menu-menubar-disabled-color: #{$stone-600};
-    --luna-menu-menubar-font-size: #{$font-size-xs};
+    --luna-menu-menubar-font-size: #{$font-size-12};
     --luna-menu-menubar-item-padding-left: #{$spacing-sm};
     --luna-menu-menubar-item-padding-x: #{$spacing-md};
     --luna-menu-menubar-item-padding-y: #{$spacing-xs};
@@ -79,10 +79,13 @@
     --luna-overlay-shadow-quarter: #{$black-25};
     --luna-radio-background: #{$white-100};
     --luna-radio-border: #{$black-900};
+    --luna-select-background: #{$white-100};
+    --luna-select-border: #{$black-900};
+    --luna-select-color: #{$black-900};
     --luna-tab-background: #{$beige-200};
     --luna-tab-background-hover: #{$beige-300};
     --luna-tab-color: #{$black-900};
-    --luna-tab-font-size: #{$font-size-xs};
+    --luna-tab-font-size: #{$font-size-12};
     --luna-tab-margin-right: #{$spacing-xxs};
     --luna-tab-padding-bottom: #{$spacing-xs};
     --luna-tab-padding-x: #{$spacing-md};

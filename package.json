@@ -1,6 +1,6 @@
 {
     "name": "ng-luna",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "description": "An Angular component library. The default paint is the EduBASIC navy theme, set in IBM Plex Sans and IBM Plex Mono.",
     "author": {
         "name": "Adam R Moss",

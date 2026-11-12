@@ -204,8 +204,8 @@ Action hover is `color-mix` of `--luna-button-action-background` 90% with white.
 | `--luna-input-disk-padding-y` | `8px` | Disk name field |
 | `--luna-input-disk-placeholder` | `#858585` | Disk name field placeholder |
 | `--luna-input-disk-radius` | `4px` | Disk name field |
-| `--luna-input-background` | `#003c74` | Select, slider track, progress track |
-| `--luna-input-border` | `#1d5281` | Select, slider track, progress track |
+| `--luna-input-background` | `#003c74` | Slider track and progress track |
+| `--luna-input-border` | `#1d5281` | Slider track and progress track |
 | `--luna-input-border-focus` | `#0053ee` | Select and textarea focus |
 | `--luna-input-font-size` | `11px` | Select and textarea |
 | `--luna-input-padding-x` | `4px` | Select and textarea |
@@ -225,6 +225,9 @@ Action hover is `color-mix` of `--luna-button-action-background` 90% with white.
 | `--luna-menu-menubar-radius` | `0` | Menu panel and trigger |
 | `--luna-radio-background` | `#ffffff` | Radio |
 | `--luna-radio-border` | `#000000` | Radio border |
+| `--luna-select-background` | `#ffffff` | Select |
+| `--luna-select-border` | `#000000` | Select border |
+| `--luna-select-color` | `#000000` | Select text |
 | `--luna-tab-background` | `#ecebe5` | Tab |
 | `--luna-tab-background-hover` | `#ecebe5` | Tab hover |
 | `--luna-tab-color` | `#000000` | Tab text |
@@ -703,7 +706,7 @@ The `luna-radio` component is a radio button with a white disc and a black borde
 
 ### Select Component
 
-The `luna-select` component is a select: IBM Plex Sans, 11px, padding `4px`, radius `2px`, navy fill, steel border. It implements `ControlValueAccessor` for reactive forms support.
+The `luna-select` component is a select: IBM Plex Sans, 11px, padding `4px`, radius `2px`, white fill, black text, and a black border. It implements `ControlValueAccessor` for reactive forms support.
 
 **Selector:** `luna-select`
 
