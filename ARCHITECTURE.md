@@ -40,6 +40,7 @@ src/
 │   ├── tooltip/
 │   ├── window/
 │   ├── luna-control.ts
+│   ├── luna-tone.ts
 │   └── index.ts
 ├── theme/
 │   ├── _breakpoints.scss
@@ -69,7 +70,7 @@ export { Save as SaveSvg } from 'lucide-static';
 
 ## Fonts
 
-`src/theme/_fonts.scss` declares IBM Plex Sans, IBM Plex Mono, and IBM Plex Serif. Each face has woff2 and woff, weights 100 through 700, and italics. The URL prefix is `$font-assets-path`, which defaults to `/fonts`.
+`src/theme/_fonts.scss` declares IBM Plex Sans, IBM Plex Mono, and IBM Plex Serif. Each face has woff2 and woff, at weights 100, 200, 300, 400, 450, 500, 600, and 700, in roman and italic. The URL prefix is `$font-assets-path`, which defaults to `/fonts`.
 
 `npm run build` runs `scripts/stage-fonts.mjs` first. That script copies the files named in `_fonts.scss` from `@ibm/plex` into `.cache/fonts/`. ng-packagr then copies `.cache/fonts` to `dist/fonts`. Consumers copy `node_modules/ng-luna/fonts` to `/fonts` in their app assets. They do not install `@ibm/plex`.
 
@@ -77,15 +78,15 @@ Component styles `@use` the font partial, so the published CSS contains the `@fo
 
 ## Theme partials
 
-`src/_theme.scss` is published at the package root and is `@use 'ng-luna/theme'`. It writes the palette and metrics onto `:root`. `dist/theme/` still holds the partials. Component styles read one `var(--luna-…)` each. The README theme table lists each property, its `:root` value, and what reads it.
+`src/_theme.scss` is published at the package root and is `@use 'ng-luna/theme'`. It writes the palette and metrics onto `:root`. `dist/theme/` still holds the partials. Component styles read the `--luna-…` variables directly. The README theme table lists each property, its `:root` value, and what reads it.
 
 `@use 'ng-luna/theme/global'` still loads the reset and the scrollbar, and it pulls in the parent theme. Palette names such as `palette.$beige-300` are for app layout. Control padding and type stay on the theme variables. An app that loads neither `ng-luna/theme` nor `ng-luna/theme/global` leaves those variables unset.
 
 ## Overlay host
 
-Menu, modal, popup, and tooltip inject CDK `Overlay`. `OverlayComponent` (`luna-overlay`) registers a host element on `LunaOverlayContainer`. The app provides that class as `OverlayContainer` and places `<luna-overlay>` in the root template. Trigger, backdrop, pane, and tooltip rules live in `overlay.component.scss` with `ViewEncapsulation.None`, so they apply to the CDK panes attached under that host.
+Menu, modal, popup, and tooltip inject CDK `Overlay`. `OverlayComponent` (`luna-overlay`) registers a host element on `LunaOverlayContainer`. The app provides that class as `OverlayContainer` and places `<luna-overlay>` in the root template. Trigger, modal and popup veil, pane, and tooltip rules live in `overlay.component.scss` with `ViewEncapsulation.None`, so they apply to the CDK panes attached under that host. Menus close on an outside click. They do not use a backdrop.
 
-`LunaModalService` and `LunaPopupService` share one opener. It centers the caller's component, locks scroll, and attaches one backdrop per surface. The modal veil is 50% black. The popup veil is 25% black plus a blur, and a backdrop click closes the popup. A second surface stacks another veil. Neither service builds a `luna-window`.
+`LunaModalService` and `LunaPopupService` share one opener. It centers the caller's component, locks scroll, and attaches one backdrop per surface. The modal veil is 50% black, and a backdrop click leaves it open. The popup veil is 25% black plus a blur, and a backdrop click closes the popup. Each `open` adds another veil, so custom modals and popups stack. A second alert, confirm, or prompt while a message box is already open is ignored. Neither service builds a `luna-window`.
 
 `LunaDismissStack` owns Escape for menus, message boxes, modals, and popups. Each surface pushes a close handler when it opens and removes it when it closes. Escape runs the top handler only. Message boxes still handle Enter themselves, and their Escape handler confirms an alert or cancels the other boxes.
 

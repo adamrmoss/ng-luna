@@ -4,7 +4,7 @@ An Angular component library. The default paint is the EduBASIC navy theme, set 
 
 ## Overview
 
-ng-luna provides standalone Angular components. Buttons, fields, menus, windows, tabs, and dialogs ship with the EduBASIC surfaces: a light window and default button, navy fields, and bright-blue actions. Another app reskins that theme with CSS custom properties. Font families stay [IBM Plex](https://www.ibm.com/plex/) Sans and IBM Plex Mono.
+ng-luna provides standalone Angular components. Buttons, fields, menus, windows, tabs, and dialogs ship with the EduBASIC surfaces: a light window, white text fields and a white default button, navy menu highlights and tracks, and bright-blue actions. Another app reskins that theme with CSS custom properties. Font families stay [IBM Plex](https://www.ibm.com/plex/) Sans and IBM Plex Mono.
 
 All components are **standalone** and implement Angular's reactive forms API where applicable, making them compatible with `FormControl`, `FormGroup`, and `ngModel`. Components are built on **Angular CDK** for enhanced accessibility, keyboard navigation, drag-and-drop, and cross-platform support.
 
@@ -40,9 +40,9 @@ import { ButtonComponent } from 'ng-luna';
 })
 ```
 
-### Overlay (menu, modal, tooltip)
+### Overlay (menu, modal, popup, tooltip)
 
-Menu, modal, and tooltip render through Angular CDK Overlay. Put `OverlayComponent` in the root template and provide `LunaOverlayContainer` so those panes attach inside the app and use Luna styles.
+Menu, modal, popup, and tooltip render through Angular CDK Overlay. Put `OverlayComponent` in the root template and provide `LunaOverlayContainer` so those panes attach inside the app and use Luna styles.
 
 **1. Root template** (`app.component.html`):
 
@@ -67,7 +67,7 @@ bootstrapApplication(AppComponent, {
 });
 ```
 
-`@angular/cdk` is a peer dependency. Menu, modal, and tooltip inject CDK `Overlay` from that package. Menu trigger, backdrop, modal pane, and tooltip styles ship with `OverlayComponent`.
+`@angular/cdk` is a peer dependency. Menu, modal, popup, and tooltip use CDK `Overlay` from that package. Menu trigger, modal and popup veils and panes, and tooltip styles ship with `OverlayComponent`. Menus close on an outside click. They do not use a backdrop.
 
 ### Using Bundled Fonts
 
@@ -122,15 +122,15 @@ Once configured, you can use the fonts directly in your CSS/SCSS:
 ```
 
 **Available font families:**
-- `'IBM Plex Sans', sans-serif` - Default and command buttons, menubar rows and triggers, select, textarea, tabs, title bar, dialog titles, fieldset legends
+- `'IBM Plex Sans', sans-serif` - Default and command buttons, menubar rows and triggers, select, textarea, tabs, tooltip, window and dialog titles, and message box text
 - `'IBM Plex Mono', monospace` - Action buttons and the disk name field
-- `'IBM Plex Serif', serif` - Available for app styles; controls do not use it
+- `'IBM Plex Serif', serif` - `theme/global` sets it on `body`. Controls do not use it
 
 **Note:** The ng-luna components will automatically use these fonts once they are available at `/fonts`. Font families are not custom properties.
 
 ### Theme
 
-The default paint is the EduBASIC palette, written on `:root` by `@use 'ng-luna/theme'`. Set any property below on `:root` or an ancestor to reskin a control. Each component reads its own token with one `var()` lookup, for example `var(--luna-window-title-background)`. Changing `--luna-color-action` does not change the title bar. Set `--luna-window-title-background` to reskin that fill. Each metric names its component and variant.
+The default paint is the EduBASIC palette, written on `:root` by `@use 'ng-luna/theme'`. Set any property below on `:root` or an ancestor to reskin a control. A control reads the variables named for it. Shared colors are separate from those metrics: changing `--luna-color-action` does not change the title bar. Set `--luna-window-title-background` to reskin that fill. Component metrics name the control and variant.
 
 Load the theme from an app stylesheet. `@use 'ng-luna/theme/global'` loads the same paint, plus the reset and the scrollbar. An app that loads neither leaves the variables unset.
 
@@ -138,7 +138,7 @@ Load the theme from an app stylesheet. `@use 'ng-luna/theme/global'` loads the s
 @use 'ng-luna/theme';
 ```
 
-`global` applies `box-sizing: border-box`, IBM Plex Serif on `body`, IBM Plex Sans on headings, and the Luna scrollbar. `_palette.scss` and `_typography.scss` in the published `theme/` folder are the SCSS source for layout you write yourself:
+`global` applies `box-sizing: border-box`, IBM Plex Serif on `body`, IBM Plex Sans on headings, legends, and labels, and the Luna scrollbar. `_palette.scss` and `_typography.scss` in the published `theme/` folder are the SCSS source for layout you write yourself:
 
 ```scss
 @use 'ng-luna/theme/palette' as palette;
@@ -153,16 +153,16 @@ Action hover is `color-mix` of `--luna-button-action-background` 90% with white.
 | Property | :root value | Read by |
 |---|---|---|
 | `--luna-color-accent-dark` | `#00138c` | Editor and command toolbars |
-| `--luna-color-accent-light` | `#003c74` | Menu row hover |
-| `--luna-color-action` | `#0053ee` | Button focus outline and text selection |
-| `--luna-color-border` | `#1d5281` | Command button border |
-| `--luna-color-text` | `#ffffff` | Action and icon button, field, and menu highlight |
+| `--luna-color-accent-light` | `#003c74` | Menu row highlight and open trigger |
+| `--luna-color-action` | `#0053ee` | Button, checkbox, and radio focus; text selection |
+| `--luna-color-border` | `#1d5281` | Command button border; editor and command toolbar edge |
+| `--luna-color-text` | `#ffffff` | Action, command, and icon button text; menu highlight; text selection; checkbox label |
 | `--luna-color-danger` | `#e5a01a` | Danger menu row and compact danger icon text |
 | `--luna-button-default-background` | `#ffffff` | Default button |
 | `--luna-button-default-background-hover` | `#f2f2f1` | Default button hover |
 | `--luna-button-default-border` | `#9d9c99` | Default button border |
 | `--luna-button-default-color` | `#000000` | Default button text |
-| `--luna-button-default-font-size` | `11px` | Default button |
+| `--luna-button-default-font-size` | `12px` | Default button |
 | `--luna-button-default-padding-x` | `12px` | Default button |
 | `--luna-button-default-padding-y` | `4px` | Default button |
 | `--luna-button-default-radius` | `3px` | Default button |
@@ -203,11 +203,11 @@ Action hover is `color-mix` of `--luna-button-action-background` 90% with white.
 | `--luna-input-disk-padding-x` | `12px` | Disk name field |
 | `--luna-input-disk-padding-y` | `8px` | Disk name field |
 | `--luna-input-disk-placeholder` | `#858585` | Disk name field placeholder |
-| `--luna-input-disk-radius` | `4px` | Disk name field |
+| `--luna-input-disk-radius` | `2px` | Disk name field |
 | `--luna-input-background` | `#003c74` | Slider track and progress track |
 | `--luna-input-border` | `#1d5281` | Slider track and progress track |
 | `--luna-input-border-focus` | `#0053ee` | Select and textarea focus |
-| `--luna-input-font-size` | `11px` | Select and textarea |
+| `--luna-input-font-size` | `12px` | Select and textarea |
 | `--luna-input-padding-x` | `4px` | Select and textarea |
 | `--luna-input-padding-y` | `4px` | Select and textarea |
 | `--luna-input-radius` | `2px` | Select and textarea |
@@ -215,7 +215,7 @@ Action hover is `color-mix` of `--luna-button-action-background` 90% with white.
 | `--luna-menu-menubar-border` | `#9d9c99` | Menu panel border and separator |
 | `--luna-menu-menubar-color` | `#000000` | Menu text and triggers |
 | `--luna-menu-menubar-disabled-color` | `#9d9c99` | Disabled menu row |
-| `--luna-menu-menubar-font-size` | `11px` | Menu rows and triggers |
+| `--luna-menu-menubar-font-size` | `12px` | Menu rows and triggers |
 | `--luna-menu-menubar-item-padding-y` | `4px` | Menu row and trigger |
 | `--luna-menu-menubar-item-padding-x` | `12px` | Menu row and trigger |
 | `--luna-menu-menubar-item-padding-left` | `8px` | Menu row |
@@ -228,15 +228,15 @@ Action hover is `color-mix` of `--luna-button-action-background` 90% with white.
 | `--luna-select-background` | `#ffffff` | Select |
 | `--luna-select-border` | `#000000` | Select border |
 | `--luna-select-color` | `#000000` | Select text |
-| `--luna-tab-background` | `#ecebe5` | Tab |
+| `--luna-tab-background` | `#f0f0ea` | Tab |
 | `--luna-tab-background-hover` | `#ecebe5` | Tab hover |
 | `--luna-tab-color` | `#000000` | Tab text |
-| `--luna-tab-selected-background` | `#e8e6dc` | Selected tab |
+| `--luna-tab-selected-background` | `#ecebe5` | Selected tab |
 | `--luna-tab-selected-color` | `#000000` | Selected tab text |
 | `--luna-tab-panel-background` | `#ecebe5` | Tab panel |
 | `--luna-tab-panel-border` | `#000000` | Tab and panel border |
 | `--luna-tab-panel-color` | `#000000` | Tab panel text |
-| `--luna-tab-font-size` | `11px` | Tab |
+| `--luna-tab-font-size` | `12px` | Tab |
 | `--luna-tab-padding-y` | `4px` | Tab |
 | `--luna-tab-padding-x` | `12px` | Tab |
 | `--luna-tab-padding-bottom` | `4px` | Tab |
@@ -265,7 +265,7 @@ Action hover is `color-mix` of `--luna-button-action-background` 90% with white.
 | `--luna-window-title-height` | `25px` | Window and dialog title bar |
 | `--luna-window-title-padding` | `4px` | Window title bar |
 | `--luna-window-title-shadow` | `1px 1px #0f1089` | Window title text |
-| `--luna-window-title-font-size` | `12px` | Window and dialog title |
+| `--luna-window-title-font-size` | `16px` | Window and dialog title |
 | `--luna-window-title-control-gap` | `2px` | Window title controls |
 | `--luna-window-title-control-size` | `21px` | Window title controls |
 | `--luna-window-body-padding` | `8px` | Window body |
@@ -348,7 +348,7 @@ import * as Icons from 'ng-luna';
 
 `LunaControl` supplies these inputs on button, checkbox, fieldset, input, menu bar, progress, radio, select, slider, tab, tabs, textarea, and window:
 
-- `id?: string` - Element ID
+- `id?: string` - Element ID. On checkbox, input, radio, select, slider, and textarea, an unset `id` uses `name`
 - `name?: string` - Name attribute
 - `disabled: boolean` - Whether the control is disabled (default: `false`)
 - `isMaximized: boolean` - Expands the control to fill its containing block (default: `false`); adds the `luna-maximized` CSS class to the host element
@@ -363,13 +363,13 @@ The `luna-button` component paints one variant at a time. `size` applies only wi
 
 **Selector:** `luna-button`
 
-`variant="default"` is IBM Plex Sans, 11px, line-height 1.2, padding `4px 12px`, a gray border, radius `3px`, a white face, and black text. Hover uses `--luna-button-default-background-hover`. An active press moves it down 1px.
+`variant="default"` is IBM Plex Sans, 12px, line-height 1.2, padding `4px 12px`, a gray border, radius `3px`, a white face, and black text. Hover uses `--luna-button-default-background-hover`. An active press moves it down 1px.
 
-`variant="action"` is IBM Plex Mono, 12px, weight 500, padding `8px 12px`, gap `8px`, no border, radius `4px`, and the same fill and press. Projected content, including a `luna-icon` at `size="16"`, is centered in that gap.
+`variant="action"` is IBM Plex Mono, 12px, weight 500, padding `8px 12px`, gap `8px`, no border, radius `4px`, and the action fill. Hover mixes that fill 10% toward white. An active press moves it down 1px. Projected content, including a `luna-icon` at `size="16"`, is centered in that gap.
 
-`variant="command"` is IBM Plex Sans, 12px, padding `4px 12px`, no gap, a steel border, square corners, and a steel fill. Hover lightens the fill. An active press uses the dark steel fill.
+`variant="command"` is IBM Plex Sans, 12px, padding `4px 12px`, no gap, a steel border, square corners, and a steel fill. Hover lightens the fill. An active press uses the dark steel fill and does not shift.
 
-`variant="icon"` is a 28px square, padding `0`, radius `4px`, with the action fill. `size="compact"` is a 24px square, radius `3px`, with a translucent fill. The glyph stays `luna-icon` `size="16"`.
+`variant="icon"` is a 28px square, padding `0`, radius `4px`, with the action fill. `size="compact"` is a 24px square, radius `3px`, with a translucent fill. Pair it with `luna-icon` at `size="16"`. Compact does not shift on press.
 
 `tone="danger"` on an action button, and on an icon button at the default size, uses a solid danger fill. Compact danger keeps the 24px box: danger text on a translucent danger fill. `disabled` sets `cursor: not-allowed`, opacity `0.6`, and drops hover and active treatment on every variant.
 
@@ -408,7 +408,7 @@ The `luna-button` component paints one variant at a time. `size` applies only wi
 
 ### Checkbox Component
 
-The `luna-checkbox` component is a checkbox with a white box and a black border. It implements `ControlValueAccessor` for reactive forms support.
+The `luna-checkbox` component is a checkbox with a white box and a black border. The label uses `--luna-color-text`, white by default. It implements `ControlValueAccessor` for reactive forms support.
 
 **Selector:** `luna-checkbox`
 
@@ -501,8 +501,8 @@ The `luna-toolbar` component is a horizontal bar. `luna-toolbar-group` is a row 
 - `variant: LunaToolbarVariant` - Bar metrics: `'cluster' | 'editor' | 'command' | 'end' | 'float'` (default: `'cluster'`)
 
 - `variant="cluster"`: padding `0`, gap `4px`, no background. Icon buttons.
-- `variant="editor"`: padding `12px 16px`, navy-darkest bar, steel bottom border, `min-height: 56px`, space between, centered. The first group gaps at `12px`. A following group gaps at `8px`.
-- `variant="command"`: padding `8px`, gap `8px`, the same bar, centered. Command buttons.
+- `variant="editor"`: padding `12px 16px`, `#00138c` bar (`--luna-color-accent-dark`), steel bottom border, `min-height: 56px`, space between, items vertically centered. The first group gaps at `12px`. A following group gaps at `8px`.
+- `variant="command"`: padding `8px`, gap `8px`, the same bar, items vertically centered. Command buttons.
 - `variant="end"`: padding `0`, gap `0`, aligned to the end, `flex-shrink: 0`.
 - `variant="float"`: padding `0`, gap `0`, `position: absolute`, `top: 16px`, `right: 16px`.
 
@@ -542,13 +542,13 @@ The `luna-menu-bar` component is a horizontal bar for one or more `luna-menu` co
 
 ### Menu Component
 
-The `luna-menu` component opens a menu panel from a trigger, or at a viewport point. The panel is Sans 11px on `#dcdcd7`, with black text, padding `4px 12px 4px 8px`, and square corners. A highlighted row and an open trigger are navy with white text. It supports checked items, icons, a danger tone, hover highlighting, Up/Down to move the highlight within the list, closing with Escape, and Enter to activate the highlighted row. When the menu sits inside a **Menu Bar Component**, Left/Right move to the previous or next top-level menu in the bar (with wraparound).
+The `luna-menu` component opens a menu panel from a trigger, or at a viewport point. The panel is Sans 12px on `#dcdcd7`, with black text, padding `4px 12px 4px 8px`, and square corners. A highlighted row and an open trigger are navy with white text. It supports checked items, icons, a danger tone, hover highlighting, Up/Down to move the highlight within the list, closing with Escape or an outside click, and Enter to activate the highlighted row. When the menu sits inside a **Menu Bar Component**, Left/Right move to the previous or next top-level menu in the bar (with wraparound).
 
 **Selector:** `luna-menu`
 
 **Trigger directive:** `lunaMenuTrigger` – attach to the button that opens the menu.
 
-**Link directive:** `lunaMenuLink` – attach to an anchor in the menu bar. It uses the same chrome as the trigger, including hover, and does not open a menu. The active class stays on the button.
+**Link directive:** `lunaMenuLink` – attach to an anchor in the menu bar. It uses the same chrome as the trigger, including hover, and does not open a menu. The open highlight class `luna-menu-trigger-active` stays on the trigger.
 
 Use `OverlayComponent` and `LunaOverlayContainer` as described in **Overlay (menu, modal, tooltip)** above so the menu overlay and trigger are styled. For a top-level menu bar, use the **Menu Bar Component** and place one or more `luna-menu` inside it.
 
@@ -563,7 +563,7 @@ Use `OverlayComponent` and `LunaOverlayContainer` as described in **Overlay (men
 
 #### Outputs
 
-- `itemSelect: EventEmitter<LunaMenuItem | null>` – Emitted when an item is chosen (or `null` when the menu is closed without selection, e.g. via Escape or backdrop click).
+- `itemSelect: EventEmitter<LunaMenuItem | null>` – Emitted when an item is chosen (or `null` when the menu is closed without selection, e.g. via Escape or an outside click).
 
 #### Example
 
@@ -624,7 +624,7 @@ export class MyComponent {
 
 ### Input Component
 
-The `luna-input` component is the disk name field: IBM Plex Mono, 13px, padding `8px 12px`, radius `4px`, white fill, black text, and a black border. It implements `ControlValueAccessor` for reactive forms support.
+The `luna-input` component is the disk name field: IBM Plex Mono, 13px, padding `8px 12px`, radius `2px`, white fill, black text, and a black border. It implements `ControlValueAccessor` for reactive forms support.
 
 **Selector:** `luna-input`
 
@@ -652,7 +652,7 @@ The `luna-input` component is the disk name field: IBM Plex Mono, 13px, padding 
 
 ### Progress Component
 
-The `luna-progress` component is a 14px progress bar. The track uses the field surface. The indicator is a green gradient. Leave `value` unset for an indeterminate sliding bar.
+The `luna-progress` component is a 14px progress bar. The track uses `--luna-input-background` and `--luna-input-border`. The indicator is a green gradient. Leave `value` unset for an indeterminate sliding bar.
 
 **Selector:** `luna-progress`
 
@@ -706,7 +706,7 @@ The `luna-radio` component is a radio button with a white disc and a black borde
 
 ### Select Component
 
-The `luna-select` component is a select: IBM Plex Sans, 11px, padding `4px`, radius `2px`, white fill, black text, and a black border. It implements `ControlValueAccessor` for reactive forms support.
+The `luna-select` component is a select: IBM Plex Sans, 12px, padding `4px` with `20px` on the right for the chevron, radius `2px`, white fill, black text, and a black border. It implements `ControlValueAccessor` for reactive forms support.
 
 **Selector:** `luna-select`
 
@@ -731,7 +731,7 @@ No additional inputs beyond the common base inputs.
 
 ### Slider Component
 
-The `luna-slider` component is a range slider. The track uses the field surface. It implements `ControlValueAccessor` for reactive forms support.
+The `luna-slider` component is a range slider. The track uses `--luna-input-background` and `--luna-input-border`. It implements `ControlValueAccessor` for reactive forms support.
 
 **Selector:** `luna-slider`
 
@@ -761,7 +761,7 @@ The `luna-slider` component is a range slider. The track uses the field surface.
 
 ### Tabs Component
 
-The `luna-tabs` component is a tab interface with keyboard navigation support. Tab and panel colors come from the tab variables. Their defaults match the window body fill and text. The panel border and the top, left, and right borders on every tab default to black. The selected tab fill is one step darker than the other tabs. The selected tab overlaps the panel by 1px. Use `luna-tab` children to define each tab and its content.
+The `luna-tabs` component is a tab interface with keyboard navigation support. Idle tabs use `--luna-tab-background` (`#f0f0ea`). Hover, the selected tab, and the panel use `#ecebe5`, the same fill as the window body, so an idle tab is one step lighter than the selected tab. Text defaults to black. The panel border and the top, left, and right borders on every tab default to black. The selected tab overlaps the panel by 1px. Use `luna-tab` children to define each tab and its content.
 
 **Selector:** `luna-tabs`
 
@@ -787,7 +787,6 @@ When `isMaximized` is set on `luna-tabs`, it is automatically propagated to ever
 #### Keyboard Navigation
 
 - **Arrow Left/Right** - Navigate between tabs
-- **Tab** - Move focus to tab panel content
 
 #### Example
 
@@ -814,7 +813,7 @@ onTabChange(tabId: string) { this.activeTabId = tabId; }
 
 ### Textarea Component
 
-The `luna-textarea` component is a multiline field: IBM Plex Sans, 11px, padding `4px`, radius `2px`, white fill, black text, and a black border. It implements `ControlValueAccessor` for reactive forms support.
+The `luna-textarea` component is a multiline field: IBM Plex Sans, 12px, padding `4px`, radius `2px`, white fill, black text, and a black border. It implements `ControlValueAccessor` for reactive forms support.
 
 **Selector:** `luna-textarea`
 
@@ -844,7 +843,7 @@ The `luna-textarea` component is a multiline field: IBM Plex Sans, 11px, padding
 
 ### Overlay Component
 
-The `luna-overlay` component is the host for menu, modal, and tooltip panes. Add it once, at the root, and provide `LunaOverlayContainer`. Setup is in **Overlay (menu, modal, tooltip)** under [Usage](#usage). The component has no inputs or outputs.
+The `luna-overlay` component is the host for menu, modal, popup, and tooltip panes. Add it once, at the root, and provide `LunaOverlayContainer`. Setup is in **Overlay (menu, modal, popup, tooltip)** under [Usage](#usage). The component has no inputs or outputs.
 
 **Selector:** `luna-overlay`
 
@@ -856,7 +855,7 @@ The `luna-overlay` component is the host for menu, modal, and tooltip panes. Add
 
 `LunaModalService` opens a centered dialog on a 50% black veil with no blur. A backdrop click leaves it open. Escape closes it through the shared dismiss stack. It is `providedIn: 'root'`. A second alert, confirm, or prompt while one is already open is ignored. Custom dialogs opened with `open` can stack.
 
-The message box uses the window frame, title bar, and body fill. Message boxes still handle Enter themselves. Their Escape handler sits above the modal close: Escape cancels a confirm or prompt, and confirms an alert.
+The message box uses the window frame, title bar, and body fill. The title uses the window title type. Body text is IBM Plex Sans at 13px. Message boxes still handle Enter themselves. Their Escape handler sits above the modal close: Escape cancels a confirm or prompt, and confirms an alert.
 
 #### Message boxes
 
@@ -943,7 +942,7 @@ this.popups.open<string>(Publication, { data: 'A note from the shelf.' }).subscr
 
 ### Tooltip
 
-The `lunaTooltip` directive shows a delayed tooltip on hover and focus. An empty string leaves it closed. Show delay defaults to 60ms. Hide delay defaults to 250ms.
+The `lunaTooltip` directive shows a delayed tooltip on hover and focus. The text is IBM Plex Sans at 11px, with padding `4px 8px` and radius `2px`. An empty string leaves it closed. Show delay defaults to 60ms. Hide delay defaults to 250ms.
 
 **Directive:** `TooltipDirective`, selector `[lunaTooltip]`
 
@@ -994,7 +993,7 @@ The `luna-window` component is a draggable window with a title bar and window co
 
 #### Dragging and maximizing
 
-The window can be dragged by its title bar. Double-clicking the title bar toggles maximize/restore when `showMaximize` is `true`.
+The window can be dragged by its title bar. Double-clicking the title bar emits `maximize` or `restore` when `showMaximize` is `true`. The window does not change `isMaximized` itself. The parent sets that input.
 
 When `isMaximized` is `true`, dragging is disabled. The host margin is `var(--luna-window-inset)` and the width and height are `calc(100% - 2 * var(--luna-window-inset))`. `:root` sets the inset to `0`. A shell stylesheet opts into a gutter by setting `--luna-window-inset` on the window. To fill the viewport, the host's ancestors need `height: 100%` down to `html`. Drag position is reset when maximizing. Every window fades in with opacity over 150ms. The same entrance runs on modal and popup veils and panes.
 
@@ -1019,7 +1018,6 @@ When `isMaximized` is `true`, dragging is disabled. The host margin is `var(--lu
 - **Announcements** - Checkbox, input, progress, radio, select, slider, and textarea announce state changes with `LiveAnnouncer`.
 - **Keyboard** - Tabs move with Left and Right. An open menu moves with Up and Down and activates with Enter. Inside a menu bar, Left and Right move to the neighboring menu. Escape closes the top menu, message box, modal, or popup. A field inside that surface does not swallow Escape. A message box confirms with Enter; Escape cancels, or confirms when the box is an alert.
 - **Drag** - `luna-window` drags from the title bar, optionally inside `boundaryElement`.
-- **Direction** - Button and input honor CDK `Dir` when an ancestor provides it.
 - **Numbers** - Progress and slider coerce numeric inputs through CDK.
 
 ## Reactive Forms Support
@@ -1074,7 +1072,7 @@ Run the component workshop:
 npm run storybook
 ```
 
-This serves stories at `http://localhost:6006`. Each public control has a story next to its source under `src/controls/`. The Controls panel edits inputs. Menus, modals, popups, and tooltips render inside `luna-overlay`, which `.storybook/preview.ts` adds to every story and pairs with `LunaOverlayContainer`.
+This serves stories at `http://localhost:6006`. Stories sit next to the controls under `src/controls/`. The Controls panel edits inputs. Menus, modals, popups, and tooltips render inside `luna-overlay`, which `.storybook/preview.ts` adds to every story and pairs with `LunaOverlayContainer`.
 
 A static build:
 
@@ -1136,6 +1134,8 @@ ng-luna/
 │   │   ├── toolbar/       # Toolbar and toolbar group
 │   │   ├── tooltip/       # Tooltip directive + component
 │   │   ├── window/        # Window component
+│   │   ├── luna-control.ts
+│   │   ├── luna-tone.ts
 │   │   └── index.ts       # Controls barrel export
 │   ├── theme/             # Theme (palette, typography, fonts, etc.)
 │   │   ├── _breakpoints.scss
