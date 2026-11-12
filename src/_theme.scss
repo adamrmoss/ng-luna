@@ -36,6 +36,8 @@
     --luna-button-icon-font-size: #{$font-size-base};
     --luna-button-icon-radius: #{$border-radius-md};
     --luna-button-icon-size: 28px;
+    --luna-checkbox-background: #{$white-100};
+    --luna-checkbox-border: #{$black-900};
     --luna-color-accent-dark: #{$indigo-900};
     --luna-color-accent-light: #{$navy-800};
     --luna-color-action: #{$blue-300};
@@ -75,6 +77,8 @@
     --luna-menu-menubar-radius: #{$border-radius-none};
     --luna-overlay-shadow-half: #{$black-50};
     --luna-overlay-shadow-quarter: #{$black-25};
+    --luna-radio-background: #{$white-100};
+    --luna-radio-border: #{$black-900};
     --luna-tab-background: #{$beige-200};
     --luna-tab-background-hover: #{$beige-300};
     --luna-tab-color: #{$black-900};

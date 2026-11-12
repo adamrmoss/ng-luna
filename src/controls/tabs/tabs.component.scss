@@ -20,7 +20,7 @@ div[role="tablist"]
     {
         background: var(--luna-tab-background);
         border-color: var(--luna-tab-panel-border);
-        border-radius: $border-radius-base $border-radius-base 0 0;
+        border-radius: $border-radius-base $border-radius-base $border-radius-none $border-radius-none;
         border-style: solid;
         border-width: $border-width $border-width 0;
         box-sizing: content-box;

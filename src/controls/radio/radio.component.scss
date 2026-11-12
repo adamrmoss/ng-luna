@@ -1,12 +1,11 @@
-// Radio and label on the field surface, with a light dot.
-@use '../../theme/graphics' as *;
+// Radio disc. The selected mark is a dot centered in the circle.
 @use '../../theme/typography' as *;
 
 :host:not([hidden])
 {
     align-items: center;
     display: inline-flex;
-    gap: $spacing-sm;
+    gap: $spacing-xs;
     margin-bottom: $spacing-xs;
     padding: $spacing-xxs 0;
 }
@@ -16,32 +15,26 @@ input[type="radio"]
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
-    background: var(--luna-input-background);
-    border: $border-width solid var(--luna-input-border);
+    background-color: var(--luna-radio-background);
+    background-image: none;
+    border: $border-width solid var(--luna-radio-border);
     border-radius: 50%;
     box-sizing: border-box;
     cursor: pointer;
-    flex-shrink: 0;
+    flex: 0 0 $checkbox-size;
     height: $checkbox-size;
     margin: 0;
-    position: relative;
+    padding: 0;
     width: $checkbox-size;
 
-    &::after
+    // Centered dot. The disc stays white in both states.
+    &:checked
     {
-        background: none;
-        content: "";
-        height: $radio-mark-size;
-        left: $radio-mark-inset;
-        position: absolute;
-        top: $radio-mark-inset;
-        width: $radio-mark-size;
-    }
-
-    &:checked::after
-    {
-        background: $radio-dot-svg no-repeat center;
-        filter: invert(1);
+        background-image: radial-gradient(
+            circle at center,
+            var(--luna-radio-border) #{$radio-mark-size * 0.5},
+            transparent #{$radio-mark-size * 0.5}
+        );
     }
 
     &:focus-visible
@@ -59,7 +52,6 @@ input[type="radio"]
 
 label
 {
-    color: var(--luna-color-text);
     cursor: pointer;
     line-height: $line-height-tight;
 }

@@ -1,4 +1,4 @@
-// Checkbox and label on the field surface, with a light check mark.
+// Checkbox box. The mark is the black check graphic.
 @use '../../theme/graphics' as *;
 @use '../../theme/typography' as *;
 
@@ -15,8 +15,8 @@ input[type="checkbox"]
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
-    background: var(--luna-input-background);
-    border: $border-width solid var(--luna-input-border);
+    background: var(--luna-checkbox-background);
+    border: $border-width solid var(--luna-checkbox-border);
     box-sizing: border-box;
     cursor: pointer;
     flex-shrink: 0;
@@ -39,7 +39,6 @@ input[type="checkbox"]
     &:checked::after
     {
         background: $checkmark-svg no-repeat center;
-        filter: invert(1);
     }
 
     &:focus-visible

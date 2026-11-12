@@ -49,7 +49,8 @@ body
     --luna-window-title-background: #{$orange-500};
 }
 
-.demo-status
+.demo-radios
 {
-    margin-top: $spacing-sm;
+    display: flex;
+    gap: $spacing-lg;
 }

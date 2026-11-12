@@ -5,6 +5,8 @@ import { fn } from 'storybook/test';
 import { FieldsetComponent } from '../fieldset/fieldset.component';
 import { RadioComponent } from './radio.component';
 
+const emitChange = fn();
+
 type RadioStoryArgs = {
     change: (value: string) => void;
     disabled: boolean;
@@ -17,7 +19,7 @@ type RadioStoryArgs = {
  */
 const meta: Meta<RadioStoryArgs> = {
     args: {
-        change: fn(),
+        change: emitChange,
         disabled: false,
         legend: 'Choose an option',
         selected: 'option1',
@@ -33,33 +35,38 @@ const meta: Meta<RadioStoryArgs> = {
         }),
     ],
     render: (args) => ({
-        props: args,
+        props: {
+            ...args,
+            emitChange,
+        },
         template: `
             <luna-fieldset [legend]="legend">
-                <luna-radio
-                    [disabled]="disabled"
-                    label="Option 1"
-                    name="radio-story"
-                    value="option1"
-                    [(ngModel)]="selected"
-                    (change)="change($event)">
-                </luna-radio>
-                <luna-radio
-                    [disabled]="disabled"
-                    label="Option 2"
-                    name="radio-story"
-                    value="option2"
-                    [(ngModel)]="selected"
-                    (change)="change($event)">
-                </luna-radio>
-                <luna-radio
-                    [disabled]="disabled"
-                    label="Option 3"
-                    name="radio-story"
-                    value="option3"
-                    [(ngModel)]="selected"
-                    (change)="change($event)">
-                </luna-radio>
+                <div class="demo-radios">
+                    <luna-radio
+                        [disabled]="disabled"
+                        label="Option 1"
+                        name="radio-story"
+                        value="option1"
+                        [(ngModel)]="selected"
+                        (change)="emitChange($event)">
+                    </luna-radio>
+                    <luna-radio
+                        [disabled]="disabled"
+                        label="Option 2"
+                        name="radio-story"
+                        value="option2"
+                        [(ngModel)]="selected"
+                        (change)="emitChange($event)">
+                    </luna-radio>
+                    <luna-radio
+                        [disabled]="disabled"
+                        label="Option 3"
+                        name="radio-story"
+                        value="option3"
+                        [(ngModel)]="selected"
+                        (change)="emitChange($event)">
+                    </luna-radio>
+                </div>
             </luna-fieldset>
         `,
     }),

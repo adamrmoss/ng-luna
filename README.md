@@ -153,10 +153,10 @@ Action hover is `color-mix` of `--luna-button-action-background` 90% with white.
 | Property | :root value | Read by |
 |---|---|---|
 | `--luna-color-accent-dark` | `#00138c` | Editor and command toolbars |
-| `--luna-color-accent-light` | `#003c74` | Menu row hover and dialog body |
+| `--luna-color-accent-light` | `#003c74` | Menu row hover |
 | `--luna-color-action` | `#0053ee` | Button focus outline and text selection |
-| `--luna-color-border` | `#1d5281` | Command button border and dialog |
-| `--luna-color-text` | `#ffffff` | Action and icon button, field, menu highlight, and dialog text |
+| `--luna-color-border` | `#1d5281` | Command button border |
+| `--luna-color-text` | `#ffffff` | Action and icon button, field, and menu highlight |
 | `--luna-color-danger` | `#e5a01a` | Danger menu row and compact danger icon text |
 | `--luna-button-default-background` | `#ffffff` | Default button |
 | `--luna-button-default-background-hover` | `#f2f2f1` | Default button hover |
@@ -190,6 +190,8 @@ Action hover is `color-mix` of `--luna-button-action-background` 90% with white.
 | `--luna-button-icon-compact-background-hover` | `#ffffff33` | Compact icon button hover |
 | `--luna-button-icon-compact-danger-background` | `#e5a01a33` | Compact danger icon button |
 | `--luna-button-icon-compact-danger-background-hover` | `#e5a01a4d` | Compact danger icon button hover |
+| `--luna-checkbox-background` | `#ffffff` | Checkbox |
+| `--luna-checkbox-border` | `#000000` | Checkbox border |
 | `--luna-fieldset-background` | `#ecebe5` | Fieldset and legend |
 | `--luna-fieldset-border` | `#000000` | Fieldset and legend border |
 | `--luna-fieldset-color` | `#000000` | Fieldset and legend text |
@@ -202,8 +204,8 @@ Action hover is `color-mix` of `--luna-button-action-background` 90% with white.
 | `--luna-input-disk-padding-y` | `8px` | Disk name field |
 | `--luna-input-disk-placeholder` | `#858585` | Disk name field placeholder |
 | `--luna-input-disk-radius` | `4px` | Disk name field |
-| `--luna-input-background` | `#003c74` | Select, checkbox, radio, slider track, progress track |
-| `--luna-input-border` | `#1d5281` | Select, checkbox, radio, slider track, progress track |
+| `--luna-input-background` | `#003c74` | Select, slider track, progress track |
+| `--luna-input-border` | `#1d5281` | Select, slider track, progress track |
 | `--luna-input-border-focus` | `#0053ee` | Select and textarea focus |
 | `--luna-input-font-size` | `11px` | Select and textarea |
 | `--luna-input-padding-x` | `4px` | Select and textarea |
@@ -221,6 +223,8 @@ Action hover is `color-mix` of `--luna-button-action-background` 90% with white.
 | `--luna-menu-menubar-margin-bottom` | `8px` | Menu bar |
 | `--luna-menu-menubar-min-width` | `10rem` | Menu panel |
 | `--luna-menu-menubar-radius` | `0` | Menu panel and trigger |
+| `--luna-radio-background` | `#ffffff` | Radio |
+| `--luna-radio-border` | `#000000` | Radio border |
 | `--luna-tab-background` | `#ecebe5` | Tab |
 | `--luna-tab-background-hover` | `#ecebe5` | Tab hover |
 | `--luna-tab-color` | `#000000` | Tab text |
@@ -401,7 +405,7 @@ The `luna-button` component paints one variant at a time. `size` applies only wi
 
 ### Checkbox Component
 
-The `luna-checkbox` component is a checkbox on the shared field surface. It implements `ControlValueAccessor` for reactive forms support.
+The `luna-checkbox` component is a checkbox with a white box and a black border. It implements `ControlValueAccessor` for reactive forms support.
 
 **Selector:** `luna-checkbox`
 
@@ -665,7 +669,7 @@ The `luna-progress` component is a 14px progress bar. The track uses the field s
 
 ### Radio Component
 
-The `luna-radio` component is a radio button on the shared field surface. It implements `ControlValueAccessor` for reactive forms support.
+The `luna-radio` component is a radio button with a white disc and a black border. The label uses the surrounding text color. It implements `ControlValueAccessor` for reactive forms support.
 
 **Selector:** `luna-radio`
 
@@ -849,7 +853,7 @@ The `luna-overlay` component is the host for menu, modal, and tooltip panes. Add
 
 `LunaModalService` opens a centered dialog on a 50% black veil with no blur. A backdrop click leaves it open. Escape closes it through the shared dismiss stack. It is `providedIn: 'root'`. A second alert, confirm, or prompt while one is already open is ignored. Custom dialogs opened with `open` can stack.
 
-The message box body uses the light accent fill. The title bar uses the window title color. Message boxes still handle Enter themselves. Their Escape handler sits above the modal close: Escape cancels a confirm or prompt, and confirms an alert.
+The message box uses the window frame, title bar, and body fill. Message boxes still handle Enter themselves. Their Escape handler sits above the modal close: Escape cancels a confirm or prompt, and confirms an alert.
 
 #### Message boxes
 

@@ -21,7 +21,7 @@ input[type="range"]
     {
         background: $slider-thumb-svg;
         border: 0;
-        border-radius: 0;
+        border-radius: $border-radius-none;
         height: $chrome-size;
         transform: translateY($spacing-xxs);
         width: $slider-thumb-width;

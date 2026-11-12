@@ -11,9 +11,9 @@
 {
     background: var(--luna-tab-panel-background);
     border: $border-width solid var(--luna-tab-panel-border);
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-    border-top-right-radius: 3px;
+    border-bottom-left-radius: $border-radius-base;
+    border-bottom-right-radius: $border-radius-base;
+    border-top-right-radius: $border-radius-base;
     box-sizing: content-box;
     color: var(--luna-tab-panel-color);
     padding: var(--luna-tab-panel-padding);
